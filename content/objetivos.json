@@ -1,0 +1,11 @@
+{
+  "_ajuda": "Frase do HUD por capítulo (0 a 7) e por papel. 'vez' só vale no capítulo 5. {vez} vira o nome de quem tem a vez.",
+  "0": { "jogador": "Escolha o seu nome para entrar", "mestre": "Espere a tripulação chegar e abra o Capítulo I" },
+  "1": { "jogador": "Leia a Proposta e espere o convite", "mestre": "Leia a Proposta em voz alta e entregue o convite" },
+  "2": { "jogador": "Adicione suas linhas e véus e responda sobre morte e sacrifício", "mestre": "Acompanhe as respostas e lembre as ferramentas de segurança" },
+  "3": { "jogador": "Fixe no mapa de onde seu personagem vem", "mestre": "Apresente os países e acompanhe os alfinetes" },
+  "4": { "jogador": "Preencha a ficha de registro, uma página por vez", "mestre": "Acompanhe o progresso de cada um na Mesa" },
+  "5": { "vez": "Responda a pergunta da carta", "jogador": "Acompanhe a vez de {vez}", "mestre": "Aceite ou vete a resposta de {vez}" },
+  "6": { "jogador": "Faça uma pergunta de conexão e responda as suas", "mestre": "Acompanhe os laços se formando" },
+  "7": { "jogador": "Confira o resumo da noite", "mestre": "Exporte tudo pela Mesa do Mestre" }
+}

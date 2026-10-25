@@ -1,0 +1,72 @@
+[
+  {
+    "id": "entremonts", "nome": "Entremonts", "sabor": "francês", "capital": "Rouillac", "lado": "Neutro",
+    "publico": "[Exemplo] O menor país do continente, encaixado entre montanhas e minas de ferro. Neutro desde o primeiro dia da guerra, vive de vender aço para os dois lados e de não fazer perguntas. Agora sedia a Exposição Universal pela Paz.",
+    "boatos": ["[Exemplo] As fundições de Cendrevaux trabalham dia e noite, e ninguém sabe para quem.", "[Exemplo] As minas de Roche-Noire foram fechadas às pressas, anos atrás.", "[Exemplo] O rei não aparece em público há meses."],
+    "viajante": "[Exemplo] Um país pequeno demais para a própria ambição.",
+    "svgId": "pais-entremonts"
+  },
+  {
+    "id": "bretemar", "nome": "Bretemar", "sabor": "galego", "capital": "Ourantes", "lado": "Bloco B",
+    "publico": "[Exemplo] Terra de rias, névoa e estaleiros. A marinha de Bretemar é a maior do continente, e a sua costa, a mais perigosa.",
+    "boatos": ["[Exemplo] Em Cabo das Ánimas, os pescadores não saem quando a névoa canta.", "[Exemplo] Os estaleiros de Mourelos constroem um navio que ninguém viu.", "[Exemplo] A família real está falida."],
+    "viajante": "[Exemplo] Chove de lado, e todo mundo tem um parente no mar.",
+    "svgId": "pais-bretemar"
+  },
+  {
+    "id": "kenturia", "nome": "Kenturia", "sabor": "sardo", "capital": "Kastedhu Mannu", "lado": "Bloco A",
+    "publico": "[Exemplo] Um país de pedra e de soldados, sede do alto comando do Bloco A. Ocupa parte de Codrina desde o primeiro ano da guerra.",
+    "boatos": ["[Exemplo] As torres antigas de Nuràxedu são mais velhas que qualquer reino.", "[Exemplo] As minas de prata de Pedra Arrùbia pagam a guerra inteira.", "[Exemplo] O alto comando quer a paz mais do que admite."],
+    "viajante": "[Exemplo] Gente de poucas palavras e muitas medalhas.",
+    "svgId": "pais-kenturia"
+  },
+  {
+    "id": "codrina", "nome": "Codrina", "sabor": "romeno", "capital": "Valea Albă", "lado": "Bloco B (ocupada em parte)",
+    "publico": "[Exemplo] Metade do país está ocupada por Kenturia desde o primeiro ano da guerra, com os campos de petróleo e as minas de sal. A outra metade resiste a partir de Valea Albă.",
+    "boatos": ["[Exemplo] Há uma resistência organizada dentro da zona ocupada.", "[Exemplo] O petróleo de Păcureni alimenta as máquinas da Exposição.", "[Exemplo] Muitos refugiados da feira vieram de Ocna Neagră."],
+    "viajante": "[Exemplo] Um país que aprendeu a esperar.",
+    "svgId": "pais-codrina"
+  },
+  {
+    "id": "serrania", "nome": "Serrania", "sabor": "português", "capital": "Almodra", "lado": "Bloco B",
+    "publico": "[Exemplo] Entre a serra e o mar, vinhedos ao norte e minas de volfrâmio no sul, perto da Frente das Serras.",
+    "boatos": ["[Exemplo] O volfrâmio de Penafria vale mais que ouro para os dois lados.", "[Exemplo] Castro Velho contrabandeia vinho para o inimigo.", "[Exemplo] Há aldeias inteiras vazias na serra."],
+    "viajante": "[Exemplo] Saudade engarrafada e vendida a bom preço.",
+    "svgId": "pais-serrania"
+  },
+  {
+    "id": "narona", "nome": "Narona", "sabor": "dálmata", "capital": "Cluòstra", "lado": "Bloco A",
+    "publico": "[Exemplo] Uma bacia de rios e cavalos, com a capital erguida sobre as ruínas de uma colônia antiga.",
+    "boatos": ["[Exemplo] As ruínas sob Cluòstra nunca foram todas escavadas.", "[Exemplo] As feiras de cavalos de Cavalèra escondem um mercado de armas.", "[Exemplo] A frente com Fiorescuro está parada por um acordo secreto."],
+    "viajante": "[Exemplo] Todo naronês sabe montar antes de saber ler.",
+    "svgId": "pais-narona"
+  },
+  {
+    "id": "fiorescuro", "nome": "Fiorescuro", "sabor": "italiano", "capital": "Torremare", "lado": "Bloco B",
+    "publico": "[Exemplo] Bancos, pérolas e perfume. Fiorescuro financia metade do Bloco B e empresta para a outra metade.",
+    "boatos": ["[Exemplo] Os bancos de Torremare emprestam dinheiro aos dois lados.", "[Exemplo] As vidrarias de Vallombra fazem lentes para algo maior que um telescópio.", "[Exemplo] Os campos de jasmim de Gelsomina escondem uma estrada de contrabando."],
+    "viajante": "[Exemplo] Sorriem enquanto contam o seu dinheiro.",
+    "svgId": "pais-fiorescuro"
+  },
+  {
+    "id": "maresme", "nome": "Maresme", "sabor": "catalão", "capital": "Bellamunt", "lado": "Bloco A",
+    "publico": "[Exemplo] Porto da foz do Ferrum, fábricas de tecido e uniformes, e uma costa cheia de anarquistas e pescadores.",
+    "boatos": ["[Exemplo] Os uniformes dos dois exércitos saem das mesmas fábricas de Vilallana.", "[Exemplo] Castellsec é governada por um conselho de pescadores.", "[Exemplo] O Ferrum traz coisas estranhas rio abaixo."],
+    "viajante": "[Exemplo] Trabalham muito, discutem mais.",
+    "svgId": "pais-maresme"
+  },
+  {
+    "id": "ilhas-peroladas", "nome": "Ilhas Peroladas", "sabor": "a definir", "capital": "a definir", "lado": "Fora do continente", "distante": true,
+    "publico": "[Exemplo] Um arquipélago distante, de onde vêm as pérolas de Torremare e os navios mais rápidos do mundo.",
+    "boatos": ["[Exemplo] As ilhas mandaram à Exposição um pavilhão inteiro de madrepérola.", "[Exemplo] Nenhum mapa das ilhas está completo.", "[Exemplo] Há ilhas que só aparecem na maré baixa."],
+    "viajante": "[Exemplo] Cada ilha jura que é a mais antiga.",
+    "svgId": "pais-ilhas-peroladas"
+  },
+  {
+    "id": "costa-do-marfim", "nome": "Costa do Marfim", "sabor": "a definir", "capital": "a definir", "lado": "Fora da guerra", "distante": true,
+    "publico": "[Exemplo] Um continente ao sul, pouco conhecido, de onde a delegação chegou em silêncio.",
+    "boatos": ["[Exemplo] A delegação da Costa do Marfim não trouxe tradutores.", "[Exemplo] Os navios que vão para lá voltam com menos tripulantes.", "[Exemplo] O pavilhão deles fica fechado durante o dia."],
+    "viajante": "[Exemplo] Quem foi não descreve; só desenha.",
+    "svgId": "pais-costa-do-marfim"
+  }
+]

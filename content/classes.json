@@ -1,0 +1,794 @@
+[
+  {
+    "id": "ocultista",
+    "nome": "Ocultista",
+    "nova": true,
+    "fantasia": "[Exemplo] Estuda o que os outros fingem não ver, e paga o preço em noites sem sono.",
+    "dominios": [
+      "a definir",
+      "a definir"
+    ],
+    "subclasses": [
+      {
+        "nome": "a definir",
+        "linha": "[Exemplo]",
+        "conjuracao": "a definir",
+        "fundacao": [
+          {
+            "nome": "Fundação 1 (a definir)",
+            "texto": "Aqui entra o texto desta habilidade."
+          },
+          {
+            "nome": "Fundação 2 (a definir)",
+            "texto": "Aqui entra o texto desta habilidade."
+          }
+        ],
+        "especializacao": [
+          {
+            "nome": "Especialização (a definir)",
+            "texto": "Aqui entra o texto desta habilidade."
+          }
+        ],
+        "maestria": [
+          {
+            "nome": "Maestria (a definir)",
+            "texto": "Aqui entra o texto desta habilidade."
+          }
+        ]
+      },
+      {
+        "nome": "a definir",
+        "linha": "[Exemplo]",
+        "conjuracao": "a definir",
+        "fundacao": [
+          {
+            "nome": "Fundação 1 (a definir)",
+            "texto": "Aqui entra o texto desta habilidade."
+          },
+          {
+            "nome": "Fundação 2 (a definir)",
+            "texto": "Aqui entra o texto desta habilidade."
+          }
+        ],
+        "especializacao": [
+          {
+            "nome": "Especialização (a definir)",
+            "texto": "Aqui entra o texto desta habilidade."
+          }
+        ],
+        "maestria": [
+          {
+            "nome": "Maestria (a definir)",
+            "texto": "Aqui entra o texto desta habilidade."
+          }
+        ]
+      }
+    ],
+    "origem": [
+      "Qual livro você nunca deveria ter lido, e por que não conseguiu parar?",
+      "Quem te ensinou o primeiro símbolo, e o que aconteceu com essa pessoa?",
+      "O que você carrega para se proteger, e de quê?"
+    ],
+    "conexao": [
+      "Por que você confia em mim para guardar um dos seus cadernos?",
+      "O que eu te vi fazer que você ainda não me explicou?",
+      "Que pergunta você me fez que eu não consegui responder?"
+    ],
+    "imagem": null,
+    "evasao": 10,
+    "pv": 6,
+    "itens": [
+      "Item inicial 1 (a definir)",
+      "Item inicial 2 (a definir)",
+      "Item inicial 3 (a definir)"
+    ],
+    "esperanca": {
+      "nome": "Habilidade de Esperança (a definir)",
+      "texto": "Aqui entra o texto desta habilidade."
+    },
+    "habilidades": [
+      {
+        "nome": "Habilidade de classe 1 (a definir)",
+        "texto": "Aqui entra o texto desta habilidade."
+      },
+      {
+        "nome": "Habilidade de classe 2 (a definir)",
+        "texto": "Aqui entra o texto desta habilidade."
+      }
+    ],
+    "extras": []
+  },
+  {
+    "id": "medico",
+    "nome": "Médico",
+    "nova": true,
+    "fantasia": "[Exemplo] Costura soldados, operários e reis, e já viu feridas que nenhum livro descreve.",
+    "dominios": [
+      "a definir",
+      "a definir"
+    ],
+    "subclasses": [
+      {
+        "nome": "a definir",
+        "linha": "[Exemplo]",
+        "conjuracao": "a definir",
+        "fundacao": [
+          {
+            "nome": "Fundação 1 (a definir)",
+            "texto": "Aqui entra o texto desta habilidade."
+          },
+          {
+            "nome": "Fundação 2 (a definir)",
+            "texto": "Aqui entra o texto desta habilidade."
+          }
+        ],
+        "especializacao": [
+          {
+            "nome": "Especialização (a definir)",
+            "texto": "Aqui entra o texto desta habilidade."
+          }
+        ],
+        "maestria": [
+          {
+            "nome": "Maestria (a definir)",
+            "texto": "Aqui entra o texto desta habilidade."
+          }
+        ]
+      },
+      {
+        "nome": "a definir",
+        "linha": "[Exemplo]",
+        "conjuracao": "a definir",
+        "fundacao": [
+          {
+            "nome": "Fundação 1 (a definir)",
+            "texto": "Aqui entra o texto desta habilidade."
+          },
+          {
+            "nome": "Fundação 2 (a definir)",
+            "texto": "Aqui entra o texto desta habilidade."
+          }
+        ],
+        "especializacao": [
+          {
+            "nome": "Especialização (a definir)",
+            "texto": "Aqui entra o texto desta habilidade."
+          }
+        ],
+        "maestria": [
+          {
+            "nome": "Maestria (a definir)",
+            "texto": "Aqui entra o texto desta habilidade."
+          }
+        ]
+      }
+    ],
+    "origem": [
+      "Em qual hospital de campanha você aprendeu de verdade?",
+      "Qual paciente você não conseguiu salvar e ainda visita em sonho?",
+      "Que regra da medicina você quebrou, e quem sabe disso?"
+    ],
+    "conexao": [
+      "Que cicatriz sua fui eu que costurei?",
+      "O que eu prescrevi para você que não era remédio?",
+      "Por que você me procurou fora do horário, aquela noite?"
+    ],
+    "imagem": null,
+    "evasao": 10,
+    "pv": 6,
+    "itens": [
+      "Item inicial 1 (a definir)",
+      "Item inicial 2 (a definir)",
+      "Item inicial 3 (a definir)"
+    ],
+    "esperanca": {
+      "nome": "Habilidade de Esperança (a definir)",
+      "texto": "Aqui entra o texto desta habilidade."
+    },
+    "habilidades": [
+      {
+        "nome": "Habilidade de classe 1 (a definir)",
+        "texto": "Aqui entra o texto desta habilidade."
+      },
+      {
+        "nome": "Habilidade de classe 2 (a definir)",
+        "texto": "Aqui entra o texto desta habilidade."
+      }
+    ],
+    "extras": [
+      {
+        "id": "medico-extra",
+        "nome": "Entrada extra (a definir)",
+        "texto": "Aqui entra o texto desta habilidade."
+      }
+    ]
+  },
+  {
+    "id": "flagelante",
+    "nome": "Flagelante",
+    "nova": true,
+    "fantasia": "[Exemplo] Transforma a dor em fé, e a fé em força.",
+    "dominios": [
+      "a definir",
+      "a definir"
+    ],
+    "subclasses": [
+      {
+        "nome": "a definir",
+        "linha": "[Exemplo]",
+        "conjuracao": "a definir",
+        "fundacao": [
+          {
+            "nome": "Fundação 1 (a definir)",
+            "texto": "Aqui entra o texto desta habilidade."
+          },
+          {
+            "nome": "Fundação 2 (a definir)",
+            "texto": "Aqui entra o texto desta habilidade."
+          }
+        ],
+        "especializacao": [
+          {
+            "nome": "Especialização (a definir)",
+            "texto": "Aqui entra o texto desta habilidade."
+          }
+        ],
+        "maestria": [
+          {
+            "nome": "Maestria (a definir)",
+            "texto": "Aqui entra o texto desta habilidade."
+          }
+        ]
+      },
+      {
+        "nome": "a definir",
+        "linha": "[Exemplo]",
+        "conjuracao": "a definir",
+        "fundacao": [
+          {
+            "nome": "Fundação 1 (a definir)",
+            "texto": "Aqui entra o texto desta habilidade."
+          },
+          {
+            "nome": "Fundação 2 (a definir)",
+            "texto": "Aqui entra o texto desta habilidade."
+          }
+        ],
+        "especializacao": [
+          {
+            "nome": "Especialização (a definir)",
+            "texto": "Aqui entra o texto desta habilidade."
+          }
+        ],
+        "maestria": [
+          {
+            "nome": "Maestria (a definir)",
+            "texto": "Aqui entra o texto desta habilidade."
+          }
+        ]
+      }
+    ],
+    "origem": [
+      "Que culpa você carrega nas costas, literalmente?",
+      "Qual ordem ou irmandade te aceitou, e por que você saiu?",
+      "O que você ouviu na primeira vez que a dor ficou em silêncio?"
+    ],
+    "conexao": [
+      "Por que você tem medo do que eu sou capaz de aguentar?",
+      "Que penitência eu cumpri no seu lugar?",
+      "O que você me confessou?"
+    ],
+    "imagem": null,
+    "evasao": 10,
+    "pv": 6,
+    "itens": [
+      "Item inicial 1 (a definir)",
+      "Item inicial 2 (a definir)",
+      "Item inicial 3 (a definir)"
+    ],
+    "esperanca": {
+      "nome": "Habilidade de Esperança (a definir)",
+      "texto": "Aqui entra o texto desta habilidade."
+    },
+    "habilidades": [
+      {
+        "nome": "Habilidade de classe 1 (a definir)",
+        "texto": "Aqui entra o texto desta habilidade."
+      },
+      {
+        "nome": "Habilidade de classe 2 (a definir)",
+        "texto": "Aqui entra o texto desta habilidade."
+      }
+    ],
+    "extras": []
+  },
+  {
+    "id": "galvanista",
+    "nome": "Galvanista",
+    "nova": true,
+    "fantasia": "[Exemplo] Engenheiro da eletricidade, convencido de que a faísca certa acorda qualquer coisa.",
+    "dominios": [
+      "a definir",
+      "a definir"
+    ],
+    "subclasses": [
+      {
+        "nome": "a definir",
+        "linha": "[Exemplo]",
+        "conjuracao": "a definir",
+        "fundacao": [
+          {
+            "nome": "Fundação 1 (a definir)",
+            "texto": "Aqui entra o texto desta habilidade."
+          },
+          {
+            "nome": "Fundação 2 (a definir)",
+            "texto": "Aqui entra o texto desta habilidade."
+          }
+        ],
+        "especializacao": [
+          {
+            "nome": "Especialização (a definir)",
+            "texto": "Aqui entra o texto desta habilidade."
+          }
+        ],
+        "maestria": [
+          {
+            "nome": "Maestria (a definir)",
+            "texto": "Aqui entra o texto desta habilidade."
+          }
+        ]
+      },
+      {
+        "nome": "a definir",
+        "linha": "[Exemplo]",
+        "conjuracao": "a definir",
+        "fundacao": [
+          {
+            "nome": "Fundação 1 (a definir)",
+            "texto": "Aqui entra o texto desta habilidade."
+          },
+          {
+            "nome": "Fundação 2 (a definir)",
+            "texto": "Aqui entra o texto desta habilidade."
+          }
+        ],
+        "especializacao": [
+          {
+            "nome": "Especialização (a definir)",
+            "texto": "Aqui entra o texto desta habilidade."
+          }
+        ],
+        "maestria": [
+          {
+            "nome": "Maestria (a definir)",
+            "texto": "Aqui entra o texto desta habilidade."
+          }
+        ]
+      }
+    ],
+    "origem": [
+      "Qual foi o seu primeiro experimento que deu certo demais?",
+      "Que patente roubaram de você, e quem?",
+      "Qual máquina da Exposição você ajudou a construir?"
+    ],
+    "conexao": [
+      "Que aparelho meu eu te deixei usar uma única vez?",
+      "Por que você estava presente no acidente do meu laboratório?",
+      "O que eu prometi inventar para você?"
+    ],
+    "imagem": null,
+    "evasao": 10,
+    "pv": 6,
+    "itens": [
+      "Item inicial 1 (a definir)",
+      "Item inicial 2 (a definir)",
+      "Item inicial 3 (a definir)"
+    ],
+    "esperanca": {
+      "nome": "Habilidade de Esperança (a definir)",
+      "texto": "Aqui entra o texto desta habilidade."
+    },
+    "habilidades": [
+      {
+        "nome": "Habilidade de classe 1 (a definir)",
+        "texto": "Aqui entra o texto desta habilidade."
+      },
+      {
+        "nome": "Habilidade de classe 2 (a definir)",
+        "texto": "Aqui entra o texto desta habilidade."
+      }
+    ],
+    "extras": [
+      {
+        "id": "galvanista-extra",
+        "nome": "Entrada extra (a definir)",
+        "texto": "Aqui entra o texto desta habilidade."
+      }
+    ]
+  },
+  {
+    "id": "alquimista",
+    "nome": "Alquimista",
+    "nova": true,
+    "fantasia": "[Exemplo] Química, farmácia e um pouco de heresia, tudo na mesma bancada.",
+    "dominios": [
+      "Sábio",
+      "Códice"
+    ],
+    "subclasses": [
+      {
+        "nome": "Apotecária",
+        "linha": "[Exemplo] Cura, venenos e remédios de balcão.",
+        "conjuracao": "a definir",
+        "fundacao": [
+          {
+            "nome": "Fundação 1 (a definir)",
+            "texto": "Aqui entra o texto desta habilidade."
+          },
+          {
+            "nome": "Fundação 2 (a definir)",
+            "texto": "Aqui entra o texto desta habilidade."
+          }
+        ],
+        "especializacao": [
+          {
+            "nome": "Especialização (a definir)",
+            "texto": "Aqui entra o texto desta habilidade."
+          }
+        ],
+        "maestria": [
+          {
+            "nome": "Maestria (a definir)",
+            "texto": "Aqui entra o texto desta habilidade."
+          }
+        ]
+      },
+      {
+        "nome": "Granadeiro",
+        "linha": "[Exemplo] Frascos que explodem, de propósito.",
+        "conjuracao": "a definir",
+        "fundacao": [
+          {
+            "nome": "Fundação 1 (a definir)",
+            "texto": "Aqui entra o texto desta habilidade."
+          },
+          {
+            "nome": "Fundação 2 (a definir)",
+            "texto": "Aqui entra o texto desta habilidade."
+          }
+        ],
+        "especializacao": [
+          {
+            "nome": "Especialização (a definir)",
+            "texto": "Aqui entra o texto desta habilidade."
+          }
+        ],
+        "maestria": [
+          {
+            "nome": "Maestria (a definir)",
+            "texto": "Aqui entra o texto desta habilidade."
+          }
+        ]
+      }
+    ],
+    "origem": [
+      "Qual fórmula você tenta completar há anos?",
+      "Que substância você jurou nunca mais preparar?",
+      "Para quem você trabalhava quando a guerra começou?"
+    ],
+    "conexao": [
+      "Que frasco meu você guarda e nunca abriu?",
+      "Por que eu te devo a vida, ou a cara?",
+      "O que eu te vendi que não estava no rótulo?"
+    ],
+    "imagem": null,
+    "evasao": 10,
+    "pv": 6,
+    "itens": [
+      "Item inicial 1 (a definir)",
+      "Item inicial 2 (a definir)",
+      "Item inicial 3 (a definir)"
+    ],
+    "esperanca": {
+      "nome": "Habilidade de Esperança (a definir)",
+      "texto": "Aqui entra o texto desta habilidade."
+    },
+    "habilidades": [
+      {
+        "nome": "Habilidade de classe 1 (a definir)",
+        "texto": "Aqui entra o texto desta habilidade."
+      },
+      {
+        "nome": "Habilidade de classe 2 (a definir)",
+        "texto": "Aqui entra o texto desta habilidade."
+      }
+    ],
+    "extras": [
+      {
+        "id": "alquimista-extra",
+        "nome": "Entrada extra (a definir)",
+        "texto": "Aqui entra o texto desta habilidade."
+      }
+    ]
+  },
+  {
+    "id": "bardo",
+    "nome": "Bardo",
+    "nova": false,
+    "fantasia": "[Exemplo] Artista de palco e de salão, que encanta, convence e inspira.",
+    "dominios": [
+      "Graça",
+      "Códice"
+    ],
+    "subclasses": [
+      {
+        "nome": "Trovador",
+        "linha": "[Exemplo] Música que muda a cena."
+      },
+      {
+        "nome": "Artesão das Palavras",
+        "linha": "[Exemplo] Discursos que mudam pessoas."
+      }
+    ],
+    "origem": [
+      "Em que palco você foi vaiado, e por que voltou?",
+      "Quem é o seu maior rival artístico?",
+      "Que canção você não canta mais?"
+    ],
+    "conexao": [
+      "Que verso eu escrevi sobre você?",
+      "Por que você me pediu para mentir por você?",
+      "Em que noite eu te tirei de uma enrascada?"
+    ],
+    "imagem": null
+  },
+  {
+    "id": "druida",
+    "nome": "Druida",
+    "nova": false,
+    "fantasia": "[Exemplo] Guardião do que resta de selvagem num mundo de ferro.",
+    "dominios": [
+      "Sábio",
+      "Arcano"
+    ],
+    "subclasses": [
+      {
+        "nome": "Guardião dos Elementos",
+        "linha": "[Exemplo]"
+      },
+      {
+        "nome": "Guardião da Renovação",
+        "linha": "[Exemplo]"
+      }
+    ],
+    "origem": [
+      "Que floresta a guerra queimou na sua frente?",
+      "Que animal você seguiu até a cidade?",
+      "O que a terra te disse que você não quis ouvir?"
+    ],
+    "conexao": [
+      "Por que eu te chamo pelo nome de um bicho?",
+      "O que você plantou comigo?",
+      "Que cheiro meu você reconhece de longe?"
+    ],
+    "imagem": null
+  },
+  {
+    "id": "guardiao",
+    "nome": "Guardião",
+    "nova": false,
+    "fantasia": "[Exemplo] Escudo de alguém, ou de alguma coisa, até o fim.",
+    "dominios": [
+      "Valor",
+      "Lâmina"
+    ],
+    "subclasses": [
+      {
+        "nome": "Inabalável",
+        "linha": "[Exemplo]"
+      },
+      {
+        "nome": "Vingança",
+        "linha": "[Exemplo]"
+      }
+    ],
+    "origem": [
+      "Quem você não conseguiu proteger?",
+      "A quem você jurou lealdade, e o juramento ainda vale?",
+      "Que muralha você segurou sozinho?"
+    ],
+    "conexao": [
+      "Por que eu me coloquei na sua frente aquela vez?",
+      "Que promessa você me fez?",
+      "O que você me pediu para guardar?"
+    ],
+    "imagem": null
+  },
+  {
+    "id": "patrulheiro",
+    "nome": "Patrulheiro",
+    "nova": false,
+    "fantasia": "[Exemplo] Batedor, caçador e guia das terras de ninguém.",
+    "dominios": [
+      "Osso",
+      "Sábio"
+    ],
+    "subclasses": [
+      {
+        "nome": "Vínculo Animal",
+        "linha": "[Exemplo]"
+      },
+      {
+        "nome": "Desbravador",
+        "linha": "[Exemplo]"
+      }
+    ],
+    "origem": [
+      "Que trilha da frente só você conhece?",
+      "Quem você caça, e por quê?",
+      "Qual foi a pior noite que você passou ao relento?"
+    ],
+    "conexao": [
+      "Por que eu te encontrei perdido?",
+      "Que rastro meu você segue?",
+      "O que eu te ensinei a ouvir?"
+    ],
+    "imagem": null
+  },
+  {
+    "id": "ladino",
+    "nome": "Ladino",
+    "nova": false,
+    "fantasia": "[Exemplo] Sombra útil: ladrão, espião, chantagista.",
+    "dominios": [
+      "Meia-noite",
+      "Graça"
+    ],
+    "subclasses": [
+      {
+        "nome": "Andarilho Noturno",
+        "linha": "[Exemplo]"
+      },
+      {
+        "nome": "Sindicato",
+        "linha": "[Exemplo]"
+      }
+    ],
+    "origem": [
+      "Qual foi o maior golpe da sua vida, e quem pagou por ele?",
+      "A quem você deve dinheiro?",
+      "Que identidade falsa você usa na Exposição?"
+    ],
+    "conexao": [
+      "Que segredo seu eu descobri?",
+      "Por que você me deixou escapar?",
+      "O que eu roubei de você, e devolvi?"
+    ],
+    "imagem": null
+  },
+  {
+    "id": "serafim",
+    "nome": "Serafim",
+    "nova": false,
+    "fantasia": "[Exemplo] Guerreiro de fé, com a convicção de quem já foi tocado por algo maior.",
+    "dominios": [
+      "Esplendor",
+      "Valor"
+    ],
+    "subclasses": [
+      {
+        "nome": "Portador Divino",
+        "linha": "[Exemplo]"
+      },
+      {
+        "nome": "Sentinela Alada",
+        "linha": "[Exemplo]"
+      }
+    ],
+    "origem": [
+      "Em que você acredita, e quando essa fé foi testada?",
+      "Que milagre você presenciou?",
+      "Que igreja ou ordem você deixou para trás?"
+    ],
+    "conexao": [
+      "Por que você reza por mim?",
+      "Que dúvida eu plantei em você?",
+      "O que eu te vi fazer que parecia milagre?"
+    ],
+    "imagem": null
+  },
+  {
+    "id": "feiticeiro",
+    "nome": "Feiticeiro",
+    "nova": false,
+    "fantasia": "[Exemplo] O poder nasceu com você, e você ainda não sabe de onde.",
+    "dominios": [
+      "Arcano",
+      "Meia-noite"
+    ],
+    "subclasses": [
+      {
+        "nome": "Origem Elemental",
+        "linha": "[Exemplo]"
+      },
+      {
+        "nome": "Origem Primordial",
+        "linha": "[Exemplo]"
+      }
+    ],
+    "origem": [
+      "Quando o seu poder apareceu pela primeira vez, e quem viu?",
+      "O que você quebrou sem querer?",
+      "Quem tentou te estudar?"
+    ],
+    "conexao": [
+      "Por que eu sou a única pessoa que não tem medo de você?",
+      "O que você queimou por mim?",
+      "Que sinal meu você reconhece?"
+    ],
+    "imagem": null
+  },
+  {
+    "id": "guerreiro",
+    "nome": "Guerreiro",
+    "nova": false,
+    "fantasia": "[Exemplo] Veterano de uma guerra sem fim, bom demais no que faz.",
+    "dominios": [
+      "Lâmina",
+      "Osso"
+    ],
+    "subclasses": [
+      {
+        "nome": "Chamado do Bravo",
+        "linha": "[Exemplo]"
+      },
+      {
+        "nome": "Chamado do Matador",
+        "linha": "[Exemplo]"
+      }
+    ],
+    "origem": [
+      "Em que batalha você deveria ter morrido?",
+      "Por que você largou o uniforme, ou não largou?",
+      "Quem lutou ao seu lado e hoje está do outro lado?"
+    ],
+    "conexao": [
+      "Em que trincheira a gente se conheceu?",
+      "Por que você me deve uma?",
+      "O que eu vi você fazer na guerra?"
+    ],
+    "imagem": null
+  },
+  {
+    "id": "mago",
+    "nome": "Mago",
+    "nova": false,
+    "fantasia": "[Exemplo] Erudito do arcano, de biblioteca e de laboratório.",
+    "dominios": [
+      "Códice",
+      "Esplendor"
+    ],
+    "subclasses": [
+      {
+        "nome": "Escola do Conhecimento",
+        "linha": "[Exemplo]"
+      },
+      {
+        "nome": "Escola da Guerra",
+        "linha": "[Exemplo]"
+      }
+    ],
+    "origem": [
+      "Que academia te expulsou, ou te premiou?",
+      "Que livro você roubou de uma biblioteca?",
+      "Que teoria sua todo mundo ri?"
+    ],
+    "conexao": [
+      "Por que eu peço a sua opinião antes de qualquer experimento?",
+      "O que eu te ensinei?",
+      "Que erro meu você corrigiu em público?"
+    ],
+    "imagem": null
+  }
+]

@@ -1,0 +1,87 @@
+{
+  "titulo": "O Continente",
+  "viewBox": [
+    0,
+    0,
+    2100,
+    1500
+  ],
+  "arquivo": "mapas/continente.svg",
+  "camadas": [
+    {
+      "id": "paises",
+      "rotulo": "Política",
+      "ligada": true
+    },
+    {
+      "id": "frentes",
+      "rotulo": "Frentes de guerra",
+      "ligada": true
+    },
+    {
+      "id": "ferrovias",
+      "rotulo": "Ferrovias",
+      "ligada": true
+    },
+    {
+      "id": "cidades",
+      "rotulo": "Cidades",
+      "ligada": true
+    },
+    {
+      "id": "vilas",
+      "rotulo": "Vilas",
+      "ligada": false
+    },
+    {
+      "id": "rios",
+      "rotulo": "Rios",
+      "ligada": true
+    },
+    {
+      "id": "rotulos",
+      "rotulo": "Rótulos",
+      "ligada": true
+    },
+    {
+      "id": "grade",
+      "rotulo": "Grade",
+      "ligada": false
+    }
+  ],
+  "tiposPin": [
+    {
+      "id": "origem",
+      "rotulo": "Origem",
+      "icone": "icons/svg/house.svg"
+    },
+    {
+      "id": "memoria",
+      "rotulo": "Memória",
+      "icone": "icons/svg/book.svg"
+    },
+    {
+      "id": "rumor",
+      "rotulo": "Rumor",
+      "icone": "icons/svg/sound.svg"
+    },
+    {
+      "id": "pessoa",
+      "rotulo": "Pessoa",
+      "icone": "icons/svg/mystery-man.svg"
+    }
+  ],
+  "centro": [
+    400,
+    800,
+    2
+  ],
+  "escala": {
+    "porUnidade": 3.5,
+    "unidade": "km",
+    "viagem": {
+      "rotulo": "de trem",
+      "kmh": 60
+    }
+  }
+}

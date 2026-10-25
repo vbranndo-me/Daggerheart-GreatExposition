@@ -1,0 +1,19 @@
+{
+  "linhas": "Linhas são coisas que não entram no jogo de jeito nenhum.",
+  "veus": "Véus são coisas que podem existir na história, mas acontecem fora de cena: a câmera corta.",
+  "morte": {
+    "pergunta": "Como você se sente sobre a morte e o sacrifício do seu personagem?",
+    "explicacao": "Sua resposta é privada: só o mestre vê. Ninguém mais vai saber o que você escolheu.",
+    "opcoes": [
+      { "id": "qualquer", "nome": "Meu personagem pode morrer a qualquer momento, se a história pedir." },
+      { "id": "significado", "nome": "Pode morrer, mas só por algo que importe." },
+      { "id": "sacrificio", "nome": "Só se for um sacrifício escolhido por mim." },
+      { "id": "consentimento", "nome": "Só com o meu consentimento, conversado antes." }
+    ]
+  },
+  "ferramentas": [
+    { "nome": "Cartão X", "texto": "Se algo te incomodar, escreva X no chat do Discord ou diga \"X\". A cena muda, sem perguntas e sem explicação." },
+    { "nome": "Pausa", "texto": "Qualquer pessoa pode pedir uma pausa, a qualquer momento, por qualquer motivo." },
+    { "nome": "Conversa depois", "texto": "No fim de cada sessão, um minuto para falar do que funcionou e do que não funcionou." }
+  ]
+}

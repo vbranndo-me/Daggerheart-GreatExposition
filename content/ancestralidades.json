@@ -1,0 +1,38 @@
+[
+  {
+    "id": "anc-1",
+    "nome": "Ancestralidade A",
+    "descricao": "Aqui entra a descrição desta ancestralidade, no tom do cenário.",
+    "imagem": null
+  },
+  {
+    "id": "anc-2",
+    "nome": "Ancestralidade B",
+    "descricao": "Aqui entra a descrição desta ancestralidade, no tom do cenário.",
+    "imagem": null
+  },
+  {
+    "id": "anc-3",
+    "nome": "Ancestralidade C",
+    "descricao": "Aqui entra a descrição desta ancestralidade, no tom do cenário.",
+    "imagem": null
+  },
+  {
+    "id": "anc-4",
+    "nome": "Ancestralidade D",
+    "descricao": "Aqui entra a descrição desta ancestralidade, no tom do cenário.",
+    "imagem": null
+  },
+  {
+    "id": "anc-5",
+    "nome": "Ancestralidade E",
+    "descricao": "Aqui entra a descrição desta ancestralidade, no tom do cenário.",
+    "imagem": null
+  },
+  {
+    "id": "anc-6",
+    "nome": "Ancestralidade F",
+    "descricao": "Aqui entra a descrição desta ancestralidade, no tom do cenário.",
+    "imagem": null
+  }
+]

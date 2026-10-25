@@ -1,0 +1,50 @@
+[
+  {
+    "id": "carta-1",
+    "nome": "Carta 1 (a definir)",
+    "dominio": "a definir",
+    "nivel": 2,
+    "texto": "Aqui entra o texto da carta.",
+    "imagem": null
+  },
+  {
+    "id": "carta-2",
+    "nome": "Carta 2 (a definir)",
+    "dominio": "a definir",
+    "nivel": 3,
+    "texto": "Aqui entra o texto da carta.",
+    "imagem": null
+  },
+  {
+    "id": "carta-3",
+    "nome": "Carta 3 (a definir)",
+    "dominio": "a definir",
+    "nivel": 1,
+    "texto": "Aqui entra o texto da carta.",
+    "imagem": null
+  },
+  {
+    "id": "carta-4",
+    "nome": "Carta 4 (a definir)",
+    "dominio": "a definir",
+    "nivel": 2,
+    "texto": "Aqui entra o texto da carta.",
+    "imagem": null
+  },
+  {
+    "id": "carta-5",
+    "nome": "Carta 5 (a definir)",
+    "dominio": "a definir",
+    "nivel": 3,
+    "texto": "Aqui entra o texto da carta.",
+    "imagem": null
+  },
+  {
+    "id": "carta-6",
+    "nome": "Carta 6 (a definir)",
+    "dominio": "a definir",
+    "nivel": 1,
+    "texto": "Aqui entra o texto da carta.",
+    "imagem": null
+  }
+]

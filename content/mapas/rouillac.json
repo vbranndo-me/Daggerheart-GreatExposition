@@ -1,0 +1,207 @@
+{
+  "titulo": "Plan de Rouillac",
+  "viewBox": [
+    0,
+    0,
+    4000,
+    3120
+  ],
+  "bases": [
+    {
+      "id": "monumentos",
+      "rotulo": "Monumentos",
+      "arquivo": "mapas/rouillac/monumentos.svg",
+      "legenda": [
+        {
+          "tipo": "linha",
+          "cor": "#ece4cf",
+          "texto": "Vias principais"
+        },
+        {
+          "tipo": "linha",
+          "cor": "#9cc4de",
+          "texto": "Ponte"
+        },
+        {
+          "tipo": "tracejado",
+          "cor": "#a5463c",
+          "texto": "Antiga muralha"
+        },
+        {
+          "tipo": "area",
+          "cor": "#3f5a70",
+          "texto": "Rios"
+        },
+        {
+          "tipo": "area",
+          "cor": "#4a6a48",
+          "texto": "Jardins, praças e cemitério"
+        },
+        {
+          "tipo": "area",
+          "cor": "#6a665e",
+          "texto": "Docas e armazéns"
+        },
+        {
+          "tipo": "tracejado",
+          "cor": "#d7bc80",
+          "texto": "Cerca da Exposição"
+        },
+        {
+          "tipo": "tracejado",
+          "cor": "#ece4cf",
+          "texto": "Ferrovia, viaduto e túnel"
+        }
+      ]
+    },
+    {
+      "id": "distritos",
+      "rotulo": "Distritos",
+      "arquivo": "mapas/rouillac/distritos.svg",
+      "legenda": [
+        {
+          "tipo": "linha",
+          "cor": "#ece4cf",
+          "texto": "Vias principais"
+        },
+        {
+          "tipo": "linha",
+          "cor": "#9cc4de",
+          "texto": "Ponte"
+        },
+        {
+          "tipo": "tracejado",
+          "cor": "#a5463c",
+          "texto": "Antiga muralha"
+        },
+        {
+          "tipo": "area",
+          "cor": "#3f5a70",
+          "texto": "Rios"
+        },
+        {
+          "tipo": "area",
+          "cor": "#4a6a48",
+          "texto": "Jardins, praças e cemitério"
+        },
+        {
+          "tipo": "area",
+          "cor": "#6a665e",
+          "texto": "Docas e armazéns"
+        },
+        {
+          "tipo": "tracejado",
+          "cor": "#d7bc80",
+          "texto": "Cerca da Exposição"
+        },
+        {
+          "tipo": "tracejado",
+          "cor": "#ece4cf",
+          "texto": "Ferrovia, viaduto e túnel"
+        }
+      ]
+    },
+    {
+      "id": "pobreza",
+      "rotulo": "Carta da pobreza",
+      "arquivo": "mapas/rouillac/pobreza.svg",
+      "legenda": [
+        {
+          "tipo": "area",
+          "cor": "#1b1b1b",
+          "texto": "Classe mais baixa. Viciosa, semicriminosa."
+        },
+        {
+          "tipo": "area",
+          "cor": "#2c3f8f",
+          "texto": "Muito pobres, trabalho eventual."
+        },
+        {
+          "tipo": "area",
+          "cor": "#86abd8",
+          "texto": "Pobres. Ganho baixo e incerto."
+        },
+        {
+          "tipo": "area",
+          "cor": "#8b4f9f",
+          "texto": "Misto. Alguns confortáveis, outros pobres."
+        },
+        {
+          "tipo": "area",
+          "cor": "#e9a3b2",
+          "texto": "Razoavelmente confortáveis."
+        },
+        {
+          "tipo": "area",
+          "cor": "#c9372f",
+          "texto": "Classe média. Bem de vida."
+        },
+        {
+          "tipo": "area",
+          "cor": "#f1c232",
+          "texto": "Classe média alta e alta. Ricos."
+        },
+        {
+          "tipo": "hachura",
+          "cor": "#ece4cf",
+          "texto": "Indústria, docas e armazéns"
+        },
+        {
+          "tipo": "area",
+          "cor": "#c9d9a8",
+          "texto": "Parques, jardins e cemitério"
+        }
+      ]
+    }
+  ],
+  "tiposPin": [
+    {
+      "id": "pavilhao",
+      "rotulo": "Pavilhão",
+      "icone": "icons/svg/temple.svg"
+    },
+    {
+      "id": "escandalo",
+      "rotulo": "Escândalo",
+      "icone": "icons/svg/hazard.svg"
+    },
+    {
+      "id": "lugar",
+      "rotulo": "Lugar",
+      "icone": "icons/svg/village.svg"
+    },
+    {
+      "id": "boato",
+      "rotulo": "Boato",
+      "icone": "icons/svg/eye.svg"
+    },
+    {
+      "id": "pessoa",
+      "rotulo": "Pessoa",
+      "icone": "icons/svg/mystery-man.svg"
+    }
+  ],
+  "centro": [
+    1950,
+    1550,
+    1.3
+  ],
+  "escala": {
+    "porUnidade": 4,
+    "unidade": "m",
+    "viagem": {
+      "rotulo": "a pé",
+      "kmh": 5
+    }
+  },
+  "principais": [
+    "Palais Royal",
+    "Cathédrale Saint-Éloi",
+    "Opéra",
+    "Université",
+    "Gare de l'Exposition",
+    "Tour de l'Exposition",
+    "Gare du Nord",
+    "Galerie des Machines"
+  ]
+}

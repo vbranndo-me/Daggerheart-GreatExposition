@@ -1,0 +1,79 @@
+{
+  "rules": {
+    "gmkeys": {
+      "$sala": {
+        ".read": false,
+        ".write": "auth != null && !data.exists() && newData.isString() && newData.val().length >= 8"
+      }
+    },
+    "salas": {
+      "$sala": {
+        ".read": "auth != null && root.child('salas').child($sala).child('gmauth').child(auth.uid).exists()",
+        ".write": "auth != null && root.child('salas').child($sala).child('gmauth').child(auth.uid).exists()",
+        "gmauth": {
+          "$uid": {
+            ".read": "auth != null && auth.uid === $uid",
+            ".write": "auth != null && auth.uid === $uid",
+            ".validate": "newData.val() === root.child('gmkeys').child($sala).val()"
+          }
+        },
+        "meta": {
+          ".read": "auth != null"
+        },
+        "jogadores": {
+          ".read": "auth != null",
+          "$jid": {
+            "uid": {
+              ".write": "auth != null && (!data.exists() || data.val() === auth.uid || data.parent().child('online').val() !== true) && (!newData.exists() || newData.val() === auth.uid)"
+            },
+            "online": {
+              ".write": "auth != null && data.parent().child('uid').val() === auth.uid",
+              ".validate": "newData.isBoolean()"
+            }
+          }
+        },
+        "pins": {
+          ".read": "auth != null",
+          "$mapa": {
+            "$pid": {
+              ".write": "auth != null && ((!data.exists() && newData.child('autor').isString() && root.child('salas').child($sala).child('jogadores').child(newData.child('autor').val()).child('uid').val() === auth.uid) || (data.exists() && root.child('salas').child($sala).child('jogadores').child(data.child('autor').val()).child('uid').val() === auth.uid && (!newData.exists() || newData.child('autor').val() === data.child('autor').val())))"
+            }
+          }
+        },
+        "personagens": {
+          ".read": "auth != null",
+          "$jid": {
+            ".write": "auth != null && root.child('salas').child($sala).child('jogadores').child($jid).child('uid').val() === auth.uid"
+          }
+        },
+        "privado": {
+          "$jid": {
+            ".read": "auth != null && root.child('salas').child($sala).child('jogadores').child($jid).child('uid').val() === auth.uid",
+            ".write": "auth != null && root.child('salas').child($sala).child('jogadores').child($jid).child('uid').val() === auth.uid"
+          }
+        },
+        "seguranca": {
+          ".read": "auth != null",
+          "itens": {
+            "$iid": {
+              ".write": "auth != null",
+              ".validate": "!newData.exists() || (newData.child('texto').isString() && newData.child('texto').val().length <= 300)"
+            }
+          }
+        },
+        "builder": {
+          ".read": "auth != null",
+          "atual": {
+            ".write": "auth != null && root.child('salas').child($sala).child('builder').child('vezJid').isString() && root.child('salas').child($sala).child('jogadores').child(root.child('salas').child($sala).child('builder').child('vezJid').val()).child('uid').val() === auth.uid"
+          }
+        },
+        "lacos": {
+          ".read": "auth != null",
+          "$lid": {
+            ".write": "auth != null && ((data.exists() && (root.child('salas').child($sala).child('jogadores').child(data.child('de').val()).child('uid').val() === auth.uid || root.child('salas').child($sala).child('jogadores').child(data.child('para').val()).child('uid').val() === auth.uid)) || (newData.exists() && (root.child('salas').child($sala).child('jogadores').child(newData.child('de').val()).child('uid').val() === auth.uid || root.child('salas').child($sala).child('jogadores').child(newData.child('para').val()).child('uid').val() === auth.uid)))"
+          }
+        }
+      }
+    }
+  }
+}

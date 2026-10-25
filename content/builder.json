@@ -1,0 +1,53 @@
+{
+  "titulo": "Programme Officiel de l'Exposition",
+  "categorias": [
+    { "d4": 1, "nome": "A construção", "perguntas": [
+      { "d10": 1, "texto": "[Exemplo] Que prédio da cidade velha foi derrubado para erguer a feira, e quem ainda chora por ele?", "pin": "lugar" },
+      { "d10": 2, "texto": "[Exemplo] Que acidente aconteceu durante as obras, e como foi abafado?", "pin": "escandalo" },
+      { "d10": 3, "texto": "[Exemplo] Qual é o pavilhão mais caro da Exposição, e quem pagou por ele?", "pin": "pavilhao" },
+      { "d10": 4, "texto": "[Exemplo] Que máquina nova faz a feira funcionar à noite?", "pin": "lugar" },
+      { "d10": 5, "texto": "[Exemplo] Quem é o arquiteto-chefe, e o que dizem dele nos cafés?", "pin": "pessoa" },
+      { "d10": 6, "texto": "[Exemplo] Que material estranho foi usado numa das estruturas?", "pin": "boato" },
+      { "d10": 7, "texto": "[Exemplo] Que parte da feira ainda não ficou pronta?", "pin": "lugar" },
+      { "d10": 8, "texto": "[Exemplo] Que operários foram contratados de longe, e por quê?", "pin": "pessoa" },
+      { "d10": 9, "texto": "[Exemplo] O que encontraram ao cavar as fundações?", "pin": "boato" },
+      { "d10": 10, "texto": "[Exemplo] Qual é o símbolo da Exposição, e onde ele aparece?", "pin": "lugar" }
+    ]},
+    { "d4": 2, "nome": "Os pavilhões", "perguntas": [
+      { "d10": 1, "texto": "[Exemplo] Qual país em guerra montou o pavilhão mais bonito, e o que ele esconde?", "pin": "pavilhao" },
+      { "d10": 2, "texto": "[Exemplo] Que pavilhão foi fechado no primeiro dia?", "pin": "escandalo" },
+      { "d10": 3, "texto": "[Exemplo] Que invenção todo mundo faz fila para ver?", "pin": "pavilhao" },
+      { "d10": 4, "texto": "[Exemplo] Que obra de arte causou briga entre duas delegações?", "pin": "escandalo" },
+      { "d10": 5, "texto": "[Exemplo] Que pavilhão só abre à noite?", "pin": "pavilhao" },
+      { "d10": 6, "texto": "[Exemplo] O que as Ilhas Peroladas trouxeram para mostrar?", "pin": "pavilhao" },
+      { "d10": 7, "texto": "[Exemplo] Que animal ou planta exótica está em exposição?", "pin": "lugar" },
+      { "d10": 8, "texto": "[Exemplo] Que pavilhão tem um guarda que nunca dorme?", "pin": "pessoa" },
+      { "d10": 9, "texto": "[Exemplo] Qual é a atração mais popular entre as crianças?", "pin": "lugar" },
+      { "d10": 10, "texto": "[Exemplo] Que pavilhão ninguém visita, e por quê?", "pin": "boato" }
+    ]},
+    { "d4": 3, "nome": "A gente da feira", "perguntas": [
+      { "d10": 1, "texto": "[Exemplo] Quem é a estrela da Exposição, e o que ela quer de verdade?", "pin": "pessoa" },
+      { "d10": 2, "texto": "[Exemplo] Que delegado chegou com mais seguranças do que o protocolo permite?", "pin": "pessoa" },
+      { "d10": 3, "texto": "[Exemplo] Onde os funcionários se encontram depois do expediente?", "pin": "lugar" },
+      { "d10": 4, "texto": "[Exemplo] Que jornalista está fazendo perguntas demais?", "pin": "pessoa" },
+      { "d10": 5, "texto": "[Exemplo] Onde dormem os refugiados que trabalham na feira?", "pin": "lugar" },
+      { "d10": 6, "texto": "[Exemplo] Que casal proibido se encontra nos jardins?", "pin": "escandalo" },
+      { "d10": 7, "texto": "[Exemplo] Quem vende ingressos falsos, e a quem paga proteção?", "pin": "pessoa" },
+      { "d10": 8, "texto": "[Exemplo] Que criança aparece em todas as fotos da feira?", "pin": "boato" },
+      { "d10": 9, "texto": "[Exemplo] Que cozinheiro famoso abriu um restaurante na Exposição?", "pin": "lugar" },
+      { "d10": 10, "texto": "[Exemplo] Quem foi demitido na véspera da abertura?", "pin": "escandalo" }
+    ]},
+    { "d4": 4, "nome": "Os rumores", "perguntas": [
+      { "d10": 1, "texto": "[Exemplo] Que som estranho se ouve na feira de madrugada?", "pin": "boato" },
+      { "d10": 2, "texto": "[Exemplo] Que visitante desapareceu, e o que dizem que aconteceu?", "pin": "escandalo" },
+      { "d10": 3, "texto": "[Exemplo] Que lugar da feira os cães se recusam a atravessar?", "pin": "boato" },
+      { "d10": 4, "texto": "[Exemplo] Que tratado secreto dizem que será assinado na Exposição?", "pin": "boato" },
+      { "d10": 5, "texto": "[Exemplo] Que objeto em exposição foi roubado e devolvido no dia seguinte?", "pin": "escandalo" },
+      { "d10": 6, "texto": "[Exemplo] Qual relógio da feira está sempre errado, e por quanto?", "pin": "lugar" },
+      { "d10": 7, "texto": "[Exemplo] O que os mineiros velhos de Rouillac dizem sobre a feira?", "pin": "pessoa" },
+      { "d10": 8, "texto": "[Exemplo] Que sonho vários visitantes tiveram na mesma noite?", "pin": "boato" },
+      { "d10": 9, "texto": "[Exemplo] Que fotografia da feira mostra algo que não estava lá?", "pin": "boato" },
+      { "d10": 10, "texto": "[Exemplo] Que aposta corre entre os garçons da Exposição?", "pin": "escandalo" }
+    ]}
+  ]
+}

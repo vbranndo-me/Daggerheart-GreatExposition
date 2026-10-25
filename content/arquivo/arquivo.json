@@ -1,0 +1,71 @@
+{
+  "titulo": "A Exposição Universal",
+  "subtitulo": "Uma campanha de horror belle époque para Daggerheart.",
+  "complexidade": 4,
+  "capitulos": [
+    {
+      "id": "proposta",
+      "num": "I",
+      "nome": "A Proposta",
+      "secoes": [
+        "abertura-proposta",
+        "convite"
+      ]
+    },
+    {
+      "id": "mundo",
+      "num": "II",
+      "nome": "O Mundo",
+      "secoes": [
+        "abertura-mundo",
+        "continente",
+        "distincoes",
+        "rouillac"
+      ]
+    },
+    {
+      "id": "exposicao",
+      "num": "III",
+      "nome": "A Exposição",
+      "secoes": [
+        "abertura-exposicao",
+        "cartaz",
+        "corte"
+      ]
+    },
+    {
+      "id": "quem",
+      "num": "IV",
+      "nome": "Quem Vocês São",
+      "secoes": [
+        "abertura-quem",
+        "comunidades",
+        "respiro-quem",
+        "ancestralidades",
+        "classes-cenario",
+        "classes"
+      ]
+    },
+    {
+      "id": "como",
+      "num": "V",
+      "nome": "Como Se Joga Aqui",
+      "secoes": [
+        "abertura-como",
+        "principios-mestre",
+        "mecanicas",
+        "respiro-como",
+        "equipamento",
+        "modulo-ficha"
+      ]
+    },
+    {
+      "id": "fim",
+      "num": "·",
+      "nome": "Sua Vez",
+      "secoes": [
+        "sua-vez"
+      ]
+    }
+  ]
+}

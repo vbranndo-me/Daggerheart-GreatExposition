@@ -1,0 +1,8 @@
+[
+  { "id": "aristocracia", "nome": "Aristocracia", "descricao": "[Exemplo] Salões, títulos e dívidas." },
+  { "id": "operariado", "nome": "Operariado", "descricao": "[Exemplo] Fábricas, minas e sindicatos." },
+  { "id": "academia", "nome": "Academia", "descricao": "[Exemplo] Universidades, sociedades eruditas e laboratórios." },
+  { "id": "boemia", "nome": "Boemia", "descricao": "[Exemplo] Cabarés, ateliês e cafés." },
+  { "id": "caserna", "nome": "Caserna", "descricao": "[Exemplo] Exércitos, veteranos e desertores." },
+  { "id": "submundo", "nome": "Submundo", "descricao": "[Exemplo] Contrabando, jogo e favores." }
+]

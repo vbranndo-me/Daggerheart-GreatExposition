@@ -1,0 +1,857 @@
+[
+  {
+    "id": "cap-0",
+    "onde": "vinheta do capítulo Registro de chegada",
+    "proporcao": "1:1",
+    "px": 512,
+    "pedido": "cais de desembarque em Rouillac ao entardecer, malas e lampiões a gás, vapor do trem",
+    "arquivo": null,
+    "grupo": "Vinhetas de capítulo"
+  },
+  {
+    "id": "cap-1",
+    "onde": "vinheta do capítulo O convite",
+    "proporcao": "1:1",
+    "px": 512,
+    "pedido": "envelope lacrado com selo de cera vermelho sobre uma mesa de mármore, luz de vela",
+    "arquivo": null,
+    "grupo": "Vinhetas de capítulo"
+  },
+  {
+    "id": "cap-2",
+    "onde": "vinheta do capítulo Protocolo",
+    "proporcao": "1:1",
+    "px": 512,
+    "pedido": "mesa de diplomatas com tinteiro, pena e um documento oficial, luz fria de janela",
+    "arquivo": null,
+    "grupo": "Vinhetas de capítulo"
+  },
+  {
+    "id": "cap-3",
+    "onde": "vinheta do capítulo O continente",
+    "proporcao": "1:1",
+    "px": 512,
+    "pedido": "mesa de cartógrafo com o continente aberto, compasso de latão, luz de gás",
+    "arquivo": null,
+    "grupo": "Vinhetas de capítulo"
+  },
+  {
+    "id": "cap-4",
+    "onde": "vinheta do capítulo Ficha de registro",
+    "proporcao": "1:1",
+    "px": 512,
+    "pedido": "balcão de registro da Exposição, livro de assinaturas aberto, carimbos",
+    "arquivo": null,
+    "grupo": "Vinhetas de capítulo"
+  },
+  {
+    "id": "cap-5",
+    "onde": "vinheta do capítulo A Exposição",
+    "proporcao": "1:1",
+    "px": 512,
+    "pedido": "a Tour de l'Exposition iluminada à noite, pavilhões de ferro e vidro, multidão em silhueta",
+    "arquivo": null,
+    "grupo": "Vinhetas de capítulo"
+  },
+  {
+    "id": "cap-6",
+    "onde": "vinheta do capítulo Laços",
+    "proporcao": "1:1",
+    "px": 512,
+    "pedido": "fios vermelhos ligando fotografias presas num quadro de cortiça",
+    "arquivo": null,
+    "grupo": "Vinhetas de capítulo"
+  },
+  {
+    "id": "cap-7",
+    "onde": "vinheta do capítulo Fecho do registro",
+    "proporcao": "1:1",
+    "px": 512,
+    "pedido": "livro de registro fechado com fita e lacre, vela quase apagada",
+    "arquivo": null,
+    "grupo": "Vinhetas de capítulo"
+  },
+  {
+    "id": "papel-convidado",
+    "onde": "ramo do papel Convidado ilustre",
+    "proporcao": "1:1",
+    "px": 512,
+    "pedido": "retrato simbólico de um(a) convidado ilustre na Exposição Universal, gravura em tons de latão",
+    "arquivo": null,
+    "grupo": "Papéis"
+  },
+  {
+    "id": "papel-refugiado",
+    "onde": "ramo do papel Refugiado",
+    "proporcao": "1:1",
+    "px": 512,
+    "pedido": "retrato simbólico de um(a) refugiado na Exposição Universal, gravura em tons de latão",
+    "arquivo": null,
+    "grupo": "Papéis"
+  },
+  {
+    "id": "papel-funcionario",
+    "onde": "ramo do papel Funcionário da feira",
+    "proporcao": "1:1",
+    "px": 512,
+    "pedido": "retrato simbólico de um(a) funcionário da feira na Exposição Universal, gravura em tons de latão",
+    "arquivo": null,
+    "grupo": "Papéis"
+  },
+  {
+    "id": "papel-outro",
+    "onde": "ramo do papel Outra coisa",
+    "proporcao": "1:1",
+    "px": 512,
+    "pedido": "retrato simbólico de um(a) outra coisa na Exposição Universal, gravura em tons de latão",
+    "arquivo": null,
+    "grupo": "Papéis"
+  },
+  {
+    "id": "classe-ocultista",
+    "onde": "vitrine de classes: Ocultista",
+    "proporcao": "3:4",
+    "px": "600×800",
+    "pedido": "Ocultista, Belle Époque, Estuda o que os outros fingem não ver, e paga o preço em noites sem sono.",
+    "arquivo": null,
+    "grupo": "Classes"
+  },
+  {
+    "id": "classe-medico",
+    "onde": "vitrine de classes: Médico",
+    "proporcao": "3:4",
+    "px": "600×800",
+    "pedido": "Médico, Belle Époque, Costura soldados, operários e reis, e já viu feridas que nenhum livro descreve.",
+    "arquivo": null,
+    "grupo": "Classes"
+  },
+  {
+    "id": "classe-flagelante",
+    "onde": "vitrine de classes: Flagelante",
+    "proporcao": "3:4",
+    "px": "600×800",
+    "pedido": "Flagelante, Belle Époque, Transforma a dor em fé, e a fé em força.",
+    "arquivo": null,
+    "grupo": "Classes"
+  },
+  {
+    "id": "classe-galvanista",
+    "onde": "vitrine de classes: Galvanista",
+    "proporcao": "3:4",
+    "px": "600×800",
+    "pedido": "Galvanista, Belle Époque, Engenheiro da eletricidade, convencido de que a faísca certa acorda qualquer coisa.",
+    "arquivo": null,
+    "grupo": "Classes"
+  },
+  {
+    "id": "classe-alquimista",
+    "onde": "vitrine de classes: Alquimista",
+    "proporcao": "3:4",
+    "px": "600×800",
+    "pedido": "Alquimista, Belle Époque, Química, farmácia e um pouco de heresia, tudo na mesma bancada.",
+    "arquivo": null,
+    "grupo": "Classes"
+  },
+  {
+    "id": "classe-bardo",
+    "onde": "vitrine de classes: Bardo",
+    "proporcao": "3:4",
+    "px": "600×800",
+    "pedido": "Bardo, Belle Époque, Artista de palco e de salão, que encanta, convence e inspira.",
+    "arquivo": null,
+    "grupo": "Classes"
+  },
+  {
+    "id": "classe-druida",
+    "onde": "vitrine de classes: Druida",
+    "proporcao": "3:4",
+    "px": "600×800",
+    "pedido": "Druida, Belle Époque, Guardião do que resta de selvagem num mundo de ferro.",
+    "arquivo": null,
+    "grupo": "Classes"
+  },
+  {
+    "id": "classe-guardiao",
+    "onde": "vitrine de classes: Guardião",
+    "proporcao": "3:4",
+    "px": "600×800",
+    "pedido": "Guardião, Belle Époque, Escudo de alguém, ou de alguma coisa, até o fim.",
+    "arquivo": null,
+    "grupo": "Classes"
+  },
+  {
+    "id": "classe-patrulheiro",
+    "onde": "vitrine de classes: Patrulheiro",
+    "proporcao": "3:4",
+    "px": "600×800",
+    "pedido": "Patrulheiro, Belle Époque, Batedor, caçador e guia das terras de ninguém.",
+    "arquivo": null,
+    "grupo": "Classes"
+  },
+  {
+    "id": "classe-ladino",
+    "onde": "vitrine de classes: Ladino",
+    "proporcao": "3:4",
+    "px": "600×800",
+    "pedido": "Ladino, Belle Époque, Sombra útil: ladrão, espião, chantagista.",
+    "arquivo": null,
+    "grupo": "Classes"
+  },
+  {
+    "id": "classe-serafim",
+    "onde": "vitrine de classes: Serafim",
+    "proporcao": "3:4",
+    "px": "600×800",
+    "pedido": "Serafim, Belle Époque, Guerreiro de fé, com a convicção de quem já foi tocado por algo maior.",
+    "arquivo": null,
+    "grupo": "Classes"
+  },
+  {
+    "id": "classe-feiticeiro",
+    "onde": "vitrine de classes: Feiticeiro",
+    "proporcao": "3:4",
+    "px": "600×800",
+    "pedido": "Feiticeiro, Belle Époque, O poder nasceu com você, e você ainda não sabe de onde.",
+    "arquivo": null,
+    "grupo": "Classes"
+  },
+  {
+    "id": "classe-guerreiro",
+    "onde": "vitrine de classes: Guerreiro",
+    "proporcao": "3:4",
+    "px": "600×800",
+    "pedido": "Guerreiro, Belle Époque, Veterano de uma guerra sem fim, bom demais no que faz.",
+    "arquivo": null,
+    "grupo": "Classes"
+  },
+  {
+    "id": "classe-mago",
+    "onde": "vitrine de classes: Mago",
+    "proporcao": "3:4",
+    "px": "600×800",
+    "pedido": "Mago, Belle Époque, Erudito do arcano, de biblioteca e de laboratório.",
+    "arquivo": null,
+    "grupo": "Classes"
+  },
+  {
+    "id": "pais-entremonts",
+    "onde": "ficha do país Entremonts",
+    "proporcao": "1:1",
+    "px": 512,
+    "pedido": "brasão ou vinheta de Entremonts (sabor francês), estilo gravura do século XIX",
+    "arquivo": null,
+    "grupo": "Brasões e vinhetas de país"
+  },
+  {
+    "id": "pais-bretemar",
+    "onde": "ficha do país Bretemar",
+    "proporcao": "1:1",
+    "px": 512,
+    "pedido": "brasão ou vinheta de Bretemar (sabor galego), estilo gravura do século XIX",
+    "arquivo": null,
+    "grupo": "Brasões e vinhetas de país"
+  },
+  {
+    "id": "pais-kenturia",
+    "onde": "ficha do país Kenturia",
+    "proporcao": "1:1",
+    "px": 512,
+    "pedido": "brasão ou vinheta de Kenturia (sabor sardo), estilo gravura do século XIX",
+    "arquivo": null,
+    "grupo": "Brasões e vinhetas de país"
+  },
+  {
+    "id": "pais-codrina",
+    "onde": "ficha do país Codrina",
+    "proporcao": "1:1",
+    "px": 512,
+    "pedido": "brasão ou vinheta de Codrina (sabor romeno), estilo gravura do século XIX",
+    "arquivo": null,
+    "grupo": "Brasões e vinhetas de país"
+  },
+  {
+    "id": "pais-serrania",
+    "onde": "ficha do país Serrania",
+    "proporcao": "1:1",
+    "px": 512,
+    "pedido": "brasão ou vinheta de Serrania (sabor português), estilo gravura do século XIX",
+    "arquivo": null,
+    "grupo": "Brasões e vinhetas de país"
+  },
+  {
+    "id": "pais-narona",
+    "onde": "ficha do país Narona",
+    "proporcao": "1:1",
+    "px": 512,
+    "pedido": "brasão ou vinheta de Narona (sabor dálmata), estilo gravura do século XIX",
+    "arquivo": null,
+    "grupo": "Brasões e vinhetas de país"
+  },
+  {
+    "id": "pais-fiorescuro",
+    "onde": "ficha do país Fiorescuro",
+    "proporcao": "1:1",
+    "px": 512,
+    "pedido": "brasão ou vinheta de Fiorescuro (sabor italiano), estilo gravura do século XIX",
+    "arquivo": null,
+    "grupo": "Brasões e vinhetas de país"
+  },
+  {
+    "id": "pais-maresme",
+    "onde": "ficha do país Maresme",
+    "proporcao": "1:1",
+    "px": 512,
+    "pedido": "brasão ou vinheta de Maresme (sabor catalão), estilo gravura do século XIX",
+    "arquivo": null,
+    "grupo": "Brasões e vinhetas de país"
+  },
+  {
+    "id": "pais-ilhas-peroladas",
+    "onde": "ficha do país Ilhas Peroladas",
+    "proporcao": "1:1",
+    "px": 512,
+    "pedido": "brasão ou vinheta de Ilhas Peroladas (sabor a definir), estilo gravura do século XIX",
+    "arquivo": null,
+    "grupo": "Brasões e vinhetas de país"
+  },
+  {
+    "id": "pais-costa-do-marfim",
+    "onde": "ficha do país Costa do Marfim",
+    "proporcao": "1:1",
+    "px": 512,
+    "pedido": "brasão ou vinheta de Costa do Marfim (sabor a definir), estilo gravura do século XIX",
+    "arquivo": null,
+    "grupo": "Brasões e vinhetas de país"
+  },
+  {
+    "id": "verso-1",
+    "onde": "verso do monte 1: A construção",
+    "proporcao": "2:3",
+    "px": "600×900",
+    "pedido": "verso de carta art nouveau para \"A construção\", moldura de ferro fundido, simetria",
+    "arquivo": null,
+    "grupo": "Versos de carta do builder"
+  },
+  {
+    "id": "verso-2",
+    "onde": "verso do monte 2: Os pavilhões",
+    "proporcao": "2:3",
+    "px": "600×900",
+    "pedido": "verso de carta art nouveau para \"Os pavilhões\", moldura de ferro fundido, simetria",
+    "arquivo": null,
+    "grupo": "Versos de carta do builder"
+  },
+  {
+    "id": "verso-3",
+    "onde": "verso do monte 3: A gente da feira",
+    "proporcao": "2:3",
+    "px": "600×900",
+    "pedido": "verso de carta art nouveau para \"A gente da feira\", moldura de ferro fundido, simetria",
+    "arquivo": null,
+    "grupo": "Versos de carta do builder"
+  },
+  {
+    "id": "verso-4",
+    "onde": "verso do monte 4: Os rumores",
+    "proporcao": "2:3",
+    "px": "600×900",
+    "pedido": "verso de carta art nouveau para \"Os rumores\", moldura de ferro fundido, simetria",
+    "arquivo": null,
+    "grupo": "Versos de carta do builder"
+  },
+  {
+    "id": "retrato-1",
+    "onde": "retrato do jogador 1 no HUD",
+    "proporcao": "1:1",
+    "px": 256,
+    "pedido": "retrato do personagem do jogador, recorte circular",
+    "arquivo": null,
+    "grupo": "Retratos da tripulação (opcional)"
+  },
+  {
+    "id": "retrato-2",
+    "onde": "retrato do jogador 2 no HUD",
+    "proporcao": "1:1",
+    "px": 256,
+    "pedido": "retrato do personagem do jogador, recorte circular",
+    "arquivo": null,
+    "grupo": "Retratos da tripulação (opcional)"
+  },
+  {
+    "id": "retrato-3",
+    "onde": "retrato do jogador 3 no HUD",
+    "proporcao": "1:1",
+    "px": 256,
+    "pedido": "retrato do personagem do jogador, recorte circular",
+    "arquivo": null,
+    "grupo": "Retratos da tripulação (opcional)"
+  },
+  {
+    "id": "retrato-4",
+    "onde": "retrato do jogador 4 no HUD",
+    "proporcao": "1:1",
+    "px": 256,
+    "pedido": "retrato do personagem do jogador, recorte circular",
+    "arquivo": null,
+    "grupo": "Retratos da tripulação (opcional)"
+  },
+  {
+    "id": "retrato-5",
+    "onde": "retrato do jogador 5 no HUD",
+    "proporcao": "1:1",
+    "px": 256,
+    "pedido": "retrato do personagem do jogador, recorte circular",
+    "arquivo": null,
+    "grupo": "Retratos da tripulação (opcional)"
+  },
+  {
+    "id": "comunidade-aristocracia",
+    "onde": "cartão da comunidade Aristocracia (ficha, galeria e criador)",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "retrato simbólico da comunidade Aristocracia, Belle Époque, gravura em tons de latão",
+    "arquivo": null,
+    "grupo": "Quem Vocês São: comunidades"
+  },
+  {
+    "id": "comunidade-operariado",
+    "onde": "cartão da comunidade Operariado (ficha, galeria e criador)",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "retrato simbólico da comunidade Operariado, Belle Époque, gravura em tons de latão",
+    "arquivo": null,
+    "grupo": "Quem Vocês São: comunidades"
+  },
+  {
+    "id": "comunidade-academia",
+    "onde": "cartão da comunidade Academia (ficha, galeria e criador)",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "retrato simbólico da comunidade Academia, Belle Époque, gravura em tons de latão",
+    "arquivo": null,
+    "grupo": "Quem Vocês São: comunidades"
+  },
+  {
+    "id": "comunidade-boemia",
+    "onde": "cartão da comunidade Boemia (ficha, galeria e criador)",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "retrato simbólico da comunidade Boemia, Belle Époque, gravura em tons de latão",
+    "arquivo": null,
+    "grupo": "Quem Vocês São: comunidades"
+  },
+  {
+    "id": "comunidade-caserna",
+    "onde": "cartão da comunidade Caserna (ficha, galeria e criador)",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "retrato simbólico da comunidade Caserna, Belle Époque, gravura em tons de latão",
+    "arquivo": null,
+    "grupo": "Quem Vocês São: comunidades"
+  },
+  {
+    "id": "comunidade-submundo",
+    "onde": "cartão da comunidade Submundo (ficha, galeria e criador)",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "retrato simbólico da comunidade Submundo, Belle Époque, gravura em tons de latão",
+    "arquivo": null,
+    "grupo": "Quem Vocês São: comunidades"
+  },
+  {
+    "id": "ancestralidade-anc-1",
+    "onde": "cartão da ancestralidade Ancestralidade A (galeria e criador)",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "retrato de Ancestralidade A, Belle Époque",
+    "arquivo": null,
+    "grupo": "Quem Vocês São: ancestralidades"
+  },
+  {
+    "id": "ancestralidade-anc-2",
+    "onde": "cartão da ancestralidade Ancestralidade B (galeria e criador)",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "retrato de Ancestralidade B, Belle Époque",
+    "arquivo": null,
+    "grupo": "Quem Vocês São: ancestralidades"
+  },
+  {
+    "id": "ancestralidade-anc-3",
+    "onde": "cartão da ancestralidade Ancestralidade C (galeria e criador)",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "retrato de Ancestralidade C, Belle Époque",
+    "arquivo": null,
+    "grupo": "Quem Vocês São: ancestralidades"
+  },
+  {
+    "id": "ancestralidade-anc-4",
+    "onde": "cartão da ancestralidade Ancestralidade D (galeria e criador)",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "retrato de Ancestralidade D, Belle Époque",
+    "arquivo": null,
+    "grupo": "Quem Vocês São: ancestralidades"
+  },
+  {
+    "id": "ancestralidade-anc-5",
+    "onde": "cartão da ancestralidade Ancestralidade E (galeria e criador)",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "retrato de Ancestralidade E, Belle Époque",
+    "arquivo": null,
+    "grupo": "Quem Vocês São: ancestralidades"
+  },
+  {
+    "id": "ancestralidade-anc-6",
+    "onde": "cartão da ancestralidade Ancestralidade F (galeria e criador)",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "retrato de Ancestralidade F, Belle Époque",
+    "arquivo": null,
+    "grupo": "Quem Vocês São: ancestralidades"
+  },
+  {
+    "id": "abertura-classe-ocultista",
+    "onde": "abertura da ficha da classe Ocultista",
+    "proporcao": "21:9",
+    "px": "2560×1100",
+    "pedido": "Ocultista: Estuda o que os outros fingem não ver, e paga o preço em noites sem sono. Deixe a parte de baixo mais simples (chão, sombra, névoa), é nela que entra o texto.",
+    "arquivo": null,
+    "grupo": "Fichas de classe (abertura)"
+  },
+  {
+    "id": "abertura-classe-medico",
+    "onde": "abertura da ficha da classe Médico",
+    "proporcao": "21:9",
+    "px": "2560×1100",
+    "pedido": "Médico: Costura soldados, operários e reis, e já viu feridas que nenhum livro descreve. Deixe a parte de baixo mais simples (chão, sombra, névoa), é nela que entra o texto.",
+    "arquivo": null,
+    "grupo": "Fichas de classe (abertura)"
+  },
+  {
+    "id": "abertura-classe-flagelante",
+    "onde": "abertura da ficha da classe Flagelante",
+    "proporcao": "21:9",
+    "px": "2560×1100",
+    "pedido": "Flagelante: Transforma a dor em fé, e a fé em força. Deixe a parte de baixo mais simples (chão, sombra, névoa), é nela que entra o texto.",
+    "arquivo": null,
+    "grupo": "Fichas de classe (abertura)"
+  },
+  {
+    "id": "abertura-classe-galvanista",
+    "onde": "abertura da ficha da classe Galvanista",
+    "proporcao": "21:9",
+    "px": "2560×1100",
+    "pedido": "Galvanista: Engenheiro da eletricidade, convencido de que a faísca certa acorda qualquer coisa. Deixe a parte de baixo mais simples (chão, sombra, névoa), é nela que entra o texto.",
+    "arquivo": null,
+    "grupo": "Fichas de classe (abertura)"
+  },
+  {
+    "id": "abertura-classe-alquimista",
+    "onde": "abertura da ficha da classe Alquimista",
+    "proporcao": "21:9",
+    "px": "2560×1100",
+    "pedido": "Alquimista: Química, farmácia e um pouco de heresia, tudo na mesma bancada. Deixe a parte de baixo mais simples (chão, sombra, névoa), é nela que entra o texto.",
+    "arquivo": null,
+    "grupo": "Fichas de classe (abertura)"
+  },
+  {
+    "id": "subclasse-ocultista-1",
+    "onde": "subclasse 1 de Ocultista no criador",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "Ocultista, subclasse 1",
+    "arquivo": null,
+    "grupo": "Subclasses (criador)"
+  },
+  {
+    "id": "subclasse-ocultista-2",
+    "onde": "subclasse 2 de Ocultista no criador",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "Ocultista, subclasse 2",
+    "arquivo": null,
+    "grupo": "Subclasses (criador)"
+  },
+  {
+    "id": "subclasse-medico-1",
+    "onde": "subclasse 1 de Médico no criador",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "Médico, subclasse 1",
+    "arquivo": null,
+    "grupo": "Subclasses (criador)"
+  },
+  {
+    "id": "subclasse-medico-2",
+    "onde": "subclasse 2 de Médico no criador",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "Médico, subclasse 2",
+    "arquivo": null,
+    "grupo": "Subclasses (criador)"
+  },
+  {
+    "id": "subclasse-flagelante-1",
+    "onde": "subclasse 1 de Flagelante no criador",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "Flagelante, subclasse 1",
+    "arquivo": null,
+    "grupo": "Subclasses (criador)"
+  },
+  {
+    "id": "subclasse-flagelante-2",
+    "onde": "subclasse 2 de Flagelante no criador",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "Flagelante, subclasse 2",
+    "arquivo": null,
+    "grupo": "Subclasses (criador)"
+  },
+  {
+    "id": "subclasse-galvanista-1",
+    "onde": "subclasse 1 de Galvanista no criador",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "Galvanista, subclasse 1",
+    "arquivo": null,
+    "grupo": "Subclasses (criador)"
+  },
+  {
+    "id": "subclasse-galvanista-2",
+    "onde": "subclasse 2 de Galvanista no criador",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "Galvanista, subclasse 2",
+    "arquivo": null,
+    "grupo": "Subclasses (criador)"
+  },
+  {
+    "id": "subclasse-alquimista-1",
+    "onde": "subclasse 1 de Alquimista no criador",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "Alquimista, subclasse Apotecária",
+    "arquivo": null,
+    "grupo": "Subclasses (criador)"
+  },
+  {
+    "id": "subclasse-alquimista-2",
+    "onde": "subclasse 2 de Alquimista no criador",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "Alquimista, subclasse Granadeiro",
+    "arquivo": null,
+    "grupo": "Subclasses (criador)"
+  },
+  {
+    "id": "carta-carta-1",
+    "onde": "carta Carta 1 (a definir)",
+    "proporcao": "63:88",
+    "px": "1260×1760",
+    "pedido": "carta de domínio \"Carta 1 (a definir)\" (a definir, nível 2); a arte vem do Figma",
+    "arquivo": null,
+    "grupo": "Cartas de domínio (Figma)"
+  },
+  {
+    "id": "carta-carta-2",
+    "onde": "carta Carta 2 (a definir)",
+    "proporcao": "63:88",
+    "px": "1260×1760",
+    "pedido": "carta de domínio \"Carta 2 (a definir)\" (a definir, nível 3); a arte vem do Figma",
+    "arquivo": null,
+    "grupo": "Cartas de domínio (Figma)"
+  },
+  {
+    "id": "carta-carta-3",
+    "onde": "carta Carta 3 (a definir)",
+    "proporcao": "63:88",
+    "px": "1260×1760",
+    "pedido": "carta de domínio \"Carta 3 (a definir)\" (a definir, nível 1); a arte vem do Figma",
+    "arquivo": null,
+    "grupo": "Cartas de domínio (Figma)"
+  },
+  {
+    "id": "carta-carta-4",
+    "onde": "carta Carta 4 (a definir)",
+    "proporcao": "63:88",
+    "px": "1260×1760",
+    "pedido": "carta de domínio \"Carta 4 (a definir)\" (a definir, nível 2); a arte vem do Figma",
+    "arquivo": null,
+    "grupo": "Cartas de domínio (Figma)"
+  },
+  {
+    "id": "carta-carta-5",
+    "onde": "carta Carta 5 (a definir)",
+    "proporcao": "63:88",
+    "px": "1260×1760",
+    "pedido": "carta de domínio \"Carta 5 (a definir)\" (a definir, nível 3); a arte vem do Figma",
+    "arquivo": null,
+    "grupo": "Cartas de domínio (Figma)"
+  },
+  {
+    "id": "carta-carta-6",
+    "onde": "carta Carta 6 (a definir)",
+    "proporcao": "63:88",
+    "px": "1260×1760",
+    "pedido": "carta de domínio \"Carta 6 (a definir)\" (a definir, nível 1); a arte vem do Figma",
+    "arquivo": null,
+    "grupo": "Cartas de domínio (Figma)"
+  },
+  {
+    "id": "retrato-placeholder",
+    "onde": "retrato do personagem, enquanto o jogador não envia uma imagem",
+    "proporcao": "3:4",
+    "px": 768,
+    "pedido": "silhueta em gravura de um convidado da Exposição, de busto, sem rosto definido, tons de latão sobre azul-petróleo",
+    "arquivo": null,
+    "grupo": "O Arquivo"
+  },
+  {
+    "id": "selo-expo",
+    "onde": "selo da Exposição no HUD",
+    "proporcao": "1:1",
+    "px": "SVG ou PNG transparente",
+    "pedido": "selo circular da Exposição Universal de Rouillac com a torre ao centro, traço de latão",
+    "arquivo": null,
+    "grupo": "Selo e lacre"
+  },
+  {
+    "id": "lacre-convite",
+    "onde": "lacre do envelope do convite",
+    "proporcao": "1:1",
+    "px": "SVG ou PNG transparente",
+    "pedido": "lacre de cera vermelha com a letra E (Entremonts)",
+    "arquivo": null,
+    "grupo": "Selo e lacre"
+  },
+  {
+    "id": "abertura-como",
+    "onde": "abertura do capítulo V",
+    "proporcao": "21:9",
+    "px": 2560,
+    "pedido": "um palco de variedades: lantejoulas, holofote, e algo errado na plateia",
+    "arquivo": null,
+    "grupo": "O Arquivo"
+  },
+  {
+    "id": "abertura-exposicao",
+    "onde": "abertura do capítulo III",
+    "proporcao": "21:9",
+    "px": 2560,
+    "pedido": "os portões da Exposição de dia, bandeiras de todos os países, multidão",
+    "arquivo": null,
+    "grupo": "O Arquivo"
+  },
+  {
+    "id": "abertura-mundo",
+    "onde": "abertura do capítulo II",
+    "proporcao": "21:9",
+    "px": 2560,
+    "pedido": "Rouillac do alto, chaminés, casas de ferro, o rio e as fornalhas",
+    "arquivo": null,
+    "grupo": "O Arquivo"
+  },
+  {
+    "id": "abertura-proposta",
+    "onde": "abertura do capítulo I",
+    "proporcao": "21:9",
+    "px": 2560,
+    "pedido": "o salão de abertura lotado, lustres, convidados de vários países, uma tensão no ar",
+    "arquivo": null,
+    "grupo": "O Arquivo"
+  },
+  {
+    "id": "abertura-quem",
+    "onde": "abertura do capítulo IV",
+    "proporcao": "21:9",
+    "px": 2560,
+    "pedido": "três ou quatro convidados posando para uma foto de estúdio, cada um de um mundo diferente",
+    "arquivo": null,
+    "grupo": "O Arquivo"
+  },
+  {
+    "id": "classes-cenario",
+    "onde": "seção \"Classes no cenário\" do Arquivo (tipo B)",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "Retrato de uma figura de época",
+    "arquivo": null,
+    "grupo": "O Arquivo"
+  },
+  {
+    "id": "corte",
+    "onde": "seção \"A corte\" do Arquivo (tipo A)",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "O retrato oficial da corte, só a aparição pública",
+    "arquivo": null,
+    "grupo": "O Arquivo"
+  },
+  {
+    "id": "distincoes",
+    "onde": "seção \"Distinções\" do Arquivo (tipo A)",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "Planta de Rouillac e o Rio Ferrum",
+    "arquivo": null,
+    "grupo": "O Arquivo"
+  },
+  {
+    "id": "modulo-ficha",
+    "onde": "seção \"Módulo de ficha\" do Arquivo (tipo K)",
+    "proporcao": "4:3",
+    "px": "1280×960",
+    "pedido": "Esboço a lápis de uma ficha de personagem",
+    "arquivo": null,
+    "grupo": "O Arquivo"
+  },
+  {
+    "id": "principios-mestre",
+    "onde": "seção \"Princípios do mestre\" do Arquivo (tipo A)",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "Vinheta do mestre",
+    "arquivo": null,
+    "grupo": "O Arquivo"
+  },
+  {
+    "id": "respiro-como",
+    "onde": "arte de respiro, capítulo V",
+    "proporcao": "21:9",
+    "px": 2560,
+    "pedido": "o catálogo de armas e instrumentos da Belle Époque, em gravura",
+    "arquivo": null,
+    "grupo": "O Arquivo"
+  },
+  {
+    "id": "respiro-quem",
+    "onde": "arte de respiro, capítulo IV",
+    "proporcao": "21:9",
+    "px": 2560,
+    "pedido": "delegações chegando de trem à Gare de l'Exposition",
+    "arquivo": null,
+    "grupo": "O Arquivo"
+  },
+  {
+    "id": "chamada-sua-vez",
+    "onde": "chamada final do Arquivo",
+    "proporcao": "21:9",
+    "px": 2560,
+    "pedido": "a chegada de trem a Rouillac, a plataforma cheia de fumaça e malas",
+    "arquivo": null,
+    "grupo": "O Arquivo"
+  },
+  {
+    "id": "abertura-titulo",
+    "onde": "tela de título do Arquivo",
+    "proporcao": "21:9",
+    "px": 2560,
+    "pedido": "a Exposição à noite, vista de longe: a torre de ferro iluminada a gás, os pavilhões, a névoa sobre o rio",
+    "arquivo": null,
+    "grupo": "O Arquivo"
+  }
+]

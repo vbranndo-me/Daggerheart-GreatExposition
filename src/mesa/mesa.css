@@ -1,0 +1,3111 @@
+/* =====================================================================
+   A casca da sala: camadas sobre o mapa, janelas, Mesa do Mestre
+   ===================================================================== */
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  background: #0f131c;
+}
+body {
+  overflow: hidden;
+}
+
+.mesa-raiz {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  --topo: 56px;
+}
+
+/* ---------- camada 0: o mapa ---------- */
+.mapa-fundo {
+  position: absolute;
+  inset: 0;
+  animation: mapa-entra 0.9s ease-out;
+}
+@keyframes mapa-entra {
+  from {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+}
+.mapa-fundo > svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.mapa-fundo:not(.interativo) > svg {
+  pointer-events: none;
+}
+.mapa-fundo.interativo > svg {
+  cursor: grab;
+}
+.mapa-fundo.interativo > svg:active {
+  cursor: grabbing;
+}
+.mapa-fundo.fixando > svg {
+  cursor: crosshair;
+}
+.mapa-fundo.interativo [data-pais] {
+  cursor: var(--cursor-mao), pointer;
+}
+.veu-vinheta {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 55% 50%, transparent 40%, rgba(4, 6, 10, 0.78) 100%);
+}
+.veu-escuro {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: rgba(6, 8, 13, 0.55);
+  opacity: 0;
+  transition: opacity 0.6s;
+}
+.veu-escuro.ligado {
+  opacity: 1;
+}
+.mapa-controles {
+  position: absolute;
+  bottom: 18px;
+  left: calc((100% - var(--mesa-w)) / 2);
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  padding: 8px 12px;
+  background: rgba(20, 24, 36, 0.88);
+  border: 1px solid var(--brass-dark);
+  z-index: 12;
+}
+.lente {
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  background: none;
+  border: 0;
+  padding: 2px 4px;
+  color: var(--text-muted);
+}
+.lente .n-L {
+  font-size: 10px;
+}
+.lente:not(.ligada) .insignia {
+  filter: grayscale(0.8) brightness(0.55);
+}
+.lente.ligada .n-L {
+  color: var(--brass-hi);
+}
+.faixa-fixar {
+  position: absolute;
+  top: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 16;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 16px;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  color: var(--text);
+  background: rgba(20, 24, 36, 0.95);
+  border: 1px solid var(--brass);
+  box-shadow: 0 0 16px -4px rgba(232, 184, 102, 0.5);
+}
+.faixa-fixar .ico {
+  color: var(--gaslight);
+}
+.faixa-fixar kbd {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  padding: 0 5px;
+  border: 1px solid var(--brass-dark);
+  border-radius: 2px;
+}
+.pop-alfinete {
+  position: absolute;
+  width: 360px;
+  z-index: 25;
+}
+.tipos-alfinete {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.tipo-alfinete {
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  width: 64px;
+  padding: 6px 2px;
+  background: none;
+  border: 1px solid transparent;
+  color: var(--text-muted);
+}
+.tipo-alfinete .n-L {
+  font-size: 10px;
+}
+.tipo-alfinete:hover {
+  border-color: #2e3446;
+}
+.tipo-alfinete.escolhido {
+  border-color: transparent;
+}
+.tipo-alfinete:focus:not(:focus-visible) {
+  outline: none;
+}
+.tipo-alfinete.escolhido .n-L {
+  color: var(--carmim-hi);
+}
+
+/* ---------- HUD e avisos ---------- */
+.hud-fixo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 30;
+}
+.pequeno-link {
+  font-size: 13px;
+  white-space: nowrap;
+}
+.link.perigo {
+  color: var(--danger);
+}
+.lista-capitulos-fixa {
+  position: absolute;
+  top: 58px;
+  left: 10px;
+  z-index: 40;
+}
+.lista-capitulos-fixa .lista-capitulos {
+  position: static;
+}
+.aviso-releitura {
+  position: absolute;
+  top: 66px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 18;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  padding: 6px 14px;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  background: rgba(20, 24, 36, 0.95);
+  border: 1px solid var(--brass-dark);
+}
+.mesa-raiz .notificacoes {
+  right: calc(var(--mesa-w) + 14px);
+  transition: right 0.3s;
+}
+
+/* ---------- camada das janelas ---------- */
+.camada-janelas {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+}
+.camada-janelas > * {
+  pointer-events: auto;
+}
+.janela-principal {
+  position: absolute;
+  left: 40px;
+  top: 84px;
+  width: min(760px, calc(100vw - var(--mesa-w) - 80px));
+  min-width: 420px;
+  animation: janela-abre 0.35s cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+.camada-janelas:has(.janela-lateral) .janela-principal:not(.painel) {
+  width: min(760px, calc(100vw - var(--mesa-w) - 474px));
+}
+/* storylet: a vinheta flutua ao lado do texto; divisória, ramos e ação ocupam a largura toda */
+.janela-principal .storylet-topo {
+  display: block;
+}
+.janela-principal .storylet-topo > .vinheta {
+  float: left;
+  margin: 4px 22px 10px 0;
+}
+.janela-principal .storylet-corpo {
+  max-width: none;
+}
+.janela-principal .divisoria {
+  clear: both;
+}
+.janela-principal.cheia {
+  width: min(860px, calc(100vw - var(--mesa-w) - 80px));
+}
+.janela-principal.painel {
+  width: 440px;
+  min-width: 0;
+}
+.janela-lateral {
+  position: absolute;
+  top: 84px;
+  right: calc(var(--mesa-w) + 24px);
+  width: 370px;
+  transition: right 0.3s;
+  animation: janela-abre 0.35s cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+.janela-lateral .cab-lateral {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+.janela-lateral .cab-lateral > div {
+  flex: 1;
+}
+.lista-simples {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.lista-simples li {
+  padding: 8px 0;
+  border-bottom: 1px solid #262c3d;
+}
+.lista-simples li:last-child {
+  border-bottom: 0;
+}
+
+/* opções de escolha dentro de um ramo aberto (sub-ramos) */
+.sub-ramos {
+  display: grid;
+  gap: 8px;
+}
+.sub-ramos .ramo {
+  min-height: 0;
+  padding: 10px 56px 10px 14px;
+}
+.sub-ramos .ramo .medalhao {
+  width: 32px;
+  height: 32px;
+  bottom: 8px;
+  right: 10px;
+}
+
+/* marcadores de página (ficha de registro) */
+.paginas {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 18px;
+}
+.pagina-marca {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border: 1px solid #2e3446;
+  background: none;
+  color: var(--text-muted);
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.pagina-marca.feita {
+  color: var(--brass-hi);
+  border-color: var(--brass-dark);
+}
+.pagina-marca.atual {
+  color: var(--carmim-hi);
+  border-color: var(--carmim);
+}
+.pagina-marca .ico {
+  width: 12px;
+  height: 12px;
+}
+
+/* diagrama de laços */
+.diagrama-lacos {
+  width: 100%;
+  max-width: 520px;
+  display: block;
+  margin: 0 auto;
+}
+.diagrama-lacos .linha-laco {
+  fill: none;
+  stroke-width: 2.2;
+  opacity: 0.8;
+  cursor: var(--cursor-mao), pointer;
+  transition: stroke-width 0.15s, opacity 0.15s;
+}
+.diagrama-lacos .linha-laco:hover,
+.diagrama-lacos .linha-laco.foco {
+  stroke-width: 4;
+  opacity: 1;
+}
+
+/* montes do baralho e a vez */
+.montes {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin: 6px 0 16px;
+}
+.monte {
+  position: relative;
+  width: 64px;
+  --carta-w: 64px;
+}
+.monte .folha {
+  position: absolute;
+  inset: 0;
+  aspect-ratio: 2 / 3;
+  border-radius: 4px;
+  background: #151925;
+  border: 1px solid var(--brass-dark);
+}
+.monte .topo {
+  position: relative;
+  aspect-ratio: 2 / 3;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 3px 6px #0009;
+  transition: transform 0.2s;
+}
+.monte.sorteado .topo {
+  transform: translateY(-6px);
+  box-shadow: 0 0 0 1px var(--carmim-hi), 0 0 14px -2px var(--carmim-brilho);
+}
+.vez-palco {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 18px;
+  align-items: center;
+}
+
+/* ---------- Mesa do Mestre (gaveta) ---------- */
+.mesa-mestre {
+  position: absolute;
+  top: var(--topo);
+  right: 0;
+  bottom: 0;
+  width: 400px;
+  z-index: 28;
+  display: flex;
+  flex-direction: column;
+  background:
+    var(--ruido),
+    radial-gradient(ellipse at 30% 20%, #1c2c22, #121d17 70%);
+  border-left: 2px solid var(--gm-accent);
+  box-shadow: -10px 0 24px -10px #000;
+  transform: translateX(105%);
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.3, 1);
+  --brass: #d9a49a;
+  --brass-hi: #f0c4bd;
+  --brass-dark: #6a3a35;
+}
+.mesa-mestre.aberta {
+  transform: none;
+}
+.mesa-cab {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px 8px;
+  border-bottom: 1px solid rgba(165, 70, 60, 0.4);
+}
+.mesa-cab .n-S {
+  flex: 1;
+  color: #f0e4d8;
+}
+.mesa-abas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  padding: 6px 10px 0;
+  border-bottom: 1px solid rgba(165, 70, 60, 0.4);
+}
+.mesa-aba {
+  background: none;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  padding: 6px 8px;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #a9b5a9;
+}
+.mesa-aba.ativa {
+  color: #f0c4bd;
+  border-bottom-color: var(--gm-accent);
+}
+.mesa-corpo {
+  flex: 1;
+  overflow-y: auto;
+  padding: 14px 16px 30px;
+  display: grid;
+  gap: 16px;
+  align-content: start;
+  color: #e3dccd;
+}
+.mesa-bloco {
+  display: grid;
+  gap: 8px;
+}
+.mesa-bloco > .n-L {
+  color: #d9a49a;
+  border-bottom: 1px solid rgba(165, 70, 60, 0.3);
+  padding-bottom: 4px;
+}
+.mesa-linha {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.mesa-linha .cresce {
+  flex: 1;
+  min-width: 0;
+}
+.btn-gm {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  padding: 4px 10px;
+  border: 1px solid #6a3a35;
+  background: rgba(165, 70, 60, 0.18);
+  color: #f0c4bd;
+  border-radius: 2px;
+}
+.btn-gm:hover:not(:disabled) {
+  background: rgba(165, 70, 60, 0.35);
+  border-color: #a5463c;
+}
+.btn-gm:disabled {
+  opacity: 0.45;
+}
+.btn-gm.ativo {
+  background: #a5463c;
+  color: #fff1ea;
+}
+.btn-gm.perigo {
+  border-color: #a5463c;
+  color: #ffb3a6;
+}
+.mesa-mestre input[type="text"],
+.mesa-mestre input:not([type]),
+.mesa-mestre input[type="number"],
+.mesa-mestre textarea {
+  background: #0e1611;
+  border: 1px solid #2c3d31;
+  border-bottom-color: #6a3a35;
+  color: #f0e4d8;
+  padding: 5px 8px;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  border-radius: 2px;
+  min-width: 0;
+}
+.mesa-mestre code {
+  font-size: 11px;
+  word-break: break-all;
+  color: #c9d4c9;
+}
+.mesa-etapa {
+  display: grid;
+  grid-template-columns: 22px 1fr auto auto;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0;
+  border-bottom: 1px dotted rgba(165, 70, 60, 0.25);
+  font-family: var(--font-ui);
+  font-size: 14px;
+}
+.mesa-etapa.atual {
+  color: #fff1ea;
+}
+.mesa-etapa.atual .num {
+  color: var(--gm-accent);
+}
+.mesa-etapa .num {
+  font-family: var(--font-display);
+  font-size: 13px;
+  color: #8fa093;
+}
+.cartao-dados {
+  padding: 10px 12px;
+  border: 1px solid #2c3d31;
+  background: rgba(0, 0, 0, 0.18);
+  display: grid;
+  gap: 4px;
+  font-family: var(--font-ui);
+  font-size: 13px;
+}
+.barra-progresso {
+  height: 4px;
+  background: #2c3d31;
+}
+.barra-progresso > span {
+  display: block;
+  height: 100%;
+  background: #d9a49a;
+}
+.confirmacao {
+  border: 1px solid #a5463c;
+  background: rgba(165, 70, 60, 0.15);
+  padding: 10px 12px;
+  display: grid;
+  gap: 8px;
+  font-family: var(--font-ui);
+  font-size: 14px;
+}
+.selo-mestre-btn {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1px solid #f0c4bd55;
+  background: radial-gradient(circle at 40% 35%, #c4554a, #a5463c 55%, #5e231e);
+  color: #fff1ea;
+  display: inline-grid;
+  place-items: center;
+  padding: 0;
+  flex: none;
+}
+.selo-mestre-btn .ico {
+  width: 12px;
+  height: 12px;
+}
+
+/* ---------- telas estreitas: as janelas viram uma coluna rolável ---------- */
+@media (max-width: 900px) {
+  .camada-janelas {
+    top: var(--topo);
+    overflow-y: auto;
+    padding: 14px 12px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    pointer-events: auto;
+  }
+  .janela-principal,
+  .janela-principal.painel,
+  .janela-principal.cheia,
+  .janela-lateral {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    width: auto;
+    min-width: 0;
+    max-height: none;
+    overflow: visible;
+  }
+  .mesa-mestre {
+    width: 100%;
+  }
+  .hud .objetivo .texto {
+    white-space: normal;
+  }
+}
+
+/* ---------- Capítulo I: a Proposta e o convite ---------- */
+.proposta p {
+  margin: 0 0 0.9em;
+}
+.proposta strong {
+  color: var(--ink-player);
+}
+.bloco-md ul {
+  margin: 0;
+  padding-left: 18px;
+}
+.bloco-md li {
+  margin-bottom: 4px;
+}
+.convite-veu {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  background: rgba(5, 7, 11, 0.72);
+  animation: janela-abre 0.3s ease-out;
+}
+.envelope-jogo {
+  position: relative;
+  width: 420px;
+  height: 270px;
+  max-width: 90vw;
+}
+.envelope-jogo .carta-c {
+  position: absolute;
+  left: 22px;
+  right: 22px;
+  top: 14px;
+  height: 236px;
+  z-index: 1;
+  background: var(--paper);
+  color: var(--paper-ink);
+  box-shadow: 0 2px 8px #0007;
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+.envelope-jogo .env-corpo {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(160deg, #e6d9ba, #d0bd90);
+  border-radius: 4px;
+  clip-path: polygon(0 22%, 50% 62%, 100% 22%, 100% 100%, 0 100%);
+  box-shadow: 0 14px 30px #000b;
+}
+.envelope-jogo .aba {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 62%;
+  z-index: 3;
+  transform-origin: top;
+  background: linear-gradient(180deg, #ebdec0, #cbb689);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+.envelope-jogo .lacre {
+  position: absolute;
+  left: 50%;
+  top: 62%;
+  z-index: 4;
+  width: 64px;
+  height: 64px;
+  transform: translate(-50%, -50%);
+}
+.envelope-jogo .lacre span {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #c4363b, #9b2226 45%, #5c1214);
+  box-shadow: 0 2px 4px #0008;
+}
+.envelope-jogo .lacre-a {
+  clip-path: polygon(0 0, 55% 0, 45% 100%, 0 100%);
+}
+.envelope-jogo .lacre-b {
+  clip-path: polygon(55% 0, 100% 0, 100% 100%, 45% 100%);
+}
+.convite-lido {
+  position: relative;
+  width: min(560px, 92vw);
+  max-height: 86vh;
+  overflow: auto;
+  padding: 40px 46px 34px;
+  text-align: center;
+  color: var(--paper-ink);
+  background: radial-gradient(ellipse at 50% 40%, #f4ead2, #e3d3ad 80%, #cdb98d);
+  box-shadow: 0 20px 40px #000c, inset 0 0 0 8px #f4ead2, inset 0 0 0 9px #a8864e, inset 0 0 0 12px #f4ead2, inset 0 0 0 12.6px #a8864e;
+  font-family: var(--font-narrative);
+  font-size: 17px;
+  line-height: 1.55;
+  animation: janela-abre 0.5s cubic-bezier(0.2, 0.8, 0.3, 1);
+}
+.convite-lido h2 {
+  font-family: var(--font-ui);
+  font-size: 13px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #6b2320;
+  margin: 0 0 6px;
+}
+.convite-lido h3 {
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 500;
+  margin: 0 0 6px;
+}
+.convite-lido .fechar-convite {
+  color: #6b2320;
+  margin-top: 14px;
+}
+
+/* ---------- Capítulo III ---------- */
+.cabeca-cor {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px #0c0f17, 0 0 0 2px var(--brass-dark);
+}
+.dados-pais {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2px 14px;
+  margin: 0 0 10px;
+}
+.dados-pais dd {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  color: var(--text);
+}
+
+/* ---------- Capítulos IV a VI ---------- */
+.ramo .resposta-curta {
+  display: block;
+  font-size: 15px;
+  line-height: 1.45;
+  border: 0;
+  padding: 0;
+  margin-top: 2px;
+}
+.vez-linha {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.pergunta-vez {
+  text-align: center;
+  font-style: italic;
+  margin-top: 10px;
+}
+.resposta-ao-vivo {
+  padding: 12px 14px;
+  border: 1px dashed #3b4258;
+  background: rgba(0, 0, 0, 0.18);
+  display: grid;
+  gap: 6px;
+}
+.ordem-rodada {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  margin-top: 18px;
+  padding-top: 10px;
+  border-top: 1px solid #262c3d;
+}
+.ordem-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  color: var(--text-muted);
+}
+.ordem-item.agora {
+  color: var(--gaslight);
+  font-weight: 700;
+}
+.programa-lista {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 14px;
+}
+.programa-lista li {
+  padding-bottom: 12px;
+  border-bottom: 1px solid #262c3d;
+}
+.perguntas-feitas {
+  display: grid;
+  gap: 6px;
+  margin-top: 6px;
+}
+.pergunta-feita {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.pergunta-feita .n-I {
+  flex: 1;
+}
+button.qualidade {
+  cursor: var(--cursor-mao), pointer;
+}
+.presenca-ponto {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4a4f4c;
+  flex: none;
+}
+.presenca-ponto.on {
+  background: #7dbb7a;
+  box-shadow: 0 0 0 2px rgba(125, 187, 122, 0.25);
+}
+.btn-gm.exportar {
+  display: grid;
+  gap: 2px;
+  text-align: left;
+  padding: 8px 12px;
+  letter-spacing: 0;
+}
+.btn-gm.exportar span {
+  font-weight: 400;
+  color: #c9b6ae;
+}
+.entrada-jogo {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 24px 16px;
+  overflow: auto;
+}
+.entrada-jogo .janela {
+  width: min(560px, 100%);
+}
+.faixa-local-jogo {
+  position: fixed;
+  left: 12px;
+  bottom: 10px;
+  z-index: 70;
+  padding: 3px 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.75;
+  font-family: "Source Sans 3", system-ui, sans-serif;
+  font-size: 12px;
+  color: #e8d9b5;
+  background: rgba(20, 24, 36, 0.92);
+  border: 1px dashed #6f5b33;
+}
+.carregando {
+  animation: respirar 1.6s ease-in-out infinite;
+}
+@keyframes respirar {
+  50% {
+    opacity: 0.4;
+  }
+}
+
+
+/* ---------- rolagem por dentro da moldura ---------- */
+.janela-principal > .janela.rolavel {
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 108px);
+}
+.janela.rolavel > .topo-storylet {
+  flex: none;
+}
+.janela-rolagem {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  /* folga para os colchetes do hover dos ramos não serem cortados */
+  margin: 0 -12px;
+  padding: 2px 12px 8px;
+}
+.janela-lateral > .janela {
+  max-height: calc(100vh - 108px);
+  overflow-y: auto;
+}
+/* puxador de latão na borda direita da moldura (no lugar do rebite do meio) */
+.puxador-btn {
+  position: absolute;
+  top: calc(50% - 28px);
+  right: -42px; /* 26 de borda + 16 da lingueta para fora */
+  width: 16px;
+  height: 56px;
+  padding: 0;
+  border: 0;
+  background: none;
+  z-index: 3;
+  filter: drop-shadow(1px 2px 2px rgba(0, 0, 0, 0.6));
+  transition: filter 0.2s, transform 0.2s;
+}
+.puxador-btn:hover {
+  filter: drop-shadow(1px 2px 2px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 5px rgba(232, 184, 102, 0.55)) brightness(1.1);
+  transform: translateX(2px);
+}
+.puxador,
+.puxador svg {
+  display: block;
+}
+.janela:has(> .topo-storylet .puxador-btn) .rebite.r {
+  display: none;
+}
+
+/* ---------- painel recolhido (capítulos de mapa) ---------- */
+.aba-recolhida {
+  position: absolute;
+  top: 80px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px 8px 12px;
+  background: rgba(35, 40, 56, 0.96);
+  border: 1px solid var(--brass-dark);
+  box-shadow: 0 4px 12px -2px #000c, inset 0 0 0 2px rgba(182, 154, 96, 0.12);
+  color: var(--text);
+  text-align: left;
+  animation: janela-abre 0.25s ease-out;
+}
+.aba-recolhida .ico {
+  color: var(--brass);
+}
+.aba-recolhida > span:nth-child(2) {
+  display: grid;
+  line-height: 1.15;
+}
+.aba-recolhida .titulo-aba {
+  font-family: var(--font-display);
+  font-size: 15px;
+}
+.aba-recolhida {
+  overflow: visible;
+  padding-right: 22px;
+}
+.aba-recolhida .puxador {
+  position: absolute;
+  right: -16px;
+  top: 50%;
+  transform: translateY(-50%) scale(0.75);
+  transform-origin: left center;
+  filter: drop-shadow(1px 2px 2px rgba(0, 0, 0, 0.6));
+}
+.aba-recolhida:hover .puxador {
+  filter: drop-shadow(0 0 5px rgba(232, 184, 102, 0.55));
+}
+.aba-recolhida:hover {
+  border-color: var(--brass);
+}
+
+@media (max-width: 900px) {
+  .janela-principal > .janela.rolavel,
+  .janela-lateral > .janela {
+    max-height: none;
+  }
+}
+
+
+/* =====================================================================
+   O mapa dentro de uma moldura (mesa de cartógrafo), camadas x ferramentas
+   ===================================================================== */
+.mesa-raiz {
+  background: #0c0f17;
+}
+.mapa-fundo {
+  /* a moldura: margem escura (o "passe-partout") ao redor do mapa, que fica na área livre */
+  inset: 62px calc(var(--mesa-w) + 14px) 14px 14px;
+  border: 1px solid var(--brass-dark);
+  box-shadow:
+    0 0 0 5px #0c0f17,
+    0 0 0 6px rgba(182, 154, 96, 0.55),
+    0 0 0 9px #0c0f17,
+    0 10px 30px -6px #000;
+  overflow: hidden;
+  transition: right 0.3s;
+}
+.mapa-fundo .veu-vinheta {
+  background: radial-gradient(ellipse at 50% 50%, transparent 50%, rgba(4, 6, 10, 0.7) 100%);
+}
+.mapa-fundo > svg {
+  /* o cursor de arrastar só vale no mapa; os controles têm o deles */
+  touch-action: none;
+}
+
+.moldura-mapa {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 6;
+}
+.canto-mapa {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  color: var(--brass);
+  opacity: 0.95;
+}
+.canto-mapa.tl {
+  left: 3px;
+  top: 3px;
+}
+.canto-mapa.tr {
+  right: 3px;
+  top: 3px;
+  transform: scaleX(-1);
+}
+.canto-mapa.bl {
+  left: 3px;
+  bottom: 3px;
+  transform: scaleY(-1);
+}
+.canto-mapa.br {
+  right: 3px;
+  bottom: 3px;
+  transform: scale(-1, -1);
+}
+.cartucho {
+  position: absolute;
+  top: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: grid;
+  justify-items: center;
+  gap: 0;
+  padding: 3px 26px 6px;
+  background: #141826;
+  border: 1px solid var(--brass-dark);
+  border-top: 0;
+  clip-path: polygon(0 0, 100% 0, calc(100% - 10px) 100%, 10px 100%);
+  filter: drop-shadow(0 2px 3px #000a);
+}
+.cartucho .n-L {
+  font-size: 9px;
+  color: var(--brass);
+  letter-spacing: 0.22em;
+}
+.cartucho-titulo {
+  font-family: var(--font-display);
+  font-size: 15px;
+  color: var(--text);
+  line-height: 1.2;
+}
+.escala-grafica {
+  position: absolute;
+  left: 82px;
+  bottom: 16px;
+  display: grid;
+  gap: 4px;
+}
+.escala-grafica .barra {
+  display: flex;
+  height: 6px;
+  border: 1px solid #e9d29a;
+  background: #0b0d14;
+  transition: width 0.12s;
+}
+.escala-grafica .barra i {
+  flex: 1;
+}
+.escala-grafica .barra i:first-child {
+  background: #e9d29a;
+}
+.escala-grafica .n-L {
+  font-size: 10px;
+  color: var(--text);
+  text-shadow: 0 1px 2px #000;
+}
+
+/* camadas (embaixo, no centro) e ferramentas (à direita): dois grupos distintos */
+.mapa-controles,
+.mapa-ferramentas-grupo {
+  position: absolute;
+  bottom: 18px;
+  z-index: 12;
+  display: flex;
+  gap: 8px;
+  padding: 18px 12px 8px;
+  background: rgba(20, 24, 38, 0.92);
+  border: 1px solid var(--brass-dark);
+  box-shadow: 0 4px 12px -2px #000c;
+}
+.mapa-controles {
+  left: 50%;
+  transform: translateX(-50%);
+}
+.mapa-ferramentas-grupo {
+  right: 18px;
+  bottom: 18px;
+}
+.grupo-rotulo {
+  position: absolute;
+  top: 4px;
+  left: 12px;
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  color: var(--brass);
+}
+.mapa-ferramentas-grupo {
+  border-color: #6a5a46;
+}
+.lente {
+  position: relative;
+  cursor: var(--cursor-mao), pointer;
+}
+.lente:hover .insignia {
+  filter: brightness(1.2);
+}
+.lente.ferramenta:active .insignia,
+.lente.clicou .insignia {
+  animation: ferramenta-clique 0.35s ease-out;
+}
+.lente.ferramenta:active {
+  transform: translateY(1px);
+}
+@keyframes ferramenta-clique {
+  0% {
+    transform: scale(0.88);
+    filter: brightness(1.6);
+  }
+  100% {
+    transform: none;
+    filter: none;
+  }
+}
+
+/* faixa da régua */
+.faixa-regua {
+  position: absolute;
+  top: 26px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 16;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 16px;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  color: var(--text);
+  background: rgba(20, 24, 36, 0.96);
+  border: 1px solid var(--brass);
+  box-shadow: 0 0 16px -4px rgba(232, 184, 102, 0.5);
+  white-space: nowrap;
+}
+.faixa-regua .ico {
+  color: var(--gaslight);
+}
+.faixa-regua strong {
+  color: #f3e3b5;
+  font-size: 16px;
+}
+.faixa-regua .fraco {
+  color: var(--text-muted);
+}
+.faixa-regua kbd {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  padding: 0 5px;
+  border: 1px solid var(--brass-dark);
+  border-radius: 2px;
+}
+.mapa-fundo.interativo.regua-ativa > svg {
+  cursor: crosshair;
+}
+
+/* o resto que ficava em relação à tela inteira agora é relativo à moldura */
+.faixa-fixar {
+  top: 26px;
+}
+.pop-alfinete {
+  z-index: 25;
+}
+
+@media (max-width: 900px) {
+  .mapa-fundo {
+    inset: 62px 8px 8px 8px;
+  }
+}
+
+/* cartucho e escala na área livre (à direita), longe do painel da etapa */
+.cartucho {
+  left: auto;
+  right: 90px;
+  transform: none;
+}
+.escala-grafica {
+  left: auto;
+  right: 22px;
+  bottom: 104px;
+  justify-items: end;
+}
+
+
+/* =====================================================================
+   O mapa é um cartão: tem a proporção do próprio mapa, moldura nas bordas dele
+   e fica sobre a mesa escura. Nada de área vazia, nada cortado.
+   ===================================================================== */
+.mesa-raiz {
+  background: radial-gradient(ellipse at 50% 35%, #161c2a 0%, #0a0d14 75%);
+}
+.mapa-mesa {
+  position: absolute;
+  top: 56px;
+  left: 0;
+  right: var(--mesa-w);
+  bottom: 0;
+  display: grid;
+  place-items: center;
+  padding: 18px 18px 18px calc(var(--reserva, 0px) + 18px);
+  container-type: size;
+  container-name: mesa-mapa;
+  transition: padding 0.3s cubic-bezier(0.2, 0.8, 0.3, 1), right 0.3s;
+}
+.mapa-mesa > .mapa-fundo {
+  position: relative;
+  inset: auto;
+  width: min(100cqw, calc(100cqh * var(--razao)));
+  aspect-ratio: var(--razao);
+  container-type: size;
+  container-name: cartao-mapa;
+  border: 1px solid var(--brass);
+  /* o passe-partout: filete fino, vão escuro, filete de latão e sombra de mesa */
+  box-shadow:
+    0 0 0 4px #0b0e16,
+    0 0 0 5px rgba(182, 154, 96, 0.5),
+    0 0 0 8px #0b0e16,
+    0 0 0 9px rgba(182, 154, 96, 0.18),
+    0 14px 34px -6px #000;
+  overflow: hidden;
+}
+
+/* cartucho no alto, escala embaixo à esquerda: dentro do cartão, nunca sob o painel */
+.mapa-mesa .cartucho {
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+}
+.mapa-mesa .escala-grafica {
+  left: 84px;
+  right: auto;
+  bottom: 18px;
+  justify-items: start;
+}
+.mapa-mesa .faixa-fixar,
+.mapa-mesa .faixa-regua {
+  top: 54px;
+}
+
+/* ---------- placas de camadas e de ferramentas ---------- */
+.dock {
+  position: absolute;
+  z-index: 12;
+  padding: 4px;
+  background: rgba(20, 24, 38, 0.95);
+  border: 1px solid var(--brass-dark);
+  box-shadow:
+    0 6px 16px -4px #000d,
+    inset 0 0 0 3px rgba(12, 15, 23, 0.9),
+    inset 0 0 0 4px rgba(182, 154, 96, 0.22);
+}
+.dock-camadas {
+  left: 50%;
+  bottom: 16px;
+  transform: translateX(-50%);
+}
+.dock-ferramentas {
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.dock-titulo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px 3px;
+  font-family: var(--font-ui);
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--brass);
+}
+.dock-titulo::before,
+.dock-titulo::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--brass-dark);
+  opacity: 0.7;
+}
+.dock-botoes {
+  display: flex;
+  gap: 4px;
+  padding: 5px 6px 7px;
+}
+.dock-botoes.coluna {
+  flex-direction: column;
+}
+.dock-botao {
+  position: relative;
+  width: 68px;
+  display: grid;
+  justify-items: center;
+  align-content: start;
+  gap: 6px;
+  padding: 8px 4px 9px;
+  background: none;
+  border: 1px solid transparent;
+  color: var(--text-muted);
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+.dock-rotulo {
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+}
+.dock-botao:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: #2e3446;
+  color: var(--text);
+}
+.dock-botao:active {
+  transform: translateY(1px);
+}
+.dock-botao.ligado {
+  color: var(--brass-hi);
+}
+.dock-botao.ligado::after {
+  content: "";
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 3px;
+  height: 2px;
+  background: var(--brass);
+}
+.dock-botao.apagado .insignia {
+  filter: grayscale(0.8) brightness(0.55);
+}
+.dock-icone {
+  display: grid;
+}
+.dock-icone.clicou .insignia {
+  animation: ferramenta-clique 0.35s ease-out;
+}
+.insignia .simbolo {
+  font-family: var(--font-display);
+  font-size: 24px;
+  line-height: 1;
+  color: var(--brass-hi);
+  margin-top: -2px;
+}
+
+/* cartão baixo: as placas ficam compactas, só com os ícones (o nome vai no tooltip) */
+@container cartao-mapa (max-height: 540px) {
+  .dock-botao {
+    width: 46px;
+    padding: 6px 3px;
+  }
+  .dock-rotulo {
+    display: none;
+  }
+  .dock-botao.ligado::after {
+    left: 8px;
+    right: 8px;
+  }
+}
+
+@media (max-width: 900px) {
+  .mapa-mesa {
+    right: 0;
+    padding: 8px;
+  }
+}
+
+/* tela estreita: o painel cobre parte do cartão, então os controles ficam na parte visível */
+.mapa-mesa .dock-camadas,
+.mapa-mesa .cartucho,
+.mapa-mesa .faixa-regua,
+.mapa-mesa .faixa-fixar {
+  left: calc(50% + var(--cobertura, 0px) / 2);
+}
+.mapa-mesa .escala-grafica {
+  left: calc(84px + var(--cobertura, 0px));
+}
+
+
+/* =====================================================================
+   O mapa é um objeto sobre a mesa: a mesa é a tela toda ao lado do painel,
+   e a moldura (desenhada dentro do mapa) acompanha o zoom e o arrastar.
+   ===================================================================== */
+.mapa-fundo {
+  position: absolute;
+  inset: 56px var(--mesa-w) 0 0;
+  border: 0;
+  box-shadow: none;
+  overflow: hidden;
+  container-type: size;
+  container-name: cartao-mapa;
+  /* o tampo da mesa */
+  background:
+    radial-gradient(ellipse at 50% 42%, #1a2030 0%, #0d111a 70%),
+    #0c0f17;
+  transition: right 0.3s;
+}
+.mapa-fundo > svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.mapa-fundo .veu-vinheta {
+  background: radial-gradient(ellipse at 50% 50%, transparent 55%, rgba(4, 6, 10, 0.5) 100%);
+}
+@media (max-width: 900px) {
+  .mapa-fundo {
+    inset: 56px 0 0 0;
+  }
+}
+
+/* ---------- placas de camadas e ferramentas: células fixas, tudo centralizado ---------- */
+.dock {
+  position: absolute;
+  z-index: 12;
+  display: grid;
+  justify-items: center;
+  width: max-content;
+  padding: 6px 8px 8px;
+  background: rgba(20, 24, 38, 0.95);
+  border: 1px solid var(--brass-dark);
+  box-shadow:
+    0 6px 16px -4px #000d,
+    inset 0 0 0 3px rgba(12, 15, 23, 0.9),
+    inset 0 0 0 4px rgba(182, 154, 96, 0.22);
+}
+.dock-camadas {
+  left: calc(50% + var(--painel-px, 0px) / 2);
+  bottom: 16px;
+  transform: translateX(-50%);
+}
+.dock-ferramentas {
+  right: 16px;
+  top: calc(50% + 28px);
+  transform: translateY(-50%);
+}
+.dock-titulo {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 22px;
+  padding: 0 4px;
+  font-family: var(--font-ui);
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--brass);
+}
+.dock-titulo::before,
+.dock-titulo::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--brass-dark);
+  opacity: 0.8;
+}
+.dock-botoes {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 74px;
+  gap: 4px;
+  padding-top: 4px;
+}
+.dock-botoes.coluna {
+  grid-auto-flow: row;
+  grid-auto-columns: auto;
+  grid-template-columns: 74px;
+}
+.dock-botao {
+  position: relative;
+  display: grid;
+  grid-template-rows: 34px auto;
+  justify-items: center;
+  align-items: center;
+  row-gap: 6px;
+  width: 74px;
+  height: 72px;
+  padding: 8px 4px 6px;
+  background: none;
+  border: 1px solid transparent;
+  color: var(--text-muted);
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+.dock-botao > .dock-icone {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+}
+.dock-rotulo {
+  align-self: start;
+  width: 100%;
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+  white-space: nowrap;
+}
+.dock-botao:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: #2e3446;
+  color: var(--text);
+}
+.dock-botao:active {
+  transform: translateY(1px);
+}
+.dock-botao.ligado {
+  color: var(--brass-hi);
+}
+.dock-botao.ligado::after {
+  content: "";
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 3px;
+  height: 2px;
+  background: var(--brass);
+}
+.dock-botao.apagado .insignia {
+  filter: grayscale(0.8) brightness(0.55);
+}
+.dock-icone.clicou .insignia {
+  animation: ferramenta-clique 0.35s ease-out;
+}
+.insignia .simbolo {
+  font-family: var(--font-display);
+  font-size: 24px;
+  line-height: 1;
+  color: var(--brass-hi);
+  margin-top: -2px;
+}
+
+/* mesa baixa: as placas ficam compactas, só com os ícones (o nome vai no tooltip) */
+@container cartao-mapa (max-height: 560px) {
+  .dock-botoes {
+    grid-auto-columns: 48px;
+  }
+  .dock-botoes.coluna {
+    grid-template-columns: 48px;
+  }
+  .dock-botao {
+    width: 48px;
+    height: 46px;
+    grid-template-rows: 34px;
+    padding: 5px 3px;
+  }
+  .dock-rotulo {
+    display: none;
+  }
+  .dock-botao.ligado::after {
+    left: 10px;
+    right: 10px;
+  }
+}
+
+
+/* camadas e ferramentas: uma faixa só, embaixo, no meio da área livre */
+.docks-base {
+  position: absolute;
+  bottom: 16px;
+  left: calc(50% + var(--painel-px, 0px) / 2);
+  transform: translateX(-50%);
+  z-index: 12;
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+}
+.docks-base .dock {
+  position: relative;
+  inset: auto;
+  transform: none;
+}
+/* mesa estreita: botões compactos (só ícones) para a faixa caber ao lado do painel */
+@container cartao-mapa (max-width: 1300px) {
+  .dock-botoes {
+    grid-auto-columns: 48px;
+  }
+  .dock-botao {
+    width: 48px;
+    height: 46px;
+    grid-template-rows: 34px;
+    padding: 5px 3px;
+  }
+  .dock-rotulo {
+    display: none;
+  }
+  .dock-botao.ligado::after {
+    left: 10px;
+    right: 10px;
+  }
+}
+/* as fichas ficam sempre acima da faixa de controles */
+.mesa-raiz:has(.dock) .janela-lateral > .janela {
+  max-height: calc(100vh - 262px);
+}
+
+
+/* =====================================================================
+   Ficha de registro: painel de tamanho fixo, rodapé sempre visível e stepper com conexões
+   ===================================================================== */
+.janela-principal.ficha {
+  width: min(560px, calc(100vw - var(--mesa-w) - 470px));
+  min-width: 440px;
+  height: min(calc(100vh - 108px), 820px);
+}
+.camada-janelas:has(.janela-lateral) .janela-principal.ficha {
+  width: min(560px, calc(100vw - var(--mesa-w) - 470px));
+}
+.janela-principal.ficha > .janela.rolavel {
+  height: 100%;
+  max-height: none;
+}
+.janela-rodape {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 8px;
+  padding-top: 14px;
+  border-top: 1px solid #262c3d;
+}
+
+/* o stepper: ícones ligados por uma linha; sólida quando o passo está feito, tracejada quando falta */
+.passos {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.passo {
+  position: relative;
+}
+.passo > button {
+  display: grid;
+  grid-template-columns: 34px 1fr auto;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  margin-bottom: 14px;
+  padding: 4px 10px 4px 4px;
+  text-align: left;
+  background: none;
+  border: 1px solid transparent;
+  color: var(--text);
+  transition: background 0.15s, border-color 0.15s;
+}
+.passo:last-child > button {
+  margin-bottom: 0;
+}
+.passo > button:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: #2e3446;
+}
+.passo .nome {
+  font-family: var(--font-display);
+  font-size: 15px;
+}
+.passo .valor {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-narrative);
+  font-size: 15px;
+  color: var(--ink-player);
+}
+.passo .valor .ico {
+  color: var(--success);
+}
+.passo.pendente .valor {
+  color: var(--text-dim);
+}
+.passo.pendente .insignia {
+  filter: brightness(0.7) saturate(0.8);
+}
+.passo::after {
+  content: "";
+  position: absolute;
+  left: 20px;
+  top: 40px;
+  width: 2px;
+  height: 18px;
+  background: repeating-linear-gradient(to bottom, #3b4258 0 4px, transparent 4px 7px);
+}
+.passo:last-child::after {
+  display: none;
+}
+.passo.feita::after {
+  background: var(--brass);
+  box-shadow: 0 0 6px rgba(182, 154, 96, 0.5);
+}
+.passo.atual > button {
+  border-color: var(--carmim);
+  background: rgba(201, 65, 59, 0.08);
+}
+.passo.atual .nome {
+  color: var(--carmim-hi);
+}
+.passo.atual .insignia {
+  filter: none;
+}
+
+/* rodapé do painel: nada quebra linha */
+.janela-rodape .n-L,
+.janela-rodape .link,
+.janela-rodape .placa-texto {
+  white-space: nowrap;
+}
+.janela-rodape .placa {
+  min-width: 0;
+  padding: 10px 24px 9px;
+}
+
+
+/* =====================================================================
+   HUD: o caminho da noite como stepper de círculos (no lugar do "objetivo")
+   ===================================================================== */
+.hud .objetivo.com-passos {
+  gap: 18px;
+  height: 46px;
+  padding: 0 16px;
+}
+.stepper-hud {
+  display: flex;
+  align-items: center;
+  flex: none;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.stepper-hud > li {
+  display: flex;
+  align-items: center;
+}
+/* conexão entre os círculos: tracejada até a mesa chegar lá, sólida depois */
+.stepper-hud > li:not(:last-child)::after {
+  content: "";
+  width: 14px;
+  height: 2px;
+  margin: 0 2px;
+  background: repeating-linear-gradient(90deg, #3b4258 0 3px, transparent 3px 6px);
+}
+.stepper-hud > li.feito:not(:last-child)::after {
+  background: var(--brass);
+  box-shadow: 0 0 5px rgba(182, 154, 96, 0.5);
+}
+.passo-hud {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border-radius: 50%;
+  color: var(--brass);
+  background: radial-gradient(circle at 40% 35%, #303750, #141826 70%);
+  border: 1px solid var(--brass-dark);
+  box-shadow: inset 0 0 0 2px #0d1019, inset 0 0 0 3px rgba(182, 154, 96, 0.25);
+  transition: filter 0.15s, box-shadow 0.15s, border-color 0.15s;
+}
+.passo-hud .ico {
+  margin: auto;
+}
+.passo-hud:hover:not([aria-disabled="true"]) {
+  filter: brightness(1.25);
+  border-color: var(--brass);
+}
+.passo-hud.feito {
+  color: var(--brass-hi);
+  border-color: var(--brass);
+}
+/* onde a mesa está agora: luz de gás */
+.passo-hud.mesa {
+  color: #1c1710;
+  background: radial-gradient(circle at 40% 35%, #f3d28a, #c4903d 60%, #7a5a22);
+  border-color: #f3d28a;
+  box-shadow: inset 0 0 0 2px rgba(60, 40, 10, 0.4), 0 0 10px rgba(232, 184, 102, 0.65);
+}
+.passo-hud.fechado {
+  opacity: 0.45;
+}
+/* o que esta pessoa está vendo agora (quando relê um capítulo): anel vermelho */
+.passo-hud.vendo {
+  box-shadow: 0 0 0 2px #0c0f17, 0 0 0 3.5px var(--carmim-hi);
+}
+.passo-hud.mesa.vendo {
+  box-shadow: inset 0 0 0 2px rgba(60, 40, 10, 0.4), 0 0 0 2px #0c0f17, 0 0 0 3.5px var(--carmim-hi), 0 0 10px rgba(232, 184, 102, 0.65);
+}
+.objetivo-bloco {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+  line-height: 1.2;
+}
+.objetivo-bloco .n-L {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  color: var(--gaslight);
+}
+.objetivo-bloco .texto {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-family: var(--font-ui);
+  font-size: 13.5px;
+  color: var(--text);
+}
+@media (max-width: 1050px) {
+  .objetivo-bloco {
+    display: none;
+  }
+}
+
+
+/* o mapa ao fundo, inteiro entre os painéis, não precisa ficar tão apagado */
+.veu-escuro {
+  background: rgba(6, 8, 13, 0.4);
+}
+
+
+/* =====================================================================
+   Responsividade: do monitor grande ao celular (1280 px para cima é o alvo; abaixo disso nada quebra)
+   ===================================================================== */
+/* a Mesa do Mestre encolhe em telas médias, e o resto se mede por ela */
+.mesa-raiz {
+  --mesa-larg: clamp(300px, 30vw, 400px);
+}
+.mesa-mestre {
+  width: var(--mesa-larg);
+}
+
+/* janela lateral e painel da ficha se espremem antes de se sobrepor */
+.janela-lateral {
+  width: clamp(260px, calc(100vw - var(--mesa-w) - 500px), 370px);
+}
+.janela-principal.ficha {
+  min-width: 380px;
+}
+
+/* HUD: vai perdendo o que é secundário, nessa ordem, em vez de estourar */
+.hud {
+  overflow: hidden;
+}
+@media (max-width: 960px) {
+  .hud .cap-texto {
+    display: none;
+  }
+}
+@media (max-width: 760px) {
+  .hud .tripulacao,
+  .hud .sep,
+  .hud .pequeno-link {
+    display: none;
+  }
+  .hud {
+    gap: 10px;
+    padding: 0 10px;
+  }
+  .hud .objetivo.com-passos {
+    padding: 0;
+    gap: 0;
+  }
+}
+@media (max-width: 560px) {
+  .passo-hud {
+    width: 28px;
+    height: 28px;
+  }
+  .passo-hud .ico {
+    width: 15px;
+    height: 15px;
+  }
+  .stepper-hud > li:not(:last-child)::after {
+    width: 6px;
+    margin: 0 1px;
+  }
+  .hud .selo-expo {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+/* telas estreitas: os painéis viram uma coluna, com altura estável e rodapé à vista */
+@media (max-width: 900px) {
+  .camada-janelas:has(.janela-lateral) .janela-principal.ficha,
+  .janela-principal.ficha {
+    width: auto;
+    min-width: 0;
+    height: calc(100dvh - 130px);
+  }
+  .janela-lateral {
+    width: auto;
+  }
+  .docks-base {
+    left: auto;
+    right: 10px;
+    bottom: 10px;
+    transform: none;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+  }
+  .dock-camadas,
+  .dock-ferramentas {
+    transform: none;
+  }
+}
+/* celular: sem espaço para as placas de mapa; o painel do capítulo manda */
+@media (max-width: 560px) {
+  .docks-base {
+    display: none;
+  }
+}
+
+/* celular: rodapé enxuto, sem vinheta, sem rolagem lateral */
+.camada-janelas {
+  overflow-x: hidden;
+}
+@media (max-width: 560px) {
+  .janela-rodape {
+    gap: 8px;
+  }
+  .janela-rodape > .n-L {
+    display: none;
+  }
+  .janela-rodape .placa {
+    padding: 9px 14px 8px;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+  }
+  .janela-principal .storylet-topo > .vinheta {
+    display: none;
+  }
+  .janela.pesada {
+    padding: 12px 20px 22px;
+  }
+}
+
+/* o rodapé se adapta à largura do painel, não da tela */
+.janela-principal.ficha {
+  container-type: inline-size;
+  container-name: painel-ficha;
+}
+@container painel-ficha (max-width: 500px) {
+  .janela-rodape {
+    gap: 8px;
+  }
+  .janela-rodape > .n-L {
+    display: none;
+  }
+  .janela-rodape .placa {
+    padding: 9px 16px 8px;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+  }
+}
+
+
+/* =====================================================================
+   Revisão de UX v1: mapa só onde o mapa é o assunto
+   Tela de mapa (III, V) x tela de gestão (todas as outras)
+   ===================================================================== */
+/* fundo da gestão: ardósia com ruído e vinheta, imagem estática */
+.fundo-gestao {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 40%, transparent 35%, rgba(4, 6, 10, 0.7) 100%),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .6  0 0 0 0 .62  0 0 0 0 .7  0 0 0 .07 0'/></filter><rect width='200' height='200' filter='url(%23n)'/></svg>"),
+    linear-gradient(160deg, #141a27, #0c0f17 60%, #0a0d14);
+}
+.selo-local {
+  flex: none;
+  padding: 2px 8px;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: #e8d9b5;
+  opacity: 0.8;
+  border: 1px dashed #6f5b33;
+}
+@media (max-width: 760px) {
+  .selo-local {
+    display: none;
+  }
+}
+
+/* a janela de gestão: uma moldura grande que ocupa a mesa toda (menos a Mesa do Mestre) */
+.janela-principal.gestao {
+  left: 24px;
+  right: calc(var(--mesa-w) + 24px);
+  top: 76px;
+  bottom: 22px;
+  width: auto;
+  min-width: 0;
+  max-width: 1720px;
+  margin-inline: auto;
+  transition: right 0.3s;
+}
+.janela-principal.gestao > .janela {
+  height: 100%;
+  max-height: none;
+  display: flex;
+  flex-direction: column;
+}
+.janela-principal.gestao > .janela > .topo-storylet {
+  flex: none;
+}
+.janela-principal.gestao .cabecalho {
+  padding-bottom: 8px;
+}
+.gestao-grade {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: var(--colunas, 1fr);
+  align-items: stretch;
+}
+.painel-g {
+  min-width: 0;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 4px 24px 12px;
+  scrollbar-gutter: stable;
+}
+.painel-g + .painel-g {
+  border-left: 1px solid var(--brass-dark);
+  box-shadow: -1px 0 0 rgba(0, 0, 0, 0.5);
+}
+.painel-g:first-child {
+  padding-left: 6px;
+}
+.painel-g:last-child {
+  padding-right: 6px;
+}
+.painel-g-cab {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #262c3d;
+}
+.painel-g .ramos {
+  margin-top: 0;
+}
+.grade-ramos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 10px 14px;
+  align-content: start;
+}
+.grade-ramos > * {
+  min-width: 0;
+}
+@media (max-width: 900px) {
+  .janela-principal.gestao {
+    position: relative;
+    inset: auto;
+    max-width: none;
+    margin: 0;
+    height: auto;
+  }
+  .janela-principal.gestao > .janela {
+    height: auto;
+  }
+  .gestao-grade {
+    display: block;
+  }
+  .painel-g {
+    overflow: visible;
+    padding: 4px 4px 14px;
+  }
+  .painel-g + .painel-g {
+    border-left: 0;
+    border-top: 1px solid var(--brass-dark);
+    box-shadow: none;
+    padding-top: 16px;
+  }
+}
+
+/* tela de mapa: janelas laterais cedem a borda direita à barra de camadas e ferramentas */
+.mesa-raiz[data-tela="mapa"] .janela-lateral {
+  right: calc(var(--mesa-w) + 78px);
+}
+@media (max-width: 900px) {
+  .mesa-raiz[data-tela="mapa"] .janela-lateral {
+    right: auto;
+  }
+}
+
+.tripulacao-grande {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+}
+.tripulante-grande {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+  padding: 16px 10px 14px;
+  text-align: center;
+  background: var(--win-inset);
+  border: 1px solid #262c3d;
+}
+.tripulante-grande.a-bordo {
+  border-color: var(--brass-dark);
+}
+.tripulante-grande:not(.a-bordo) .insignia {
+  filter: grayscale(0.6) brightness(0.7);
+}
+.tripulante-grande .nome {
+  font-family: var(--font-display);
+  font-size: 18px;
+}
+
+.dados-ficha {
+  margin: 0;
+  display: grid;
+  gap: 0;
+}
+.dados-ficha > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  padding: 7px 0;
+  border-bottom: 1px solid #262c3d;
+}
+.dados-ficha dd {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 15px;
+  text-align: right;
+}
+/* a ficha: rodapé de navegação fica na base da janela, a rolagem é só da página */
+.janela-principal.gestao .janela-rodape {
+  margin-top: 6px;
+}
+
+/* ---------- Laços: três colunas ---------- */
+.painel-diagrama {
+  display: flex;
+  flex-direction: column;
+}
+.painel-diagrama .diagrama-lacos {
+  flex: 1;
+  min-height: 0;
+  max-height: 100%;
+  max-width: 440px;
+}
+.diagrama-lacos .linha-laco.espera {
+  stroke-dasharray: 7 6;
+  opacity: 0.65;
+}
+.diagrama-lacos .area-laco {
+  fill: none;
+  stroke: transparent;
+  stroke-width: 16;
+  cursor: var(--cursor-mao), pointer;
+}
+.legenda-lacos {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  margin: 4px 0 8px;
+  font-size: 13px;
+}
+.legenda-lacos i {
+  display: inline-block;
+  width: 26px;
+  height: 0;
+  margin-right: 6px;
+  vertical-align: middle;
+  border-top: 2px solid var(--brass);
+}
+.legenda-lacos i.tracejado {
+  border-top-style: dashed;
+}
+.laco-focado {
+  flex: none;
+  min-height: 92px;
+  padding: 10px 14px;
+  background: var(--win-inset);
+  border: 1px solid #262c3d;
+}
+.retratos-para {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+.retrato-para {
+  display: grid;
+  justify-items: center;
+  gap: 3px;
+  width: 68px;
+  padding: 8px 4px 6px;
+  background: none;
+  color: var(--text);
+  border: 1px solid #262c3d;
+}
+.retrato-para:hover:not(:disabled) {
+  border-color: var(--brass);
+}
+.retrato-para.escolhido {
+  border-color: var(--carmim-hi);
+  background: rgba(165, 70, 60, 0.12);
+}
+.retrato-para:disabled {
+  opacity: 0.5;
+}
+.retrato-para .retrato {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid var(--brass);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 17px;
+  color: #0e1213;
+}
+.retrato-para .n-L {
+  font-size: 9px;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.caixa-item {
+  padding: 10px 0 12px;
+  border-bottom: 1px solid #262c3d;
+}
+.caixa-item .escrita {
+  margin-top: 4px;
+}
+
+/* ---------- Cap. V: o painel da resposta (compacto, sem rolagem) ---------- */
+.janela-principal.painel.compacto {
+  width: min(520px, calc(100vw - var(--mesa-w) - 80px));
+}
+.janela-principal.compacto .cabecalho .n-contexto {
+  display: none;
+}
+.janela-principal.compacto .cabecalho {
+  padding-bottom: 6px;
+}
+.janela-principal.compacto .cabecalho .faixa {
+  margin: 2px 0 6px;
+}
+.linha-vez {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+  margin-bottom: 10px;
+}
+.linha-vez .montes-sobra {
+  margin-left: auto;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+.linha-vez .montes-sobra .agora {
+  color: var(--gaslight);
+}
+.sem-carta {
+  display: grid;
+  gap: 14px;
+  justify-items: center;
+  text-align: center;
+  padding: 10px 0 6px;
+}
+.carta-compacta {
+  padding: 12px 16px 14px;
+  margin-bottom: 12px;
+  background: var(--win-inset);
+  border: 1px solid var(--brass-dark);
+  border-left: 3px solid var(--carmim-hi);
+}
+.carta-compacta .pergunta-vez {
+  margin: 4px 0 0;
+  font-size: 20px;
+  line-height: 1.3;
+  text-align: left;
+}
+.linha-acao {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 14px;
+  margin-top: 6px;
+}
+.fixar-linha {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  background: none;
+  color: var(--text);
+  border: 1px solid #262c3d;
+  font-family: var(--font-ui);
+  font-size: 14px;
+}
+.fixar-linha:hover {
+  border-color: var(--brass);
+}
+.fixar-linha.selecionado {
+  border-color: var(--carmim-hi);
+}
+.fixar-linha.feito {
+  border-color: var(--brass-dark);
+}
+.fixar-linha .ico {
+  color: var(--brass);
+}
+.enviar-resposta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: auto;
+}
+.ordem-rodada {
+  margin-top: 12px;
+  padding-top: 8px;
+  align-items: center;
+}
+.ordem-rodada > .n-L {
+  font-size: 10px;
+}
+.btn-hud {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex: none;
+  padding: 5px 12px;
+  background: rgba(20, 24, 36, 0.9);
+  border: 1px solid var(--brass-dark);
+  color: var(--text);
+  font-family: var(--font-ui);
+  font-size: 13px;
+  white-space: nowrap;
+}
+.btn-hud:hover,
+.btn-hud.ligado {
+  border-color: var(--brass);
+  color: var(--brass-hi);
+}
+
+/* ---------- fase 1: o sorteio, no centro da tela ---------- */
+.sorteio-veu {
+  position: absolute;
+  inset: 0;
+  z-index: 26;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 50% 50%, rgba(6, 8, 13, 0.78), rgba(6, 8, 13, 0.55));
+  animation: sorteio-entra 0.3s ease-out;
+  transition: opacity 0.4s;
+}
+.sorteio-veu.saindo {
+  opacity: 0;
+}
+.sorteio-veu.saindo .sorteio-palco {
+  transform: translate(-28vw, 8vh) scale(0.45);
+}
+.sorteio-palco {
+  display: grid;
+  justify-items: center;
+  gap: 20px;
+  transition: transform 0.45s cubic-bezier(0.5, 0, 0.7, 0.4);
+}
+.montes-grandes {
+  gap: 22px;
+  margin: 0;
+}
+.montes-grandes .monte {
+  width: 104px;
+  --carta-w: 104px;
+  transition: opacity 0.3s, transform 0.3s;
+}
+.montes-grandes .monte.apagado {
+  opacity: 0.35;
+}
+.montes-grandes .monte.sorteado {
+  transform: translateY(-8px) scale(1.08);
+}
+.montes-grandes .rotulo-monte {
+  margin-top: 8px;
+  text-align: center;
+  font-size: 11px;
+  white-space: nowrap;
+}
+.dados-sorteio {
+  display: flex;
+  gap: 28px;
+}
+.carta-sorteio {
+  transition: opacity 0.3s;
+}
+.carta-sorteio.escondida {
+  opacity: 0;
+}
+@keyframes sorteio-entra {
+  from {
+    opacity: 0;
+  }
+}
+@media (max-width: 900px) {
+  .montes-grandes .monte {
+    width: 64px;
+    --carta-w: 64px;
+  }
+  .sorteio-veu {
+    top: var(--topo);
+  }
+}
+@media (max-height: 760px) {
+  .carta-sorteio {
+    --carta-w: 150px !important;
+  }
+  .montes-grandes .monte {
+    width: 80px;
+    --carta-w: 80px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sorteio-veu {
+    display: none;
+  }
+}
+
+/* ---------- a barra única de camadas e ferramentas, na borda direita do mapa ---------- */
+.barra-mapa {
+  position: absolute;
+  top: 50%;
+  right: calc(var(--mesa-w) + 14px);
+  transform: translateY(-50%);
+  z-index: 12;
+  display: grid;
+  gap: 8px;
+  padding: 6px;
+  background: rgba(20, 24, 36, 0.92);
+  border: 1px solid var(--brass-dark);
+  box-shadow: 0 6px 18px -6px #000c, inset 0 0 0 2px rgba(182, 154, 96, 0.1);
+  transition: right 0.3s;
+}
+.barra-grupo {
+  display: grid;
+  gap: 4px;
+}
+.barra-grupo + .barra-grupo {
+  padding-top: 8px;
+  border-top: 1px solid var(--brass-dark);
+}
+.botao-barra {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  color: var(--brass);
+  background: rgba(10, 13, 20, 0.7);
+  border: 1px solid #262c3d;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+.botao-barra:hover {
+  color: var(--brass-hi);
+  border-color: var(--brass);
+}
+.botao-barra.ligado {
+  color: #1c1710;
+  background: radial-gradient(circle at 40% 35%, #e9d29a, #a98a4a);
+  border-color: #e9d29a;
+}
+.botao-barra.apagado {
+  color: #6c6a5e;
+}
+.botao-barra .simbolo-barra {
+  font-family: var(--font-ui);
+  font-size: 22px;
+  line-height: 1;
+}
+/* o nome só aparece como dica, à esquerda do botão */
+.botao-barra::after {
+  content: attr(data-dica);
+  position: absolute;
+  right: calc(100% + 10px);
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 4px 10px;
+  white-space: nowrap;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  color: var(--text);
+  background: #0c0f17;
+  border: 1px solid var(--brass-dark);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.12s;
+}
+.botao-barra:hover::after,
+.botao-barra:focus-visible::after {
+  opacity: 1;
+}
+.legenda-mapa {
+  position: absolute;
+  right: calc(var(--mesa-w) + 70px);
+  bottom: 16px;
+  z-index: 12;
+  width: 250px;
+  max-height: 46vh;
+  overflow-y: auto;
+  background: rgba(20, 24, 36, 0.92);
+  border: 1px solid var(--brass-dark);
+  transition: right 0.3s;
+}
+.legenda-cab {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 7px 12px;
+  background: none;
+  border: 0;
+  color: var(--brass);
+}
+.legenda-mapa ul {
+  list-style: none;
+  margin: 0;
+  padding: 2px 12px 10px;
+  display: grid;
+  gap: 5px;
+}
+.legenda-mapa li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.legenda-mapa li .n-L {
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  color: var(--text);
+  line-height: 1.2;
+}
+.legenda-mapa li svg {
+  flex: none;
+}
+@media (max-width: 900px) {
+  .barra-mapa {
+    top: auto;
+    bottom: 10px;
+    right: 10px;
+    transform: none;
+    grid-auto-flow: column;
+  }
+  .barra-grupo {
+    grid-auto-flow: column;
+  }
+  .barra-grupo + .barra-grupo {
+    padding: 0 0 0 8px;
+    border-top: 0;
+    border-left: 1px solid var(--brass-dark);
+  }
+  .legenda-mapa {
+    display: none;
+  }
+}
+@media (max-width: 560px) {
+  .barra-mapa {
+    display: none;
+  }
+}
+
+/* a tripulação em linhas: cabem as cinco pessoas sem rolar */
+.tripulacao-grande {
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+.tripulante-grande {
+  grid-template-columns: auto 1fr auto;
+  justify-items: start;
+  align-items: center;
+  gap: 14px;
+  padding: 8px 14px;
+  text-align: left;
+}
+.tripulante-grande .insignia {
+  --t: 44px !important;
+}
+
+/* o aviso de releitura não pode cobrir a moldura da janela de gestão */
+.aviso-releitura {
+  top: 60px;
+}
+.mesa-raiz:has(.aviso-releitura) .janela-principal.gestao {
+  top: 104px;
+}
+
+.linha-enviar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.retratos-para {
+  gap: 6px;
+}
+.retrato-para {
+  width: 60px;
+  padding: 6px 2px 5px;
+}
+.linha-enviar .placa {
+  white-space: nowrap;
+  font-size: 12px;
+  padding: 9px 14px 8px;
+}
+
+/* listas de escolha da ficha: grade de peças, em vez de uma pilha de faixas */
+.ramos.grade-opcoes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(215px, 1fr));
+  gap: 10px;
+  align-items: stretch;
+}
+.ramos.grade-opcoes > * {
+  margin: 0;
+  min-width: 0;
+}
+.ramos.grade-opcoes .ramo {
+  height: 100%;
+  min-height: 84px;
+}
+.painel-g.pagina-ficha .divisoria {
+  display: none;
+}
+
+/* ---------- ficha: abas enxutas e cartões de escolha ---------- */
+.passo > button {
+  grid-template-columns: 34px 1fr;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.passo::after {
+  top: 36px;
+  height: 14px;
+}
+.aba-ico {
+  position: relative;
+  display: grid;
+}
+.check-bola {
+  position: absolute;
+  right: -5px;
+  bottom: -4px;
+  display: grid;
+  place-items: center;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  color: #10170f;
+  background: var(--success);
+  border: 1.5px solid #141826;
+  box-shadow: 0 1px 3px #000a;
+}
+.ramos.grade-opcoes {
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 12px;
+}
+.opcao {
+  position: relative;
+  display: block;
+  aspect-ratio: 1 / 0.92;
+  min-height: 150px;
+  padding: 0;
+  overflow: hidden;
+  text-align: left;
+  color: var(--text);
+  background: linear-gradient(180deg, #2a3045, #20253a);
+  border: 1px solid #343b52;
+  transition: border-color 0.15s, transform 0.15s;
+}
+.opcao:hover:not(:disabled) {
+  border-color: var(--brass);
+  transform: translateY(-2px);
+}
+.opcao.marcada {
+  border-color: var(--carmim-hi);
+  box-shadow: 0 0 0 1px var(--carmim-hi), 0 0 16px -4px var(--carmim-brilho);
+}
+.opcao-txt {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  align-content: start;
+  gap: 5px;
+  width: 62%;
+  padding: 14px 8px 12px 14px;
+}
+.opcao-nome {
+  font-family: var(--font-display);
+  font-size: 18px;
+  line-height: 1.15;
+}
+.opcao.marcada .opcao-nome {
+  color: var(--carmim-hi);
+}
+.opcao-desc {
+  font-family: var(--font-ui);
+  font-size: 13px;
+  line-height: 1.3;
+  color: var(--text-muted);
+}
+.opcao-txt .selo {
+  justify-self: start;
+  margin-top: 4px;
+}
+.opcao-arte {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 46%;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 38%);
+  mask-image: linear-gradient(90deg, transparent, #000 38%);
+  opacity: 0.85;
+}
+.opcao-arte img,
+.opcao-arte .placeholder-arte {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.opcao:disabled {
+  opacity: 0.6;
+}
+
+/* ---------- protocolo: adicionar sem acordeão ---------- */
+.adicionar-linha {
+  display: flex;
+  gap: 8px;
+  align-items: stretch;
+}
+.adicionar-linha input {
+  flex: 1;
+  min-width: 0;
+}
+.btn-pequeno {
+  flex: none;
+  padding: 0 14px;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--brass-hi);
+  background: rgba(182, 154, 96, 0.1);
+  border: 1px solid var(--brass-dark);
+}
+.btn-pequeno:hover:not(:disabled) {
+  border-color: var(--brass);
+  background: rgba(182, 154, 96, 0.2);
+}
+.btn-pequeno:disabled {
+  opacity: 0.4;
+}
+.adicionar-item {
+  padding-bottom: 14px;
+  border-bottom: 1px solid #262c3d;
+}
+.adicionar-item .anim-selo-carimbo {
+  display: inline-block;
+  margin-top: 8px;
+}
+
+/* ---------- ficha, segunda rodada: três colunas, cartões quadrados, check de latão ---------- */
+.ramos.grade-opcoes {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.opcao {
+  aspect-ratio: 1 / 1;
+  min-height: 0;
+}
+.opcao-nome {
+  font-size: 17px;
+}
+.opcao-txt {
+  width: 66%;
+}
+.check-bola {
+  color: #2a2213;
+  background: radial-gradient(circle at 35% 30%, #f3e3b5, #c4a467 55%, #8e7240);
+  border: 1px solid #3d311a;
+  box-shadow: 0 1px 3px #000a, inset 0 0 0 1px rgba(255, 243, 207, 0.45);
+}
+.nav-ficha {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 16px 0 6px;
+  padding-top: 14px;
+  border-top: 1px solid #262c3d;
+}
+.tripulacao-viva {
+  margin-top: 14px;
+}
+.tripulacao-viva > summary {
+  cursor: var(--cursor-mao), pointer;
+  color: var(--brass);
+  padding: 4px 0;
+}
+.tripulacao-viva[open] > summary {
+  margin-bottom: 6px;
+}
+
+/* campos de texto: sem anel duplo; o realce é a própria borda que acende */
+.jogo input:focus-visible,
+.jogo textarea:focus-visible,
+.jogo select:focus-visible {
+  outline: none;
+  border-color: var(--brass-hi);
+  box-shadow: none;
+}
+.escrita textarea:focus,
+.escrita input:focus {
+  box-shadow: none;
+  border-color: var(--brass-hi);
+}
+
+/* "Próxima página" sempre fixo no canto inferior direito do Resumo */
+.painel-resumo {
+  display: flex;
+  flex-direction: column;
+}
+.painel-resumo .nav-ficha {
+  position: sticky;
+  bottom: 0;
+  margin-top: auto;
+  padding: 12px 0 2px;
+  border-top: 0;
+  background: linear-gradient(180deg, transparent, var(--win, #20253a) 35%);
+  justify-content: flex-end;
+  gap: 16px;
+}
+.painel-resumo .nav-ficha .placa {
+  white-space: nowrap;
+  font-size: 12px;
+  padding: 9px 16px 8px;
+}
+
+/* abas da ficha: o destaque da página atual é uma placa chanfrada como o ícone, que se estica ao texto */
+.passos {
+  display: grid;
+  justify-items: start;
+}
+.passo {
+  width: 100%;
+}
+.passo > button {
+  width: auto;
+  max-width: 100%;
+  position: relative;
+  padding: 4px 18px 4px 4px;
+  border: 0;
+  background: none;
+  clip-path: polygon(10px 0, calc(100% - 10px) 0, 100% 10px, 100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 0 calc(100% - 10px), 0 10px);
+}
+.passo > button:hover {
+  background: none;
+  border-color: transparent;
+}
+.passo > button > * {
+  position: relative;
+  z-index: 1;
+}
+.passo > button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: transparent;
+}
+.passo.atual > button {
+  background: var(--carmim-hi);
+  border: 0;
+}
+.passo.atual > button::before {
+  inset: 1.5px;
+  background: #2a2230;
+  clip-path: polygon(9px 0, calc(100% - 9px) 0, 100% 9px, 100% calc(100% - 9px), calc(100% - 9px) 100%, 9px 100%, 0 calc(100% - 9px), 0 9px);
+}
+.passo.atual .nome {
+  color: var(--carmim-hi);
+}
+/* hover: só o ícone acende, de leve, como os filigramas */
+.aba-ico {
+  transition: filter 0.2s;
+}
+.passo > button:hover .aba-ico {
+  filter: drop-shadow(0 0 5px rgba(232, 184, 102, 0.7)) brightness(1.18);
+}
+
+/* chanfro delicado e mais respiro na aba atual */
+.passo > button {
+  padding: 7px 20px 7px 8px;
+  clip-path: polygon(4px 0, calc(100% - 4px) 0, 100% 4px, 100% calc(100% - 4px), calc(100% - 4px) 100%, 4px 100%, 0 calc(100% - 4px), 0 4px);
+}
+.passo.atual > button::before {
+  clip-path: polygon(3px 0, calc(100% - 3px) 0, 100% 3px, 100% calc(100% - 3px), calc(100% - 3px) 100%, 3px 100%, 0 calc(100% - 3px), 0 3px);
+}
+.passo::after {
+  top: 44px;
+  height: 10px;
+}
+.passo > button {
+  margin-bottom: 12px;
+}
+.passo::after {
+  left: 24px;
+}
+
+/* abas da ficha: todas do mesmo tamanho, preenchendo a coluna; contorno com espessura uniforme */
+.passos {
+  justify-items: stretch;
+}
+.passo > button {
+  width: 100%;
+}
+.passo.atual > button::before {
+  inset: 1px;
+  clip-path: polygon(3px 0, calc(100% - 3px) 0, 100% 3px, 100% calc(100% - 3px), calc(100% - 3px) 100%, 3px 100%, 0 calc(100% - 3px), 0 3px);
+}
+
+/* sem transição no fundo das abas: o contorno da anterior não pode "piscar" ao trocar */
+.passo > button {
+  transition: none;
+}
+.passo .nome {
+  transition: color 0.12s;
+}
+
+/* "escolhido": selo de latão no canto inferior direito, sem mexer no conteúdo do cartão */
+.opcao-selo {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  z-index: 2;
+  padding: 3px 10px 2px;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--brass-hi);
+  background: rgba(10, 13, 20, 0.8);
+  border: 1px solid var(--brass-dark);
+}
+.opcao-selo.escolhido {
+  color: #2a2213;
+  background: linear-gradient(180deg, #f3e3b5, #c4a467 55%, #8e7240);
+  border-color: #3d311a;
+  box-shadow: 0 2px 6px #000a, inset 0 1px 0 rgba(255, 243, 207, 0.6);
+  text-shadow: 0 1px 0 rgba(255, 243, 207, 0.4);
+}
+.opcao-arte .id {
+  display: none;
+}
+.opcao:focus-visible {
+  outline: none;
+  border-color: var(--brass-hi);
+}
+.opcao.marcada:focus-visible {
+  border-color: var(--carmim-hi);
+}
+
+/* coluna das abas: mais perto da lateral do cartão, com folga até o divisor */
+.painel-g.painel-abas {
+  margin-left: -16px;
+  padding-left: 0;
+  padding-right: 22px;
+}
+.painel-g.painel-abas {
+  margin-left: -30px;
+  padding-right: 24px;
+}
+.painel-g.painel-abas {
+  margin-left: -22px;
+  padding-top: 26px;
+}
+
+.olho-mestre {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 22px;
+  padding: 0;
+  align-self: center;
+  color: var(--brass-dark);
+  background: none;
+  border: 1px solid transparent;
+}
+.olho-mestre:hover {
+  color: var(--brass-hi);
+  border-color: var(--brass-dark);
+}
+.olho-mestre.ligado {
+  color: var(--carmim-hi);
+}
+
+.tabela-pre {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-ui);
+  font-size: 12px;
+}
+.tabela-pre th {
+  text-align: left;
+  font-weight: 600;
+  padding: 4px 6px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+.tabela-pre thead th {
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brass);
+}
+.tabela-pre td {
+  padding: 4px 6px;
+  border-top: 1px solid #262c3d;
+}
+.tabela-pre td.falta {
+  color: var(--carmim-hi);
+  font-style: italic;
+}
+
+/* o fundo vivo: um canvas só, por cima do fundo e da arte, por baixo do HUD e das janelas */
+.fundo-vivo {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9;
+}

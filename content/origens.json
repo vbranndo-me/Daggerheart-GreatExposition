@@ -1,0 +1,6 @@
+[
+  { "id": "convidado", "nome": "Convidado ilustre", "descricao": "Você veio a convite: delegado, artista premiado, inventor, nobre de um país em guerra. Todo mundo sabe o seu nome, ou finge saber." },
+  { "id": "refugiado", "nome": "Refugiado", "descricao": "Você chegou com o que pôde carregar. Entremonts é neutro, e a feira dá trabalho e esconderijo." },
+  { "id": "funcionario", "nome": "Funcionário da feira", "descricao": "Guarda, garçom, engenheiro, faxineiro, guia. Você conhece a Exposição por dentro, as portas dos fundos e os horários." },
+  { "id": "outro", "nome": "Outra coisa", "descricao": "Jornalista, espião, peregrino, ladrão de joias. Conte ao mestre." }
+]
