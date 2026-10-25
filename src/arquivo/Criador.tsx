@@ -45,14 +45,14 @@ export function PortaoIdentidade({ escolher }: { escolher: (jid: string) => Prom
   const [ocupado, setOcupado] = useState(false);
   const lista = Object.entries(s.sala.jogadores).sort((a, b) => (a[1].ordem ?? 0) - (b[1].ordem ?? 0));
   return (
-    <div className="portao-identidade">
+    <div className="jogo portao-identidade" data-paleta="ardosia">
       <Janela tipo="pesada" className="portao-janela">
         <div className="n-L" style={{ color: "var(--brass)" }}>
           Antes de começar
         </div>
         <h2 className="n-C">Quem é você?</h2>
         <p className="n-N">Escolha o seu nome na lista. O que você marcar aqui já chega na sessão.</p>
-        <div className="ramos" style={{ marginTop: 14 }}>
+        <div className="ramos portao-lista">
           {lista.map(([jid, j]) => {
             const aBordo = !!j.uid && j.uid !== s.uid && !!j.online;
             return (
