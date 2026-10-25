@@ -661,3 +661,28 @@ export function MolduraTela({ desenhando, topo = 0, base = 0 }: { desenhando?: b
     </div>
   );
 }
+
+/** O cartão de capítulo: o título aparece ao centro e os filigranas crescem como vinhas nos cantos. */
+export function CartaoCapitulo({ rotulo, nome }: { rotulo: string; nome: string }) {
+  return (
+    <div className="cartao-capitulo" aria-hidden="true">
+      <div className="janela cartao-moldura anim-janela-abre">
+        <div className="cantos">
+          <Canto pos="tl" />
+          <Canto pos="tr" />
+          <Canto pos="bl" />
+          <Canto pos="br" />
+          <Florao />
+        </div>
+        <div className="cartao-centro">
+          <div className="n-L cartao-rotulo">{rotulo}</div>
+          <div className="cartao-cap-nome">{nome}</div>
+          <svg className="cartao-fio" viewBox="0 0 240 14" aria-hidden="true">
+            <path d="M120 7 H20 Q8 7 8 7 M120 7 H220" pathLength={1} className="fio-traco" />
+            <path d="M120 2 L126 7 L120 12 L114 7 Z" className="fio-joia" />
+          </svg>
+        </div>
+      </div>
+    </div>
+  );
+}

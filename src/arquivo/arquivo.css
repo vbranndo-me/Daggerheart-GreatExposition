@@ -678,35 +678,6 @@
   border: 1px solid #3d311a;
 }
 
-/* ---------- cartão de capítulo (a transição) ---------- */
-.cartao-capitulo {
-  position: fixed;
-  inset: 0;
-  z-index: 60;
-  display: grid;
-  place-content: center;
-  justify-items: center;
-  gap: 8px;
-  background: #080a10;
-  animation: cartao-cap 0.85s ease-in-out forwards;
-}
-.cartao-cap-nome {
-  font-family: var(--font-display);
-  font-size: clamp(36px, 5vw, 64px);
-}
-@keyframes cartao-cap {
-  0% {
-    opacity: 0;
-  }
-  22%,
-  72% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
 /* ---------- sobreposições: índice e detalhe ---------- */
 .sobreposicao {
   position: fixed;
@@ -2125,4 +2096,121 @@ label.btn-pequeno.desligado {
 }
 .portao-lista {
   overflow-x: hidden;
+}
+
+/* ---------- a transição de capítulo: título ao centro, filigranas crescendo como vinhas ---------- */
+.cartao-capitulo {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(ellipse at 50% 50%, #10151f 0%, #07090e 80%);
+  animation: cartao-cap 1.9s ease-in-out forwards;
+}
+.cartao-capitulo .janela.cartao-moldura {
+  position: relative;
+  width: min(820px, 88vw);
+  min-height: 300px;
+  display: grid;
+  place-items: center;
+  background: none;
+  box-shadow: none;
+  border: 0;
+}
+.cartao-capitulo .cantos {
+  inset: 0;
+}
+.cartao-capitulo .canto {
+  width: 170px;
+  height: 170px;
+}
+.cartao-capitulo .florao {
+  top: -10px;
+}
+/* as vinhas crescem devagar, e o latão acende por último */
+.cartao-capitulo .anim-janela-abre .canto .traco,
+.cartao-capitulo .anim-janela-abre .florao .traco {
+  animation-duration: 1.15s;
+  animation-delay: 0.2s;
+  animation-timing-function: cubic-bezier(0.3, 0.6, 0.3, 1);
+}
+.cartao-capitulo .anim-janela-abre .canto .folha,
+.cartao-capitulo .anim-janela-abre .florao .folha {
+  animation: tracar 1.15s ease-out 0.2s forwards, folha-enche 0.5s ease-out 1s forwards;
+}
+.cartao-centro {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  padding: 40px 30px;
+  text-align: center;
+  animation: cartao-titulo 1.9s ease-out forwards;
+}
+.cartao-rotulo {
+  color: var(--brass);
+  letter-spacing: 0.3em;
+}
+.cartao-cap-nome {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 5.4vw, 68px);
+  line-height: 1.08;
+  color: var(--text);
+  text-shadow: 0 2px 24px #000c;
+}
+.cartao-fio {
+  width: min(300px, 70%);
+  height: 14px;
+  color: var(--brass);
+  overflow: visible;
+}
+.cartao-fio .fio-traco {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.3;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: tracar 0.9s ease-out 0.7s forwards;
+}
+.cartao-fio .fio-joia {
+  fill: var(--carmim-hi);
+  opacity: 0;
+  animation: cartao-joia 0.4s ease-out 1.1s forwards;
+}
+@keyframes cartao-cap {
+  0% {
+    opacity: 0;
+  }
+  14%,
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes cartao-titulo {
+  0%,
+  12% {
+    opacity: 0;
+    transform: translateY(8px);
+    letter-spacing: 0.04em;
+  }
+  34%,
+  100% {
+    opacity: 1;
+    transform: none;
+    letter-spacing: 0;
+  }
+}
+@keyframes cartao-joia {
+  to {
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cartao-capitulo {
+    display: none;
+  }
 }

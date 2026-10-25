@@ -7,7 +7,7 @@ import "../jogo/jogo-ajustes.css";
 import "../mesa/mesa.css";
 import "./arquivo.css";
 import { urlConteudo, type Conteudo } from "../conteudo";
-import { Janela, MolduraTela, PlaceholderArte, Ramo, SeloExposicao } from "../jogo/componentes";
+import { CartaoCapitulo, Janela, MolduraTela, PlaceholderArte, Ramo, SeloExposicao } from "../jogo/componentes";
 import { BotaoAmbiente, FundoVivo } from "../jogo/FundoVivo";
 import { BotaoHextech } from "../jogo/hextech";
 import { Icone } from "../jogo/icones";
@@ -107,7 +107,7 @@ function Apresentacao({ dados, conteudo, rota }: { dados: DadosArquivo; conteudo
     window.setTimeout(rolar, 60);
     if (mudou && !reduzMovimento()) {
       setCartao(atual);
-      const t = window.setTimeout(() => setCartao(null), 850);
+      const t = window.setTimeout(() => setCartao(null), 1900);
       return () => window.clearTimeout(t);
     }
   }, [atual?.id, rota.secao]);
@@ -155,12 +155,7 @@ function Apresentacao({ dados, conteudo, rota }: { dados: DadosArquivo; conteudo
         <MolduraTela desenhando={!atual} base={atual ? 56 : 0} />
         <HudMinimo aoMenu={() => setMenu(true)} aoTexto={() => setTexto(((texto + 1) % 3) as 0 | 1 | 2)} />
         {atual && <FaixaCapitulos capitulos={visiveis} atual={atual.id} progresso={progresso} />}
-        {cartao && (
-          <div className="cartao-capitulo" aria-hidden="true">
-            <div className="n-L">Capítulo {cartao.num}</div>
-            <div className="cartao-cap-nome">{cartao.nome}</div>
-          </div>
-        )}
+        {cartao && <CartaoCapitulo rotulo={`Capítulo ${cartao.num}`} nome={cartao.nome} />}
         {menu && <Consulta capitulos={visiveis} fechar={() => setMenu(false)} />}
         {rota.classe && (
           <div className="ficha-classe-tela">
