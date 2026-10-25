@@ -2106,7 +2106,7 @@ label.btn-pequeno.desligado {
   display: grid;
   place-items: center;
   background: radial-gradient(ellipse at 50% 50%, #10151f 0%, #07090e 80%);
-  animation: cartao-cap 1.9s ease-in-out forwards;
+  animation: cartao-cap 2.5s ease-in-out forwards;
 }
 .cartao-capitulo .janela.cartao-moldura {
   position: relative;
@@ -2131,13 +2131,13 @@ label.btn-pequeno.desligado {
 /* as vinhas crescem devagar, e o latão acende por último */
 .cartao-capitulo .anim-janela-abre .canto .traco,
 .cartao-capitulo .anim-janela-abre .florao .traco {
-  animation-duration: 1.15s;
-  animation-delay: 0.2s;
+  animation-duration: 1.5s;
+  animation-delay: 0.25s;
   animation-timing-function: cubic-bezier(0.3, 0.6, 0.3, 1);
 }
 .cartao-capitulo .anim-janela-abre .canto .folha,
 .cartao-capitulo .anim-janela-abre .florao .folha {
-  animation: tracar 1.15s ease-out 0.2s forwards, folha-enche 0.5s ease-out 1s forwards;
+  animation: tracar 1.5s ease-out 0.25s forwards, folha-enche 0.6s ease-out 1.3s forwards;
 }
 .cartao-centro {
   display: grid;
@@ -2145,7 +2145,7 @@ label.btn-pequeno.desligado {
   gap: 10px;
   padding: 40px 30px;
   text-align: center;
-  animation: cartao-titulo 1.9s ease-out forwards;
+  animation: cartao-titulo 2.5s ease-out forwards;
 }
 .cartao-rotulo {
   color: var(--brass);
@@ -2171,12 +2171,12 @@ label.btn-pequeno.desligado {
   stroke-linecap: round;
   stroke-dasharray: 1;
   stroke-dashoffset: 1;
-  animation: tracar 0.9s ease-out 0.7s forwards;
+  animation: tracar 1.2s ease-out 0.9s forwards;
 }
 .cartao-fio .fio-joia {
   fill: var(--carmim-hi);
   opacity: 0;
-  animation: cartao-joia 0.4s ease-out 1.1s forwards;
+  animation: cartao-joia 0.5s ease-out 1.45s forwards;
 }
 @keyframes cartao-cap {
   0% {

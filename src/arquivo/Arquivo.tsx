@@ -107,7 +107,7 @@ function Apresentacao({ dados, conteudo, rota }: { dados: DadosArquivo; conteudo
     window.setTimeout(rolar, 60);
     if (mudou && !reduzMovimento()) {
       setCartao(atual);
-      const t = window.setTimeout(() => setCartao(null), 1900);
+      const t = window.setTimeout(() => setCartao(null), 2500);
       return () => window.clearTimeout(t);
     }
   }, [atual?.id, rota.secao]);
