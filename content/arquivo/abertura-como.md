@@ -7,7 +7,7 @@ contexto: "O horror veste lantejoulas."
 arte: { id: "abertura-como", tipo: I, desc: "Um palco de variedades: lantejoulas, holofote, e algo errado na plateia" }
 placeholder: { mapa: rouillac, x: 52, y: 48, z: 3 }
 lado: direita
-status: esqueleto
+status: pronto
 ---
 
 ## Princípios dos jogadores

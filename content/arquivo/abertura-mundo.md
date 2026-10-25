@@ -7,7 +7,7 @@ contexto: "Dez anos de guerra, e uma feira pela paz."
 arte: { id: "abertura-mundo", tipo: I, desc: "Rouillac do alto: chaminés, casas de ferro, o rio e as fornalhas" }
 placeholder: { mapa: rouillac, x: 45, y: 40, z: 2.4 }
 lado: direita
-status: esqueleto
+status: pronto
 ---
 
 ## A guerra

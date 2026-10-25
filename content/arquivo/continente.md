@@ -7,7 +7,7 @@ contexto: "Os países, suas bandeiras e seus boatos."
 arte: { id: "continente", tipo: C, desc: "A carta do continente" }
 placeholder: { mapa: continente, x: 50, y: 50, z: 1.2 }
 lado: direita
-status: esqueleto
+status: pronto
 ---
 
 Aqui entra uma frase sobre o continente.

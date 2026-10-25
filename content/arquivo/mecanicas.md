@@ -5,7 +5,7 @@ layout: regras
 titulo: Mecânicas do cenário
 contexto: "Discernimento, Frenesi, Surto, consolo, Remendar e compulsão."
 lado: direita
-status: esqueleto
+status: pronto
 ---
 
 ## Discernimento

@@ -6,7 +6,7 @@ titulo: Módulo de ficha
 contexto: "Discernimento e Frenesi na ficha."
 arte: { id: "modulo-ficha", tipo: K, desc: "Esboço a lápis de uma ficha de personagem" }
 lado: esquerda
-status: esqueleto
+status: pronto
 ---
 
 ## Discernimento

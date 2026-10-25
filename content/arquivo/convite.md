@@ -5,7 +5,7 @@ layout: efemera
 titulo: O convite
 contexto: "Chegou pelo correio da manhã."
 lado: direita
-status: esqueleto
+status: pronto
 ---
 
 Aqui entra a frase que apresenta o convite.

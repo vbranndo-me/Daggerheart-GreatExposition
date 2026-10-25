@@ -7,7 +7,7 @@ contexto: "A cidade que o ferro construiu e a fome esvaziou."
 arte: { id: "rouillac", tipo: C, desc: "A planta pública de Rouillac" }
 placeholder: { mapa: rouillac, x: 50, y: 50, z: 1.2 }
 lado: direita
-status: esqueleto
+status: pronto
 ---
 
 ## A cidade

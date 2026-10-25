@@ -5,7 +5,7 @@ layout: galeria
 titulo: As Classes
 contexto: "As cinco classes novas."
 lado: direita
-status: esqueleto
+status: pronto
 ---
 
 Aqui entra uma frase sobre as cinco classes novas.

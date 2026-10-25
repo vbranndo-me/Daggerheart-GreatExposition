@@ -7,7 +7,7 @@ contexto: "Como a mesa será conduzida."
 arte: { id: "principios-mestre", tipo: A, desc: "Vinheta do mestre" }
 placeholder: { mapa: rouillac, x: 40, y: 45, z: 3 }
 lado: direita
-status: esqueleto
+status: pronto
 ---
 
 ## Os princípios do mestre

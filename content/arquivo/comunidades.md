@@ -5,7 +5,7 @@ layout: galeria
 titulo: Comunidades
 contexto: "Onde você aprendeu a ser quem é."
 lado: direita
-status: esqueleto
+status: pronto
 ---
 
 Aqui entra uma frase sobre o que é uma comunidade neste cenário.

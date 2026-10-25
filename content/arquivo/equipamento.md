@@ -5,7 +5,7 @@ layout: regras
 titulo: Equipamento
 contexto: "Armas e itens da Belle Époque."
 lado: direita
-status: esqueleto
+status: pronto
 ---
 
 Aqui entra uma frase sobre o catálogo de equipamento.

@@ -7,7 +7,7 @@ contexto: "Pavilhões, programa e uma promessa ao mundo."
 arte: { id: "abertura-exposicao", tipo: I, desc: "Os portões da Exposição de dia, bandeiras de todos os países, multidão" }
 placeholder: { mapa: rouillac, x: 55, y: 60, z: 3.2 }
 lado: direita
-status: esqueleto
+status: pronto
 ---
 
 ## Os pavilhões

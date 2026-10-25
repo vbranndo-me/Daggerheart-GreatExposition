@@ -5,7 +5,7 @@ layout: galeria
 titulo: Ancestralidades
 contexto: "De que gente você descende."
 lado: direita
-status: esqueleto
+status: pronto
 ---
 
 Aqui entra uma frase sobre as ancestralidades e a possibilidade de misturar duas.

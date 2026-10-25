@@ -7,7 +7,7 @@ contexto: "Como cada classe se encaixa na Belle Époque."
 arte: { id: "classes-cenario", tipo: B, desc: "Retrato de uma figura de época" }
 placeholder: { mapa: rouillac, x: 45, y: 50, z: 3 }
 lado: esquerda
-status: esqueleto
+status: pronto
 ---
 
 ## As classes novas
