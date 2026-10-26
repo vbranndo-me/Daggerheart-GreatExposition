@@ -890,58 +890,82 @@
  },
  "pais-entremonts": {
   "larguras": [
-   256,
-   512
+   384,
+   768
   ],
-  "proporcao": 1,
-  "cor": "rgb(44,37,24)"
+  "proporcao": 0.875,
+  "cor": "rgb(58,49,32)"
  },
  "pais-kenturia": {
   "larguras": [
-   256,
-   512
+   384,
+   768
   ],
-  "proporcao": 1,
-  "cor": "rgb(42,36,24)"
+  "proporcao": 0.847,
+  "cor": "rgb(53,45,30)"
  },
  "pais-maresme": {
   "larguras": [
-   256,
-   512
+   384,
+   768
   ],
-  "proporcao": 1,
-  "cor": "rgb(65,51,27)"
+  "proporcao": 0.986,
+  "cor": "rgb(71,55,29)"
  },
  "pais-narona": {
   "larguras": [
-   256,
-   512
+   384,
+   768
   ],
-  "proporcao": 1,
-  "cor": "rgb(43,35,21)"
+  "proporcao": 0.828,
+  "cor": "rgb(54,44,27)"
  },
  "pais-bretemar": {
   "larguras": [
-   256,
-   512
+   384,
+   768
   ],
-  "proporcao": 1,
-  "cor": "rgb(47,39,24)"
+  "proporcao": 0.881,
+  "cor": "rgb(58,48,30)"
  },
  "pais-codrina": {
   "larguras": [
-   256,
-   512
+   384,
+   768
   ],
-  "proporcao": 1,
-  "cor": "rgb(47,40,27)"
+  "proporcao": 0.895,
+  "cor": "rgb(56,47,33)"
  },
  "pais-fiorescuro": {
   "larguras": [
-   256,
-   512
+   384,
+   768
   ],
-  "proporcao": 1,
-  "cor": "rgb(48,39,23)"
+  "proporcao": 0.839,
+  "cor": "rgb(63,50,29)"
+ },
+ "ecclesia": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(166,135,106)"
+ },
+ "veu": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(129,132,144)"
+ },
+ "compulsao": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(99,102,98)"
  }
 }

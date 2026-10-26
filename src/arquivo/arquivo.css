@@ -2323,8 +2323,8 @@ label.btn-pequeno.desligado {
   table-layout: auto;
 }
 
-.pais-emblemas { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
-.pais-brasao { width: 64px; height: 64px; object-fit: contain; }
+.pais-emblemas { display: flex; align-items: center; gap: 18px; margin-bottom: 12px; }
+.pais-brasao { height: 132px; width: auto; max-width: 46%; object-fit: contain; filter: drop-shadow(0 4px 10px #000a); }
 .pais-bandeira { height: 44px; width: auto; border: 1px solid var(--latao, #b08d57); }
 
 /* ---------- 9. arte nunca cortada: o quadro segue a proporção real da imagem ---------- */
@@ -2449,3 +2449,94 @@ button.trilha-espaco { cursor: pointer; }
   .coluna-medidor { position: static; }
   .ficha-demo-grade { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* ---------- placas de latão: rebites e frestas nos cards ---------- */
+.cartao-galeria,
+.cartaz,
+.bandeira-cartao {
+  --latao-placa: linear-gradient(135deg, #f0dba4 0%, #b69a60 22%, #6f5b33 48%, #c4a467 72%, #7a6438 100%);
+  --rebite: radial-gradient(circle, #fbefc6 0 1.1px, #c9ad6b 2.4px, #6d5830 4.6px, #17120a 5.4px, transparent 6px);
+}
+.cartao-galeria:not(.so-arte),
+.cartaz:not(.poster),
+.bandeira-cartao {
+  position: relative;
+  border: 5px solid transparent;
+  background: linear-gradient(180deg, #1b2030, #11141f) padding-box, var(--latao-placa) border-box;
+  box-shadow: inset 0 0 0 1px #000b, inset 0 0 0 3px #0b0d14, inset 0 0 0 4px rgba(215, 188, 128, 0.26), 0 9px 16px -9px #000;
+}
+.cartao-galeria:not(.so-arte) { padding: 18px 18px 16px; }
+.cartao-galeria:not(.so-arte)::before,
+.cartaz:not(.poster)::before,
+.bandeira-cartao::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background:
+    var(--rebite) 3px 3px / 14px 14px no-repeat,
+    var(--rebite) calc(100% - 3px) 3px / 14px 14px no-repeat,
+    var(--rebite) 3px calc(100% - 3px) / 14px 14px no-repeat,
+    var(--rebite) calc(100% - 3px) calc(100% - 3px) / 14px 14px no-repeat;
+}
+.cartao-galeria:not(.so-arte):hover,
+.cartaz:not(.poster):hover,
+.bandeira-cartao:hover {
+  border-color: transparent;
+  filter: brightness(1.14);
+}
+.cartaz:not(.poster).aberto {
+  border-color: transparent;
+  box-shadow: inset 0 0 0 1px #000b, inset 0 0 0 3px #0b0d14, inset 0 0 0 4px rgba(215, 188, 128, 0.26), 0 0 0 2px var(--brass-hi), 0 9px 16px -9px #000;
+}
+.cartaz:not(.poster).marcada {
+  --latao-placa: linear-gradient(135deg, #ffc0b4 0%, #d9524a 24%, #6b1f1a 50%, #c9413b 74%, #7a2a24 100%);
+  border-color: transparent;
+  box-shadow: inset 0 0 0 1px #000b, inset 0 0 0 3px #0b0d14, inset 0 0 0 4px rgba(255, 150, 130, 0.3), 0 0 18px -3px var(--carmim-brilho), 0 9px 16px -9px #000;
+}
+.cartaz:not(.poster) .cartaz-arte { inset: 6px; }
+.bandeira-cartao { padding: 12px 14px; }
+
+/* cartazes de classe e subclasse: o papel impresso, preso com um alfinete de latão */
+.cartao-galeria.so-arte,
+.cartaz.poster {
+  --giro: -0.8deg;
+  position: relative;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  overflow: visible;
+  box-shadow: 0 12px 18px -9px #000d, 0 2px 3px #000b;
+  transform: rotate(var(--giro));
+  transition: transform 0.18s, box-shadow 0.18s;
+}
+.cartao-galeria.so-arte:nth-child(even),
+.cartaz.poster:nth-child(even) { --giro: 0.7deg; }
+.cartao-galeria.so-arte:nth-child(3n),
+.cartaz.poster:nth-child(3n) { --giro: -0.3deg; }
+.cartao-galeria.so-arte::before,
+.cartaz.poster::before {
+  content: "";
+  position: absolute;
+  z-index: 3;
+  top: -6px;
+  left: 50%;
+  width: 15px;
+  height: 15px;
+  margin-left: -7px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle at 35% 30%, #fff3c8 0 8%, #d1b56f 30%, #6d5830 70%, #2a2010 100%);
+  box-shadow: 0 4px 5px #000a, 1px 2px 0 #0007;
+}
+.cartao-galeria.so-arte:hover,
+.cartaz.poster:hover {
+  transform: rotate(0deg) translateY(-6px);
+  box-shadow: 0 18px 22px -10px #000, 0 2px 3px #000b;
+  border-color: transparent;
+}
+.cartaz.poster .cartaz-arte { inset: 0; }
+.cartaz.poster.aberto { box-shadow: 0 0 0 3px var(--brass-hi), 0 12px 18px -9px #000d; }
+.cartaz.poster.marcada { box-shadow: 0 0 0 3px var(--carmim-hi), 0 0 20px -2px var(--carmim-brilho), 0 12px 18px -9px #000d; }
