@@ -2579,26 +2579,40 @@ button.trilha-espaco { cursor: pointer; }
 .cartaz.poster:nth-child(even) { --giro: 0.7deg; }
 .cartao-galeria.so-arte:nth-child(3n),
 .cartaz.poster:nth-child(3n) { --giro: -0.3deg; }
-.cartao-galeria.so-arte::before,
-.cartaz.poster::before {
+/* papel que se levanta: um balanço curto, como uma folha tirada do mural, e um brilho que passa pelo verniz */
+.cartao-galeria.so-arte::after,
+.cartaz.poster::after {
   content: "";
   position: absolute;
+  inset: 0;
   z-index: 3;
-  top: -6px;
-  left: 50%;
-  width: 15px;
-  height: 15px;
-  margin-left: -7px;
-  border-radius: 50%;
   pointer-events: none;
-  background: radial-gradient(circle at 35% 30%, #fff3c8 0 8%, #d1b56f 30%, #6d5830 70%, #2a2010 100%);
-  box-shadow: 0 4px 5px #000a, 1px 2px 0 #0007;
+  background: linear-gradient(112deg, transparent 38%, rgba(255, 250, 235, 0.3) 50%, transparent 62%) 130% 0 / 260% 100% no-repeat;
 }
 .cartao-galeria.so-arte:hover,
 .cartaz.poster:hover {
-  transform: rotate(0deg) translateY(-6px);
-  box-shadow: 0 18px 22px -10px #000, 0 2px 3px #000b;
+  animation: papel-levanta 0.55s cubic-bezier(0.25, 0.8, 0.3, 1) forwards;
+  box-shadow: 0 16px 20px -10px #000, 0 2px 3px #000b;
   border-color: transparent;
+}
+.cartao-galeria.so-arte:hover::after,
+.cartaz.poster:hover::after {
+  animation: papel-brilho 0.8s ease-out 0.05s forwards;
+}
+@keyframes papel-levanta {
+  0% { transform: rotate(var(--giro)) translateY(0); }
+  30% { transform: rotate(calc(var(--giro) * -0.5 - 0.5deg)) translateY(-4px) skewX(0.5deg); }
+  62% { transform: rotate(calc(var(--giro) * 0.25 + 0.3deg)) translateY(-7px) skewX(-0.3deg); }
+  100% { transform: rotate(0deg) translateY(-6px); }
+}
+@keyframes papel-brilho {
+  to { background-position: -30% 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cartao-galeria.so-arte:hover,
+  .cartaz.poster:hover { animation: none; transform: translateY(-4px); }
+  .cartao-galeria.so-arte:hover::after,
+  .cartaz.poster:hover::after { animation: none; }
 }
 .cartaz.poster .cartaz-arte { inset: 0; }
 .cartaz.poster.aberto { box-shadow: 0 0 0 3px var(--brass-hi), 0 12px 18px -9px #000d; }
@@ -2630,3 +2644,49 @@ button.trilha-espaco { cursor: pointer; }
   filter: drop-shadow(0 2px 0 rgba(0, 0, 0, 0.6)) drop-shadow(0 0 7px rgba(232, 184, 102, 0.7));
 }
 .botao-fechar:active { transform: scale(0.96); }
+.coluna-medidor-arte { width: 100%; height: auto; border: 1px solid var(--brass-dark); box-shadow: 0 6px 14px -6px #000; }
+
+/* fim de capítulo: a arte sobe um pouco por trás do texto anterior e o fade de cima fica antes das cabeças */
+.bloco-proximo { height: 68vh; min-height: 420px; }
+.bloco-proximo .proximo-arte {
+  inset: -14vh 0 0 0;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 22%, #000 58%, transparent 100%);
+  mask-image: linear-gradient(180deg, transparent 0%, #000 22%, #000 58%, transparent 100%);
+}
+
+/* habilidades e adjetivos nos painéis de seleção */
+.painel-habilidades { display: grid; gap: 4px; margin-top: 8px; }
+.chips-adjetivos { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 8px; padding: 0; list-style: none; }
+.chips-adjetivos li { padding: 3px 10px; color: var(--brass-hi); border: 1px solid var(--brass-dark); background: rgba(182, 154, 96, 0.08); }
+.titulo-habilidades { margin-top: 6px; color: var(--brass); }
+.painel-habilidades .habilidade { padding: 10px 0; }
+.painel-habilidades .habilidade .n-N { margin: 4px 0 0; }
+
+/* regras com arte: texto | medidor | a arte ocupa o espaço que sobra à direita */
+.cmp-regras.com-medidor.com-arte {
+  grid-template-columns: minmax(0, 65ch) minmax(200px, 250px) minmax(0, 1fr);
+  gap: 5%;
+}
+.regras-arte {
+  position: sticky;
+  top: 70px;
+  display: grid;
+  justify-items: center;
+  margin: 0;
+}
+.regras-arte img {
+  width: auto;
+  max-width: 100%;
+  max-height: calc(100vh - var(--faixa, 60px) - 100px);
+  object-fit: contain;
+  border: 1px solid var(--brass-dark);
+  box-shadow: 0 12px 22px -10px #000;
+}
+@media (max-width: 1300px) {
+  .cmp-regras.com-medidor.com-arte { grid-template-columns: minmax(0, 65ch) minmax(200px, 250px); }
+  .regras-arte { grid-column: 1 / -1; position: static; }
+}
+@media (max-width: 1000px) {
+  .cmp-regras.com-medidor.com-arte { grid-template-columns: minmax(0, 1fr); }
+}

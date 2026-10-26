@@ -62,7 +62,7 @@ export interface ComunidadeConteudo extends Opcao {
   /** "basico" ou "hope-fear" */
   grupo?: string;
   adjetivos?: string[];
-  habilidade?: string;
+  habilidade?: { nome: string; texto: string };
 }
 export interface Classe {
   id: string;

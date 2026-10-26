@@ -17,7 +17,7 @@ import { Cartaz } from "../mesa/pecas";
 import { carregarArquivo, type DadosArquivo } from "./dados";
 import { TrilhaDetalhe } from "./FichaClasse";
 import { Markdown } from "../components/ui";
-import { idArte } from "./base";
+import { Habilidades, idArte } from "./base";
 
 type PassoId = "comunidade" | "ancestralidade" | "classe" | "subclasse" | "resumo";
 const PASSOS: { id: PassoId; rotulo: string }[] = [
@@ -43,6 +43,8 @@ interface Item {
   mostrarNome?: boolean;
   original?: string;
   detalhes?: { rotulo: string; valor: string }[];
+  habilidades?: { nome: string; texto: string }[];
+  adjetivos?: string[];
   classe?: Classe;
   sub?: Subclasse;
 }
@@ -189,10 +191,11 @@ function CriadorComSala({ s, conteudo, dados }: { s: Sessao; conteudo: Conteudo;
     descricao: limpa(c.descricao),
     grupo: c.grupo,
     original: c.original,
-    detalhes: [{ rotulo: "Habilidade", valor: c.habilidade || "em tradução" }],
+    habilidades: c.habilidade ? [c.habilidade] : [],
+    adjetivos: c.adjetivos,
     ...arteDe(idArte("comunidades", c.id)),
   }));
-  const ancestralidades: Item[] = dados.ancestralidades.map((a) => ({ id: a.id, nome: a.nome, descricao: a.descricao, grupo: a.grupo, original: a.original, ...arteDe(idArte("ancestralidades", a.id)) }));
+  const ancestralidades: Item[] = dados.ancestralidades.map((a) => ({ id: a.id, nome: a.nome, descricao: a.descricao, grupo: a.grupo, original: a.original, habilidades: a.habilidades, ...arteDe(idArte("ancestralidades", a.id)) }));
   const GRUPO_CLASSE: Record<string, string> = { cenario: "Classes do cenário", livro: "Livro básico e Hope & Fear", void: "The Void" };
   const classes: Item[] = [
     ...conteudo.classes.map((c) => ({
@@ -556,7 +559,7 @@ function Detalhe({
 }) {
   const rotulo = useMemo(() => (item.grupo ? NOMES_GRUPO[item.grupo] || item.grupo : PASSOS.find((x) => x.id === passo)?.rotulo), [item, passo]);
   const c = item.classe;
-  const vazio = passo === "ancestralidade" ? "descrição e habilidades em produção" : passo === "comunidade" ? "descrição em produção" : "";
+  const vazio = passo === "ancestralidade" && !item.habilidades?.length ? "descrição e habilidades em produção" : passo === "comunidade" && !item.descricao ? "descrição em produção" : "";
   return (
     <div className="detalhe-criador">
       <div className="detalhe-retrato-criador">
@@ -590,7 +593,9 @@ function Detalhe({
             )}
           </dl>
         )}
-        {c && passo === "classe" && !c.nova && <p className="n-I">As regras estão no livro.</p>}
+        {passo === "classe" && c && (c.esperanca || c.habilidades?.length) ? <Habilidades esperanca={c.esperanca} habilidades={c.habilidades} /> : null}
+        {c && passo === "classe" && !c.nova && !c.esperanca && <p className="n-I">As regras estão no livro.</p>}
+        {passo !== "classe" && <Habilidades habilidades={item.habilidades} adjetivos={item.adjetivos} />}
         {passo === "subclasse" && c && !c.nova && <p className="n-I">As regras estão no livro.</p>}
         {passo === "subclasse" && item.sub && c?.nova && <TrilhaDetalhe sub={item.sub} />}
         {item.detalhes && (

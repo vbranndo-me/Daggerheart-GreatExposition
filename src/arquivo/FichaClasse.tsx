@@ -82,7 +82,7 @@ function Trilha({ sub }: { sub: Subclasse }) {
               <div>
                 <div className="n-L">{camada}</div>
                 <div className="n-S">{no.nome}</div>
-                <p className="n-N">{no.texto}</p>
+                <Markdown texto={no.texto} className="n-N" />
               </div>
             </li>
           );

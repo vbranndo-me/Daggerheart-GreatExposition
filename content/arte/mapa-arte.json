@@ -120,8 +120,10 @@
   "pais-codrina": "brasao codrina.png",
   "pais-fiorescuro": "brasao fiorescuro.png",
   "pais-serrania": null,
-  "refugiados": "refugiados.png",
+  "refugiados": "refugiado.png",
   "ecclesia": "ecclesia.png",
   "veu": "veu.png",
-  "compulsao": "compulsao.png"
+  "compulsao": "compulsao.png",
+  "frenesi": "frenesi.png",
+  "discernimento": "discernimento.png"
 }

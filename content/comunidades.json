@@ -5,7 +5,18 @@
     "original": "Highborne",
     "grupo": "basico",
     "descricao": "Você nasceu entre os salões extravagantes da corte ou de alguma família dos novos ricos. De qualquer forma, você foi praticamente intocado pela década de guerra. Você sabe dançar a valsa, quais gargos usar e o preço de cada convidado da Exposição.",
-    "adjetivos": []
+    "adjetivos": [
+      "amável",
+      "franca",
+      "ardilosa",
+      "empreendedora",
+      "ostentosa",
+      "imperturbável"
+    ],
+    "habilidade": {
+      "nome": "Privilégio",
+      "texto": "você tem vantagem em testes para lidar com nobres, negociar preços ou usar a sua reputação para conseguir o que quer."
+    }
   },
   {
     "id": "disciplinada",
@@ -13,7 +24,18 @@
     "original": "Orderborne",
     "grupo": "basico",
     "descricao": "Sua vida toda foi guiada pelas regrasm, tenha sido no quartel, em um convento da Ecclesia Lumini, ou em uma fábrica com o apito de cada turno. Na hierarqui você encontrou seu lugar e seu propósito, e a guerra te ensionou o que acontece quando alguém sai da linha",
-    "adjetivos": []
+    "adjetivos": [
+      "ambiciosa",
+      "benevolente",
+      "pensativa",
+      "prudente",
+      "sarcástica",
+      "estoica"
+    ],
+    "habilidade": {
+      "nome": "Dedicação",
+      "texto": "anote três ditados ou valores que a sua criação te ensinou. Uma vez por descanso, quando descrever como a sua ação atual segue um desses princípios, você pode rolar um d20 como Dado de Esperança."
+    }
   },
   {
     "id": "erudita",
@@ -21,7 +43,18 @@
     "original": "Loreborne",
     "grupo": "basico",
     "descricao": "A vida toda você ficou rodeado pelos livros, frequentou as universidades, academias e bibliotecas onde as discussões mais reveladoras acontecem. Pessoas como você que são o foco da Exposição.",
-    "adjetivos": []
+    "adjetivos": [
+      "direta",
+      "eloquente",
+      "curiosa",
+      "paciente",
+      "arrebatada",
+      "espirituosa"
+    ],
+    "habilidade": {
+      "nome": "Bem Lido",
+      "texto": "você tem vantagem em testes que envolvem a história, a cultura ou a política de uma pessoa ou de um lugar importante."
+    }
   },
   {
     "id": "fora-da-lei",
@@ -29,7 +62,18 @@
     "original": "Slyborne",
     "grupo": "basico",
     "descricao": "Você cresceu entre os becos das capitais, nas principais rotas de contrabando ou em meio aos grupos que sequestram trens cargueiros em grandes viagens.Dez anos de guerra só aumentaram o lucro de quem trabalha com o crime. Você sabe quem vende o quê, e por quanto se compra um guarda",
-    "adjetivos": []
+    "adjetivos": [
+      "calculista",
+      "esperta",
+      "formidável",
+      "perceptiva",
+      "astuta",
+      "tenaz"
+    ],
+    "habilidade": {
+      "nome": "Patife",
+      "texto": "você tem vantagem em testes para negociar com criminosos, perceber mentiras ou achar um lugar seguro para se esconder."
+    }
   },
   {
     "id": "maritima",
@@ -37,7 +81,18 @@
     "original": "Seaborne",
     "grupo": "basico",
     "descricao": "Você vem de uma cidade portuária, seja de humildes pescadores ou de uma das grandes casas navegantes das Ilhas Peroladas. A névoa e o sal são seu habitat natural, e sabe ler o tempo e as estrelhas, e conhece as melhores histórias de marinheiros, principalmente a dos bêbados",
-    "adjetivos": []
+    "adjetivos": [
+      "franca",
+      "cooperativa",
+      "exuberante",
+      "feroz",
+      "resoluta",
+      "curtida"
+    ],
+    "habilidade": {
+      "nome": "Conhece a Maré",
+      "texto": "você sente o vai e vem da vida. Quando rolar com Medo, ponha uma ficha no cartão da sua comunidade. Você pode guardar fichas até o seu nível. Antes de um teste de ação, gaste quantas quiser: +1 no teste por ficha. No fim de cada sessão, as fichas que sobraram somem."
+    }
   },
   {
     "id": "montanhesa",
@@ -45,7 +100,18 @@
     "original": "Ridgeborne",
     "grupo": "basico",
     "descricao": "Cresceu nas aldeias das serras, onde o inverno mata mais que a guerra. Gente pobre, orgulhosa e de canções tristes, sentada em cima do minério que todos querem. Você conhece os túneis, as trilhas e o som que a neve faz antes de cair.",
-    "adjetivos": []
+    "adjetivos": [
+      "ousada",
+      "resistente",
+      "indomável",
+      "leal",
+      "reservada",
+      "teimosa"
+    ],
+    "habilidade": {
+      "nome": "Firme",
+      "texto": "você tem vantagem em testes para atravessar penhascos e beiradas perigosas, se virar em ambientes hostis e usar o seu conhecimento de sobrevivência."
+    }
   },
   {
     "id": "nomade",
@@ -53,7 +119,18 @@
     "original": "Wanderborne",
     "grupo": "basico",
     "descricao": "Endereço é algo que você não é familiar: caravanas, circos, trupes de teatro que cruzam fronteiras, tudo isso é o que você chama de casa. Para você, ficar em um lugar por muito tempo é sinal de estagnação",
-    "adjetivos": []
+    "adjetivos": [
+      "enigmática",
+      "generosa",
+      "alegre",
+      "confiável",
+      "sagaz",
+      "pouco convencional"
+    ],
+    "habilidade": {
+      "nome": "Trouxa de Viagem",
+      "texto": "acrescente uma Trouxa de Viagem ao seu inventário. Uma vez por sessão, gaste 1 Esperança para tirar dela um objeto comum que sirva para a situação. Combine com o mestre o que sai."
+    }
   },
   {
     "id": "silvestre",
@@ -61,15 +138,37 @@
     "original": "Wildborne",
     "grupo": "basico",
     "descricao": "Você vem das florestas antigas de Codrina, ou da floresta tropical das Ilhas Peroladas. Seja lá de onde for, você é um com a naturezada, cresceu entre os lenhadores e segue superstições mais antigas do que a própria igreja",
-    "adjetivos": []
+    "adjetivos": [
+      "resistente",
+      "leal",
+      "acolhedora",
+      "reclusa",
+      "sábia",
+      "vibrante"
+    ],
+    "habilidade": {
+      "nome": "Pé Leve",
+      "texto": "você se move em silêncio por natureza. Tem vantagem em testes para se mover sem ser ouvido."
+    }
   },
   {
     "id": "subterranea",
     "nome": "Subterrânea",
     "original": "Underborne",
     "grupo": "basico",
-    "descricao": "",
-    "adjetivos": []
+    "descricao": "Você cresceu embaixo da terra: nas galerias das minas, nos porões das cidades ou nos túneis que o carvão abriu sob as serras. Sabe andar no escuro, ler o barulho da rocha e confiar em quem desce com você, porque lá embaixo ninguém sobrevive sozinho.",
+    "adjetivos": [
+      "serena",
+      "esquiva",
+      "indomável",
+      "inventiva",
+      "engenhosa",
+      "despretensiosa"
+    ],
+    "habilidade": {
+      "nome": "Vida na Penumbra",
+      "texto": "em áreas de pouca luz ou sombra densa, você tem vantagem em testes para se esconder, investigar ou perceber detalhes naquela área."
+    }
   },
   {
     "id": "desertica",
@@ -77,7 +176,18 @@
     "original": "Duneborne",
     "grupo": "hope-fear",
     "descricao": "Vem das terras secas atrás das serras, onde o vento come a pedra e a água vale mais que ouro. Poucos em Lucentia sabem que existe gente ali. Você aprendeu cedo a racionar tudo e a desconfiar de qualquer promessa feita à sombra",
-    "adjetivos": []
+    "adjetivos": [
+      "adaptável",
+      "centrada",
+      "colaborativa",
+      "devotada",
+      "animada",
+      "observadora"
+    ],
+    "habilidade": {
+      "nome": "Oásis",
+      "texto": "durante um descanso curto, você ou um aliado pode rerrolar um dado usado num movimento de descanso e ficar com o maior resultado."
+    }
   },
   {
     "id": "liberta",
@@ -85,7 +195,18 @@
     "original": "Freeborne",
     "grupo": "hope-fear",
     "descricao": "Você pertence a um povo que já derrubou um senhor, o que pretende fazer isso em breve. Nas ruas de Lucentia, Anarquia é um sentimento que cresce cada vez mais. E até os lugares que conseguiram sua liberdade podem estar em um momento frágil",
-    "adjetivos": []
+    "adjetivos": [
+      "otimista",
+      "desconfiada",
+      "corajosa",
+      "alegre",
+      "subversiva",
+      "traumatizada"
+    ],
+    "habilidade": {
+      "nome": "Sem Correntes",
+      "texto": "uma vez por sessão, quando rolar com Medo, você pode transformar a rolagem numa rolagem com Esperança."
+    }
   },
   {
     "id": "polar",
@@ -93,7 +214,18 @@
     "original": "Frostborne",
     "grupo": "hope-fear",
     "descricao": "Vem do sul gelado, onde a madeira é rara e as casas se fazem de pedra, osso e pele. Em Lucentia, chamam seu povo de selvagens do gelo e vendem os seus mortos a colecionadores. Você sabe sobreviver ao frio, e ao olhar de quem acha que você é uma curiosidade ambulante",
-    "adjetivos": []
+    "adjetivos": [
+      "astuta",
+      "sociável",
+      "intrépida",
+      "determinada",
+      "quieta",
+      "calorosa"
+    ],
+    "habilidade": {
+      "nome": "Resistente",
+      "texto": "sempre que você descansar, limpe 1 PV."
+    }
   },
   {
     "id": "renascida",
@@ -101,7 +233,18 @@
     "original": "Reborne",
     "grupo": "hope-fear",
     "descricao": "Perdeu a sua gente: um exílio, uma aldeia apagada do mapa, uma memória que não volta, ou uma morte da qual você retornou. Não pertence a lugar nenhum, e talvez por isso se agarre tanto a quem encontrar pelo caminho",
-    "adjetivos": []
+    "adjetivos": [
+      "curiosa",
+      "esperançosa",
+      "inocente",
+      "isolada",
+      "enlutada",
+      "estranha"
+    ],
+    "habilidade": {
+      "nome": "Família Encontrada",
+      "texto": "uma vez por descanso, gaste 1 Esperança para usar uma Experiência de um aliado como se fosse sua, descrevendo como o tempo com ele te preparou para aquele momento. Se você entrar numa comunidade nova, ou reencontrar a antiga, pode trocar este cartão pelo dela para sempre."
+    }
   },
   {
     "id": "sobrevivente",
@@ -109,7 +252,18 @@
     "original": "Warborne",
     "grupo": "hope-fear",
     "descricao": "Vem de onde a guerra passou: as trincheiras, as cidades bombardeadas, a metade ocupada de Codrina, as filas de refugiados às portas de Rouillac. Soldado ou civil, aprendeu a sorrir com a boca cheia de terra e a seguir em frente quando não há mais nada.",
-    "adjetivos": []
+    "adjetivos": [
+      "estratégica",
+      "devastada",
+      "determinada",
+      "calculista",
+      "inabalável",
+      "devotada"
+    ],
+    "habilidade": {
+      "nome": "Cara de Coragem",
+      "texto": "uma vez por sessão, quando for obrigado a marcar Fadiga, você pode gastar 1 Esperança no lugar."
+    }
   },
   {
     "id": "interiorana",
@@ -117,6 +271,17 @@
     "original": "Hearthborne",
     "grupo": "hope-fear",
     "descricao": "Cresceu num vilarejo de lavoura e pasto, onde todo mundo se conhece e a terra pertence a um senhor que ninguém nunca viu. A guerra levou os homens, os cavalos e a colheita, e devolveu cartas de condolências. Você sabe receber bem e guardar rancor por muito tempo.",
-    "adjetivos": []
+    "adjetivos": [
+      "cuidadosa",
+      "generosa",
+      "fechada",
+      "falante",
+      "sorridente",
+      "tradicional"
+    ],
+    "habilidade": {
+      "nome": "Gente Unida",
+      "texto": "uma vez por descanso longo, gaste quanta Esperança quiser para dar a mesma quantidade a um aliado a até Distante."
+    }
   }
 ]

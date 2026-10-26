@@ -12,27 +12,31 @@
       {
         "nome": "Antiquário",
         "linha": "Coleciona curiosidades que fazem coisas.",
-        "conjuracao": "a definir",
+        "conjuracao": "Conhecimento",
         "fundacao": [
           {
-            "nome": "Fundação 1 (a definir)",
-            "texto": "Aqui entra o texto desta habilidade."
+            "nome": "Olho Treinado",
+            "texto": "Ao examinar um objeto, pergunte ao mestre a origem, a idade e se ele tem poder; ele responde."
           },
           {
-            "nome": "Fundação 2 (a definir)",
-            "texto": "Aqui entra o texto desta habilidade."
+            "nome": "Gabinete de Curiosidades",
+            "texto": "Comece com 2 curiosidades e ganhe mais 1 por patamar. As regras completas e a tabela de 36 curiosidades estão no **Gabinete de Curiosidades**, mais abaixo.\n\n- **Uso comum**: o efeito normal, seguro.\n- **Despertar**: um efeito bem mais forte, mas o uso conta como **se Entregar**: se o véu te tocar, marque Frenesi mesmo com Esperança.\n- **Afinidade**: +1 no efeito das curiosidades (dano, cura ou bônus) a cada limiar de Discernimento alcançado (4, 8 e 12)."
           }
         ],
         "especializacao": [
           {
-            "nome": "Especialização (a definir)",
-            "texto": "Aqui entra o texto desta habilidade."
+            "nome": "Colecionador",
+            "texto": "Ao fim de uma cena em que algo estranho foi derrotado ou encontrado, colha uma curiosidade nova."
           }
         ],
         "maestria": [
           {
-            "nome": "Maestria (a definir)",
-            "texto": "Aqui entra o texto desta habilidade."
+            "nome": "Maestria do Antiquário",
+            "texto": "Melhora o Gabinete: uma vez por cena, desperte uma curiosidade **sem se Entregar**."
+          },
+          {
+            "nome": "Proteja-me!",
+            "texto": "*Rara, de acompanhamento.* Uma vez por descanso, quando você for atingido, um aliado Próximo pode entrar na frente e tomar o golpe no seu lugar."
           }
         ],
         "id": "ocultista-antiquario"
@@ -40,27 +44,31 @@
       {
         "nome": "Médium",
         "linha": "Anda com um espírito que o acompanha.",
-        "conjuracao": "a definir",
+        "conjuracao": "Presença",
         "fundacao": [
           {
-            "nome": "Fundação 1 (a definir)",
-            "texto": "Aqui entra o texto desta habilidade."
-          },
-          {
-            "nome": "Fundação 2 (a definir)",
-            "texto": "Aqui entra o texto desta habilidade."
+            "nome": "Espírito Companheiro",
+            "texto": "Você anda com um espírito que não toma o seu corpo: é um **companheiro**. Use a ficha de companheiro do Treinador, com estas mudanças:\n\n- **Quem ele foi**: o espírito é alguém que morreu. Dê nome, rosto e o jeito como morreu. As **2 Experiências** (+2) vêm da vida dele.\n- **Ataque**: d6, alcance **Próximo**, dano **mágico** (o frio do túmulo, objetos arremessados).\n- **Dano vira Fadiga** do espírito; quando ela enche, ele se **dissipa** até o próximo descanso longo.\n- **Comandar** é um teste de conjuração, e **todo teste de comando conta como teste do véu, só para a Médium**.\n- **O que ele sabe**: uma vez por cena, quando um teste seu tocar a vida do espírito, some uma Experiência dele ao seu teste (gastando 1 Esperança, como uma Experiência sua).\n- **Trocar de espírito**: só num **descanso longo**, com um **ritual**, e o morto precisa ter morrido desde o último descanso longo, perto de você. Solte o espírito atual e prenda o novo. As melhorias continuam; as Experiências passam a ser as da vida do novo. O antigo vai embora para sempre."
           }
         ],
         "especializacao": [
           {
-            "nome": "Especialização (a definir)",
-            "texto": "Aqui entra o texto desta habilidade."
+            "nome": "Melhoria extra",
+            "texto": "Uma melhoria extra para o espírito (veja as **Melhorias do espírito**, abaixo)."
+          },
+          {
+            "nome": "Do Outro Lado",
+            "texto": "O espírito atravessa paredes e portas e pode ir até Distante de você para ver e ouvir o que há lá, contando o que viu."
           }
         ],
         "maestria": [
           {
-            "nome": "Maestria (a definir)",
-            "texto": "Aqui entra o texto desta habilidade."
+            "nome": "Melhorias extras",
+            "texto": "Duas melhorias extras para o espírito."
+          },
+          {
+            "nome": "Último Favor",
+            "texto": "*Rara, de acompanhamento.* Uma vez por descanso longo, quando você for marcar o último PV, o espírito toma o golpe e se dissipa."
           }
         ],
         "id": "ocultista-medium"
@@ -80,25 +88,30 @@
     "evasao": 10,
     "pv": 6,
     "itens": [
-      "Item inicial 1 (a definir)",
-      "Item inicial 2 (a definir)",
-      "Item inicial 3 (a definir)"
+      "Escolha 1: um grimório costurado com páginas de três livros diferentes, ou um amuleto de marfim com uma runa que ninguém conseguiu ler."
     ],
     "esperanca": {
-      "nome": "Habilidade de Esperança (a definir)",
-      "texto": "Aqui entra o texto desta habilidade."
+      "nome": "Nome Verdadeiro",
+      "texto": "Você pronuncia o nome antigo de uma criatura sobrenatural Próxima. Ela fica **Vulnerável** e não pode usar características que custam Medo até a próxima ação dela."
     },
     "habilidades": [
       {
-        "nome": "Habilidade de classe 1 (a definir)",
-        "texto": "Aqui entra o texto desta habilidade."
-      },
-      {
-        "nome": "Habilidade de classe 2 (a definir)",
-        "texto": "Aqui entra o texto desta habilidade."
+        "nome": "Ritual",
+        "texto": "Com giz, sal, sangue ou um objeto e um momento para traçar, marque 1 Fadiga e faça um teste de conjuração. O ritual é um **círculo num ponto a até Próximo, com raio Muito Próximo** (você não precisa estar dentro). Em caso de sucesso, escolha um efeito:\n\n- **Proteger**: aliados dentro do círculo ganham +1 nos limiares de dano até saírem dele.\n- **Oferenda**: um aliado dentro do círculo limpa PV iguais ao seu Dado de Esperança ÷ 3, arredondado para cima (1 a 4). Se o teste saiu **com Medo**, ele também marca 1 Fadiga. Uma vez por aliado a cada descanso longo.\n- **Atrair**: criaturas sobrenaturais a até Distante precisam se mover na direção do círculo no próximo movimento delas.\n\nSe o teste saiu **com Medo**, o ritual funciona, mas o mestre acrescenta uma torção: algo do outro lado percebeu."
       }
     ],
-    "extras": [],
+    "extras": [
+      {
+        "id": "ocultista-gabinete",
+        "nome": "Gabinete de Curiosidades",
+        "texto": "**Regras**\n\n- **Curiosidades**: você começa com **2** e ganha **mais 1 por patamar** (3 no patamar 2, 4 no 3, 5 no 4). O *Colecionador* traz outras da ficção.\n- **Como ganhar**: role na tabela. Repetida, role de novo (ou o mestre escolhe).\n\n| Patamar | Rolagem |\n|---|---|\n| 1 | 1d12 |\n| 2 | 2d12 |\n| 3 | 3d12 |\n| 4 | 3d12 duas vezes; fique com uma |\n\n- **Uso comum**: cada curiosidade pode ser usada **2 vezes por descanso**, **sem gastar ação**, no momento que ela descreve.\n- **Despertar**: gaste **os 2 usos** de uma curiosidade para o efeito despertado. **Conta como se Entregar**: se o véu te tocar nesse teste ou cena, você marca Frenesi mesmo com Esperança. A Maestria do Antiquário permite despertar 1 vez por cena sem se Entregar.\n- **Afinidade**: +1 nos números da curiosidade (dano, dados, bônus, PV ou Fadiga limpos) para cada limiar de Discernimento alcançado (4, 8 e 12).\n- **Na mão**: você carrega no máximo **patamar + 2** curiosidades. As outras ficam guardadas no Gabinete (o quarto do hotel, o vagão, a casa).\n- **Olho Treinado** funciona em qualquer curiosidade nova: o mestre diz a origem, a idade e se ela tem poder.\n\n**Tabela**\n\n**Todo objeto lembra.** Cada curiosidade guarda o resíduo de alguém, quase sempre de como essa pessoa morreu, e o efeito é essa memória. **A raridade é a distância do véu**: as comuns vêm da guerra, as incomuns do mercado do oculto e do luto, as raras do Sul e do que afundou.\n\n**Comuns (1 a 12): Relíquias da Guerra**\n\n| d | Curiosidade | De onde vem | Uso comum (2x por descanso) | Despertar (gasta os 2 usos; conta como se Entregar) |\n|---|---|---|---|---|\n| 1 | **Relógio do Apito** | De um oficial de Codrina. Parou no minuto em que a trincheira subiu. | Um adversário Próximo que te ataca rola com desvantagem. | O tempo dele \"pula\": um adversário Próximo perde a próxima ação. |\n| 2 | **Últimos Cigarros** | De um soldado de Serrania, com os dois últimos cigarros. | Um aliado Próximo limpa 1 Fadiga. | Um aliado inconsciente a até Próximo acorda e limpa 1 PV. |\n| 3 | **Faca de Trincheira** | De Kenturia. Um entalhe no cabo para cada morte. | Ao acertar, +1d6 × patamar de dano. | Ao acertar, o alvo marca 1 PV a mais e fica temporariamente Imobilizado. |\n| 4 | **Placa Amassada** | Aço de Entremonts, de um colete que parou uma bala. | Quando você for marcar PV, reduza o dano em 1d8 × patamar. | A bala volta: o atacante toma o dano no seu lugar. |\n| 5 | **Broche de Cabelo** | Trança do cabelo de um soldado de Codrina, guardada pela mãe. Quem já morreu não quer companhia. | Quando um aliado Próximo for marcar o último PV, ele marca 1 a menos. | O aliado não faz o Movimento de Morte: limpa 1 PV e fica de pé. |\n| 6 | **Rosário do Capelão** | De um capelão de Narona que rezou em três frentes. | Some +2 a um teste de reação seu ou de um aliado Próximo, depois da rolagem. | Uma falha com Medo de um aliado Próximo vira sucesso com Esperança. |\n| 7 | **Olho de Amante** | Miniatura pintada do olho de alguém que não podia ser visto em público. Vê o que ameaça quem você ama. | O mestre diz a Dificuldade ou um limiar de uma criatura, e o próximo ataque de um aliado contra ela tem +1. | A criatura fica Vulnerável até a próxima vez que agir. |\n| 8 | **Carta Não Enviada** | Escrita por um operário de Maresme na véspera de embarcar. | Quando você rolar com Medo, ganhe 1 Esperança mesmo assim. | Na próxima vez que um aliado Próximo rolar com Medo, o mestre não ganha o Medo e o aliado ganha 1 Esperança. |\n| 9 | **Gaita do Gás** | Tocava numa trincheira de Bretemar enquanto o gás descia. | Um adversário Próximo marca 1 Fadiga. | Todos os adversários Próximos marcam 1 Fadiga e ficam Distraídos até agirem. |\n| 10 | **Mapa do Contrabandista** | Rotas da frente parada, entre Narona e Fiorescuro. | Você ou um aliado Próximo se move até Distante sem teste, por um caminho que mais ninguém vê. | Você e os aliados Próximos somem e reaparecem juntos a até Muito Distante. |\n| 11 | **Bala de Prata** | Fundida numa aldeia de Codrina, para o que anda na floresta. | Ao acertar uma criatura sobrenatural, +1d8 × patamar de dano. | O próximo acerto do grupo numa criatura sobrenatural causa o dobro de dano. |\n| 12 | **Dado Viciado** | Da frente parada, onde se jogava mais do que se lutava. | Depois que você ou um aliado Próximo rolar dano, rerrole um dos dados. | O próximo ataque bem-sucedido de um aliado causa o dano máximo dos dados. |\n\n**Incomuns (13 a 24): O Mercado do Oculto e o Luto**\n\n| d | Curiosidade | De onde vem | Uso comum (2x por descanso) | Despertar (gasta os 2 usos; conta como se Entregar) |\n|---|---|---|---|---|\n| 13 | **Mão de Glória** | Comprada num leilão de Torremare. A vela é a gordura do enforcado. | Até o fim da sua próxima ação, adversários a até Próximo têm desvantagem para te atacar. | Lacaios e adversários Padrão a até Próximo caem no sono da vela: ficam Imobilizados até tomarem dano. |\n| 14 | **Véu de Carpideira** | De Codrina. Ela chorou tantos mortos que a morte desvia do véu. | Quando um aliado Próximo for marcar PV, ele marca 1 a menos. | Um aliado Próximo não marca nenhum PV neste golpe. |\n| 15 | **Lágrima Engarrafada** | Lacrimatório de uma viúva de Maresme. Quando as lágrimas secarem, o luto acaba. | Um aliado Próximo limpa 2 Fadiga, ou você ignora uma condição. | O frasco se quebra: os aliados Próximos limpam 1 Fadiga, e um deles limpa 1 PV. |\n| 16 | **Crânio Frenológico** | Anotado por um doutor de Maresme que media criminosos. | Ao acertar um humanoide, ele também marca 1 Fadiga e fica Vulnerável até a próxima vez que agir. | O mestre diz as Experiências e o que a criatura quer; os aliados têm vantagem no próximo ataque contra ela. |\n| 17 | **Lanterna da Compaña** | Da procissão que anda na névoa de Bretemar. | Um adversário a até Distante fica Distraído até agir. | Ele vê a própria procissão: foge da cena ou marca 2 Fadiga (escolha do mestre). |\n| 18 | **Retrato Póstumo** | Foto de família com a filha morta no meio, de olhos pintados sobre as pálpebras. | Você e um aliado Próximo ganham 1 Esperança. | A menina responde a uma pergunta, como o *Comungar* da Bruxa (role d6 iguais ao seu Conhecimento). |\n| 19 | **Escapulário Herege** | De uma ordem de Narona que a Igreja apagou dos registros. | Um aliado Próximo ganha +2 nos limiares até a próxima vez que marcar PV. | Até o fim da cena, você e os aliados Muito Próximos não marcam mais de 2 PV por golpe. |\n| 20 | **Olho do Faroleiro** | De um faroleiro do Cabo das Ánimas, que via barcos que não existiam. | O próximo ataque seu ou de um aliado ignora Escondido e cobertura e tem +1. | Até o fim da cena, nada fica Escondido do grupo, e todos têm +1 contra o alvo que você apontar. |\n| 21 | **Estaca de Freixo** | De uma aldeia de Codrina. Ainda tem terra de cova. | Um adversário Próximo fica temporariamente Imobilizado. | Todos os adversários Muito Próximos ficam Imobilizados e marcam 1 Fadiga. |\n| 22 | **Anel de Luto** | Azeviche, com um nome gravado por dentro. | Grave (em pensamento) o nome de um adversário: o próximo ataque dele causa metade do dano. | O nome sangra no anel: o adversário marca 1 PV. |\n| 23 | **Moeda de Caronte** | Moeda antiga da colônia de Narona, achada na boca de um morto. | Um aliado Próximo que for fazer o Movimento de Morte soma 1d6 ao Dado de Esperança se escolher Arriscar Tudo. | Pague o barqueiro: um aliado que faria o Movimento de Morte limpa 1d4 PV e fica de pé. A moeda some (risque a curiosidade). |\n| 24 | **Boneca de Vallombra** | Porcelana de Fiorescuro. Vira a cabeça para quem chega. | Quando um adversário Próximo for atacar, a boneca o encara: ele ataca com desvantagem e marca 1 Fadiga. | A boneca se joga na frente: um ataque contra você acerta a boneca. Ela se quebra até o próximo descanso longo. |\n\n**Raras (25 a 36): O Sul e o que Afundou**\n\n| d | Curiosidade | De onde vem | Uso comum (2x por descanso) | Despertar (gasta os 2 usos; conta como se Entregar) |\n|---|---|---|---|---|\n| 25 | **Rebite do Pavilhão** | Ferro de um pavilhão da Exposição. Nunca esfria. | Você ou um aliado Próximo limpa 1 PV. | O ferro bate como um coração: um aliado que caiu levanta com metade dos PV. |\n| 26 | **Lasca de Marfim** | Marfim fóssil da Costa do Marfim, com uma runa que ninguém consegue ler. | Ao acertar, +1d8 × patamar de dano mágico, e o alvo marca 1 Fadiga. | A runa acende: todos os adversários a até Próximo marcam 1 PV. O mestre ganha 1 Medo. |\n| 27 | **Cilindro de Cera** | Uma canção do Sul, gravada pela expedição do príncipe. | Um aliado Próximo ganha 2 Esperança. | A canção toca até o fim: os aliados Próximos ganham 2 Esperança e limpam 2 Fadiga. Quem ouviu faz um teste do véu. |\n| 28 | **Barbatana Esculpida** | Barbatana de baleia do Sul, com um rosto que não é humano. | Reduza a gravidade de um golpe que você receberia em um limiar. | Até o fim da cena, você não marca mais de 1 PV por golpe. |\n| 29 | **Ampulheta Negra** | Areia vulcânica de uma praia que não está em mapa nenhum. | Um adversário que acabou de rolar um ataque rola de novo e fica com o novo resultado. | Volte alguns segundos: um aliado desfaz o último golpe que tomou (não marca aqueles PV). |\n| 30 | **Máscara Cerimonial** | Uma máscara cerimonial do Sul, mais velha do que qualquer mapa. | Um Lacaio ou adversário Padrão Próximo, na próxima ação, ataca outro adversário. | Até o fim da cena, um Lacaio luta do seu lado. |\n| 31 | **Bisturi de Embalsamador** | Usado para preparar as múmias da exposição do Sul. | Ao acertar um alvo que já tem PV marcado, ele marca 1 PV a mais. | O próximo acerto do grupo neste alvo marca 2 PV a mais. |\n| 32 | **Pó de Múmia** | Vendido nas boticas de Rouillac como remédio. É múmia moída. | Quando um aliado Próximo for marcar 2 PV ou mais, ele marca 1 a menos. Ou: você ou um aliado Próximo ignora a próxima condição. | Até o fim da sua próxima ação, um aliado não marca mais de 1 PV por golpe. |\n| 33 | **Telégrafo Mudo** | Da sala de imprensa da Exposição. Recebe mensagens de quem já morreu. | O mestre te diz o que um adversário vai fazer em seguida; o próximo ataque contra ele tem vantagem. | Um aliado age agora, fora da vez. |\n| 34 | **Escama do Fundo** | Presa numa rede de Bretemar. Ninguém sabe dizer de que bicho ela é. | Até o fim da sua próxima ação, ataques à distância contra você têm desvantagem, o primeiro ataque que te acertaria erra, e você se move até Distante sem teste. | O mar devolve: um aliado que faria o Movimento de Morte limpa metade dos PV e fica de pé. |\n| 35 | **Mão Congelada** | De uma múmia do Sul. Os dedos ainda se mexem. | A mão aponta o caminho: role 1d6; de 1 a 3, ganhe 1 Esperança; de 4 a 6, ganhe 2. | A mão escreve: o mestre responde a uma pergunta com toda a verdade, e cada um que viu marca 1 Fadiga. |\n| 36 | **Chave de Pavilhão** | Abre qualquer porta da Exposição, e algumas que não são dela. | Abra qualquer fechadura, ou leve um aliado Próximo até outra porta a até Distante. | Abra uma porta para o outro lado: você e os aliados Próximos saem por qualquer porta da cidade. Todos fazem um teste do véu. |"
+      },
+      {
+        "id": "ocultista-espirito",
+        "nome": "Melhorias do espírito",
+        "texto": "Cada melhoria dá algo ao espírito da Médium.\n\n| Melhoria | Efeito |\n|---|---|\n| *Lembranças* | +1 numa Experiência do espírito |\n| *Vela Acesa* | +1 espaço de Esperança |\n| *Conversa à Meia-noite* | 1× por descanso, num momento calmo, ganhe 1 Esperança ou os dois limpam 1 Fadiga |\n| *Laço* | Marque um espaço de Armadura seu no lugar da Fadiga dele |\n| *Rancor* | O dado de dano ou o alcance sobe um passo |\n| *Apego* | +1 espaço de Fadiga para o espírito |\n| *Não Vá Ainda* | Ao marcar seu último PV, o espírito tenta te puxar de volta |\n| *Intangível* | +2 na Evasão do espírito |\n| *Assombrar* | Quando o espírito acerta, o alvo também marca 1 Fadiga |\n| *Poltergeist* | O espírito move e arremessa objetos pequenos fora de combate |\n| *Morte Compartilhada* | Ao trocar de espírito, o novo mantém 1 Experiência do antigo |"
+      }
+    ],
     "grupo": "cenario",
     "intro": "Os **ocultistas** estudam o que a ciência não explica e a Igreja prefere não comentar. Traçam círculos de giz e sal, colecionam objetos que deveriam estar enterrados e conversam com quem já morreu. Onde o warlock negocia e a bruxa sente, o ocultista *sabe*, ou pelo menos acha que sabe.\n\nQuase todos fazem parte do **Ateneu**, uma sociedade discreta de salões fechados, ritos de entrada e bibliotecas que a Ecclesia adoraria queimar. Os membros se reconhecem por pequenos sinais, emprestam livros proibidos uns aos outros e se odeiam com uma educação impecável."
   },
@@ -115,27 +128,27 @@
       {
         "nome": "Cirurgião",
         "linha": "Anatomia e intervenção.",
-        "conjuracao": "a definir",
+        "conjuracao": "Conhecimento",
         "fundacao": [
           {
-            "nome": "Fundação 1 (a definir)",
-            "texto": "Aqui entra o texto desta habilidade."
-          },
-          {
-            "nome": "Fundação 2 (a definir)",
-            "texto": "Aqui entra o texto desta habilidade."
+            "nome": "Incisão",
+            "texto": "Todos os seus acertos contra a criatura Diagnosticada recebem o Ponto Fraco (não só o primeiro)."
           }
         ],
         "especializacao": [
           {
-            "nome": "Especialização (a definir)",
-            "texto": "Aqui entra o texto desta habilidade."
+            "nome": "Intervenção",
+            "texto": "Uma vez por descanso, como reação: quando um aliado Próximo for marcar PV, reduza a gravidade em um limiar (Grave → Maior, Maior → Menor)."
           }
         ],
         "maestria": [
           {
-            "nome": "Maestria (a definir)",
-            "texto": "Aqui entra o texto desta habilidade."
+            "nome": "Aula de Anatomia",
+            "texto": "*Passivo.* O Ponto Fraco usa **d6** em vez de d4, para você e para o grupo."
+          },
+          {
+            "nome": "Ainda Não",
+            "texto": "*De acompanhamento.* Uma vez por descanso longo, quando um aliado Próximo for fazer um Movimento de Morte, ele limpa metade dos PV e continua de pé."
           }
         ],
         "id": "medico-cirurgiao"
@@ -143,27 +156,31 @@
       {
         "nome": "Alienista",
         "linha": "Leitura e controle da mente.",
-        "conjuracao": "a definir",
+        "conjuracao": "Presença",
         "fundacao": [
           {
-            "nome": "Fundação 1 (a definir)",
-            "texto": "Aqui entra o texto desta habilidade."
+            "nome": "Anamnese",
+            "texto": "O Diagnóstico também funciona em pessoas fora de combate. No sucesso com Esperança, troque o conjunto de informação por uma pergunta: o que ela quer, do que tem medo, ou se está mentindo."
           },
           {
-            "nome": "Fundação 2 (a definir)",
-            "texto": "Aqui entra o texto desta habilidade."
+            "nome": "Ao Pé do Leito",
+            "texto": "Quando você conduz a cena de consolo do **Remendar a mente** de outro PJ, o teste dele tem vantagem."
           }
         ],
         "especializacao": [
           {
-            "nome": "Especialização (a definir)",
-            "texto": "Aqui entra o texto desta habilidade."
+            "nome": "Sugestão",
+            "texto": "Quando você **acerta** a criatura Diagnosticada, pode marcar 1 Fadiga: ela marca 1 Fadiga e, na próxima ação, ataca **outro adversário** à escolha do mestre."
           }
         ],
         "maestria": [
           {
-            "nome": "Maestria (a definir)",
-            "texto": "Aqui entra o texto desta habilidade."
+            "nome": "Associação Livre",
+            "texto": "*Passivo.* Você pode manter **duas** criaturas Diagnosticadas ao mesmo tempo, e a *Sugestão* não custa Fadiga contra elas."
+          },
+          {
+            "nome": "Hipnose",
+            "texto": "*De acompanhamento.* Uma vez por sessão, uma criatura Diagnosticada obedece a uma ordem simples (nunca se machucar), ou você suspende a compulsão de um aliado até o próximo descanso."
           }
         ],
         "id": "medico-alienista"
@@ -183,31 +200,23 @@
     "evasao": 10,
     "pv": 6,
     "itens": [
-      "Item inicial 1 (a definir)",
-      "Item inicial 2 (a definir)",
-      "Item inicial 3 (a definir)"
+      "Escolha 1: uma maleta de couro com o nome de outro médico gravado, ou um estetoscópio de um paciente que você não salvou."
     ],
     "esperanca": {
-      "nome": "Habilidade de Esperança (a definir)",
-      "texto": "Aqui entra o texto desta habilidade."
+      "nome": "Ampola de Adrenalina",
+      "texto": "Um aliado Próximo limpa 1 PV e **age na hora** (o holofote vai para ele)."
     },
     "habilidades": [
       {
-        "nome": "Habilidade de classe 1 (a definir)",
-        "texto": "Aqui entra o texto desta habilidade."
+        "nome": "Diagnóstico",
+        "texto": "Quando você **acerta um ataque** numa criatura, pode marcar 1 Fadiga para deixá-la **Diagnosticada**, sem teste e sem gastar ação. Você também pode, como ação, marcar 1 Fadiga e fazer um teste de **Conhecimento** contra uma criatura que consegue ver, até Distante. A criatura fica Diagnosticada até o fim da cena, até você diagnosticar outra ou até o mestre gastar Medo igual ao seu patamar.\n\n- **Ponto Fraco**: o **primeiro acerto de cada PJ** contra a criatura Diagnosticada, na cena, causa +1d4 de dano por patamar.\n- **Leitura** (só quando o ataque ou o teste sai **com Esperança**): escolha **um** conjunto de informação: PV e Fadiga que faltam marcar; Dificuldade e limiares; táticas e dado de dano; ou características e Experiências."
       },
       {
-        "nome": "Habilidade de classe 2 (a definir)",
-        "texto": "Aqui entra o texto desta habilidade."
+        "nome": "Olho Clínico",
+        "texto": "Ao olhar alguém, você sabe se está ileso, mal ou por um fio. Sem peso mecânico."
       }
     ],
-    "extras": [
-      {
-        "id": "medico-extra",
-        "nome": "Entrada extra (a definir)",
-        "texto": "Aqui entra o texto desta habilidade."
-      }
-    ],
+    "extras": [],
     "grupo": "cenario",
     "intro": "Os **médicos** de Lucentia aprenderam o ofício nos anfiteatros de anatomia e o aperfeiçoaram nos hospitais de campanha, onde a guerra trouxe mais pacientes do que qualquer faculdade poderia sonhar. Eles leem um corpo como quem lê um mapa: sabem onde dói, onde quebra e quanto tempo ainda resta.\n\nNum combate, o médico raramente dá o golpe mais forte, mas quase sempre é quem diz onde bater e quem ainda dá para salvar. Alguns preferem o bisturi. Outros, os alienistas, preferem a mente, que costuma ser a parte mais assustadora de qualquer paciente."
   },
@@ -224,27 +233,27 @@
       {
         "nome": "Mártir",
         "linha": "O escudo de carne: toma as feridas dos outros.",
-        "conjuracao": "a definir",
+        "conjuracao": "Presença",
         "fundacao": [
           {
-            "nome": "Fundação 1 (a definir)",
-            "texto": "Aqui entra o texto desta habilidade."
-          },
-          {
-            "nome": "Fundação 2 (a definir)",
-            "texto": "Aqui entra o texto desta habilidade."
+            "nome": "Tomar a Ferida",
+            "texto": "Reação, quando um aliado Próximo for marcar PV: tome até 2 desses PV e marque **1 a menos** do que tomou (mínimo 1). Tomar 2 PV de um aliado custa 1 a você. Sem custo de Fadiga. **Pode marcar o seu último PV** (o sacrifício; o Movimento de Morte vem em seguida), ao contrário da *Penitência* e da *Mortificação*."
           }
         ],
         "especializacao": [
           {
-            "nome": "Especialização (a definir)",
-            "texto": "Aqui entra o texto desta habilidade."
+            "nome": "Sangue Santo",
+            "texto": "Quando você usa *Tomar a Ferida*, o atacante fica temporariamente Vulnerável."
           }
         ],
         "maestria": [
           {
-            "nome": "Maestria (a definir)",
-            "texto": "Aqui entra o texto desta habilidade."
+            "nome": "Coroa de Espinhos",
+            "texto": "Melhora a Fundação: com metade dos PV marcados ou mais, o *Tomar a Ferida* toma **até 3 PV** (marcando 2)."
+          },
+          {
+            "nome": "Getsêmani",
+            "texto": "*Rara, de acompanhamento.* Uma vez por descanso longo, quando você marcar o último PV, em vez do Movimento de Morte você entra em **Agonia** até o fim da cena:\n\n- você continua de pé e age normalmente;\n- cada golpe que você tomaria vira **1 Fadiga** (o *Tomar a Ferida* também marca Fadiga no lugar dos PV);\n- se um aliado limpar 1 PV seu, a Agonia acaba e você fica de pé normalmente;\n- se a Fadiga encher, ou a cena acabar sem ninguém te curar, você faz o Movimento de Morte."
           }
         ],
         "id": "flagelante-martir"
@@ -252,27 +261,27 @@
       {
         "nome": "Zelote",
         "linha": "A fúria santa.",
-        "conjuracao": "a definir",
+        "conjuracao": "Força",
         "fundacao": [
           {
-            "nome": "Fundação 1 (a definir)",
-            "texto": "Aqui entra o texto desta habilidade."
-          },
-          {
-            "nome": "Fundação 2 (a definir)",
-            "texto": "Aqui entra o texto desta habilidade."
+            "nome": "Fúria Santa",
+            "texto": "Seus ataques causam +1 de dano **por patamar** para cada PV que você tem marcado (até 3 PV contam)."
           }
         ],
         "especializacao": [
           {
-            "nome": "Especialização (a definir)",
-            "texto": "Aqui entra o texto desta habilidade."
+            "nome": "Não Sinto Nada",
+            "texto": "Com metade dos PV marcados ou mais, +2 nos limiares de dano."
           }
         ],
         "maestria": [
           {
-            "nome": "Maestria (a definir)",
-            "texto": "Aqui entra o texto desta habilidade."
+            "nome": "Ferida Aberta",
+            "texto": "Melhora a Fundação: a *Fúria Santa* passa a contar até 5 PV marcados."
+          },
+          {
+            "nome": "Último Sermão",
+            "texto": "*Rara, de acompanhamento.* Quando você marcar o último PV, antes do Movimento de Morte, faça um ataque contra todos os inimigos Muito Próximos."
           }
         ],
         "id": "flagelante-zelote"
@@ -292,22 +301,20 @@
     "evasao": 10,
     "pv": 6,
     "itens": [
-      "Item inicial 1 (a definir)",
-      "Item inicial 2 (a definir)",
-      "Item inicial 3 (a definir)"
+      "Escolha 1: um flagelo de couro com contas de ferro, ou um breviário de páginas manchadas."
     ],
     "esperanca": {
-      "nome": "Habilidade de Esperança (a definir)",
-      "texto": "Aqui entra o texto desta habilidade."
+      "nome": "Êxtase",
+      "texto": "Só com metade dos PV marcados ou mais. Até o fim da cena, escolha **um**: +1 de Proficiência nas rolagens de dano, **ou** você ignora condições."
     },
     "habilidades": [
       {
-        "nome": "Habilidade de classe 1 (a definir)",
-        "texto": "Aqui entra o texto desta habilidade."
+        "nome": "Penitência",
+        "texto": "Uma vez por ação, marque 1 PV para escolher um efeito:\n\n- um aliado Próximo limpa 1 PV ou 2 Fadiga (a dor muda de corpo; o grupo não ganha PV);\n- (**uma vez por cena**) até o fim da cena, seus acertos causam +1d8 de dano por patamar;\n- remova uma condição sua ou de um aliado Próximo.\n\nVocê **não pode marcar o último PV** com Penitência."
       },
       {
-        "nome": "Habilidade de classe 2 (a definir)",
-        "texto": "Aqui entra o texto desta habilidade."
+        "nome": "Mortificação",
+        "texto": "**Uma vez por sessão**, quando o véu te tocar e você for marcar Frenesi, você pode **marcar 1 PV no lugar**. Não vale para o último PV."
       }
     ],
     "extras": [],
@@ -327,27 +334,35 @@
       {
         "nome": "Exumador",
         "linha": "Levanta uma horda de mortos.",
-        "conjuracao": "a definir",
+        "conjuracao": "Presença",
         "fundacao": [
           {
-            "nome": "Fundação 1 (a definir)",
-            "texto": "Aqui entra o texto desta habilidade."
+            "nome": "Carniçais",
+            "texto": "Seu limite sobe para **4 Mortos**, e uma única *Descarga* levanta até 2 cadáveres (1 Fadiga por cadáver). Seus Mortos atacam com o **dano da sua arma principal** (com a sua Proficiência), em vez de d6."
           },
           {
-            "nome": "Fundação 2 (a definir)",
-            "texto": "Aqui entra o texto desta habilidade."
+            "nome": "Matilha",
+            "texto": "Quando dois ou mais Mortos atacam o mesmo alvo num comando, role o dano da arma uma vez e some +1d6 para cada Morto a mais."
           }
         ],
         "especializacao": [
           {
-            "nome": "Especialização (a definir)",
-            "texto": "Aqui entra o texto desta habilidade."
+            "nome": "Escudo de Carne",
+            "texto": "Reação, quando um adversário ataca um aliado Muito Próximo de um Morto seu: o Morto se joga na frente, o ataque acerta o Morto e ele cai."
+          },
+          {
+            "nome": "Sobrecarga",
+            "texto": "Com uma ação, sem teste, sobrecarregue um Morto até ele estourar em faíscas e carne: as criaturas Muito Próximas dele marcam 1 Fadiga e ficam temporariamente Vulneráveis."
           }
         ],
         "maestria": [
           {
-            "nome": "Maestria (a definir)",
-            "texto": "Aqui entra o texto desta habilidade."
+            "nome": "Legião",
+            "texto": "Melhora: limite de **6 Mortos**, e eles duram até o seu próximo descanso."
+          },
+          {
+            "nome": "Tempestade Galvânica",
+            "texto": "*Rara.* Uma vez por descanso longo, uma única *Descarga* levanta quantos cadáveres Próximos você quiser, **até o seu limite**, pagando só 1 Fadiga no total. Eles duram até o fim da cena."
           }
         ],
         "id": "galvanista-exumador"
@@ -355,27 +370,31 @@
       {
         "nome": "Costureiro",
         "linha": "Costura uma única obra-prima.",
-        "conjuracao": "a definir",
+        "conjuracao": "Conhecimento",
         "fundacao": [
           {
-            "nome": "Fundação 1 (a definir)",
-            "texto": "Aqui entra o texto desta habilidade."
+            "nome": "A Obra",
+            "texto": "Uma criação costurada permanente, na ficha de companheiro do Treinador (Evasão 10, ataque d6 Corpo a Corpo com a sua Proficiência, dano vira Fadiga dela). Quando a Fadiga enche, ela desmonta até você remontá-la num descanso longo. As 2 Experiências vêm da carne de que é feita. Ela **não ganha** as melhorias de nível do Treinador: cresce por **Partes**."
           },
           {
-            "nome": "Fundação 2 (a definir)",
-            "texto": "Aqui entra o texto desta habilidade."
+            "nome": "Colher Partes",
+            "texto": "Num descanso longo, com um cadáver que morreu desde o último descanso longo, colha uma Parte ligada a quem a pessoa foi e costure na Obra. Espaços de Parte = **seu nível + 1**; cheios, você troca uma. A lista de 19 Partes está em **Partes do Costureiro**, abaixo."
           }
         ],
         "especializacao": [
           {
-            "nome": "Especialização (a definir)",
-            "texto": "Aqui entra o texto desta habilidade."
+            "nome": "Peças de Reposição",
+            "texto": "Sacrifique um Morto Muito Próximo da Obra: ela limpa 2 Fadiga."
+          },
+          {
+            "nome": "Remendo Rápido",
+            "texto": "Você pode trocar Partes num descanso curto."
           }
         ],
         "maestria": [
           {
-            "nome": "Maestria (a definir)",
-            "texto": "Aqui entra o texto desta habilidade."
+            "nome": "Magnum Opus",
+            "texto": "Melhora: a Obra fica **Grande**, ganha +2 espaços de Parte, e o ataque dela atinge todos os inimigos Muito Próximos uma vez por cena."
           }
         ],
         "id": "galvanista-costureiro"
@@ -395,29 +414,23 @@
     "evasao": 10,
     "pv": 6,
     "itens": [
-      "Item inicial 1 (a definir)",
-      "Item inicial 2 (a definir)",
-      "Item inicial 3 (a definir)"
+      "Escolha 1: uma garrafa de Leyden rachada que ainda dá choque, ou o caderno de anotações de um professor que te expulsou."
     ],
     "esperanca": {
-      "nome": "Habilidade de Esperança (a definir)",
-      "texto": "Aqui entra o texto desta habilidade."
+      "nome": "Está Vivo!",
+      "texto": "Levante um Morto sem Fadiga e sem teste. Ele age na hora."
     },
     "habilidades": [
       {
-        "nome": "Habilidade de classe 1 (a definir)",
-        "texto": "Aqui entra o texto desta habilidade."
-      },
-      {
-        "nome": "Habilidade de classe 2 (a definir)",
-        "texto": "Aqui entra o texto desta habilidade."
+        "nome": "Descarga",
+        "texto": "Com um cadáver Próximo (que morreu desde o seu último descanso longo), marque 1 Fadiga e faça um teste de conjuração. Em caso de sucesso, a corrente o põe de pé como um **Morto** sob seu comando até o fim da cena; depois ele desaba fumegando.\n\n- **Ao levantar**, no mesmo teste, o Morto pode se mover até Próximo e fazer uma ação: **atacar** (Corpo a Corpo, d6 de dano físico com a sua Proficiência) ou **agarrar** (o alvo fica temporariamente Imobilizado). Se não houver ninguém ao alcance, ele só se levanta e avança.\n- **Depois**, você o comanda com um teste de conjuração (uma ação sua).\n- **O Morto**: Evasão 10; cai com qualquer dano (como um Lacaio); anda aos trancos, soltando faíscas. Você pode ter até **2 Mortos** ao mesmo tempo.\n- **Bichos contam**: carcaças de animais (ratos do esgoto, cavalos de carroça, cães, o que sobra das Abattoirs) valem como cadáver, mas viram um Morto **menor**, que só **agarra**.\n\nLevantar **alguém que você conhecia em vida** é **teste do véu**, só para você. O horror pessoal (o rival de ontem, um aliado) cobra na hora."
       }
     ],
     "extras": [
       {
-        "id": "galvanista-extra",
-        "nome": "Entrada extra (a definir)",
-        "texto": "Aqui entra o texto desta habilidade."
+        "id": "galvanista-partes",
+        "nome": "Partes do Costureiro",
+        "texto": "**A ideia**\n\n- **Todo corpo lembra**, como as curiosidades do Gabinete: cada Parte guarda o ofício de quem a carregava. O braço do estivador ainda sabe carregar peso; os olhos do atirador ainda sabem mirar.\n- **Nomes curtos, \"o quê de quem\"**. Na mesa, o mestre troca o \"quem\" pelo morto de verdade: o *Braço de Estivador* vira \"o braço do Grosjean, o estivador que vocês acharam no cais\".\n- A Obra usa a ficha de companheiro do Treinador (Evasão, Fadiga, dado de ataque e Experiências).\n\n**Regras**\n\n- Espaços de Parte = **nível + 1** (mais 2 com a *Magnum Opus*).\n- *Colher Partes*: num descanso longo, com um cadáver que morreu desde o último descanso longo, colha a Parte que combina com **quem a pessoa foi**. O mestre diz quais Partes aquele morto pode dar (um estivador dá braço ou costas, não olhos de atirador).\n- Partes marcadas com **(até 3)** podem ser costuradas mais de uma vez; o efeito soma.\n\n**Lista**\n\n| # | Parte | De quem | Na Obra |\n|---|---|---|---|\n| 1 | **Braço de Estivador** | Um estivador do porto de Bellamunt. | O dado de dano sobe um passo **(até 3)**: d6 → d8 → d10 → d12. |\n| 2 | **Olhos de Atirador** | Um atirador de elite de Kenturia. | O alcance sobe um passo (Corpo a Corpo → Muito Próximo → Próximo), e +1 nos ataques. |\n| 3 | **Pulmões de Fundidor** | Um fundidor de Cendrevaux, que respirava a fornalha. | Move até Distante sem teste e ignora fumaça e gás. 1 vez por cena, solta o ar da fornalha: os adversários Muito Próximos marcam 1 Fadiga e ficam Distraídos até agirem. |\n| 4 | **Costelas de Mineiro** | Um mineiro de Roche-Noire, soterrado e desenterrado. | +1 espaço de Fadiga **(até 3)**. |\n| 5 | **Pele de Curtidor** | Um curtidor dos matadouros de Rouillac. | +2 na Evasão. |\n| 6 | **Mandíbula de Mastim** | Um cão de guarda da Exposição. | Ao acertar, o alvo fica temporariamente Imobilizado. 1 vez por cena, preso, ele também fica Vulnerável. |\n| 7 | **Língua de Orador** | Um orador de comício em Maresme. | A Obra fala e ganha +1 numa Experiência. 1 vez por cena, um discurso (ou um urro que parece discurso): os aliados Próximos ganham 1 Esperança. |\n| 8 | **Coração de Cavalo** | Um cavalo de carroça das Abattoirs. | 1 vez por cena, quando a Obra fosse marcar a última Fadiga, ela não marca. |\n| 9 | **Glândula de Víbora** | Uma víbora das serras, ou de quem foi mordido por ela. | Ao acertar, o alvo também marca 1 Fadiga. |\n| 10 | **Arame da Trincheira** | Arame farpado costurado sob a pele de um soldado de Codrina. | Quando um adversário Corpo a Corpo acerta a Obra, ele marca 1 Fadiga. |\n| 11 | **Pernas de Saltimbanco** | Um acrobata do circo da Exposição. | Antes de atacar, a Obra pode saltar até Próximo sem teste. 1 vez por cena, o ataque logo depois do salto tem vantagem. |\n| 12 | **Olhos de Lampião** | Um acendedor de lampiões que via no escuro. | A Obra vê no escuro total e encontra criaturas Escondidas a até Próximo. No escuro ou na penumbra, +1 nos ataques. |\n| 13 | **Estômago de Abutre** | De quem passou fome na vila do Rio Ferrum. | 1 vez por descanso, ao devorar um cadáver, a Obra limpa 2 Fadiga. |\n| 14 | **Mãos de Relojoeiro** | Um relojoeiro de Rouillac. | A Obra usa ferramentas, abre fechaduras e ganha +1 numa Experiência. 1 vez por cena, depois de rolar dano, troque um dado pelo valor máximo. |\n| 15 | **Ouvido de Telegrafista** | Um telegrafista da sala de imprensa da Exposição. | A Obra ouve tudo a até Distante: +2 na Evasão de um aliado contra o primeiro ataque de cada cena. |\n| 16 | **Cérebro de Professor** | Um professor da universidade, de quem se dizia que nunca esquecia nada. | 1 vez por descanso longo, a Obra age sozinha, sem você comandar (sem gastar a sua ação). |\n| 17 | **Corrente de Âncora** | Um marinheiro de Bretemar, com a âncora presa ao braço. | 1 vez por cena, o ataque da Obra varre todos os adversários Muito Próximos. |\n| 18 | **Ombros de Carregador** | Um carregador da estação de Rouillac. | 1 vez por cena, reação, quando um aliado Muito Próximo da Obra for atacado: o ataque vai para a Obra, com desvantagem. |\n| 19 | **Fios de Cobre** | Um telegrafista atingido por um raio. | Os ataques da Obra causam dano mágico, e 1 vez por cena o choque pula para um segundo adversário Muito Próximo (o mesmo dano). Quando você usa uma *Descarga* a até Próximo da Obra, ela limpa 1 Fadiga. |"
       }
     ],
     "grupo": "cenario",
@@ -436,27 +449,35 @@
       {
         "nome": "Apotecária",
         "linha": "Ervas, remédios e venenos.",
-        "conjuracao": "a definir",
+        "conjuracao": "Conhecimento",
         "fundacao": [
           {
-            "nome": "Fundação 1 (a definir)",
-            "texto": "Aqui entra o texto desta habilidade."
+            "nome": "Herbário",
+            "texto": "Você conhece **4 ervas** e aprende mais 1 por patamar. Ao engarrafar ou improvisar, pode temperar a mistura com uma erva que conhece: ela ganha a virtude da erva. Cada erva pode ser usada uma vez por descanso (uma caixinha por erva). Um frasco temperado guarda a virtude. Ervas novas se aprendem no mundo (o jardim botânico da Exposição, uma botica de Maresme, o bolso de um morto). A tabela de ervas está em **Herbário**, abaixo."
           },
           {
-            "nome": "Fundação 2 (a definir)",
-            "texto": "Aqui entra o texto desta habilidade."
+            "nome": "Mistura Mirabolante",
+            "texto": "Gaste 2 Princípios ou mais e diga o efeito que quer, fora da tabela (um pó que revela digitais, uma tinta que muda de cor numa carta forjada, um perfume que acalma um cão de guarda). Teste de Conhecimento: Dificuldade **10** (simples), **15** (esperto) ou **20** (quase impossível), **+2 por patamar acima do 1**. Uma erva que faz sentido para o efeito dá +2. Com Medo, funciona com um efeito colateral. **Na luta, só efeitos do tamanho de um frasco** (apagar um lampião, grudar uma porta, deixar alguém Distraído), nada que substitua uma carta de domínio."
           }
         ],
         "especializacao": [
           {
-            "nome": "Especialização (a definir)",
-            "texto": "Aqui entra o texto desta habilidade."
+            "nome": "Língua de Provadora",
+            "texto": "Ao provar algo, você sabe o que tem nele e se é veneno. Venenos comuns não te afetam; os raros fazem você marcar 1 Fadiga no lugar do efeito."
+          },
+          {
+            "nome": "Estufa",
+            "texto": "No descanso, ganhe +2 Princípios de Sal ou Mercúrio. Cada erva pode ser usada duas vezes por descanso."
           }
         ],
         "maestria": [
           {
-            "nome": "Maestria (a definir)",
-            "texto": "Aqui entra o texto desta habilidade."
+            "nome": "Panaceia",
+            "texto": "Melhora: as suas misturas de beber temperadas com uma erva limpam +1 PV ou +1 Fadiga, à escolha de quem bebe. As suas Reações improvisadas de beber nunca ficam instáveis."
+          },
+          {
+            "nome": "Cobaia",
+            "texto": "*Rara.* Uma vez por sessão, quando um aliado Próximo for sofrer um veneno, uma doença ou o efeito de uma substância, você prova antes. O efeito vai para você, e a próxima mistura que der a ele limpa tudo."
           }
         ],
         "id": "alquimista-apotecaria"
@@ -464,27 +485,35 @@
       {
         "nome": "Granadeiro",
         "linha": "Pólvora, ácido e fogo.",
-        "conjuracao": "a definir",
+        "conjuracao": "Finura",
         "fundacao": [
           {
-            "nome": "Fundação 1 (a definir)",
-            "texto": "Aqui entra o texto desta habilidade."
+            "nome": "Invólucros",
+            "texto": "Você conhece **3 invólucros** e aprende mais 1 por patamar. Ao engarrafar ou improvisar uma Explosão ou um Gás, pode montá-lo num invólucro: ele muda o formato. Cada invólucro pode ser usado uma vez por descanso. Invólucros novos se aprendem vendo funcionar ou desmontando um. A tabela está em **Invólucros**, abaixo."
           },
           {
-            "nome": "Fundação 2 (a definir)",
-            "texto": "Aqui entra o texto desta habilidade."
+            "nome": "Paiol",
+            "texto": "No descanso, ganhe +2 Enxofre."
+          },
+          {
+            "nome": "Demolidor",
+            "texto": "Gaste 2 Enxofre ou mais para derrubar, abrir ou romper algo. Teste de Finura: Dificuldade 10 (porta), 15 (parede de tijolo), 20 (ponte de ferro, abóbada); cada Enxofre além do segundo dá +2. Com Medo, sai maior do que você queria."
           }
         ],
         "especializacao": [
           {
-            "nome": "Especialização (a definir)",
-            "texto": "Aqui entra o texto desta habilidade."
+            "nome": "Mão Firme",
+            "texto": "Você escolhe quem as suas explosões poupam, e escolhe o efeito colateral das suas Reações."
           }
         ],
         "maestria": [
           {
-            "nome": "Maestria (a definir)",
-            "texto": "Aqui entra o texto desta habilidade."
+            "nome": "Nitroglicerina",
+            "texto": "Melhora: a Explosão causa d12 (d12+2 com Reação)."
+          },
+          {
+            "nome": "Barril de Pólvora",
+            "texto": "*Rara.* Uma vez por descanso longo, gaste até **5 Enxofre** numa explosão só: raio Próximo, +1d8 de dano por Enxofre gasto. Você marca 1 Fadiga."
           }
         ],
         "id": "alquimista-granadeiro"
@@ -496,29 +525,36 @@
     "evasao": 10,
     "pv": 6,
     "itens": [
-      "Item inicial 1 (a definir)",
-      "Item inicial 2 (a definir)",
-      "Item inicial 3 (a definir)"
+      "Escolha 1: uma balança de botica cujos pesos não batem, ou um cinto de frascos com um espaço vazio que você nunca enche."
     ],
     "esperanca": {
-      "nome": "Habilidade de Esperança (a definir)",
-      "texto": "Aqui entra o texto desta habilidade."
+      "nome": "Solve et Coagula",
+      "texto": "Troque o conteúdo de um frasco pronto por outra receita, na hora."
     },
     "habilidades": [
       {
-        "nome": "Habilidade de classe 1 (a definir)",
-        "texto": "Aqui entra o texto desta habilidade."
+        "nome": "Os Três Princípios",
+        "texto": "**Sal** (o corpo: cura, proteção), **Enxofre** (o fogo: dano, explosão) e **Mercúrio** (a mudança: veneno, sono, transformação).\n\n- **Bolsa**: até **patamar + 6** Princípios, em qualquer combinação (fichas ou dados de três cores). No **descanso longo**, a bolsa enche com os tipos que você quiser. No **descanso curto**, o movimento de descanso ***Destilar***: ganhe patamar + 1 Princípios à sua escolha.\n- ***Colher*** (uma ação, sem teste): 1 Princípio de uma fonte Muito Próxima. Sal: cadáveres, ossos, terra de cova. Enxofre: pólvora, carvão, brasa, ácido. Mercúrio: venenos, sangue de criatura, tinta, água parada. O mestre diz o que cada coisa rende; cada fonte rende uma vez por cena. **Coisas do outro lado** rendem 2 Mercúrio, mas colher conta como teste do véu.\n\n**Receitas** (2 Princípios; a dupla define o efeito):\n\n| | Sal | Enxofre | Mercúrio |\n|---|---|---|---|\n| **Sal** | **Tônico** (beber): limpa 2 PV | **Unguento** (aplicar): limpa 1 espaço de Armadura e +1 nos limiares até o fim da cena | **Antídoto** (beber): limpa 2 Fadiga e remove uma condição |\n| **Enxofre** | | **Explosão** (arremessar): ataque contra todos os Muito Próximos do ponto, aliados também; d10+2 de dano mágico com a sua Proficiência | **Gás** (arremessar): os adversários Muito Próximos do ponto marcam 1 Fadiga e atacam com desvantagem na próxima ação |\n| **Mercúrio** | | | **Veneno** (arremessar, beber ou revestir): o alvo marca 1 PV ao ser envenenado (Lacaios não) e fica Envenenado: marca 1 Fadiga sempre que agir, **até marcar 3 Fadiga com esse veneno** ou até o fim da cena |\n\n***Reação***: um terceiro Princípio, de um dos tipos da dupla, sobe a mistura um degrau. Tônico +1 PV; Unguento +1 nos limiares; Antídoto +2 Fadiga; Explosão d12; Gás com raio Próximo; Veneno até o descanso."
       },
       {
-        "nome": "Habilidade de classe 2 (a definir)",
-        "texto": "Aqui entra o texto desta habilidade."
+        "nome": "Bancada",
+        "texto": "No descanso, engarrafe: gaste os Princípios de uma receita e guarde o frasco pronto na maleta.\n\n- Usar um frasco pronto gasta uma ação. De beber ou aplicar: em você ou num aliado Muito Próximo, **sem teste**. De arremessar: até Próximo, teste de conjuração contra o alvo.\n- Uma Reação feita na Bancada é **estável**.\n- ***Feito com calma***: um Tônico da Bancada limpa +1 PV, e uma Explosão da Bancada rola um dado de dano a mais.\n- ***Revestir***: um Veneno (pronto, ou improvisado fora da luta) vai na lâmina ou na munição, sua ou de um aliado. No próximo acerto daquela arma, o efeito dispara sem custar ação. Fora da luta, revestir é de graça; durante a luta, custa uma ação."
+      },
+      {
+        "nome": "Improvisar",
+        "texto": "Com os Princípios da bolsa, misture no campo, com uma ação. As de beber não pedem teste; as de arremessar usam o teste de conjuração contra o alvo, como as prontas.\n\nUma **Reação improvisada é instável**: ela sempre pede um teste de conjuração (mesmo as de beber) e, com Medo, funciona, mas o mestre escolhe um efeito colateral (você marca 1 Fadiga; pega em quem não devia; barulho e fumaça entregam a sua posição; algo estranho e leve)."
       }
     ],
     "extras": [
       {
-        "id": "alquimista-extra",
-        "nome": "Entrada extra (a definir)",
-        "texto": "Aqui entra o texto desta habilidade."
+        "id": "alquimista-herbario",
+        "nome": "Herbário",
+        "texto": "| Erva | Combina com | Virtude |\n|---|---|---|\n| **Dedaleira** | Tônico | O coração dispara: limpa +1 PV, mas quem bebe marca 1 Fadiga |\n| **Arnica** | Unguento | +2 nos limiares em vez de +1 |\n| **Valeriana** | Antídoto | Limpa +1 Fadiga, e vantagem no próximo teste contra o medo |\n| **Arruda** | qualquer de beber | O próximo teste do véu de quem bebeu, nesta cena, tem vantagem |\n| **Papoula** | qualquer de beber | *Láudano*: até o fim da cena, quando o véu tocar quem bebeu, ele marca 2 Fadiga no lugar do Frenesi. **Uma vez por sessão por pessoa**: o láudano vicia, e quem toma de novo na mesma sessão marca o Frenesi normalmente |\n| **Beladona** | Veneno, Gás | O primeiro alvo fica Vulnerável até agir |\n| **Cicuta** | Veneno | O Envenenado marca 2 Fadiga por vez, até 4 |\n| **Acônito** | Veneno | Contra criaturas sobrenaturais, o alvo também fica Vulnerável até agir |\n| **Losna** | qualquer de beber | A fada verde: vê através de ilusões e do que está Escondido até o fim da cena, mas faz um teste do véu |\n| **Mandrágora** | Gás | Os alvos também ficam temporariamente Imobilizados |\n| **Pimenta** | Explosão, Gás | Os alvos marcam +1 Fadiga |\n| **Folha de Coca** | Tônico, Antídoto | Quem bebe ganha 2 Esperança e marca 1 Fadiga |"
+      },
+      {
+        "id": "alquimista-involucros",
+        "nome": "Invólucros",
+        "texto": "| Invólucro | Combina com | Efeito |\n|---|---|---|\n| **Estilhaço** | Explosão | Um alvo só, mas o dado de dano sobe um passo |\n| **Cartucho** | Explosão | Dá para Revestir com a Explosão: no próximo acerto da arma, ela explode no alvo e em quem estiver Muito Próximo dele |\n| **Bomba Orsini** | Explosão | Alcança Distante e detona no impacto, mesmo atrás de cobertura |\n| **Bomba-Relógio** | Explosão | Você planta e escolhe quando explode, sem gastar ação, até o fim da cena |\n| **Mina** | Explosão | Você planta; explode quando o primeiro adversário chega Muito Próximo |\n| **Concussão** | Explosão | Empurra os alvos até Próximo; só o alvo principal fica Vulnerável até agir |\n| **Incendiária** | Explosão | O chão queima até o fim da cena; quem começa a vez ali marca 1 Fadiga |\n| **Ácido** | Explosão, Gás | O alvo principal fica com -2 nos limiares até agir (com Reação, até o fim da cena) |\n| **Fumaça** | Gás | Cortina: os aliados dentro dela ficam Escondidos até sair |\n| **Magnésio** | Gás | Clarão: os alvos atacam com desvantagem até o fim da sua próxima ação |"
       }
     ],
     "grupo": "cenario",
@@ -556,7 +592,17 @@
       "Em que noite eu te tirei de uma enrascada?"
     ],
     "imagem": null,
-    "grupo": "livro"
+    "grupo": "livro",
+    "esperanca": {
+      "nome": "Fazer uma Cena",
+      "texto": "gaste 3 Esperança para deixar um alvo a até Próximo temporariamente Distraído, com −2 na Dificuldade dele."
+    },
+    "habilidades": [
+      {
+        "nome": "Ânimo",
+        "texto": "uma vez por sessão, descreva como você anima o grupo e dê um Dado de Ânimo a você e a cada aliado (d6 no nível 1, d8 a partir do nível 5). Quem tem um pode rolá-lo e somar o resultado a um teste de ação, de reação ou de dano, ou limpar Fadiga igual ao resultado. No fim da sessão, os dados não usados somem."
+      }
+    ]
   },
   {
     "id": "druida",
@@ -590,7 +636,21 @@
       "Que cheiro meu você reconhece de longe?"
     ],
     "imagem": null,
-    "grupo": "livro"
+    "grupo": "livro",
+    "esperanca": {
+      "nome": "Evolução",
+      "texto": "gaste 3 Esperança para assumir uma Forma Animal sem marcar Fadiga. Escolha um atributo para ganhar +1 enquanto estiver nessa forma."
+    },
+    "habilidades": [
+      {
+        "nome": "Forma Animal",
+        "texto": "marque 1 Fadiga para se transformar numa criatura do seu patamar ou abaixo, da lista de Formas Animais. Você sai da forma quando quiser. Transformado, não usa armas nem conjura feitiços de cartas de domínio, mas mantém as outras habilidades, fala normalmente, e os feitiços já lançados continuam valendo. Você ganha as características da forma, soma o bônus de Evasão dela e ataca com o atributo indicado. A armadura vira parte do corpo: os espaços marcados continuam marcados quando você volta. Se marcar o último PV, você sai da forma."
+      },
+      {
+        "nome": "Toque Selvagem",
+        "texto": "você faz, à vontade, pequenos efeitos inofensivos ligados à natureza: fazer uma flor crescer, chamar uma brisa, acender uma fogueira."
+      }
+    ]
   },
   {
     "id": "guardiao",
@@ -624,7 +684,17 @@
       "O que você me pediu para guardar?"
     ],
     "imagem": null,
-    "grupo": "livro"
+    "grupo": "livro",
+    "esperanca": {
+      "nome": "Linha de Frente",
+      "texto": "gaste 3 Esperança para limpar 2 espaços de Armadura."
+    },
+    "habilidades": [
+      {
+        "nome": "Imparável",
+        "texto": "uma vez por descanso longo, você fica Imparável e ganha um Dado de Imparável (d4 no nível 1, d6 a partir do nível 5), que começa com o 1 virado para cima. Cada vez que uma rolagem de dano sua fizer o alvo marcar 1 PV ou mais, aumente o valor do dado em 1. Quando ele passar do valor máximo, ou a cena acabar, o dado sai e você deixa de estar Imparável. Enquanto Imparável:\n\n- a gravidade do dano físico que você sofre cai um limiar (Grave para Maior, Maior para Menor, Menor para nenhum);\n- você soma o valor atual do dado às suas rolagens de dano;\n- você não pode ficar Imobilizado nem Vulnerável."
+      }
+    ]
   },
   {
     "id": "patrulheiro",
@@ -658,7 +728,17 @@
       "O que eu te ensinei a ouvir?"
     ],
     "imagem": null,
-    "grupo": "livro"
+    "grupo": "livro",
+    "esperanca": {
+      "nome": "Segurar a Linha",
+      "texto": "quando acertar um ataque com arma, gaste 3 Esperança para usar a mesma rolagem contra mais dois adversários ao alcance."
+    },
+    "habilidades": [
+      {
+        "nome": "Foco do Patrulheiro",
+        "texto": "gaste 1 Esperança e ataque um alvo. Com sucesso, cause o dano normal e faça dele o seu Foco, temporariamente. Contra o seu Foco:\n\n- você sabe exatamente em que direção ele está;\n- quando você causa dano a ele, ele marca 1 Fadiga;\n- quando você erra um ataque contra ele, pode encerrar o Foco para rerrolar os Dados de Dualidade."
+      }
+    ]
   },
   {
     "id": "ladino",
@@ -692,7 +772,21 @@
       "O que eu roubei de você, e devolvi?"
     ],
     "imagem": null,
-    "grupo": "livro"
+    "grupo": "livro",
+    "esperanca": {
+      "nome": "Esquiva do Ladino",
+      "texto": "gaste 3 Esperança para ganhar +2 na Evasão até o próximo ataque que te acertar, ou até o seu próximo descanso."
+    },
+    "habilidades": [
+      {
+        "nome": "Encoberto",
+        "texto": "sempre que for ficar Escondido, você fica Encoberto. Além dos benefícios de Escondido, se você estiver parado quando um adversário chega aonde normalmente te veria, ele continua sem te ver. Depois de atacar, ou de terminar um movimento à vista de um adversário, você deixa de estar Encoberto."
+      },
+      {
+        "nome": "Ataque Furtivo",
+        "texto": "quando acertar um ataque estando Encoberto, ou com um aliado Corpo a Corpo do alvo, some ao dano um d6 por patamar."
+      }
+    ]
   },
   {
     "id": "serafim",
@@ -726,7 +820,17 @@
       "O que eu te vi fazer que parecia milagre?"
     ],
     "imagem": null,
-    "grupo": "livro"
+    "grupo": "livro",
+    "esperanca": {
+      "nome": "Socorro",
+      "texto": "gaste 3 Esperança para limpar 1 PV de um aliado a até Próximo."
+    },
+    "habilidades": [
+      {
+        "nome": "Dados de Oração",
+        "texto": "no começo de cada sessão, role um número de d4 igual ao atributo de conjuração da sua subclasse e guarde-os na ficha. Gaste quantos quiser para ajudar você ou um aliado a até Distante: use o valor do dado para reduzir um dano recebido, somar a um resultado depois da rolagem ou ganhar Esperança igual ao valor. No fim da sessão, os dados não usados somem."
+      }
+    ]
   },
   {
     "id": "feiticeiro",
@@ -760,7 +864,25 @@
       "Que sinal meu você reconhece?"
     ],
     "imagem": null,
-    "grupo": "livro"
+    "grupo": "livro",
+    "esperanca": {
+      "nome": "Magia Volátil",
+      "texto": "gaste 3 Esperança para rerrolar quantos dados de dano quiser num ataque de dano mágico."
+    },
+    "habilidades": [
+      {
+        "nome": "Sentido Arcano",
+        "texto": "você sente a presença de pessoas e objetos mágicos a até Próximo."
+      },
+      {
+        "nome": "Ilusão Menor",
+        "texto": "faça um teste de conjuração (10). Com sucesso, crie uma ilusão visual pequena, do seu tamanho no máximo, a até Próximo. Ela convence qualquer um que olhe de Próximo ou mais longe."
+      },
+      {
+        "nome": "Canalizar Poder Bruto",
+        "texto": "uma vez por descanso longo, mande uma carta de domínio das suas cartas ativas para o cofre e escolha: ganhe Esperança igual ao nível da carta, ou some o dobro do nível da carta ao dano de um feitiço."
+      }
+    ]
   },
   {
     "id": "guerreiro",
@@ -794,7 +916,21 @@
       "O que eu vi você fazer na guerra?"
     ],
     "imagem": null,
-    "grupo": "livro"
+    "grupo": "livro",
+    "esperanca": {
+      "nome": "Sem Piedade",
+      "texto": "gaste 3 Esperança para ganhar +1 nas rolagens de ataque até o seu próximo descanso."
+    },
+    "habilidades": [
+      {
+        "nome": "Ataque de Oportunidade",
+        "texto": "se um adversário Corpo a Corpo tentar sair do seu alcance, faça um teste de reação com um atributo à sua escolha contra a Dificuldade dele. Com sucesso, escolha um efeito; com sucesso crítico, dois:\n\n- ele não sai do lugar;\n- você causa a ele o dano da sua arma principal;\n- você se move junto com ele."
+      },
+      {
+        "nome": "Treino de Combate",
+        "texto": "você ignora o peso ao empunhar armas. Quando causar dano físico, some o seu nível à rolagem de dano."
+      }
+    ]
   },
   {
     "id": "mago",
@@ -828,7 +964,21 @@
       "Que erro meu você corrigiu em público?"
     ],
     "imagem": null,
-    "grupo": "livro"
+    "grupo": "livro",
+    "esperanca": {
+      "nome": "Desta Vez Não",
+      "texto": "gaste 3 Esperança para obrigar um adversário a até Distante a rerrolar um ataque ou uma rolagem de dano."
+    },
+    "habilidades": [
+      {
+        "nome": "Prestidigitação",
+        "texto": "você faz, à vontade, pequenos efeitos mágicos inofensivos: mudar a cor de um objeto, criar um cheiro, acender uma vela, fazer um objeto pequeno flutuar, iluminar uma sala, consertar um objeto pequeno."
+      },
+      {
+        "nome": "Padrões Estranhos",
+        "texto": "escolha um número de 1 a 12. Quando tirar esse número num dos Dados de Dualidade, ganhe 1 Esperança ou limpe 1 Fadiga. Você pode trocar o número num descanso longo."
+      }
+    ]
   },
   {
     "id": "assassino",
@@ -852,6 +1002,20 @@
         "id": "assassino-guilda-dos-envenenadores",
         "nome": "Guilda dos Envenenadores",
         "linha": ""
+      }
+    ],
+    "esperanca": {
+      "nome": "Determinação Mortal",
+      "texto": "gaste 3 Esperança para limpar 2 Fadiga."
+    },
+    "habilidades": [
+      {
+        "nome": "Marcado para Morrer",
+        "texto": "ao acertar um ataque com arma, marque 1 Fadiga para deixar o alvo Marcado para Morrer. Quando causar dano a ele, some ao dano um d4 por patamar. Só um adversário fica marcado por vez; a marca dura até você descansar, até ele ser derrotado ou até o mestre gastar Medo igual ao seu patamar."
+      },
+      {
+        "nome": "Entrar e Sair",
+        "texto": "gaste 1 Esperança para perguntar ao mestre um jeito rápido ou discreto de entrar ou sair de um lugar que você vê. O próximo teste que usar essa informação tem vantagem."
       }
     ]
   },
@@ -878,6 +1042,20 @@
         "nome": "Artista Marcial",
         "linha": ""
       }
+    ],
+    "esperanca": {
+      "nome": "Encarar",
+      "texto": "gaste 3 Esperança para intimidar um alvo a até Próximo, deixando-o temporariamente Vulnerável."
+    },
+    "habilidades": [
+      {
+        "nome": "Eu Sou a Arma",
+        "texto": "os seus punhos valem uma lâmina. Sem outras armas ativas, você tem a arma principal Golpe de Pugilista: atributo à sua escolha, alcance Corpo a Corpo, d8+d6 de dano físico com a sua Proficiência (os dois dados escalam). Com ela ativa, você ganha +1 na Evasão."
+      },
+      {
+        "nome": "Combo",
+        "texto": "depois de rolar o dano de um acerto Corpo a Corpo, marque 1 Fadiga para começar um combo: role o Dado de Combo e anote; continue rolando até sair um resultado menor que o anterior. Cause dano extra igual à soma de todas as rolagens do combo (nada modifica esses resultados). O Dado de Combo começa em d4 e pode subir um passo por patamar, como opção de avanço de nível."
+      }
     ]
   },
   {
@@ -903,6 +1081,20 @@
         "nome": "Pacto do Furioso",
         "linha": ""
       }
+    ],
+    "esperanca": {
+      "nome": "Dádiva do Patrono",
+      "texto": "quando falhar num teste, gaste 3 Esperança para rerrolar com vantagem."
+    },
+    "habilidades": [
+      {
+        "nome": "Pacto com o Patrono",
+        "texto": "você se comprometeu com uma entidade sobrenatural (um deus, uma fada, um demônio) em troca de poder. Escreva o nome dela na ficha e combine com o mestre a esfera de influência dela. Antes de um teste de ação ligado a essa esfera, gaste 1 Favor para rolar o Dado do Patrono (d6, d8 a partir do nível 5) e somar ao total.\n\n- Esferas de exemplo: Ambição, Artistas, Caos, Escuridão, Morte, Apostadores, Honra, Justiça, Líderes, Amor, Misericórdia, Travessura, Natureza, Protetores, Vingança, Estudiosos, Segredos, Soldados, Força, Viajantes, Trapaceiros, Verdade, Guerra, Sabedoria."
+      },
+      {
+        "nome": "Favor",
+        "texto": "você começa com 3 Favor (máximo 6). Use um movimento de descanso para prestar tributo ao patrono: descreva como e ganhe Favor igual ao seu atributo de conjuração. Quando tiver sucesso com Esperança num teste de ação, você pode ganhar 1 Favor no lugar da Esperança."
+      }
     ]
   },
   {
@@ -927,6 +1119,20 @@
         "id": "bruxa-lua",
         "nome": "Lua",
         "linha": ""
+      }
+    ],
+    "esperanca": {
+      "nome": "Encanto da Bruxa",
+      "texto": "quando você ou um aliado a até Distante falhar num teste de ação, gaste 3 Esperança para transformar a falha num sucesso com Medo."
+    },
+    "habilidades": [
+      {
+        "nome": "Mau-Olhado",
+        "texto": "marque 1 Fadiga para lançar um Mau-Olhado temporário num alvo a até Distante. Enquanto durar, ele tem uma penalidade igual ao seu patamar nas rolagens de dano e na Dificuldade. Você pode manter Mau-Olhados em criaturas até o seu atributo de conjuração."
+      },
+      {
+        "nome": "Comungar",
+        "texto": "uma vez por descanso longo, num momento de calma, comungue com um antepassado, uma divindade, um espírito ou um ser de outro mundo. Faça uma pergunta e role d6s iguais ao seu atributo de conjuração; escolha um resultado:\n\n- **1 a 3:** você sente um gosto, um cheiro ou uma sensação ligada à resposta;\n- **4 ou 5:** você ouve sons ou tem uma visão ligada à resposta;\n- **6:** você vive, na mente, uma cena ligada à resposta, como se estivesse lá."
       }
     ]
   },

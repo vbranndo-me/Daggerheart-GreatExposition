@@ -2,6 +2,7 @@
 import { createContext, useContext, type ReactNode } from "react";
 import { urlConteudo, type Conteudo } from "../conteudo";
 import { PlaceholderArte } from "../jogo/componentes";
+import { Markdown } from "../components/ui";
 import type { DadosArquivo, Secao } from "./dados";
 
 export interface Ctx {
@@ -30,7 +31,7 @@ export function ArtePeca({ id, placeholder, desc, nevoa, alta, foco, inteira }: 
         className={`arte-img ${inteira ? "inteira" : ""}`}
         src={url}
         srcSet={id ? conteudo.arteSet[id] : undefined}
-        sizes={inteira ? "50vw" : "100vw"}
+        sizes="100vw"
         style={foco ? { objectPosition: foco } : undefined}
         alt={desc || ""}
         loading="lazy"
@@ -52,3 +53,36 @@ export function ArtePeca({ id, placeholder, desc, nevoa, alta, foco, inteira }: 
   );
 }
 
+
+/** Os adjetivos (chips) e as habilidades de regra de uma opção: comunidade, ancestralidade ou classe. */
+export function Habilidades({ habilidades, adjetivos, esperanca }: { habilidades?: { nome: string; texto: string }[]; adjetivos?: string[]; esperanca?: { nome: string; texto: string } }) {
+  const lista = habilidades || [];
+  if (!lista.length && !esperanca && !(adjetivos && adjetivos.length)) return null;
+  return (
+    <div className="painel-habilidades">
+      {adjetivos && adjetivos.length > 0 && (
+        <ul className="chips-adjetivos">
+          {adjetivos.map((a) => (
+            <li key={a} className="n-L">
+              {a}
+            </li>
+          ))}
+        </ul>
+      )}
+      {esperanca && (
+        <div className="habilidade esperanca">
+          <div className="n-L">Habilidade de Esperança</div>
+          <div className="n-S">{esperanca.nome}</div>
+          <Markdown texto={esperanca.texto} className="n-N" />
+        </div>
+      )}
+      {lista.length > 0 && <div className="n-L titulo-habilidades">{lista.length > 1 || esperanca ? "Habilidades" : "Habilidade"}</div>}
+      {lista.map((h) => (
+        <div key={h.nome} className="habilidade">
+          <div className="n-S">{h.nome}</div>
+          <Markdown texto={h.texto} className="n-N" />
+        </div>
+      ))}
+    </div>
+  );
+}

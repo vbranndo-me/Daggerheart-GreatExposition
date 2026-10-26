@@ -77,8 +77,8 @@
    1920,
    2560
   ],
-  "proporcao": 1.462,
-  "cor": "rgb(63,56,49)"
+  "proporcao": 2.334,
+  "cor": "rgb(37,32,23)"
  },
  "classes-cenario": {
   "larguras": [
@@ -93,8 +93,8 @@
    384,
    768
   ],
-  "proporcao": 0.76,
-  "cor": "rgb(167,142,126)"
+  "proporcao": 0.757,
+  "cor": "rgb(150,136,117)"
  },
  "distincoes": {
   "larguras": [
@@ -214,7 +214,7 @@
    768
   ],
   "proporcao": 0.667,
-  "cor": "rgb(139,121,105)"
+  "cor": "rgb(120,116,111)"
  },
  "comunidade-sobrevivente": {
   "larguras": [
@@ -222,7 +222,7 @@
    768
   ],
   "proporcao": 0.667,
-  "cor": "rgb(120,116,111)"
+  "cor": "rgb(115,93,67)"
  },
  "comunidade-interiorana": {
   "larguras": [
@@ -944,6 +944,14 @@
   "proporcao": 0.839,
   "cor": "rgb(63,50,29)"
  },
+ "refugiados": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(128,125,133)"
+ },
  "ecclesia": {
   "larguras": [
    384,
@@ -967,5 +975,13 @@
   ],
   "proporcao": 0.667,
   "cor": "rgb(99,102,98)"
+ },
+ "frenesi": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(85,82,78)"
  }
 }

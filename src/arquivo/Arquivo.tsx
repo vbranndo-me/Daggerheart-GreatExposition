@@ -19,7 +19,7 @@ import { SessaoCtx, type Sessao } from "../db/sala";
 import { SALA_VAZIA } from "../db/tipos";
 import { MapaFundo, ProvedorMapa, useConfigurarMapa } from "../mesa/MapaFundo";
 import { Markdown } from "../components/ui";
-import { ArquivoCtx, ArtePeca, idArte, useArquivo, type Ctx } from "./base";
+import { ArquivoCtx, ArtePeca, Habilidades, idArte, useArquivo, type Ctx } from "./base";
 import { CartaPlaceholder, FichaClasse, useAmpliarCarta } from "./FichaClasse";
 import { carregarArquivo, gravarPosicao, lerPosicao, secaoVisivel, type Capitulo, type DadosArquivo, type ItemGaleria, type Secao } from "./dados";
 import { lerBlocos, type Bloco } from "./blocos";
@@ -337,9 +337,10 @@ function Aparece({ id, children }: { id: string; children: ReactNode }) {
 }
 
 function SecaoView({ s, cap, primeira }: { s: Secao; cap: Capitulo; primeira: boolean }) {
+  const { conteudo } = useArquivo();
   const blocos = useMemo(() => {
     // o primeiro "##" que repete o título da seção não aparece
-    const norm = (t: string) => t.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+    const norm = (t: string) => t.replace(/:termo\[([^\]]*)\]/g, "$1").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
     const corpo = s.corpo.replace(/^\s*##\s+(.+)\n+/, (todo, h: string) => (norm(h) === norm(s.titulo) ? "" : todo));
     return lerBlocos(corpo);
   }, [s.corpo, s.titulo]);
@@ -351,8 +352,8 @@ function SecaoView({ s, cap, primeira }: { s: Secao; cap: Capitulo; primeira: bo
       return <TextoArte s={s} blocos={blocos} faixa={faixa} />;
     case "arte-cheia":
       return (
-        <section className="cmp cmp-arte-cheia">
-          <ArtePeca id={s.arte?.id} placeholder={s.placeholder} desc={s.arte?.desc} />
+        <section className="cmp cmp-arte-cheia" style={s.arte?.id && conteudo.arteInfo[s.arte.id] ? { aspectRatio: String(conteudo.arteInfo[s.arte.id].proporcao), height: "auto", maxHeight: "86vh" } : undefined}>
+          <ArtePeca id={s.arte?.id} placeholder={s.placeholder} desc={s.arte?.desc} inteira />
           {s.contexto && <p className="n-contexto arte-cheia-frase">{s.contexto}</p>}
         </section>
       );
@@ -400,11 +401,13 @@ function SecaoView({ s, cap, primeira }: { s: Secao; cap: Capitulo; primeira: bo
 
 /** Regras: o texto numa coluna de leitura e, em Discernimento e Frenesi, o medidor fixo ao lado. */
 function Regras({ s, blocos, faixa }: { s: Secao; blocos: Bloco[]; faixa: ReactNode }) {
+  const { conteudo } = useArquivo();
+  const arte = conteudo.arte[s.id];
   const ref = useRef<HTMLElement>(null);
   const progresso = useProgressoDaSecao(ref);
   const lateral = s.id === "discernimento" ? <ColunaDiscernimento progresso={progresso} /> : s.id === "frenesi" ? <ColunaFrenesi progresso={progresso} /> : null;
   return (
-    <section ref={ref} className={`cmp cmp-regras ${lateral ? "com-medidor" : ""}`}>
+    <section ref={ref} className={`cmp cmp-regras ${lateral ? "com-medidor" : ""} ${lateral && arte ? "com-arte" : ""}`}>
       <div className="regras-miolo">
         {faixa}
         <h2 className="n-C">{s.titulo}</h2>
@@ -414,6 +417,11 @@ function Regras({ s, blocos, faixa }: { s: Secao; blocos: Bloco[]; faixa: ReactN
         </div>
       </div>
       {lateral}
+      {lateral && arte && (
+        <figure className="regras-arte">
+          <img src={arte} srcSet={conteudo.arteSet[s.id]} sizes="40vw" alt="" loading="lazy" style={conteudo.arteInfo[s.id] ? { aspectRatio: String(conteudo.arteInfo[s.id].proporcao) } : undefined} />
+        </figure>
+      )}
     </section>
   );
 }
@@ -577,7 +585,7 @@ function BlocoProximo({ proximo }: { proximo?: Capitulo }) {
   return (
     <section className="bloco-proximo">
       <div className="proximo-arte">
-        <ArtePeca id={primeira?.arte?.id} placeholder={primeira?.placeholder} desc={primeira?.arte?.desc} />
+        <ArtePeca id={primeira?.arte?.id} placeholder={primeira?.placeholder} desc={primeira?.arte?.desc} foco={primeira?.foco || "center 20%"} />
         <div className="degrade-baixo forte" />
       </div>
       <div className="proximo-miolo">
@@ -950,7 +958,7 @@ function Efemera({ id }: { id: string }) {
 function itensDe(fonte: string, conteudo: Conteudo, dados: DadosArquivo): { itens: ItemGaleria[]; vazio: string } {
   if (fonte === "comunidades")
     return {
-      itens: conteudo.comunidades.map((c) => ({ id: c.id, nome: c.nome, original: c.original, descricao: c.descricao || "", grupo: c.grupo, detalhes: [{ rotulo: "Habilidade", valor: c.habilidade || "em tradução" }] })),
+      itens: conteudo.comunidades.map((c) => ({ id: c.id, nome: c.nome, original: c.original, descricao: c.descricao || "", grupo: c.grupo, habilidades: c.habilidade ? [c.habilidade] : [], adjetivos: c.adjetivos })),
       vazio: "As comunidades ainda estão sendo escritas.",
     };
   if (fonte === "classes")
@@ -1010,6 +1018,7 @@ function Galeria({ fonte }: { fonte: string }) {
           </div>
           <div className="detalhe-texto">
             {it.descricao ? <p className="n-N">{it.descricao}</p> : fonte === "ancestralidades" ? <p className="n-I">descrição e habilidades em produção</p> : fonte === "comunidades" ? <p className="n-I">descrição em produção</p> : null}
+            <Habilidades habilidades={it.habilidades} adjetivos={it.adjetivos} />
             {it.detalhes && (
               <dl className="dados-ficha">
                 {it.detalhes.map((d) => (

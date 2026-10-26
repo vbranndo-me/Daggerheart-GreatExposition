@@ -5,8 +5,17 @@
     "original": "Human",
     "grupo": "basico",
     "imagem": null,
-    "descricao": "",
-    "habilidades": []
+    "descricao": "Mãos hábeis, orelhas redondas e um corpo feito para aguentar. São os mais comuns em Lucentia e se adaptam a qualquer clima, inclusive ao da fuligem. Vivem cerca de 100 anos.",
+    "habilidades": [
+      {
+        "nome": "Vigor",
+        "texto": "ganhe um espaço de Fadiga a mais na criação do personagem."
+      },
+      {
+        "nome": "Adaptabilidade",
+        "texto": "quando falhar num teste em que usou uma das suas Experiências, você pode marcar 1 Fadiga para rerrolar."
+      }
+    ]
   },
   {
     "id": "anao",
@@ -14,8 +23,17 @@
     "original": "Dwarf",
     "grupo": "basico",
     "imagem": null,
-    "descricao": "",
-    "habilidades": []
+    "descricao": "Baixos, largos e musculosos, com pele e unhas duras como chifre e cabelo grosso. Muitos incrustam pedras no corpo e trançam a barba. Vivem até uns 250 anos e envelhecem fortes.",
+    "habilidades": [
+      {
+        "nome": "Couro Grosso",
+        "texto": "quando sofrer dano Menor, você pode marcar 2 Fadiga em vez de 1 PV."
+      },
+      {
+        "nome": "Fortaleza",
+        "texto": "gaste 3 Esperança para reduzir à metade um dano físico que vai sofrer."
+      }
+    ]
   },
   {
     "id": "elfo",
@@ -23,8 +41,17 @@
     "original": "Elf",
     "grupo": "basico",
     "imagem": null,
-    "descricao": "",
-    "habilidades": []
+    "descricao": "Altos, de orelhas pontudas e sentidos aguçados. Em vez de dormir, entram num transe que descansa em pouco tempo. Vivem uns 350 anos, e as pontas das orelhas caem com a idade.",
+    "habilidades": [
+      {
+        "nome": "Reflexos Rápidos",
+        "texto": "marque 1 Fadiga para ter vantagem num teste de reação."
+      },
+      {
+        "nome": "Transe Celeste",
+        "texto": "durante um descanso, você pode entrar em transe para escolher um movimento de descanso a mais."
+      }
+    ]
   },
   {
     "id": "orc",
@@ -32,8 +59,17 @@
     "original": "Orc",
     "grupo": "basico",
     "imagem": null,
-    "descricao": "",
-    "habilidades": []
+    "descricao": "Traços quadrados e presas de javali saindo da mandíbula, que muitos enfeitam. Pele em tons de verde, azul, rosa ou cinza. Vivem cerca de 125 anos, e as presas crescem a vida toda.",
+    "habilidades": [
+      {
+        "nome": "Robusto",
+        "texto": "quando você tiver só 1 PV sobrando, os ataques contra você têm desvantagem."
+      },
+      {
+        "nome": "Presas",
+        "texto": "quando acertar um ataque Corpo a Corpo, gaste 1 Esperança para chifrar o alvo com as presas e causar 1d6 de dano a mais."
+      }
+    ]
   },
   {
     "id": "goblin",
@@ -41,8 +77,17 @@
     "original": "Goblin",
     "grupo": "basico",
     "imagem": null,
-    "descricao": "",
-    "habilidades": []
+    "descricao": "Pequenos, de olhos grandes e orelhas membranosas do tamanho da cabeça, que mexem para conversar sem palavras. Enxergam e ouvem longe, inclusive no escuro. Vivem uns 100 anos.",
+    "habilidades": [
+      {
+        "nome": "Pé Firme",
+        "texto": "você ignora desvantagem em testes de Agilidade."
+      },
+      {
+        "nome": "Faro para o Perigo",
+        "texto": "uma vez por descanso, marque 1 Fadiga para obrigar um adversário a rerrolar um ataque contra você ou contra um aliado a até Muito Próximo."
+      }
+    ]
   },
   {
     "id": "pequenino",
@@ -50,8 +95,17 @@
     "original": "Halfling",
     "grupo": "basico",
     "imagem": null,
-    "descricao": "",
-    "habilidades": []
+    "descricao": "Pequenos, de pés grandes e peludos e orelhas redondas. Têm uma bússola por dentro e reconhecem os amigos pelo barulho dos passos. Vivem cerca de 150 anos com cara de jovem.",
+    "habilidades": [
+      {
+        "nome": "Pé de Coelho",
+        "texto": "no começo de cada sessão, todo o seu grupo ganha 1 Esperança."
+      },
+      {
+        "nome": "Bússola Interna",
+        "texto": "quando tirar 1 no Dado de Esperança, você pode rerrolá-lo."
+      }
+    ]
   },
   {
     "id": "gigante",
@@ -59,8 +113,17 @@
     "original": "Giant",
     "grupo": "basico",
     "imagem": null,
-    "descricao": "",
-    "habilidades": []
+    "descricao": "Enormes, de ombros largos, braços e pescoço compridos e de um a três olhos (os de um olho só são chamados de ciclopes). Nascem cegos e só ganham os olhos no primeiro ano. Vivem uns 75 anos.",
+    "habilidades": [
+      {
+        "nome": "Resistência",
+        "texto": "ganhe um espaço de PV a mais na criação do personagem."
+      },
+      {
+        "nome": "Alcance",
+        "texto": "trate qualquer arma, habilidade ou feitiço de alcance Corpo a Corpo como se tivesse alcance Muito Próximo."
+      }
+    ]
   },
   {
     "id": "firbolg",
@@ -68,8 +131,17 @@
     "original": "Firbolg",
     "grupo": "basico",
     "imagem": null,
-    "descricao": "",
-    "habilidades": []
+    "descricao": "Bovinos, de nariz largo, orelhas compridas e caídas e o corpo coberto de pelo; os de cabeça inteira de touro são chamados de minotauros. Altos e fortíssimos. Vivem cerca de 150 anos.",
+    "habilidades": [
+      {
+        "nome": "Investida",
+        "texto": "quando tiver sucesso num teste de Agilidade para ir de Distante ou Muito Distante até Corpo a Corpo de um ou mais alvos, marque 1 Fadiga para causar 1d12 de dano físico a todos os alvos Corpo a Corpo."
+      },
+      {
+        "nome": "Inabalável",
+        "texto": "quando for marcar Fadiga, role um d6. Num 6, não marque."
+      }
+    ]
   },
   {
     "id": "fauno",
@@ -77,8 +149,17 @@
     "original": "Faun",
     "grupo": "basico",
     "imagem": null,
-    "descricao": "",
-    "habilidades": []
+    "descricao": "Tronco de gente e pernas de bode, com chifres curvos, pupilas quadradas e cascos fendidos. Os membros são compridos, e o coice é famoso. Vivem uns 225 anos, ficando mais caprinos com a idade.",
+    "habilidades": [
+      {
+        "nome": "Salto de Bode",
+        "texto": "você salta para qualquer ponto a até Próximo como se fosse um movimento normal, pulando obstáculos, vãos e muros com facilidade."
+      },
+      {
+        "nome": "Coice",
+        "texto": "quando acertar um ataque Corpo a Corpo, marque 1 Fadiga para dar um coice: cause 2d6 de dano a mais e empurre você ou o alvo para Muito Próximo."
+      }
+    ]
   },
   {
     "id": "fada",
@@ -86,8 +167,17 @@
     "original": "Faerie",
     "grupo": "basico",
     "imagem": null,
-    "descricao": "",
-    "habilidades": []
+    "descricao": "De asas membranosas e traços de inseto: braços a mais, olhos compostos, lanternas no corpo, ferrões. Passam por uma metamorfose que define a aparência para o resto da vida, de uns 50 anos.",
+    "habilidades": [
+      {
+        "nome": "Entorta-Sorte",
+        "texto": "uma vez por sessão, depois que você ou um aliado disposto a até Próximo fizer um teste de ação, gaste 3 Esperança para rerrolar os Dados de Dualidade."
+      },
+      {
+        "nome": "Asas",
+        "texto": "você voa. Voando, depois que um adversário te ataca, você pode marcar 1 Fadiga para ganhar +2 na Evasão contra aquele ataque."
+      }
+    ]
   },
   {
     "id": "fungril",
@@ -95,8 +185,17 @@
     "original": "Fungril",
     "grupo": "basico",
     "imagem": null,
-    "descricao": "",
-    "habilidades": []
+    "descricao": "Gente-cogumelo, de qualquer cor e de 60 centímetros a mais de 2 metros. Conversam sem palavras, e pela rede de micélio trocam recados com outros fungris a qualquer distância. Vivem uns 300 anos.",
+    "habilidades": [
+      {
+        "nome": "Rede Fungril",
+        "texto": "faça um teste de Instinto (12) para falar com outros da sua ancestralidade pela rede de micélio. Com sucesso, a conversa atravessa qualquer distância."
+      },
+      {
+        "nome": "Laço com os Mortos",
+        "texto": "tocando um cadáver recente, marque 1 Fadiga para extrair dele uma memória ligada a uma emoção ou sensação que você escolher."
+      }
+    ]
   },
   {
     "id": "galapa",
@@ -104,8 +203,17 @@
     "original": "Galapa",
     "grupo": "basico",
     "imagem": null,
-    "descricao": "",
-    "habilidades": []
+    "descricao": "Gente-tartaruga, de casco em domo com desenhos únicos, onde se recolhem para se proteger. Lentos em qualquer idade. Vivem cerca de 150 anos.",
+    "habilidades": [
+      {
+        "nome": "Casco",
+        "texto": "some a sua Proficiência aos seus limiares de dano."
+      },
+      {
+        "nome": "Recolher",
+        "texto": "marque 1 Fadiga para se recolher no casco. Lá dentro, você tem resistência a dano físico e desvantagem em testes de ação, e não pode se mover."
+      }
+    ]
   },
   {
     "id": "katari",
@@ -113,8 +221,17 @@
     "original": "Katari",
     "grupo": "basico",
     "imagem": null,
-    "descricao": "",
-    "habilidades": []
+    "descricao": "Felinos, de garras retráteis, pupilas em fenda, orelhas altas que giram quase 180 graus e bigodes. Alguns têm cauda; o pelo vem em qualquer cor e padrão. Vivem uns 150 anos.",
+    "habilidades": [
+      {
+        "nome": "Instinto Felino",
+        "texto": "quando fizer um teste de Agilidade, gaste 2 Esperança para rerrolar o Dado de Esperança."
+      },
+      {
+        "nome": "Garras Retráteis",
+        "texto": "faça um teste de Agilidade para arranhar um alvo Corpo a Corpo. Com sucesso, ele fica temporariamente Vulnerável."
+      }
+    ]
   },
   {
     "id": "quacho",
@@ -122,8 +239,17 @@
     "original": "Ribbet",
     "grupo": "basico",
     "imagem": null,
-    "descricao": "",
-    "habilidades": []
+    "descricao": "Gente-sapo, de olhos saltados, pele úmida e mãos e pés com membrana. Andam aos pulos e nadam como ninguém. Nascem de ovos na água, como girinos. Vivem cerca de 100 anos.",
+    "habilidades": [
+      {
+        "nome": "Anfíbio",
+        "texto": "você respira e se move normalmente debaixo d'água."
+      },
+      {
+        "nome": "Língua Comprida",
+        "texto": "você usa a língua para agarrar coisas a até Próximo. Marque 1 Fadiga para usá-la como uma arma de Finura, alcance Próximo, que causa d12 de dano físico com a sua Proficiência."
+      }
+    ]
   },
   {
     "id": "simio",
@@ -131,8 +257,17 @@
     "original": "Simiah",
     "grupo": "basico",
     "imagem": null,
-    "descricao": "",
-    "habilidades": []
+    "descricao": "Gente-macaco, de braços compridos e pés que seguram como mãos; alguns têm cauda que agarra. Sobem em qualquer coisa. Vivem uns 100 anos.",
+    "habilidades": [
+      {
+        "nome": "Escalador Nato",
+        "texto": "você tem vantagem em testes de Agilidade de equilíbrio e escalada."
+      },
+      {
+        "nome": "Ágil",
+        "texto": "ganhe +1 permanente na Evasão na criação do personagem."
+      }
+    ]
   },
   {
     "id": "drakona",
@@ -140,8 +275,17 @@
     "original": "Drakona",
     "grupo": "basico",
     "imagem": null,
-    "descricao": "",
-    "habilidades": []
+    "descricao": "Parecem dragões sem asas em forma de gente: escamas grossas, dentes que nunca param de nascer e um sopro de elemento herdado da família. Vivem uns 350 anos.",
+    "habilidades": [
+      {
+        "nome": "Escamas",
+        "texto": "quando for sofrer dano Grave, marque 1 Fadiga para marcar 1 PV a menos."
+      },
+      {
+        "nome": "Sopro Elemental",
+        "texto": "escolha o elemento do seu sopro (eletricidade, fogo, gelo...). Use-o contra um alvo ou um grupo a até Muito Próximo, como uma arma de Instinto que causa d8 de dano mágico com a sua Proficiência."
+      }
+    ]
   },
   {
     "id": "infernis",
@@ -149,8 +293,17 @@
     "original": "Infernis",
     "grupo": "basico",
     "imagem": null,
-    "descricao": "",
-    "habilidades": []
+    "descricao": "Descendentes de demônios: chifres, caninos afiados, orelhas pontudas e, às vezes, cauda. Têm uma \"face temível\" que aparece quando sentem medo ou querem assustar. Vivem uns 350 anos.",
+    "habilidades": [
+      {
+        "nome": "Destemido",
+        "texto": "quando rolar com Medo, marque 2 Fadiga para transformar a rolagem numa rolagem com Esperança."
+      },
+      {
+        "nome": "Face Temível",
+        "texto": "você tem vantagem em testes para intimidar criaturas hostis."
+      }
+    ]
   },
   {
     "id": "clank",
@@ -158,8 +311,17 @@
     "original": "Clank",
     "grupo": "basico",
     "imagem": null,
-    "descricao": "",
-    "habilidades": []
+    "descricao": "Gente mecânica, feita de metal, madeira ou pedra, construída para um propósito. Vive enquanto houver peças novas, mas a mente se gasta com o tempo, conforme a magia que a move enfraquece.",
+    "habilidades": [
+      {
+        "nome": "Feito para Isso",
+        "texto": "decida quem te fez e para quê. Na criação, escolha a Experiência que mais combina com esse propósito e ganhe +1 permanente nela."
+      },
+      {
+        "nome": "Eficiente",
+        "texto": "num descanso curto, você pode escolher um movimento de descanso longo no lugar de um curto."
+      }
+    ]
   },
   {
     "id": "aetheris",
@@ -167,8 +329,17 @@
     "original": "Aetheris",
     "grupo": "hope-fear",
     "imagem": null,
-    "descricao": "",
-    "habilidades": []
+    "descricao": "Descendentes de anjos, com asas e marcas sagradas que mudam ao longo da vida. Quando se emocionam, os olhos brilham e um halo aparece. Vivem uns 350 anos sem perder o viço.",
+    "habilidades": [
+      {
+        "nome": "Aura Consagrada",
+        "texto": "uma vez por descanso longo, quando um aliado a até Próximo rolar com Medo, você pode transformar a rolagem numa rolagem com Esperança."
+      },
+      {
+        "nome": "Asas Celestes",
+        "texto": "você voa. Uma vez por cena, voando, você pode gastar 1 Esperança no lugar de marcar um espaço de Armadura."
+      }
+    ]
   },
   {
     "id": "gnomo",
@@ -176,8 +347,17 @@
     "original": "Gnome",
     "grupo": "hope-fear",
     "imagem": null,
-    "descricao": "",
-    "habilidades": []
+    "descricao": "Pequenos, de cabeça cônica, olhos grandes e mãos grandes e hábeis. Herdam da família um pequeno teleporte, que cada família faz de um jeito: fumaça, luzinhas ou um sumiço no ar. Vivem uns 200 anos.",
+    "habilidades": [
+      {
+        "nome": "Dedos Ágeis",
+        "texto": "quando fizer um teste de Finura, gaste 2 Esperança para rerrolar o Dado de Esperança."
+      },
+      {
+        "nome": "Passo Cintilante",
+        "texto": "uma vez por cena, teleporte-se para um ponto que você vê a até Distante."
+      }
+    ]
   },
   {
     "id": "elemental-terra",
@@ -185,8 +365,17 @@
     "original": "Earthkin",
     "grupo": "hope-fear",
     "imagem": null,
-    "descricao": "",
-    "habilidades": []
+    "descricao": "Carne e pedra: argila, cristal, areia ou mármore em alguma parte do corpo. As feridas viram rachaduras que vão se fechando devagar. Vivem uns 300 anos e, ao morrer, viram terra.",
+    "habilidades": [
+      {
+        "nome": "Pele de Pedra",
+        "texto": "ganhe +1 permanente na Armadura e nos limiares de dano na criação do personagem."
+      },
+      {
+        "nome": "Inamovível",
+        "texto": "enquanto estiver tocando o chão, ninguém consegue te levantar ou te mover contra a sua vontade."
+      }
+    ]
   },
   {
     "id": "elemental-brasa",
@@ -194,8 +383,17 @@
     "original": "Emberkin",
     "grupo": "hope-fear",
     "imagem": null,
-    "descricao": "",
-    "habilidades": []
+    "descricao": "Carne e fogo: cabelo em chamas, olhos de brasa, veios que brilham sob a pele. São quentes ao toque, e o brilho muda com o humor. Vivem uns 250 anos e, ao morrer, ardem e viram cinza.",
+    "habilidades": [
+      {
+        "nome": "À Prova de Fogo",
+        "texto": "você é imune a dano de fogo, mágico ou comum."
+      },
+      {
+        "nome": "Ignição",
+        "texto": "marque 1 Fadiga para incendiar a sua arma principal até o fim da cena. Em chamas, ela ilumina como uma tocha, e você ganha +1d6 nas rolagens de dano com ela."
+      }
+    ]
   },
   {
     "id": "elemental-ceu",
@@ -203,8 +401,17 @@
     "original": "Skykin",
     "grupo": "hope-fear",
     "imagem": null,
-    "descricao": "",
-    "habilidades": []
+    "descricao": "Carne e ar: pele que muda de cor como o céu, cabelo de fumaça ou nuvem, uma brisa sempre mexendo na roupa. Vivem uns 300 anos e, ao morrer, somem no ar.",
+    "habilidades": [
+      {
+        "nome": "Rajada",
+        "texto": "marque 1 Fadiga para conjurar uma rajada que leva você, ou um aliado Muito Próximo, até Muito Distante. Além disso, você sempre controla a velocidade com que cai."
+      },
+      {
+        "nome": "Olho da Tempestade",
+        "texto": "gaste 2 Esperança para dar a você ou a um aliado Corpo a Corpo +1 na Evasão, até sofrer dano Grave ou até usar esta habilidade de novo."
+      }
+    ]
   },
   {
     "id": "elemental-mare",
@@ -212,7 +419,16 @@
     "original": "Tidekin",
     "grupo": "hope-fear",
     "imagem": null,
-    "descricao": "",
-    "habilidades": []
+    "descricao": "Carne e água: orelhas de barbatana, membrana entre os dedos e cores de rio ou de mar profundo correndo sob a pele. Vivem uns 300 anos e, ao morrer, se desfazem em água.",
+    "habilidades": [
+      {
+        "nome": "Anfíbio",
+        "texto": "você respira e se move normalmente debaixo d'água."
+      },
+      {
+        "nome": "Fonte da Vida",
+        "texto": "uma vez por descanso, com um pouco de água à mão, marque 1 Fadiga para limpar 1 PV em você ou num aliado a até Muito Próximo."
+      }
+    ]
   }
 ]

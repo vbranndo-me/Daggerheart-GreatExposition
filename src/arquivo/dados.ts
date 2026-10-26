@@ -48,6 +48,8 @@ export interface ItemGaleria {
   etiqueta?: string;
   original?: string;
   imagem?: string | null;
+  habilidades?: { nome: string; texto: string }[];
+  adjetivos?: string[];
   detalhes?: { rotulo: string; valor: string }[];
 }
 export interface DadosArquivo {
