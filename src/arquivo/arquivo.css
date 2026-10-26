@@ -2488,16 +2488,12 @@ button.trilha-espaco { cursor: pointer; }
   z-index: -1;
   pointer-events: none;
   clip-path: polygon(var(--chanfro) 0, calc(100% - var(--chanfro)) 0, 100% var(--chanfro), 100% calc(100% - var(--chanfro)), calc(100% - var(--chanfro)) 100%, var(--chanfro) 100%, 0 calc(100% - var(--chanfro)), 0 var(--chanfro));
-  box-shadow: inset 2px 2px 0 rgba(255, 250, 225, 0.7), inset -2px -2px 0 rgba(55, 38, 8, 0.5), inset 0 0 0 1px rgba(40, 28, 6, 0.35);
+  box-shadow: inset 0 0 0 1px rgba(40, 28, 6, 0.4);
   background:
     var(--rebite) var(--tx) var(--tx) / var(--tacha) var(--tacha) no-repeat,
     var(--rebite) calc(100% - var(--tx)) var(--tx) / var(--tacha) var(--tacha) no-repeat,
     var(--rebite) var(--tx) calc(100% - var(--tx)) / var(--tacha) var(--tacha) no-repeat,
     var(--rebite) calc(100% - var(--tx)) calc(100% - var(--tx)) / var(--tacha) var(--tacha) no-repeat,
-    linear-gradient(135deg, transparent calc(var(--cd) - 0.3px), rgba(255, 250, 225, 0.8) var(--cd), rgba(255, 250, 225, 0.8) calc(var(--cd) + 3px), transparent calc(var(--cd) + 3.4px)) top left / 26px 26px no-repeat,
-    linear-gradient(315deg, transparent calc(var(--cd) - 0.3px), rgba(55, 38, 8, 0.6) var(--cd), rgba(55, 38, 8, 0.6) calc(var(--cd) + 3px), transparent calc(var(--cd) + 3.4px)) bottom right / 26px 26px no-repeat,
-    linear-gradient(225deg, transparent calc(var(--cd) - 0.3px), rgba(255, 240, 190, 0.32) var(--cd), rgba(120, 90, 40, 0.3) calc(var(--cd) + 3px), transparent calc(var(--cd) + 3.4px)) top right / 26px 26px no-repeat,
-    linear-gradient(45deg, transparent calc(var(--cd) - 0.3px), rgba(255, 240, 190, 0.22) var(--cd), rgba(120, 90, 40, 0.4) calc(var(--cd) + 3px), transparent calc(var(--cd) + 3.4px)) bottom left / 26px 26px no-repeat,
     var(--bisel);
 }
 /* o sulco gravado: um anel de 2px que acompanha o chanfro (escuro em cima e à esquerda, claro embaixo e à direita) */
@@ -2511,7 +2507,7 @@ button.trilha-espaco { cursor: pointer; }
   z-index: 3;
   inset: var(--sulco);
   pointer-events: none;
-  background: linear-gradient(135deg, rgba(60, 42, 10, 0.8) 0 50%, rgba(255, 244, 205, 0.75) 50% 100%);
+  background: rgba(60, 42, 10, 0.55);
   clip-path: polygon(
     var(--co) 0, calc(100% - var(--co)) 0, 100% var(--co), 100% calc(100% - var(--co)), calc(100% - var(--co)) 100%, var(--co) 100%, 0 calc(100% - var(--co)), 0 var(--co), var(--co) 0,
     var(--ci) 2px, 2px var(--ci), 2px calc(100% - var(--ci)), var(--ci) calc(100% - 2px), calc(100% - var(--ci)) calc(100% - 2px), calc(100% - 2px) calc(100% - var(--ci)), calc(100% - 2px) var(--ci), calc(100% - var(--ci)) 2px, var(--ci) 2px
