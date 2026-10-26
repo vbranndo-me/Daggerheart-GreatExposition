@@ -812,8 +812,10 @@ function GradeBandeiras() {
                       {p.brasao && conteudo.arte[p.brasao] && <img className="pais-brasao" src={conteudo.arte[p.brasao]} alt="" />}
                       <img className="pais-bandeira" src={`${import.meta.env.BASE_URL}arte/${p.bandeira}`} alt={`Bandeira de ${p.nome}`} />
                     </div>
-                    <p className="n-I">Capital: {p.capital}</p>
-                    <p className="n-N">{p.publico}</p>
+                    <div className="ficha-pais-texto">
+                      <p className="n-I">Capital: {p.capital}</p>
+                      <p className="n-N">{p.publico}</p>
+                    </div>
                   </div>
                 ),
               })

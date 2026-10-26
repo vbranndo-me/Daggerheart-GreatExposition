@@ -2450,53 +2450,76 @@ button.trilha-espaco { cursor: pointer; }
   .ficha-demo-grade { grid-template-columns: minmax(0, 1fr); }
 }
 
-/* ---------- placas de latão: rebites e frestas nos cards ---------- */
+/* ---------- placas de latão: a mesma chapa polida do botão de confirmação ---------- */
 .cartao-galeria,
 .cartaz,
 .bandeira-cartao {
-  --latao-placa: linear-gradient(135deg, #f0dba4 0%, #b69a60 22%, #6f5b33 48%, #c4a467 72%, #7a6438 100%);
-  --rebite: radial-gradient(circle, #fbefc6 0 1.1px, #c9ad6b 2.4px, #6d5830 4.6px, #17120a 5.4px, transparent 6px);
+  --rim: 16px;
+  --chanfro: 11px;
+  --tacha: 15px;
+  --bisel: linear-gradient(180deg, #f6e4b0 0%, #dcbc78 20%, #bd9f62 50%, #9d7f45 51%, #b09257 78%, #8e7240 100%);
+  --rebite: radial-gradient(circle closest-side, #fff0bf 0 12%, #e0c27c 30%, #8e7240 66%, #3d2e14 88%, transparent 100%);
 }
 .cartao-galeria:not(.so-arte),
 .cartaz:not(.poster),
 .bandeira-cartao {
   position: relative;
-  border: 5px solid transparent;
-  background: linear-gradient(180deg, #1b2030, #11141f) padding-box, var(--latao-placa) border-box;
-  box-shadow: inset 0 0 0 1px #000b, inset 0 0 0 3px #0b0d14, inset 0 0 0 4px rgba(215, 188, 128, 0.26), 0 9px 16px -9px #000;
+  border: var(--rim) solid transparent;
+  border-radius: 0;
+  clip-path: polygon(var(--chanfro) 0, calc(100% - var(--chanfro)) 0, 100% var(--chanfro), 100% calc(100% - var(--chanfro)), calc(100% - var(--chanfro)) 100%, var(--chanfro) 100%, 0 calc(100% - var(--chanfro)), 0 var(--chanfro));
+  background: linear-gradient(180deg, #1c2132, #10131d) padding-box, var(--bisel) border-box;
+  box-shadow: inset 0 0 0 1px #2b200c, inset 0 3px 8px #000d, inset 0 0 0 2px rgba(0, 0, 0, 0.35);
+  transition: filter 0.2s, transform 0.18s;
 }
-.cartao-galeria:not(.so-arte) { padding: 18px 18px 16px; }
+.cartao-galeria:not(.so-arte) { padding: 12px 12px 14px; }
+/* o filete gravado na borda e as quatro tachas */
+.cartao-galeria:not(.so-arte)::after,
+.cartaz:not(.poster)::after,
+.bandeira-cartao::after {
+  content: "";
+  position: absolute;
+  z-index: 3;
+  inset: calc(var(--rim) * -1 + 4px);
+  pointer-events: none;
+  border: 1px solid rgba(70, 50, 18, 0.7);
+  box-shadow: 0 0 0 1px rgba(255, 240, 200, 0.55);
+  clip-path: polygon(7px 0, calc(100% - 7px) 0, 100% 7px, 100% calc(100% - 7px), calc(100% - 7px) 100%, 7px 100%, 0 calc(100% - 7px), 0 7px);
+}
 .cartao-galeria:not(.so-arte)::before,
 .cartaz:not(.poster)::before,
 .bandeira-cartao::before {
   content: "";
   position: absolute;
-  inset: 0;
-  z-index: 3;
+  z-index: 4;
+  inset: calc(var(--rim) * -1);
   pointer-events: none;
+  filter: drop-shadow(0 1px 1px #000a);
   background:
-    var(--rebite) 3px 3px / 14px 14px no-repeat,
-    var(--rebite) calc(100% - 3px) 3px / 14px 14px no-repeat,
-    var(--rebite) 3px calc(100% - 3px) / 14px 14px no-repeat,
-    var(--rebite) calc(100% - 3px) calc(100% - 3px) / 14px 14px no-repeat;
+    var(--rebite) calc(var(--rim) * 0.5) calc(var(--rim) * 0.5) / var(--tacha) var(--tacha) no-repeat,
+    var(--rebite) calc(100% - var(--rim) * 0.5) calc(var(--rim) * 0.5) / var(--tacha) var(--tacha) no-repeat,
+    var(--rebite) calc(var(--rim) * 0.5) calc(100% - var(--rim) * 0.5) / var(--tacha) var(--tacha) no-repeat,
+    var(--rebite) calc(100% - var(--rim) * 0.5) calc(100% - var(--rim) * 0.5) / var(--tacha) var(--tacha) no-repeat;
 }
 .cartao-galeria:not(.so-arte):hover,
 .cartaz:not(.poster):hover,
 .bandeira-cartao:hover {
   border-color: transparent;
-  filter: brightness(1.14);
+  filter: brightness(1.1) saturate(1.05);
+  transform: translateY(-2px);
 }
-.cartaz:not(.poster).aberto {
-  border-color: transparent;
-  box-shadow: inset 0 0 0 1px #000b, inset 0 0 0 3px #0b0d14, inset 0 0 0 4px rgba(215, 188, 128, 0.26), 0 0 0 2px var(--brass-hi), 0 9px 16px -9px #000;
-}
+.cartaz:not(.poster).aberto { border-color: transparent; filter: brightness(1.2) saturate(1.1); }
 .cartaz:not(.poster).marcada {
-  --latao-placa: linear-gradient(135deg, #ffc0b4 0%, #d9524a 24%, #6b1f1a 50%, #c9413b 74%, #7a2a24 100%);
+  --bisel: linear-gradient(180deg, #ffd0c4 0%, #e8685d 20%, #c24a41 50%, #8f2f29 51%, #a63a33 78%, #6b1f1a 100%);
   border-color: transparent;
-  box-shadow: inset 0 0 0 1px #000b, inset 0 0 0 3px #0b0d14, inset 0 0 0 4px rgba(255, 150, 130, 0.3), 0 0 18px -3px var(--carmim-brilho), 0 9px 16px -9px #000;
+  box-shadow: inset 0 0 0 1px #2b0c0a, inset 0 3px 8px #000d, inset 0 0 0 2px rgba(0, 0, 0, 0.35);
 }
-.cartaz:not(.poster) .cartaz-arte { inset: 6px; }
-.bandeira-cartao { padding: 12px 14px; }
+.cartaz:not(.poster) .cartaz-arte { inset: 0; }
+.bandeira-cartao { --rim: 10px; --chanfro: 7px; --tacha: 9px; padding: 8px 10px; }
+.bandeira-cartao::after { inset: calc(var(--rim) * -1 + 2.5px); }
+/* a sombra da chapa recortada vai no contêiner (o clip-path cortaria a do próprio card) */
+.galeria-trilho,
+.criador-cartazes,
+.grade-bandeiras { filter: drop-shadow(0 3px 0 rgba(0, 0, 0, 0.5)) drop-shadow(0 8px 8px rgba(0, 0, 0, 0.45)); }
 
 /* cartazes de classe e subclasse: o papel impresso, preso com um alfinete de latão */
 .cartao-galeria.so-arte,
@@ -2540,3 +2563,10 @@ button.trilha-espaco { cursor: pointer; }
 .cartaz.poster .cartaz-arte { inset: 0; }
 .cartaz.poster.aberto { box-shadow: 0 0 0 3px var(--brass-hi), 0 12px 18px -9px #000d; }
 .cartaz.poster.marcada { box-shadow: 0 0 0 3px var(--carmim-hi), 0 0 20px -2px var(--carmim-brilho), 0 12px 18px -9px #000d; }
+
+.ficha-pais-corpo { display: flex; align-items: center; gap: 28px; }
+.ficha-pais-corpo .pais-emblemas { flex: none; margin: 0; }
+.ficha-pais-texto { display: grid; gap: 8px; min-width: 0; }
+@media (max-width: 700px) { .ficha-pais-corpo { flex-direction: column; align-items: flex-start; } }
+.ficha-pais-corpo .pais-brasao { max-width: none; height: 150px; }
+.ficha-pais-corpo .pais-bandeira { height: 56px; }
