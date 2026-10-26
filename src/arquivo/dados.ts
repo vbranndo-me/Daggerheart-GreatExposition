@@ -29,6 +29,8 @@ export interface Secao {
   /** onde o recorte do mapa em duotom aparece enquanto a arte não fica pronta */
   placeholder?: { mapa: string; x: number; y: number; z: number };
   lado: "esquerda" | "direita";
+  /** object-position da abertura (padrão center 25%), para não cortar cabeças */
+  foco?: string;
   status: StatusSecao;
   corpo: string;
 }
@@ -91,6 +93,7 @@ export function lerSecao(id: string, bruto: string): Secao {
     arte: arte.tipo ? { id: arte.id, tipo: arte.tipo, desc: arte.desc } : undefined,
     placeholder: ph.mapa ? { mapa: ph.mapa, x: Number(ph.x ?? 50), y: Number(ph.y ?? 50), z: Number(ph.z ?? 2.5) } : undefined,
     lado: meta.lado === "esquerda" ? "esquerda" : "direita",
+    foco: sem(meta.foco) || undefined,
     status: (["esqueleto", "rascunho", "pronto"].includes(meta.status) ? meta.status : "esqueleto") as StatusSecao,
     corpo: corpo.trim(),
   };

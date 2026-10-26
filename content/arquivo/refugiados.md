@@ -3,7 +3,7 @@ id: refugiados
 layout: texto-arte
 titulo: Os refugiados
 contexto: "Os visitantes têm ordens de não reparar."
-arte: {  tipo: A, desc: "Os refugiados de Rouillac" }
+arte: { id: "refugiados", tipo: A, desc: "Os refugiados de Rouillac" }
 placeholder: { mapa: rouillac, x: 70, y: 75, z: 3 }
 lado: esquerda
 status: pronto

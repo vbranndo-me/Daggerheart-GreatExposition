@@ -119,5 +119,9 @@
   "pais-bretemar": "brasao bretemar.png",
   "pais-codrina": "brasao codrina.png",
   "pais-fiorescuro": "brasao fiorescuro.png",
-  "pais-serrania": null
+  "pais-serrania": null,
+  "refugiados": "refugiados.png",
+  "ecclesia": "ecclesia.png",
+  "veu": "veu.png",
+  "compulsao": "compulsao.png"
 }

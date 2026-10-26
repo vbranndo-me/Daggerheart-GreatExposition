@@ -36,5 +36,3 @@ No meio de tudo isso está **Entremonts**, com Codrina ao norte e Maresme ao sul
 Para além do continente, os dois blocos torcem o nariz do mesmo jeito.
 - **As Ilhas Peroladas** negociam com os dois lados sem pedir licença a ninguém. São tratadas com um certo desprezo, mas têm a maior marinha do mundo, e nenhuma frota tem coragem de provocá-las.
 - **A Costa do Marfim** nem chega a ser considerada parte do mundo civilizado.
-
-::tabela-paises

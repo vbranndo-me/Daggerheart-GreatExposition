@@ -178,6 +178,7 @@ export function Cartaz({
   aberto,
   etiqueta,
   rotuloMarca = "sua escolha",
+  proporcao,
   aoClicar,
 }: {
   nome: string;
@@ -189,10 +190,12 @@ export function Cartaz({
   aberto?: boolean;
   etiqueta?: string;
   rotuloMarca?: string;
+  /** largura/altura real da arte; o quadro a segue e a imagem nunca é cortada */
+  proporcao?: number;
   aoClicar: () => void;
 }) {
   return (
-    <button type="button" className={`cartaz ${marcada ? "marcada" : ""} ${aberto ? "aberto" : ""}`} title={nome} aria-label={nome} aria-pressed={marcada} onClick={aoClicar}>
+    <button type="button" style={url && proporcao ? { aspectRatio: String(proporcao) } : undefined} className={`cartaz ${marcada ? "marcada" : ""} ${aberto ? "aberto" : ""}`} title={nome} aria-label={nome} aria-pressed={marcada} onClick={aoClicar}>
       <span className="cartaz-arte">
         {url ? <img src={url} srcSet={srcSet} sizes="200px" alt="" loading="lazy" /> : <PlaceholderArte id={nome} monograma={nome.slice(0, 1)} />}
       </span>

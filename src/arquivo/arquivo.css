@@ -510,7 +510,7 @@
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 .seta-galeria {
   position: absolute;
@@ -2255,7 +2255,7 @@ label.btn-pequeno.desligado {
 .cartaz-arte .placeholder-arte {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
 }
 .cartaz-nome {
@@ -2326,3 +2326,126 @@ label.btn-pequeno.desligado {
 .pais-emblemas { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
 .pais-brasao { width: 64px; height: 64px; object-fit: contain; }
 .pais-bandeira { height: 44px; width: auto; border: 1px solid var(--latao, #b08d57); }
+
+/* ---------- 9. arte nunca cortada: o quadro segue a proporção real da imagem ---------- */
+.arte-img.inteira { object-fit: contain; }
+.ta-arte.com-imagem { min-height: 0; align-self: center; width: 100%; }
+.ta-arte.com-imagem .arte-img { object-fit: contain; }
+.ta-arte.com-imagem.tipo-J { margin-inline: 0; border: 1px solid var(--brass-dark); }
+
+/* continente: a coluna do mapa acompanha a rolagem; embaixo, as bandeiras */
+.cmp-mapa .mapa-imagem {
+  position: sticky;
+  top: 16px;
+  align-self: start;
+}
+.cmp-mapa .mapa-estatico svg { max-height: 48vh; width: 100%; }
+.grade-bandeiras {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+.bandeira-cartao {
+  display: grid;
+  grid-template-columns: 54px 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 10px;
+  align-items: center;
+  width: 100%;
+  padding: 6px 8px;
+  text-align: left;
+  color: var(--text);
+  background: #11151f;
+  border: 1px solid var(--brass-dark);
+  cursor: pointer;
+  transition: border-color 0.15s, transform 0.15s;
+}
+.bandeira-cartao:hover,
+.bandeira-cartao:focus-visible { border-color: var(--brass); transform: translateY(-2px); }
+.bandeira-cartao img { grid-row: 1 / 3; width: 54px; height: 36px; object-fit: contain; }
+.bandeira-nome { line-height: 1.1; }
+.bandeira-lado { opacity: 0.75; }
+.ficha-pais-corpo { display: grid; gap: 10px; }
+@media (max-width: 1000px) { .cmp-mapa .mapa-imagem { position: static; } }
+
+/* regras com medidor: texto numa coluna de leitura, medidor fixo à direita */
+.cmp-regras.com-medidor {
+  display: grid;
+  grid-template-columns: minmax(0, 65ch) minmax(220px, 300px);
+  gap: 8%;
+  align-items: start;
+}
+.cmp-regras.com-medidor .regras-corpo { columns: 1; }
+.cmp-regras.com-medidor .md-exemplo { margin-block: 18px; }
+.coluna-medidor {
+  position: sticky;
+  top: 70px;
+  display: grid;
+  gap: 12px;
+  justify-items: center;
+  padding: 18px 16px;
+  background: #0d111b;
+  border: 1px solid var(--brass-dark);
+}
+.coluna-medidor-nota { text-align: center; max-width: 24ch; }
+.medidor-disc { display: grid; gap: 8px; justify-items: center; }
+.medidor-disc-celulas { display: grid; gap: 4px; }
+.medidor-celula {
+  position: relative;
+  display: block;
+  width: 64px;
+  height: 14px;
+  padding: 0;
+  background: #1a2030;
+  border: 1px solid #343b52;
+  transition: background 0.25s, box-shadow 0.25s;
+}
+.medidor-celula.acesa { background: var(--gaslight, #e8b866); box-shadow: 0 0 8px rgba(232, 184, 102, 0.45); }
+.medidor-celula.queimada { background: repeating-linear-gradient(135deg, #3a2a1c 0 4px, #6b3a2a 4px 8px); box-shadow: none; }
+.medidor-celula.limiar { border-color: var(--brass, #c4a467); }
+button.medidor-celula { cursor: pointer; }
+button.medidor-celula:hover { border-color: var(--brass-hi, #f0dba4); }
+.medidor-limiar { position: absolute; left: calc(100% + 8px); top: -3px; color: var(--brass, #c4a467); }
+.medidor-disc-rodape { text-align: center; }
+.trilha-espacos { display: flex; gap: 8px; }
+.trilha-espaco {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  background: #1a2030;
+  border: 1px solid var(--brass-dark);
+  transition: background 0.25s;
+}
+.trilha-espaco.marcado { background: var(--carmim, #a8322d); }
+.trilha-espaco.perdido { background: #10131c; }
+.trilha-espaco svg { width: 28px; height: 28px; stroke: var(--carmim, #c0443c); stroke-width: 3; fill: none; }
+button.trilha-espaco { cursor: pointer; }
+.trilha-frenesi { display: grid; gap: 8px; justify-items: center; }
+.ficha-demo {
+  display: grid;
+  gap: 18px;
+  padding: 22px;
+  background: #0d111b;
+  border: 1px solid var(--brass-dark);
+}
+.ficha-demo-grade { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.ficha-demo-grade section { display: grid; gap: 10px; justify-items: center; text-align: center; }
+.ficha-demo-compulsao { display: grid; gap: 6px; }
+.ficha-demo-compulsao input {
+  padding: 10px 12px;
+  color: var(--text);
+  background: #11151f;
+  border: 1px solid #343b52;
+  font: inherit;
+}
+.ficha-demo-rodape { opacity: 0.7; }
+@media (max-width: 1000px) {
+  .cmp-regras.com-medidor { grid-template-columns: minmax(0, 1fr); }
+  .coluna-medidor { position: static; }
+  .ficha-demo-grade { grid-template-columns: minmax(0, 1fr); }
+}

@@ -6,6 +6,7 @@ titulo: Quem Vocês São
 contexto: "Antes da Exposição, vocês eram outra coisa."
 arte: { id: "abertura-quem", tipo: I, desc: "Convidados posando para uma foto de estúdio" }
 lado: direita
+foco: "center 15%"
 status: pronto
 ---
 

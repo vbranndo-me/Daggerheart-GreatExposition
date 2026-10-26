@@ -21,10 +21,21 @@ export const useArquivo = () => useContext(ArquivoCtx)!;
 export const idArte = (fonte: string, id: string) => `${{ comunidades: "comunidade", ancestralidades: "ancestralidade", classes: "classe", equipamento: "equipamento" }[fonte] || fonte}-${id}`;
 
 // ---------- arte (a imagem pronta ou o placeholder bonito) ----------
-export function ArtePeca({ id, placeholder, desc, nevoa, alta }: { id?: string; placeholder?: Secao["placeholder"]; desc?: string; nevoa?: boolean; alta?: boolean }) {
+export function ArtePeca({ id, placeholder, desc, nevoa, alta, foco, inteira }: { id?: string; placeholder?: Secao["placeholder"]; desc?: string; nevoa?: boolean; alta?: boolean; foco?: string; inteira?: boolean }) {
   const { conteudo } = useArquivo();
   const url = id ? conteudo.arte[id] : null;
-  if (url) return <img className="arte-img" src={url} srcSet={id ? conteudo.arteSet[id] : undefined} sizes="100vw" alt={desc || ""} loading="lazy" />;
+  if (url)
+    return (
+      <img
+        className={`arte-img ${inteira ? "inteira" : ""}`}
+        src={url}
+        srcSet={id ? conteudo.arteSet[id] : undefined}
+        sizes={inteira ? "50vw" : "100vw"}
+        style={foco ? { objectPosition: foco } : undefined}
+        alt={desc || ""}
+        loading="lazy"
+      />
+    );
   const ph = placeholder;
   const arq = !ph ? null : ph.mapa === "continente" ? "mapas/continente.svg" : "mapas/rouillac/distritos.svg";
   return (

@@ -38,6 +38,7 @@ interface Item {
   etiqueta?: string;
   url?: string | null;
   srcSet?: string;
+  proporcao?: number;
   /** o nome já vem escrito na arte (classes e subclasses): fica só no tooltip e no detalhe */
   mostrarNome?: boolean;
   original?: string;
@@ -181,7 +182,7 @@ function CriadorComSala({ s, conteudo, dados }: { s: Sessao; conteudo: Conteudo;
   if (!jid || !jogador) return <div className="jogo criador-raiz" data-paleta="ardosia" />;
 
   // ---- as listas de cada passo ----
-  const arteDe = (id: string) => ({ url: conteudo.arte[id], srcSet: conteudo.arteSet[id] });
+  const arteDe = (id: string) => ({ url: conteudo.arte[id], srcSet: conteudo.arteSet[id], proporcao: conteudo.arteInfo[id]?.proporcao });
   const comunidades: Item[] = conteudo.comunidades.map((c) => ({
     id: c.id,
     nome: c.nome,
@@ -334,7 +335,7 @@ function CriadorComSala({ s, conteudo, dados }: { s: Sessao; conteudo: Conteudo;
                   {itens
                     .filter((i) => (i.grupo || "") === g)
                     .map((it) => (
-                      <Cartaz key={it.id} nome={it.nome} url={it.url} srcSet={it.srcSet} mostrarNome={it.mostrarNome !== false} marcada={marcado(it.id)} aberto={aberto?.id === it.id} aoClicar={() => setVer(it.id)} />
+                      <Cartaz key={it.id} nome={it.nome} url={it.url} srcSet={it.srcSet} proporcao={it.proporcao} mostrarNome={it.mostrarNome !== false} marcada={marcado(it.id)} aberto={aberto?.id === it.id} aoClicar={() => setVer(it.id)} />
                     ))}
                 </div>
               </div>
@@ -559,7 +560,7 @@ function Detalhe({
   return (
     <div className="detalhe-criador">
       <div className="detalhe-retrato-criador">
-        <span className="retrato-34">{item.url ? <img src={item.url} srcSet={item.srcSet} sizes="360px" alt="" /> : <PlaceholderArte id={item.nome} monograma={item.nome.slice(0, 1)} />}</span>
+        <span className="retrato-34" style={item.url && item.proporcao ? { aspectRatio: String(item.proporcao) } : undefined}>{item.url ? <img src={item.url} srcSet={item.srcSet} sizes="360px" alt="" /> : <PlaceholderArte id={item.nome} monograma={item.nome.slice(0, 1)} />}</span>
       </div>
       <div className="detalhe-texto-criador">
         <div className="n-L" style={{ color: "var(--brass)" }}>

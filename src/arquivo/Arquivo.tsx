@@ -7,6 +7,7 @@ import "../jogo/jogo-ajustes.css";
 import "../mesa/mesa.css";
 import "./arquivo.css";
 import { urlConteudo, type Conteudo } from "../conteudo";
+import { CartaoFichaDemo, ColunaDiscernimento, ColunaFrenesi, useProgressoDaSecao } from "./Medidores";
 import { CartaoCapitulo, Janela, MolduraTela, PlaceholderArte, Ramo, SeloExposicao } from "../jogo/componentes";
 import { BotaoAmbiente, FundoVivo } from "../jogo/FundoVivo";
 import { BotaoHextech } from "../jogo/hextech";
@@ -335,7 +336,12 @@ function Aparece({ id, children }: { id: string; children: ReactNode }) {
 }
 
 function SecaoView({ s, cap, primeira }: { s: Secao; cap: Capitulo; primeira: boolean }) {
-  const blocos = useMemo(() => lerBlocos(s.corpo), [s.corpo]);
+  const blocos = useMemo(() => {
+    // o primeiro "##" que repete o título da seção não aparece
+    const norm = (t: string) => t.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+    const corpo = s.corpo.replace(/^\s*##\s+(.+)\n+/, (todo, h: string) => (norm(h) === norm(s.titulo) ? "" : todo));
+    return lerBlocos(corpo);
+  }, [s.corpo, s.titulo]);
   const faixa = s.status !== "pronto" && <div className={`faixa-status ${s.status}`}>{s.status === "esqueleto" ? "em escrita" : "rascunho"}</div>;
   switch (s.layout) {
     case "abertura":
@@ -386,20 +392,29 @@ function SecaoView({ s, cap, primeira }: { s: Secao; cap: Capitulo; primeira: bo
     case "chamada":
       return <Chamada s={s} cap={cap} />;
     default:
-      return (
-        <section className="cmp cmp-regras">
-          <div className="regras-miolo">
-            {faixa}
-            <h2 className="n-C">{s.titulo}</h2>
-            {s.contexto && <p className="n-contexto">{s.contexto}</p>}
-            <div className="regras-corpo">
-              <Blocos blocos={blocos} />
-            </div>
-          </div>
-        </section>
-      );
+      return <Regras s={s} blocos={blocos} faixa={faixa} />;
   }
   void primeira;
+}
+
+/** Regras: o texto numa coluna de leitura e, em Discernimento e Frenesi, o medidor fixo ao lado. */
+function Regras({ s, blocos, faixa }: { s: Secao; blocos: Bloco[]; faixa: ReactNode }) {
+  const ref = useRef<HTMLElement>(null);
+  const progresso = useProgressoDaSecao(ref);
+  const lateral = s.id === "discernimento" ? <ColunaDiscernimento progresso={progresso} /> : s.id === "frenesi" ? <ColunaFrenesi progresso={progresso} /> : null;
+  return (
+    <section ref={ref} className={`cmp cmp-regras ${lateral ? "com-medidor" : ""}`}>
+      <div className="regras-miolo">
+        {faixa}
+        <h2 className="n-C">{s.titulo}</h2>
+        {s.contexto && <p className="n-contexto">{s.contexto}</p>}
+        <div className="regras-corpo">
+          <Blocos blocos={blocos} />
+        </div>
+      </div>
+      {lateral}
+    </section>
+  );
 }
 
 function Abertura({ s, cap, blocos, faixa }: { s: Secao; cap: Capitulo; blocos: Bloco[]; faixa: ReactNode }) {
@@ -408,7 +423,7 @@ function Abertura({ s, cap, blocos, faixa }: { s: Secao; cap: Capitulo; blocos: 
   return (
     <section className="cmp cmp-abertura">
       <div className="abertura-arte">
-        <ArtePeca id={s.arte?.id} placeholder={s.placeholder} desc={s.arte?.desc} nevoa />
+        <ArtePeca id={s.arte?.id} placeholder={s.placeholder} desc={s.arte?.desc} nevoa foco={s.foco || "center 25%"} />
         <div className="degrade-baixo" />
       </div>
       <div className="abertura-conteudo">
@@ -439,6 +454,7 @@ function Abertura({ s, cap, blocos, faixa }: { s: Secao; cap: Capitulo; blocos: 
 }
 
 function TextoArte({ s, blocos, faixa }: { s: Secao; blocos: Bloco[]; faixa: ReactNode }) {
+  const { conteudo } = useArquivo();
   return (
     <section className={`cmp cmp-texto-arte lado-${s.lado}`}>
       <div className="ta-texto">
@@ -447,9 +463,13 @@ function TextoArte({ s, blocos, faixa }: { s: Secao; blocos: Bloco[]; faixa: Rea
         {s.contexto && <p className="n-contexto">{s.contexto}</p>}
         <Blocos blocos={blocos} />
       </div>
-      <figure className={`ta-arte tipo-${s.arte?.tipo || "A"}`}>
-        <ArtePeca id={s.arte?.id} placeholder={s.placeholder} desc={s.arte?.desc} alta />
+      {s.id === "modulo-ficha" ? (
+        <CartaoFichaDemo />
+      ) : (
+      <figure className={`ta-arte tipo-${s.arte?.tipo || "A"} ${s.arte?.id && conteudo.arte[s.arte.id] ? "com-imagem" : ""}`} style={s.arte?.id && conteudo.arteInfo[s.arte.id] ? { aspectRatio: String(conteudo.arteInfo[s.arte.id].proporcao) } : undefined}>
+        <ArtePeca id={s.arte?.id} placeholder={s.placeholder} desc={s.arte?.desc} alta inteira />
       </figure>
+      )}
     </section>
   );
 }
@@ -472,6 +492,7 @@ function SecaoMapa({ s, blocos, faixa }: { s: Secao; blocos: Bloco[]; faixa: Rea
           <figcaption>
             <Ramo titulo={mapa === "rouillac" ? "Explorar Rouillac" : "Explorar o mapa"} descricao="Aproxime, arraste, meça distâncias." icone="lugar" aoClicar={() => abrirMapa(mapa as "continente" | "rouillac")} />
           </figcaption>
+          {mapa === "continente" && <GradeBandeiras />}
         </figure>
         <div className="mapa-lado">
           <Blocos blocos={resto} />
@@ -770,6 +791,44 @@ function TextoComTermos({ texto, classe = "n-N" }: { texto: string; classe?: str
   return <Markdown texto={html} className={classe} />;
 }
 
+/** As bandeiras dos países, 2 × 4, embaixo do mapa do continente; clicar abre a ficha do país. */
+function GradeBandeiras() {
+  const { conteudo, detalhe } = useArquivo();
+  const paises = conteudo.paises.filter((p) => p.bandeira);
+  return (
+    <ul className="grade-bandeiras">
+      {paises.map((p) => (
+        <li key={p.id}>
+          <button
+            type="button"
+            className="bandeira-cartao"
+            onClick={() =>
+              detalhe({
+                titulo: p.nome,
+                etiqueta: p.lado,
+                corpo: (
+                  <div className="ficha-pais-corpo">
+                    <div className="pais-emblemas">
+                      {p.brasao && conteudo.arte[p.brasao] && <img className="pais-brasao" src={conteudo.arte[p.brasao]} alt="" />}
+                      <img className="pais-bandeira" src={`${import.meta.env.BASE_URL}arte/${p.bandeira}`} alt={`Bandeira de ${p.nome}`} />
+                    </div>
+                    <p className="n-I">Capital: {p.capital}</p>
+                    <p className="n-N">{p.publico}</p>
+                  </div>
+                ),
+              })
+            }
+          >
+            <img src={`${import.meta.env.BASE_URL}arte/${p.bandeira}`} alt="" loading="lazy" />
+            <span className="bandeira-nome n-S">{p.nome}</span>
+            <span className="bandeira-lado n-L">{p.lado}</span>
+          </button>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 function TabelaPaises() {
   const { conteudo } = useArquivo();
   return (
@@ -1022,7 +1081,7 @@ function Retrato({ fonte, it }: { fonte: string; it: ItemGaleria }) {
   const aid = idArte(fonte, it.id);
   const url = it.imagem || conteudo.arte[aid];
   return (
-    <span className="retrato-34">
+    <span className="retrato-34" style={conteudo.arteInfo[aid] && url && !it.imagem ? { aspectRatio: String(conteudo.arteInfo[aid].proporcao) } : undefined}>
       {url ? <img src={url} srcSet={it.imagem ? undefined : conteudo.arteSet[aid]} sizes="260px" alt="" loading="lazy" /> : <PlaceholderArte id={idArte(fonte, it.id)} monograma={it.nome.slice(0, 1)} />}
     </span>
   );
