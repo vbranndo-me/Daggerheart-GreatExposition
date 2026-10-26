@@ -631,7 +631,7 @@ function Detalhe({
       </div>
         {!semBotao && (
           <div className="detalhe-acao-criador">
-            <BotaoHextech grande disabled={trancado} onClick={aoEscolher}>
+            <BotaoHextech disabled={trancado} onClick={aoEscolher}>
               {marcada ? (passo === "ancestralidade" ? `Tirar ${item.nome}` : `${item.nome} (escolhida)`) : `Escolher ${item.nome}`}
             </BotaoHextech>
           </div>

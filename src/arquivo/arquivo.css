@@ -2858,3 +2858,9 @@ button.trilha-espaco { cursor: pointer; }
   .quadro-rolagem::after { display: none; }
   .desvanece { -webkit-mask-image: none; mask-image: none; }
 }
+
+/* o botão de escolher: menor e encostado no fim da coluna, para devolver altura à leitura */
+.detalhe-coluna .detalhe-acao-criador {
+  padding: 8px 2px 0 0;
+  margin-bottom: -8px;
+}
