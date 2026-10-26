@@ -376,7 +376,12 @@ function CriadorComSala({ s, conteudo, dados }: { s: Sessao; conteudo: Conteudo;
           </section>
           </div>
 
-          <aside className="criador-detalhe">
+          <aside className={`criador-detalhe ${ver ? "gaveta-aberta" : ""}`}>
+            <div className="gaveta-cab">
+              <button type="button" className="link" onClick={() => setVer(null)}>
+                ◂ Voltar à lista
+              </button>
+            </div>
             {aberto ? (
               <Detalhe
                 item={aberto}
