@@ -1,6 +1,7 @@
 // A camada 0: o mapa em tela cheia, atrás de tudo. Continente (carta náutica escura) ou
 // Rouillac à noite (capítulo V). Interativo só quando o capítulo pede; nos outros fica parado
 // e escurecido pelo véu. Os alfinetes são medalhões esmaltados; clicar abre a janela do alfinete.
+import { BotaoFechar } from "../jogo/BotaoFechar";
 import { createContext, useContext, useEffect, useId, useMemo, useRef, useState, type ReactNode } from "react";
 import { select } from "d3-selection";
 import { zoom, zoomIdentity, type ZoomBehavior, type ZoomTransform } from "d3-zoom";
@@ -641,9 +642,7 @@ function JanelaAlfinete(p: {
               </div>
               <div className="n-S">{existente.titulo}</div>
             </div>
-            <button className="icone-btn" onClick={p.fechar} aria-label="fechar">
-              <Icone id="fechar" tamanho={14} />
-            </button>
+            <BotaoFechar aoClicar={p.fechar} rotulo="fechar" />
           </div>
           {existente.texto && (
             <p className="n-J" style={{ ["--autor" as string]: corAutor(existente.autor), fontSize: 16 }}>

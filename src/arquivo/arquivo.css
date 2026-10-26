@@ -989,7 +989,7 @@
   background: rgba(20, 24, 36, 0.96);
   border: 1px solid var(--brass-dark);
 }
-.ficha-pais-consulta .icone-btn {
+.ficha-pais-consulta .botao-fechar {
   position: absolute;
   top: 8px;
   right: 8px;
@@ -2464,62 +2464,91 @@ button.trilha-espaco { cursor: pointer; }
 .cartaz:not(.poster),
 .bandeira-cartao {
   position: relative;
-  border: var(--rim) solid transparent;
+  isolation: isolate;
+  border: 0;
   border-radius: 0;
-  clip-path: polygon(var(--chanfro) 0, calc(100% - var(--chanfro)) 0, 100% var(--chanfro), 100% calc(100% - var(--chanfro)), calc(100% - var(--chanfro)) 100%, var(--chanfro) 100%, 0 calc(100% - var(--chanfro)), 0 var(--chanfro));
-  background: linear-gradient(180deg, #1c2132, #10131d) padding-box, var(--bisel) border-box;
-  box-shadow: inset 0 0 0 1px #2b200c, inset 0 3px 8px #000d, inset 0 0 0 2px rgba(0, 0, 0, 0.35);
-  transition: filter 0.2s, transform 0.18s;
+  background: transparent;
+  box-shadow: none;
+  color: #1d1408;
+  filter: drop-shadow(0 2px 0 rgba(0, 0, 0, 0.55)) drop-shadow(0 5px 6px rgba(0, 0, 0, 0.45));
+  transition: filter 0.2s, transform 0.18s cubic-bezier(0.2, 0.8, 0.3, 1);
 }
-.cartao-galeria:not(.so-arte) { padding: 12px 12px 14px; }
-/* o filete gravado na borda e as quatro tachas */
+.cartao-galeria:not(.so-arte) { padding: var(--rim); }
+.cartaz:not(.poster) { padding: 0; }
+/* a chapa maciça, de cantos chanfrados (o recorte fica numa camada para a sombra e o brilho seguirem o contorno) */
+.cartao-galeria:not(.so-arte)::before,
+.cartaz:not(.poster)::before,
+.bandeira-cartao::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: var(--bisel);
+  clip-path: polygon(var(--chanfro) 0, calc(100% - var(--chanfro)) 0, 100% var(--chanfro), 100% calc(100% - var(--chanfro)), calc(100% - var(--chanfro)) 100%, var(--chanfro) 100%, 0 calc(100% - var(--chanfro)), 0 var(--chanfro));
+}
+/* o filete gravado e as quatro tachas */
 .cartao-galeria:not(.so-arte)::after,
 .cartaz:not(.poster)::after,
 .bandeira-cartao::after {
   content: "";
   position: absolute;
   z-index: 3;
-  inset: calc(var(--rim) * -1 + 4px);
+  inset: 4px;
   pointer-events: none;
   border: 1px solid rgba(70, 50, 18, 0.7);
   box-shadow: 0 0 0 1px rgba(255, 240, 200, 0.55);
   clip-path: polygon(7px 0, calc(100% - 7px) 0, 100% 7px, 100% calc(100% - 7px), calc(100% - 7px) 100%, 7px 100%, 0 calc(100% - 7px), 0 7px);
-}
-.cartao-galeria:not(.so-arte)::before,
-.cartaz:not(.poster)::before,
-.bandeira-cartao::before {
-  content: "";
-  position: absolute;
-  z-index: 4;
-  inset: calc(var(--rim) * -1);
-  pointer-events: none;
-  filter: drop-shadow(0 1px 1px #000a);
   background:
-    var(--rebite) calc(var(--rim) * 0.5) calc(var(--rim) * 0.5) / var(--tacha) var(--tacha) no-repeat,
-    var(--rebite) calc(100% - var(--rim) * 0.5) calc(var(--rim) * 0.5) / var(--tacha) var(--tacha) no-repeat,
-    var(--rebite) calc(var(--rim) * 0.5) calc(100% - var(--rim) * 0.5) / var(--tacha) var(--tacha) no-repeat,
-    var(--rebite) calc(100% - var(--rim) * 0.5) calc(100% - var(--rim) * 0.5) / var(--tacha) var(--tacha) no-repeat;
+    var(--rebite) 4px 4px / var(--tacha) var(--tacha) no-repeat,
+    var(--rebite) calc(100% - 4px) 4px / var(--tacha) var(--tacha) no-repeat,
+    var(--rebite) 4px calc(100% - 4px) / var(--tacha) var(--tacha) no-repeat,
+    var(--rebite) calc(100% - 4px) calc(100% - 4px) / var(--tacha) var(--tacha) no-repeat;
 }
 .cartao-galeria:not(.so-arte):hover,
 .cartaz:not(.poster):hover,
 .bandeira-cartao:hover {
   border-color: transparent;
-  filter: brightness(1.1) saturate(1.05);
   transform: translateY(-2px);
+  filter: drop-shadow(0 2px 0 rgba(0, 0, 0, 0.55)) drop-shadow(0 0 9px rgba(232, 184, 102, 0.55)) brightness(1.05);
 }
-.cartaz:not(.poster).aberto { border-color: transparent; filter: brightness(1.2) saturate(1.1); }
+.cartaz:not(.poster).aberto {
+  filter: drop-shadow(0 2px 0 rgba(0, 0, 0, 0.55)) drop-shadow(0 0 7px rgba(232, 184, 102, 0.8)) brightness(1.12);
+}
 .cartaz:not(.poster).marcada {
   --bisel: linear-gradient(180deg, #ffd0c4 0%, #e8685d 20%, #c24a41 50%, #8f2f29 51%, #a63a33 78%, #6b1f1a 100%);
   border-color: transparent;
-  box-shadow: inset 0 0 0 1px #2b0c0a, inset 0 3px 8px #000d, inset 0 0 0 2px rgba(0, 0, 0, 0.35);
+  box-shadow: none;
 }
-.cartaz:not(.poster) .cartaz-arte { inset: 0; }
-.bandeira-cartao { --rim: 10px; --chanfro: 7px; --tacha: 9px; padding: 8px 10px; }
-.bandeira-cartao::after { inset: calc(var(--rim) * -1 + 2.5px); }
-/* a sombra da chapa recortada vai no contêiner (o clip-path cortaria a do próprio card) */
-.galeria-trilho,
-.criador-cartazes,
-.grade-bandeiras { filter: drop-shadow(0 3px 0 rgba(0, 0, 0, 0.5)) drop-shadow(0 8px 8px rgba(0, 0, 0, 0.45)); }
+/* a arte fica encaixada na chapa; o texto é gravado em tinta escura sobre o latão */
+.cartao-galeria:not(.so-arte) .retrato-34,
+.cartaz:not(.poster) .cartaz-arte {
+  border: 0;
+  background: #0b0d14;
+  box-shadow: 0 0 0 2px #2b200c, 0 0 0 3px rgba(255, 240, 200, 0.5), inset 0 0 8px #000c;
+}
+.cartaz:not(.poster) .cartaz-arte { inset: var(--rim); }
+.cartao-galeria:not(.so-arte) .cartao-nome,
+.bandeira-nome {
+  color: #1d1408 !important;
+  font-weight: 700;
+  text-shadow: 0 1px 0 rgba(255, 244, 214, 0.6);
+}
+.cartao-galeria:not(.so-arte) .cartao-linha {
+  color: #2b1d0a !important;
+  font-weight: 600;
+  text-shadow: 0 1px 0 rgba(255, 244, 214, 0.35);
+}
+.bandeira-lado {
+  color: #3f2e10 !important;
+  opacity: 1;
+  font-weight: 700;
+  text-shadow: 0 1px 0 rgba(255, 244, 214, 0.45);
+}
+.cartaz:not(.poster) .cartaz-nome { color: #f3e7c4; }
+.bandeira-cartao { color: #1d1408; --rim: 10px; --chanfro: 7px; --tacha: 9px; padding: 9px 12px 9px 14px; }
+.bandeira-cartao img { box-shadow: 0 0 0 1px #2b200c, 0 0 0 2px rgba(255, 240, 200, 0.5); }
+.bandeira-cartao::after { inset: 3px; }
 
 /* cartazes de classe e subclasse: o papel impresso, preso com um alfinete de latão */
 .cartao-galeria.so-arte,
@@ -2570,3 +2599,23 @@ button.trilha-espaco { cursor: pointer; }
 @media (max-width: 700px) { .ficha-pais-corpo { flex-direction: column; align-items: flex-start; } }
 .ficha-pais-corpo .pais-brasao { max-width: none; height: 150px; }
 .ficha-pais-corpo .pais-bandeira { height: 56px; }
+
+/* botão de fechar: um X de latão, sem círculo */
+.botao-fechar {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  padding: 6px;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  filter: drop-shadow(0 2px 0 rgba(0, 0, 0, 0.6)) drop-shadow(0 3px 4px rgba(0, 0, 0, 0.45));
+  transition: filter 0.18s, transform 0.18s;
+}
+.botao-fechar:hover,
+.botao-fechar:focus-visible {
+  outline: none;
+  transform: scale(1.12);
+  filter: drop-shadow(0 2px 0 rgba(0, 0, 0, 0.6)) drop-shadow(0 0 7px rgba(232, 184, 102, 0.7));
+}
+.botao-fechar:active { transform: scale(0.96); }

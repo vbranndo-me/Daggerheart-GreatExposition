@@ -1,4 +1,5 @@
 // Peças comuns das etapas: janela storylet, janela lateral, campo que salva sozinho e contas.
+import { BotaoFechar } from "../jogo/BotaoFechar";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { useSessao } from "../db/sala";
 import { ETAPAS, ROMANOS, type Personagem, type Privado } from "../db/tipos";
@@ -255,9 +256,7 @@ export function JanelaLateral({ rotulo, titulo, fechar, children, insignia }: { 
             <div className="n-S">{titulo}</div>
           </div>
           {fechar && (
-            <button className="icone-btn" onClick={fechar} aria-label="fechar">
-              <Icone id="fechar" tamanho={14} />
-            </button>
+            <BotaoFechar aoClicar={fechar} rotulo="fechar" />
           )}
         </div>
         {children}

@@ -1,6 +1,7 @@
 // O Arquivo da Exposição (v3): uma APRESENTAÇÃO do cenário, não um lugar de consulta.
 // Tela de título → um capítulo de cada vez (rolagem vertical, seções com composições de tela cheia) → o criador.
 // A moldura de filigrana fica nos cantos da tela; o texto usa a largura toda, em colunas de leitura.
+import { BotaoFechar } from "../jogo/BotaoFechar";
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import "../jogo/jogo.css";
 import "../jogo/jogo-ajustes.css";
@@ -600,9 +601,7 @@ function Consulta({ capitulos, fechar }: { capitulos: (Capitulo & { secoesVisive
       <Janela tipo="pesada" className="consulta">
         <div className="consulta-cab">
           <div className="n-S">Índice</div>
-          <button className="icone-btn" onClick={fechar} aria-label="fechar">
-            <Icone id="fechar" tamanho={14} />
-          </button>
+          <BotaoFechar aoClicar={fechar} rotulo="fechar" />
         </div>
         <div className="consulta-corpo">
           {capitulos.map((c) => (
@@ -636,9 +635,7 @@ function DetalheSobreposto({ d, fechar }: { d: { titulo: string; etiqueta?: stri
             {d.etiqueta && <div className="n-L">{d.etiqueta}</div>}
             <div className="n-S">{d.titulo}</div>
           </div>
-          <button className="icone-btn" onClick={fechar} aria-label="fechar">
-            <Icone id="fechar" tamanho={14} />
-          </button>
+          <BotaoFechar aoClicar={fechar} rotulo="fechar" />
         </div>
         {d.corpo}
       </Janela>
@@ -883,9 +880,7 @@ function TelaMapa({ mapa, conteudo, fechar }: { mapa: "continente" | "rouillac";
       </button>
       {p && (
         <aside className="ficha-pais-consulta">
-          <button className="icone-btn" onClick={() => setPais(null)} aria-label="fechar a ficha">
-            <Icone id="fechar" tamanho={14} />
-          </button>
+          <BotaoFechar aoClicar={() => setPais(null)} rotulo="fechar a ficha" />
           {(p.bandeira || (p.brasao && conteudo.arte[p.brasao])) && (
             <div className="pais-emblemas">
               {p.brasao && conteudo.arte[p.brasao] && <img className="pais-brasao" src={conteudo.arte[p.brasao]} alt="" />}
