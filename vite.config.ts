@@ -33,7 +33,8 @@ function conteudo(): Plugin {
       });
     },
     writeBundle(opts) {
-      fs.cpSync(dir, path.join(opts.dir!, "content"), { recursive: true });
+      // os PNG originais (centenas de MB) não vão para o site: o app usa só o public/arte
+      fs.cpSync(dir, path.join(opts.dir!, "content"), { recursive: true, filter: (src) => !src.split("\\").join("/").includes("content/arte/fonte") });
     },
   };
 }

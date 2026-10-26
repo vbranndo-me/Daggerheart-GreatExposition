@@ -8,6 +8,4 @@ lado: direita
 status: pronto
 ---
 
-Aqui entra uma frase sobre o que é uma comunidade neste cenário.
-
 ::galeria{fonte="comunidades"}

@@ -109,128 +109,182 @@
   },
   {
     "id": "classe-ocultista",
-    "onde": "vitrine de classes: Ocultista",
+    "onde": "cartaz da classe Ocultista (o nome vem escrito na arte)",
     "proporcao": "3:4",
-    "px": "600×800",
-    "pedido": "Ocultista, Belle Époque, Estuda o que os outros fingem não ver, e paga o preço em noites sem sono.",
-    "arquivo": null,
+    "px": "768×1024",
+    "pedido": "Ocultista, Belle Époque, Rituais, objetos proibidos e conversas com os mortos. Onde o Warlock negocia, o Ocultista sabe.",
+    "arquivo": "Ocultista.png",
     "grupo": "Classes"
   },
   {
     "id": "classe-medico",
-    "onde": "vitrine de classes: Médico",
+    "onde": "cartaz da classe Médico (o nome vem escrito na arte)",
     "proporcao": "3:4",
-    "px": "600×800",
-    "pedido": "Médico, Belle Époque, Costura soldados, operários e reis, e já viu feridas que nenhum livro descreve.",
-    "arquivo": null,
+    "px": "768×1024",
+    "pedido": "Médico, Belle Époque, Lê o corpo de amigos e inimigos: diz onde bater e quem salvar.",
+    "arquivo": "Médico.png",
     "grupo": "Classes"
   },
   {
     "id": "classe-flagelante",
-    "onde": "vitrine de classes: Flagelante",
+    "onde": "cartaz da classe Flagelante (o nome vem escrito na arte)",
     "proporcao": "3:4",
-    "px": "600×800",
-    "pedido": "Flagelante, Belle Époque, Transforma a dor em fé, e a fé em força.",
-    "arquivo": null,
+    "px": "768×1024",
+    "pedido": "Flagelante, Belle Époque, Sangra para que os outros não sangrem. A dor é a prova da fé, e a fé paga em milagres.",
+    "arquivo": "Flagelante.png",
     "grupo": "Classes"
   },
   {
     "id": "classe-galvanista",
-    "onde": "vitrine de classes: Galvanista",
+    "onde": "cartaz da classe Galvanista (o nome vem escrito na arte)",
     "proporcao": "3:4",
-    "px": "600×800",
-    "pedido": "Galvanista, Belle Époque, Engenheiro da eletricidade, convencido de que a faísca certa acorda qualquer coisa.",
-    "arquivo": null,
+    "px": "768×1024",
+    "pedido": "Galvanista, Belle Époque, Traz os mortos de volta com eletricidade: eletrodos, baterias e corpos que se contorcem ao voltar.",
+    "arquivo": "Galvanista.png",
     "grupo": "Classes"
   },
   {
     "id": "classe-alquimista",
-    "onde": "vitrine de classes: Alquimista",
+    "onde": "cartaz da classe Alquimista (o nome vem escrito na arte)",
     "proporcao": "3:4",
-    "px": "600×800",
-    "pedido": "Alquimista, Belle Époque, Química, farmácia e um pouco de heresia, tudo na mesma bancada.",
-    "arquivo": null,
+    "px": "768×1024",
+    "pedido": "Alquimista, Belle Époque, Prepara as respostas antes, na bancada, e improvisa quando o plano falha.",
+    "arquivo": "Alquimista.png",
     "grupo": "Classes"
   },
   {
     "id": "classe-bardo",
-    "onde": "vitrine de classes: Bardo",
+    "onde": "cartaz da classe Bardo (o nome vem escrito na arte)",
     "proporcao": "3:4",
-    "px": "600×800",
+    "px": "768×1024",
     "pedido": "Bardo, Belle Époque, Artista de palco e de salão, que encanta, convence e inspira.",
-    "arquivo": null,
+    "arquivo": "Bardo.png",
     "grupo": "Classes"
   },
   {
     "id": "classe-druida",
-    "onde": "vitrine de classes: Druida",
+    "onde": "cartaz da classe Druida (o nome vem escrito na arte)",
     "proporcao": "3:4",
-    "px": "600×800",
+    "px": "768×1024",
     "pedido": "Druida, Belle Époque, Guardião do que resta de selvagem num mundo de ferro.",
-    "arquivo": null,
+    "arquivo": "druida.png",
     "grupo": "Classes"
   },
   {
     "id": "classe-guardiao",
-    "onde": "vitrine de classes: Guardião",
+    "onde": "cartaz da classe Guardião (o nome vem escrito na arte)",
     "proporcao": "3:4",
-    "px": "600×800",
+    "px": "768×1024",
     "pedido": "Guardião, Belle Époque, Escudo de alguém, ou de alguma coisa, até o fim.",
-    "arquivo": null,
+    "arquivo": "guardiao.png",
     "grupo": "Classes"
   },
   {
     "id": "classe-patrulheiro",
-    "onde": "vitrine de classes: Patrulheiro",
+    "onde": "cartaz da classe Patrulheiro (o nome vem escrito na arte)",
     "proporcao": "3:4",
-    "px": "600×800",
+    "px": "768×1024",
     "pedido": "Patrulheiro, Belle Époque, Batedor, caçador e guia das terras de ninguém.",
-    "arquivo": null,
+    "arquivo": "Patrulheiro.png",
     "grupo": "Classes"
   },
   {
     "id": "classe-ladino",
-    "onde": "vitrine de classes: Ladino",
+    "onde": "cartaz da classe Ladino (o nome vem escrito na arte)",
     "proporcao": "3:4",
-    "px": "600×800",
+    "px": "768×1024",
     "pedido": "Ladino, Belle Époque, Sombra útil: ladrão, espião, chantagista.",
-    "arquivo": null,
+    "arquivo": "Ladino.png",
     "grupo": "Classes"
   },
   {
     "id": "classe-serafim",
-    "onde": "vitrine de classes: Serafim",
+    "onde": "cartaz da classe Serafim (o nome vem escrito na arte)",
     "proporcao": "3:4",
-    "px": "600×800",
+    "px": "768×1024",
     "pedido": "Serafim, Belle Époque, Guerreiro de fé, com a convicção de quem já foi tocado por algo maior.",
-    "arquivo": null,
+    "arquivo": "Serafim.png",
     "grupo": "Classes"
   },
   {
     "id": "classe-feiticeiro",
-    "onde": "vitrine de classes: Feiticeiro",
+    "onde": "cartaz da classe Feiticeiro (o nome vem escrito na arte)",
     "proporcao": "3:4",
-    "px": "600×800",
+    "px": "768×1024",
     "pedido": "Feiticeiro, Belle Époque, O poder nasceu com você, e você ainda não sabe de onde.",
-    "arquivo": null,
+    "arquivo": "Feiticeiro.png",
     "grupo": "Classes"
   },
   {
     "id": "classe-guerreiro",
-    "onde": "vitrine de classes: Guerreiro",
+    "onde": "cartaz da classe Guerreiro (o nome vem escrito na arte)",
     "proporcao": "3:4",
-    "px": "600×800",
+    "px": "768×1024",
     "pedido": "Guerreiro, Belle Époque, Veterano de uma guerra sem fim, bom demais no que faz.",
-    "arquivo": null,
+    "arquivo": "Guerreiro.png",
     "grupo": "Classes"
   },
   {
     "id": "classe-mago",
-    "onde": "vitrine de classes: Mago",
+    "onde": "cartaz da classe Mago (o nome vem escrito na arte)",
     "proporcao": "3:4",
-    "px": "600×800",
+    "px": "768×1024",
     "pedido": "Mago, Belle Époque, Erudito do arcano, de biblioteca e de laboratório.",
-    "arquivo": null,
+    "arquivo": "Mago.png",
+    "grupo": "Classes"
+  },
+  {
+    "id": "classe-assassino",
+    "onde": "cartaz da classe Assassino (o nome vem escrito na arte)",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "Assassino, Belle Époque",
+    "arquivo": "Assassino.png",
+    "grupo": "Classes"
+  },
+  {
+    "id": "classe-pugilista",
+    "onde": "cartaz da classe Pugilista (o nome vem escrito na arte)",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "Pugilista, Belle Époque",
+    "arquivo": "Pugilista.png",
+    "grupo": "Classes"
+  },
+  {
+    "id": "classe-warlock",
+    "onde": "cartaz da classe Warlock (o nome vem escrito na arte)",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "Warlock, Belle Époque",
+    "arquivo": "Warlock.png",
+    "grupo": "Classes"
+  },
+  {
+    "id": "classe-bruxa",
+    "onde": "cartaz da classe Bruxa (o nome vem escrito na arte)",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "Bruxa, Belle Époque",
+    "arquivo": "Bruxa.png",
+    "grupo": "Classes"
+  },
+  {
+    "id": "classe-invocador",
+    "onde": "cartaz da classe Invocador (o nome vem escrito na arte)",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "Invocador, Belle Époque",
+    "arquivo": "Invocador.png",
+    "grupo": "Classes"
+  },
+  {
+    "id": "classe-cacador-de-sangue",
+    "onde": "cartaz da classe Caçador de Sangue (o nome vem escrito na arte)",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "Caçador de Sangue, Belle Époque",
+    "arquivo": "Caçador de Sangue.png",
     "grupo": "Classes"
   },
   {
@@ -239,16 +293,7 @@
     "proporcao": "1:1",
     "px": 512,
     "pedido": "brasão ou vinheta de Entremonts (sabor francês), estilo gravura do século XIX",
-    "arquivo": null,
-    "grupo": "Brasões e vinhetas de país"
-  },
-  {
-    "id": "pais-bretemar",
-    "onde": "ficha do país Bretemar",
-    "proporcao": "1:1",
-    "px": 512,
-    "pedido": "brasão ou vinheta de Bretemar (sabor galego), estilo gravura do século XIX",
-    "arquivo": null,
+    "arquivo": "brasao entremonts.png",
     "grupo": "Brasões e vinhetas de país"
   },
   {
@@ -257,7 +302,7 @@
     "proporcao": "1:1",
     "px": 512,
     "pedido": "brasão ou vinheta de Kenturia (sabor sardo), estilo gravura do século XIX",
-    "arquivo": null,
+    "arquivo": "brasao kenturia.png",
     "grupo": "Brasões e vinhetas de país"
   },
   {
@@ -266,7 +311,25 @@
     "proporcao": "1:1",
     "px": 512,
     "pedido": "brasão ou vinheta de Codrina (sabor romeno), estilo gravura do século XIX",
-    "arquivo": null,
+    "arquivo": "brasao codrina.png",
+    "grupo": "Brasões e vinhetas de país"
+  },
+  {
+    "id": "pais-maresme",
+    "onde": "ficha do país Maresme",
+    "proporcao": "1:1",
+    "px": 512,
+    "pedido": "brasão ou vinheta de Maresme (sabor catalão), estilo gravura do século XIX",
+    "arquivo": "brasao maresme.png",
+    "grupo": "Brasões e vinhetas de país"
+  },
+  {
+    "id": "pais-bretemar",
+    "onde": "ficha do país Bretemar",
+    "proporcao": "1:1",
+    "px": 512,
+    "pedido": "brasão ou vinheta de Bretemar (sabor galego), estilo gravura do século XIX",
+    "arquivo": "brasao bretemar.png",
     "grupo": "Brasões e vinhetas de país"
   },
   {
@@ -284,7 +347,7 @@
     "proporcao": "1:1",
     "px": 512,
     "pedido": "brasão ou vinheta de Narona (sabor dálmata), estilo gravura do século XIX",
-    "arquivo": null,
+    "arquivo": "brasao narona.png",
     "grupo": "Brasões e vinhetas de país"
   },
   {
@@ -293,16 +356,7 @@
     "proporcao": "1:1",
     "px": 512,
     "pedido": "brasão ou vinheta de Fiorescuro (sabor italiano), estilo gravura do século XIX",
-    "arquivo": null,
-    "grupo": "Brasões e vinhetas de país"
-  },
-  {
-    "id": "pais-maresme",
-    "onde": "ficha do país Maresme",
-    "proporcao": "1:1",
-    "px": 512,
-    "pedido": "brasão ou vinheta de Maresme (sabor catalão), estilo gravura do século XIX",
-    "arquivo": null,
+    "arquivo": "brasao fiorescuro.png",
     "grupo": "Brasões e vinhetas de país"
   },
   {
@@ -310,7 +364,7 @@
     "onde": "ficha do país Ilhas Peroladas",
     "proporcao": "1:1",
     "px": 512,
-    "pedido": "brasão ou vinheta de Ilhas Peroladas (sabor a definir), estilo gravura do século XIX",
+    "pedido": "brasão ou vinheta de Ilhas Peroladas (sabor língua própria), estilo gravura do século XIX",
     "arquivo": null,
     "grupo": "Brasões e vinhetas de país"
   },
@@ -405,111 +459,354 @@
     "grupo": "Retratos da tripulação (opcional)"
   },
   {
-    "id": "comunidade-aristocracia",
-    "onde": "cartão da comunidade Aristocracia (ficha, galeria e criador)",
+    "id": "comunidade-aristocratica",
+    "onde": "cartão da comunidade Aristocrática (ficha, galeria e criador)",
     "proporcao": "3:4",
     "px": "768×1024",
-    "pedido": "retrato simbólico da comunidade Aristocracia, Belle Époque, gravura em tons de latão",
+    "pedido": "retrato simbólico da comunidade Aristocrática, Belle Époque, gravura em tons de latão",
+    "arquivo": "aristocrata.png",
+    "grupo": "Quem Vocês São: comunidades"
+  },
+  {
+    "id": "comunidade-disciplinada",
+    "onde": "cartão da comunidade Disciplinada (ficha, galeria e criador)",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "retrato simbólico da comunidade Disciplinada, Belle Époque, gravura em tons de latão",
+    "arquivo": "disciplinada.png",
+    "grupo": "Quem Vocês São: comunidades"
+  },
+  {
+    "id": "comunidade-erudita",
+    "onde": "cartão da comunidade Erudita (ficha, galeria e criador)",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "retrato simbólico da comunidade Erudita, Belle Époque, gravura em tons de latão",
+    "arquivo": "erudita.png",
+    "grupo": "Quem Vocês São: comunidades"
+  },
+  {
+    "id": "comunidade-fora-da-lei",
+    "onde": "cartão da comunidade Fora da Lei (ficha, galeria e criador)",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "retrato simbólico da comunidade Fora da Lei, Belle Époque, gravura em tons de latão",
+    "arquivo": "fora da lei.png",
+    "grupo": "Quem Vocês São: comunidades"
+  },
+  {
+    "id": "comunidade-maritima",
+    "onde": "cartão da comunidade Marítima (ficha, galeria e criador)",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "retrato simbólico da comunidade Marítima, Belle Époque, gravura em tons de latão",
+    "arquivo": "marítima.png",
+    "grupo": "Quem Vocês São: comunidades"
+  },
+  {
+    "id": "comunidade-montanhesa",
+    "onde": "cartão da comunidade Montanhesa (ficha, galeria e criador)",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "retrato simbólico da comunidade Montanhesa, Belle Époque, gravura em tons de latão",
+    "arquivo": "montanhesa.png",
+    "grupo": "Quem Vocês São: comunidades"
+  },
+  {
+    "id": "comunidade-nomade",
+    "onde": "cartão da comunidade Nômade (ficha, galeria e criador)",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "retrato simbólico da comunidade Nômade, Belle Époque, gravura em tons de latão",
+    "arquivo": "nomade.png",
+    "grupo": "Quem Vocês São: comunidades"
+  },
+  {
+    "id": "comunidade-silvestre",
+    "onde": "cartão da comunidade Silvestre (ficha, galeria e criador)",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "retrato simbólico da comunidade Silvestre, Belle Époque, gravura em tons de latão",
+    "arquivo": "silvestre.png",
+    "grupo": "Quem Vocês São: comunidades"
+  },
+  {
+    "id": "comunidade-subterranea",
+    "onde": "cartão da comunidade Subterrânea (ficha, galeria e criador)",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "retrato simbólico da comunidade Subterrânea, Belle Époque, gravura em tons de latão",
+    "arquivo": "subterranea.png",
+    "grupo": "Quem Vocês São: comunidades"
+  },
+  {
+    "id": "comunidade-desertica",
+    "onde": "cartão da comunidade Desértica (ficha, galeria e criador)",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "retrato simbólico da comunidade Desértica, Belle Époque, gravura em tons de latão",
+    "arquivo": "desertica.png",
+    "grupo": "Quem Vocês São: comunidades"
+  },
+  {
+    "id": "comunidade-liberta",
+    "onde": "cartão da comunidade Liberta (ficha, galeria e criador)",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "retrato simbólico da comunidade Liberta, Belle Époque, gravura em tons de latão",
     "arquivo": null,
     "grupo": "Quem Vocês São: comunidades"
   },
   {
-    "id": "comunidade-operariado",
-    "onde": "cartão da comunidade Operariado (ficha, galeria e criador)",
+    "id": "comunidade-polar",
+    "onde": "cartão da comunidade Polar (ficha, galeria e criador)",
     "proporcao": "3:4",
     "px": "768×1024",
-    "pedido": "retrato simbólico da comunidade Operariado, Belle Époque, gravura em tons de latão",
+    "pedido": "retrato simbólico da comunidade Polar, Belle Époque, gravura em tons de latão",
+    "arquivo": "polar.png",
+    "grupo": "Quem Vocês São: comunidades"
+  },
+  {
+    "id": "comunidade-renascida",
+    "onde": "cartão da comunidade Renascida (ficha, galeria e criador)",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "retrato simbólico da comunidade Renascida, Belle Époque, gravura em tons de latão",
+    "arquivo": "renascida.png",
+    "grupo": "Quem Vocês São: comunidades"
+  },
+  {
+    "id": "comunidade-sobrevivente",
+    "onde": "cartão da comunidade Sobrevivente (ficha, galeria e criador)",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "retrato simbólico da comunidade Sobrevivente, Belle Époque, gravura em tons de latão",
+    "arquivo": "sobrevivente.png",
+    "grupo": "Quem Vocês São: comunidades"
+  },
+  {
+    "id": "comunidade-interiorana",
+    "onde": "cartão da comunidade Interiorana (ficha, galeria e criador)",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "retrato simbólico da comunidade Interiorana, Belle Époque, gravura em tons de latão",
     "arquivo": null,
     "grupo": "Quem Vocês São: comunidades"
   },
   {
-    "id": "comunidade-academia",
-    "onde": "cartão da comunidade Academia (ficha, galeria e criador)",
+    "id": "ancestralidade-humano",
+    "onde": "cartão da ancestralidade Humano (galeria e criador)",
     "proporcao": "3:4",
     "px": "768×1024",
-    "pedido": "retrato simbólico da comunidade Academia, Belle Époque, gravura em tons de latão",
-    "arquivo": null,
-    "grupo": "Quem Vocês São: comunidades"
-  },
-  {
-    "id": "comunidade-boemia",
-    "onde": "cartão da comunidade Boemia (ficha, galeria e criador)",
-    "proporcao": "3:4",
-    "px": "768×1024",
-    "pedido": "retrato simbólico da comunidade Boemia, Belle Époque, gravura em tons de latão",
-    "arquivo": null,
-    "grupo": "Quem Vocês São: comunidades"
-  },
-  {
-    "id": "comunidade-caserna",
-    "onde": "cartão da comunidade Caserna (ficha, galeria e criador)",
-    "proporcao": "3:4",
-    "px": "768×1024",
-    "pedido": "retrato simbólico da comunidade Caserna, Belle Époque, gravura em tons de latão",
-    "arquivo": null,
-    "grupo": "Quem Vocês São: comunidades"
-  },
-  {
-    "id": "comunidade-submundo",
-    "onde": "cartão da comunidade Submundo (ficha, galeria e criador)",
-    "proporcao": "3:4",
-    "px": "768×1024",
-    "pedido": "retrato simbólico da comunidade Submundo, Belle Époque, gravura em tons de latão",
-    "arquivo": null,
-    "grupo": "Quem Vocês São: comunidades"
-  },
-  {
-    "id": "ancestralidade-anc-1",
-    "onde": "cartão da ancestralidade Ancestralidade A (galeria e criador)",
-    "proporcao": "3:4",
-    "px": "768×1024",
-    "pedido": "retrato de Ancestralidade A, Belle Époque",
-    "arquivo": null,
+    "pedido": "retrato de Humano, Belle Époque",
+    "arquivo": "human.png",
     "grupo": "Quem Vocês São: ancestralidades"
   },
   {
-    "id": "ancestralidade-anc-2",
-    "onde": "cartão da ancestralidade Ancestralidade B (galeria e criador)",
+    "id": "ancestralidade-anao",
+    "onde": "cartão da ancestralidade Anão (galeria e criador)",
     "proporcao": "3:4",
     "px": "768×1024",
-    "pedido": "retrato de Ancestralidade B, Belle Époque",
-    "arquivo": null,
+    "pedido": "retrato de Anão, Belle Époque",
+    "arquivo": "dwarf.png",
     "grupo": "Quem Vocês São: ancestralidades"
   },
   {
-    "id": "ancestralidade-anc-3",
-    "onde": "cartão da ancestralidade Ancestralidade C (galeria e criador)",
+    "id": "ancestralidade-elfo",
+    "onde": "cartão da ancestralidade Elfo (galeria e criador)",
     "proporcao": "3:4",
     "px": "768×1024",
-    "pedido": "retrato de Ancestralidade C, Belle Époque",
-    "arquivo": null,
+    "pedido": "retrato de Elfo, Belle Époque",
+    "arquivo": "elf.png",
     "grupo": "Quem Vocês São: ancestralidades"
   },
   {
-    "id": "ancestralidade-anc-4",
-    "onde": "cartão da ancestralidade Ancestralidade D (galeria e criador)",
+    "id": "ancestralidade-orc",
+    "onde": "cartão da ancestralidade Orc (galeria e criador)",
     "proporcao": "3:4",
     "px": "768×1024",
-    "pedido": "retrato de Ancestralidade D, Belle Époque",
-    "arquivo": null,
+    "pedido": "retrato de Orc, Belle Époque",
+    "arquivo": "orc.png",
     "grupo": "Quem Vocês São: ancestralidades"
   },
   {
-    "id": "ancestralidade-anc-5",
-    "onde": "cartão da ancestralidade Ancestralidade E (galeria e criador)",
+    "id": "ancestralidade-goblin",
+    "onde": "cartão da ancestralidade Goblin (galeria e criador)",
     "proporcao": "3:4",
     "px": "768×1024",
-    "pedido": "retrato de Ancestralidade E, Belle Époque",
-    "arquivo": null,
+    "pedido": "retrato de Goblin, Belle Époque",
+    "arquivo": "goblin.png",
     "grupo": "Quem Vocês São: ancestralidades"
   },
   {
-    "id": "ancestralidade-anc-6",
-    "onde": "cartão da ancestralidade Ancestralidade F (galeria e criador)",
+    "id": "ancestralidade-pequenino",
+    "onde": "cartão da ancestralidade Pequenino (galeria e criador)",
     "proporcao": "3:4",
     "px": "768×1024",
-    "pedido": "retrato de Ancestralidade F, Belle Époque",
-    "arquivo": null,
+    "pedido": "retrato de Pequenino, Belle Époque",
+    "arquivo": "halfling.png",
+    "grupo": "Quem Vocês São: ancestralidades"
+  },
+  {
+    "id": "ancestralidade-gigante",
+    "onde": "cartão da ancestralidade Gigante (galeria e criador)",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "retrato de Gigante, Belle Époque",
+    "arquivo": "giant.png",
+    "grupo": "Quem Vocês São: ancestralidades"
+  },
+  {
+    "id": "ancestralidade-firbolg",
+    "onde": "cartão da ancestralidade Firbolg (galeria e criador)",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "retrato de Firbolg, Belle Époque",
+    "arquivo": "filburg.png",
+    "grupo": "Quem Vocês São: ancestralidades"
+  },
+  {
+    "id": "ancestralidade-fauno",
+    "onde": "cartão da ancestralidade Fauno (galeria e criador)",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "retrato de Fauno, Belle Époque",
+    "arquivo": "faun.png",
+    "grupo": "Quem Vocês São: ancestralidades"
+  },
+  {
+    "id": "ancestralidade-fada",
+    "onde": "cartão da ancestralidade Fada (galeria e criador)",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "retrato de Fada, Belle Époque",
+    "arquivo": "fairy.png",
+    "grupo": "Quem Vocês São: ancestralidades"
+  },
+  {
+    "id": "ancestralidade-fungril",
+    "onde": "cartão da ancestralidade Fungril (galeria e criador)",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "retrato de Fungril, Belle Époque",
+    "arquivo": "fungril.png",
+    "grupo": "Quem Vocês São: ancestralidades"
+  },
+  {
+    "id": "ancestralidade-galapa",
+    "onde": "cartão da ancestralidade Galapa (galeria e criador)",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "retrato de Galapa, Belle Époque",
+    "arquivo": "galapa.png",
+    "grupo": "Quem Vocês São: ancestralidades"
+  },
+  {
+    "id": "ancestralidade-katari",
+    "onde": "cartão da ancestralidade Katari (galeria e criador)",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "retrato de Katari, Belle Époque",
+    "arquivo": "katari.png",
+    "grupo": "Quem Vocês São: ancestralidades"
+  },
+  {
+    "id": "ancestralidade-quacho",
+    "onde": "cartão da ancestralidade Quacho (galeria e criador)",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "retrato de Quacho, Belle Époque",
+    "arquivo": "toad.png",
+    "grupo": "Quem Vocês São: ancestralidades"
+  },
+  {
+    "id": "ancestralidade-simio",
+    "onde": "cartão da ancestralidade Símio (galeria e criador)",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "retrato de Símio, Belle Époque",
+    "arquivo": "simian.png",
+    "grupo": "Quem Vocês São: ancestralidades"
+  },
+  {
+    "id": "ancestralidade-drakona",
+    "onde": "cartão da ancestralidade Drakona (galeria e criador)",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "retrato de Drakona, Belle Époque",
+    "arquivo": "drakona.png",
+    "grupo": "Quem Vocês São: ancestralidades"
+  },
+  {
+    "id": "ancestralidade-infernis",
+    "onde": "cartão da ancestralidade Infernis (galeria e criador)",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "retrato de Infernis, Belle Époque",
+    "arquivo": "infernis.png",
+    "grupo": "Quem Vocês São: ancestralidades"
+  },
+  {
+    "id": "ancestralidade-clank",
+    "onde": "cartão da ancestralidade Clank (galeria e criador)",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "retrato de Clank, Belle Époque",
+    "arquivo": "clank.png",
+    "grupo": "Quem Vocês São: ancestralidades"
+  },
+  {
+    "id": "ancestralidade-aetheris",
+    "onde": "cartão da ancestralidade Aetheris (galeria e criador)",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "retrato de Aetheris, Belle Époque",
+    "arquivo": "aetheris.png",
+    "grupo": "Quem Vocês São: ancestralidades"
+  },
+  {
+    "id": "ancestralidade-gnomo",
+    "onde": "cartão da ancestralidade Gnomo (galeria e criador)",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "retrato de Gnomo, Belle Époque",
+    "arquivo": "gnome.png",
+    "grupo": "Quem Vocês São: ancestralidades"
+  },
+  {
+    "id": "ancestralidade-elemental-terra",
+    "onde": "cartão da ancestralidade Parente da Terra (galeria e criador)",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "retrato de Parente da Terra, Belle Époque",
+    "arquivo": "earthkin.png",
+    "grupo": "Quem Vocês São: ancestralidades"
+  },
+  {
+    "id": "ancestralidade-elemental-brasa",
+    "onde": "cartão da ancestralidade Parente da Brasa (galeria e criador)",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "retrato de Parente da Brasa, Belle Époque",
+    "arquivo": "emberkin.png",
+    "grupo": "Quem Vocês São: ancestralidades"
+  },
+  {
+    "id": "ancestralidade-elemental-ceu",
+    "onde": "cartão da ancestralidade Parente do Céu (galeria e criador)",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "retrato de Parente do Céu, Belle Époque",
+    "arquivo": "airkin.png",
+    "grupo": "Quem Vocês São: ancestralidades"
+  },
+  {
+    "id": "ancestralidade-elemental-mare",
+    "onde": "cartão da ancestralidade Parente da Maré (galeria e criador)",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "retrato de Parente da Maré, Belle Époque",
+    "arquivo": "tidekin.png",
     "grupo": "Quem Vocês São: ancestralidades"
   },
   {
@@ -517,7 +814,7 @@
     "onde": "abertura da ficha da classe Ocultista",
     "proporcao": "21:9",
     "px": "2560×1100",
-    "pedido": "Ocultista: Estuda o que os outros fingem não ver, e paga o preço em noites sem sono. Deixe a parte de baixo mais simples (chão, sombra, névoa), é nela que entra o texto.",
+    "pedido": "Ocultista: Rituais, objetos proibidos e conversas com os mortos. Onde o Warlock negocia, o Ocultista sabe. Deixe a parte de baixo mais simples (chão, sombra, névoa), é nela que entra o texto.",
     "arquivo": null,
     "grupo": "Fichas de classe (abertura)"
   },
@@ -526,7 +823,7 @@
     "onde": "abertura da ficha da classe Médico",
     "proporcao": "21:9",
     "px": "2560×1100",
-    "pedido": "Médico: Costura soldados, operários e reis, e já viu feridas que nenhum livro descreve. Deixe a parte de baixo mais simples (chão, sombra, névoa), é nela que entra o texto.",
+    "pedido": "Médico: Lê o corpo de amigos e inimigos: diz onde bater e quem salvar. Deixe a parte de baixo mais simples (chão, sombra, névoa), é nela que entra o texto.",
     "arquivo": null,
     "grupo": "Fichas de classe (abertura)"
   },
@@ -535,7 +832,7 @@
     "onde": "abertura da ficha da classe Flagelante",
     "proporcao": "21:9",
     "px": "2560×1100",
-    "pedido": "Flagelante: Transforma a dor em fé, e a fé em força. Deixe a parte de baixo mais simples (chão, sombra, névoa), é nela que entra o texto.",
+    "pedido": "Flagelante: Sangra para que os outros não sangrem. A dor é a prova da fé, e a fé paga em milagres. Deixe a parte de baixo mais simples (chão, sombra, névoa), é nela que entra o texto.",
     "arquivo": null,
     "grupo": "Fichas de classe (abertura)"
   },
@@ -544,7 +841,7 @@
     "onde": "abertura da ficha da classe Galvanista",
     "proporcao": "21:9",
     "px": "2560×1100",
-    "pedido": "Galvanista: Engenheiro da eletricidade, convencido de que a faísca certa acorda qualquer coisa. Deixe a parte de baixo mais simples (chão, sombra, névoa), é nela que entra o texto.",
+    "pedido": "Galvanista: Traz os mortos de volta com eletricidade: eletrodos, baterias e corpos que se contorcem ao voltar. Deixe a parte de baixo mais simples (chão, sombra, névoa), é nela que entra o texto.",
     "arquivo": null,
     "grupo": "Fichas de classe (abertura)"
   },
@@ -553,99 +850,369 @@
     "onde": "abertura da ficha da classe Alquimista",
     "proporcao": "21:9",
     "px": "2560×1100",
-    "pedido": "Alquimista: Química, farmácia e um pouco de heresia, tudo na mesma bancada. Deixe a parte de baixo mais simples (chão, sombra, névoa), é nela que entra o texto.",
+    "pedido": "Alquimista: Prepara as respostas antes, na bancada, e improvisa quando o plano falha. Deixe a parte de baixo mais simples (chão, sombra, névoa), é nela que entra o texto.",
     "arquivo": null,
     "grupo": "Fichas de classe (abertura)"
   },
   {
-    "id": "subclasse-ocultista-1",
-    "onde": "subclasse 1 de Ocultista no criador",
+    "id": "subclasse-ocultista-antiquario",
+    "onde": "subclasse Antiquário (Ocultista) no criador",
     "proporcao": "3:4",
     "px": "768×1024",
-    "pedido": "Ocultista, subclasse 1",
-    "arquivo": null,
-    "grupo": "Subclasses (criador)"
+    "pedido": "Ocultista: subclasse Antiquário",
+    "arquivo": "antiquario.png",
+    "grupo": "Subclasses"
   },
   {
-    "id": "subclasse-ocultista-2",
-    "onde": "subclasse 2 de Ocultista no criador",
+    "id": "subclasse-ocultista-medium",
+    "onde": "subclasse Médium (Ocultista) no criador",
     "proporcao": "3:4",
     "px": "768×1024",
-    "pedido": "Ocultista, subclasse 2",
-    "arquivo": null,
-    "grupo": "Subclasses (criador)"
+    "pedido": "Ocultista: subclasse Médium",
+    "arquivo": "Médium.png",
+    "grupo": "Subclasses"
   },
   {
-    "id": "subclasse-medico-1",
-    "onde": "subclasse 1 de Médico no criador",
+    "id": "subclasse-medico-cirurgiao",
+    "onde": "subclasse Cirurgião (Médico) no criador",
     "proporcao": "3:4",
     "px": "768×1024",
-    "pedido": "Médico, subclasse 1",
-    "arquivo": null,
-    "grupo": "Subclasses (criador)"
+    "pedido": "Médico: subclasse Cirurgião",
+    "arquivo": "Cirurgião.png",
+    "grupo": "Subclasses"
   },
   {
-    "id": "subclasse-medico-2",
-    "onde": "subclasse 2 de Médico no criador",
+    "id": "subclasse-medico-alienista",
+    "onde": "subclasse Alienista (Médico) no criador",
     "proporcao": "3:4",
     "px": "768×1024",
-    "pedido": "Médico, subclasse 2",
-    "arquivo": null,
-    "grupo": "Subclasses (criador)"
+    "pedido": "Médico: subclasse Alienista",
+    "arquivo": "alienista.png",
+    "grupo": "Subclasses"
   },
   {
-    "id": "subclasse-flagelante-1",
-    "onde": "subclasse 1 de Flagelante no criador",
+    "id": "subclasse-flagelante-martir",
+    "onde": "subclasse Mártir (Flagelante) no criador",
     "proporcao": "3:4",
     "px": "768×1024",
-    "pedido": "Flagelante, subclasse 1",
-    "arquivo": null,
-    "grupo": "Subclasses (criador)"
+    "pedido": "Flagelante: subclasse Mártir",
+    "arquivo": "Martir.png",
+    "grupo": "Subclasses"
   },
   {
-    "id": "subclasse-flagelante-2",
-    "onde": "subclasse 2 de Flagelante no criador",
+    "id": "subclasse-flagelante-zelote",
+    "onde": "subclasse Zelote (Flagelante) no criador",
     "proporcao": "3:4",
     "px": "768×1024",
-    "pedido": "Flagelante, subclasse 2",
-    "arquivo": null,
-    "grupo": "Subclasses (criador)"
+    "pedido": "Flagelante: subclasse Zelote",
+    "arquivo": "Zelote.png",
+    "grupo": "Subclasses"
   },
   {
-    "id": "subclasse-galvanista-1",
-    "onde": "subclasse 1 de Galvanista no criador",
+    "id": "subclasse-galvanista-exumador",
+    "onde": "subclasse Exumador (Galvanista) no criador",
     "proporcao": "3:4",
     "px": "768×1024",
-    "pedido": "Galvanista, subclasse 1",
-    "arquivo": null,
-    "grupo": "Subclasses (criador)"
+    "pedido": "Galvanista: subclasse Exumador",
+    "arquivo": "Exumador.png",
+    "grupo": "Subclasses"
   },
   {
-    "id": "subclasse-galvanista-2",
-    "onde": "subclasse 2 de Galvanista no criador",
+    "id": "subclasse-galvanista-costureiro",
+    "onde": "subclasse Costureiro (Galvanista) no criador",
     "proporcao": "3:4",
     "px": "768×1024",
-    "pedido": "Galvanista, subclasse 2",
-    "arquivo": null,
-    "grupo": "Subclasses (criador)"
+    "pedido": "Galvanista: subclasse Costureiro",
+    "arquivo": "Costureiro.png",
+    "grupo": "Subclasses"
   },
   {
-    "id": "subclasse-alquimista-1",
-    "onde": "subclasse 1 de Alquimista no criador",
+    "id": "subclasse-alquimista-apotecaria",
+    "onde": "subclasse Apotecária (Alquimista) no criador",
     "proporcao": "3:4",
     "px": "768×1024",
-    "pedido": "Alquimista, subclasse Apotecária",
-    "arquivo": null,
-    "grupo": "Subclasses (criador)"
+    "pedido": "Alquimista: subclasse Apotecária",
+    "arquivo": "Apotecaria.png",
+    "grupo": "Subclasses"
   },
   {
-    "id": "subclasse-alquimista-2",
-    "onde": "subclasse 2 de Alquimista no criador",
+    "id": "subclasse-alquimista-granadeiro",
+    "onde": "subclasse Granadeiro (Alquimista) no criador",
     "proporcao": "3:4",
     "px": "768×1024",
-    "pedido": "Alquimista, subclasse Granadeiro",
+    "pedido": "Alquimista: subclasse Granadeiro",
+    "arquivo": "Granadeiro.png",
+    "grupo": "Subclasses"
+  },
+  {
+    "id": "subclasse-bardo-trovador",
+    "onde": "subclasse Trovador (Bardo) no criador",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "Bardo: subclasse Trovador",
     "arquivo": null,
-    "grupo": "Subclasses (criador)"
+    "grupo": "Subclasses"
+  },
+  {
+    "id": "subclasse-bardo-beletrista",
+    "onde": "subclasse Beletrista (Bardo) no criador",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "Bardo: subclasse Beletrista",
+    "arquivo": "Beletrista.png",
+    "grupo": "Subclasses"
+  },
+  {
+    "id": "subclasse-druida-guardiao-dos-elementos",
+    "onde": "subclasse Guardião dos Elementos (Druida) no criador",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "Druida: subclasse Guardião dos Elementos",
+    "arquivo": "Guardião dos Elementos.png",
+    "grupo": "Subclasses"
+  },
+  {
+    "id": "subclasse-druida-protetor-da-renovacao",
+    "onde": "subclasse Protetor da Renovação (Druida) no criador",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "Druida: subclasse Protetor da Renovação",
+    "arquivo": "Protetor da renovação.png",
+    "grupo": "Subclasses"
+  },
+  {
+    "id": "subclasse-guardiao-baluarte",
+    "onde": "subclasse Baluarte (Guardião) no criador",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "Guardião: subclasse Baluarte",
+    "arquivo": "Baluarte.png",
+    "grupo": "Subclasses"
+  },
+  {
+    "id": "subclasse-guardiao-vingador",
+    "onde": "subclasse Vingador (Guardião) no criador",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "Guardião: subclasse Vingador",
+    "arquivo": "Vingador.png",
+    "grupo": "Subclasses"
+  },
+  {
+    "id": "subclasse-patrulheiro-treinador",
+    "onde": "subclasse Treinador (Patrulheiro) no criador",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "Patrulheiro: subclasse Treinador",
+    "arquivo": "Treinador.png",
+    "grupo": "Subclasses"
+  },
+  {
+    "id": "subclasse-patrulheiro-rastreador",
+    "onde": "subclasse Rastreador (Patrulheiro) no criador",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "Patrulheiro: subclasse Rastreador",
+    "arquivo": "Rastreador.png",
+    "grupo": "Subclasses"
+  },
+  {
+    "id": "subclasse-ladino-gatuno",
+    "onde": "subclasse Gatuno (Ladino) no criador",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "Ladino: subclasse Gatuno",
+    "arquivo": null,
+    "grupo": "Subclasses"
+  },
+  {
+    "id": "subclasse-ladino-mafioso",
+    "onde": "subclasse Mafioso (Ladino) no criador",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "Ladino: subclasse Mafioso",
+    "arquivo": "Mafioso.png",
+    "grupo": "Subclasses"
+  },
+  {
+    "id": "subclasse-serafim-portador-divino",
+    "onde": "subclasse Portador Divino (Serafim) no criador",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "Serafim: subclasse Portador Divino",
+    "arquivo": "Portador divino.png",
+    "grupo": "Subclasses"
+  },
+  {
+    "id": "subclasse-serafim-sentinela-alada",
+    "onde": "subclasse Sentinela Alada (Serafim) no criador",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "Serafim: subclasse Sentinela Alada",
+    "arquivo": "Sentinela Alada.png",
+    "grupo": "Subclasses"
+  },
+  {
+    "id": "subclasse-feiticeiro-origem-elemental",
+    "onde": "subclasse Origem Elemental (Feiticeiro) no criador",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "Feiticeiro: subclasse Origem Elemental",
+    "arquivo": "Origem Elemental.png",
+    "grupo": "Subclasses"
+  },
+  {
+    "id": "subclasse-feiticeiro-origem-primordial",
+    "onde": "subclasse Origem Primordial (Feiticeiro) no criador",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "Feiticeiro: subclasse Origem Primordial",
+    "arquivo": "Ordem Primordial.png",
+    "grupo": "Subclasses"
+  },
+  {
+    "id": "subclasse-guerreiro-escolhido-da-bravura",
+    "onde": "subclasse Escolhido da Bravura (Guerreiro) no criador",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "Guerreiro: subclasse Escolhido da Bravura",
+    "arquivo": "Escolhido da Bravura.png",
+    "grupo": "Subclasses"
+  },
+  {
+    "id": "subclasse-guerreiro-escolhido-da-matanca",
+    "onde": "subclasse Escolhido da Matança (Guerreiro) no criador",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "Guerreiro: subclasse Escolhido da Matança",
+    "arquivo": "Escolhido da Matança.png",
+    "grupo": "Subclasses"
+  },
+  {
+    "id": "subclasse-mago-discipulo-do-conhecimento",
+    "onde": "subclasse Discípulo do Conhecimento (Mago) no criador",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "Mago: subclasse Discípulo do Conhecimento",
+    "arquivo": "Discipulo do Conhecimento.png",
+    "grupo": "Subclasses"
+  },
+  {
+    "id": "subclasse-mago-discipulo-da-guerra",
+    "onde": "subclasse Discípulo da Guerra (Mago) no criador",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "Mago: subclasse Discípulo da Guerra",
+    "arquivo": "Discipulo da Guerra.png",
+    "grupo": "Subclasses"
+  },
+  {
+    "id": "subclasse-assassino-guilda-dos-executores",
+    "onde": "subclasse Guilda dos Executores (Assassino) no criador",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "Assassino: subclasse Guilda dos Executores",
+    "arquivo": "Guilda dos Executores.png",
+    "grupo": "Subclasses"
+  },
+  {
+    "id": "subclasse-assassino-guilda-dos-envenenadores",
+    "onde": "subclasse Guilda dos Envenenadores (Assassino) no criador",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "Assassino: subclasse Guilda dos Envenenadores",
+    "arquivo": "Guilda dos Envenenadores.png",
+    "grupo": "Subclasses"
+  },
+  {
+    "id": "subclasse-pugilista-rolo-compressor",
+    "onde": "subclasse Rolo Compressor (Pugilista) no criador",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "Pugilista: subclasse Rolo Compressor",
+    "arquivo": "Rolo Compressor.png",
+    "grupo": "Subclasses"
+  },
+  {
+    "id": "subclasse-pugilista-artista-marcial",
+    "onde": "subclasse Artista Marcial (Pugilista) no criador",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "Pugilista: subclasse Artista Marcial",
+    "arquivo": "Artista Marcial.png",
+    "grupo": "Subclasses"
+  },
+  {
+    "id": "subclasse-warlock-pacto-do-eterno",
+    "onde": "subclasse Pacto do Eterno (Warlock) no criador",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "Warlock: subclasse Pacto do Eterno",
+    "arquivo": "Pacto do Eterno.png",
+    "grupo": "Subclasses"
+  },
+  {
+    "id": "subclasse-warlock-pacto-do-furioso",
+    "onde": "subclasse Pacto do Furioso (Warlock) no criador",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "Warlock: subclasse Pacto do Furioso",
+    "arquivo": "Pacto do Furioso.png",
+    "grupo": "Subclasses"
+  },
+  {
+    "id": "subclasse-bruxa-benzedeira",
+    "onde": "subclasse Benzedeira (Bruxa) no criador",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "Bruxa: subclasse Benzedeira",
+    "arquivo": "Benzedeira.png",
+    "grupo": "Subclasses"
+  },
+  {
+    "id": "subclasse-bruxa-lua",
+    "onde": "subclasse Lua (Bruxa) no criador",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "Bruxa: subclasse Lua",
+    "arquivo": "Lua.png",
+    "grupo": "Subclasses"
+  },
+  {
+    "id": "subclasse-invocador-necromante",
+    "onde": "subclasse Necromante (Invocador) no criador",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "Invocador: subclasse Necromante",
+    "arquivo": "Necromante.png",
+    "grupo": "Subclasses"
+  },
+  {
+    "id": "subclasse-invocador-teurgista",
+    "onde": "subclasse Teurgista (Invocador) no criador",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "Invocador: subclasse Teurgista",
+    "arquivo": "Teurgista.png",
+    "grupo": "Subclasses"
+  },
+  {
+    "id": "subclasse-cacador-de-sangue-ordem-do-espectro",
+    "onde": "subclasse Ordem do Espectro (Caçador de Sangue) no criador",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "Caçador de Sangue: subclasse Ordem do Espectro",
+    "arquivo": "Ordem do Espectro.png",
+    "grupo": "Subclasses"
+  },
+  {
+    "id": "subclasse-cacador-de-sangue-ordem-mutante",
+    "onde": "subclasse Ordem Mutante (Caçador de Sangue) no criador",
+    "proporcao": "3:4",
+    "px": "768×1024",
+    "pedido": "Caçador de Sangue: subclasse Ordem Mutante",
+    "arquivo": "Ordem Mutante.png",
+    "grupo": "Subclasses"
   },
   {
     "id": "carta-carta-1",
@@ -703,9 +1270,9 @@
   },
   {
     "id": "retrato-placeholder",
-    "onde": "retrato do personagem, enquanto o jogador não envia uma imagem",
+    "onde": "retrato do personagem no criador, enquanto o jogador não envia uma imagem",
     "proporcao": "3:4",
-    "px": 768,
+    "px": "768×1024",
     "pedido": "silhueta em gravura de um convidado da Exposição, de busto, sem rosto definido, tons de latão sobre azul-petróleo",
     "arquivo": null,
     "grupo": "O Arquivo"
@@ -730,56 +1297,11 @@
   },
   {
     "id": "abertura-como",
-    "onde": "abertura do capítulo V",
+    "onde": "seção \"Como Se Joga Aqui\" do Arquivo (tipo I)",
     "proporcao": "21:9",
-    "px": 2560,
-    "pedido": "um palco de variedades: lantejoulas, holofote, e algo errado na plateia",
-    "arquivo": null,
-    "grupo": "O Arquivo"
-  },
-  {
-    "id": "abertura-exposicao",
-    "onde": "abertura do capítulo III",
-    "proporcao": "21:9",
-    "px": 2560,
-    "pedido": "os portões da Exposição de dia, bandeiras de todos os países, multidão",
-    "arquivo": null,
-    "grupo": "O Arquivo"
-  },
-  {
-    "id": "abertura-mundo",
-    "onde": "abertura do capítulo II",
-    "proporcao": "21:9",
-    "px": 2560,
-    "pedido": "Rouillac do alto, chaminés, casas de ferro, o rio e as fornalhas",
-    "arquivo": null,
-    "grupo": "O Arquivo"
-  },
-  {
-    "id": "abertura-proposta",
-    "onde": "abertura do capítulo I",
-    "proporcao": "21:9",
-    "px": 2560,
-    "pedido": "o salão de abertura lotado, lustres, convidados de vários países, uma tensão no ar",
-    "arquivo": null,
-    "grupo": "O Arquivo"
-  },
-  {
-    "id": "abertura-quem",
-    "onde": "abertura do capítulo IV",
-    "proporcao": "21:9",
-    "px": 2560,
-    "pedido": "três ou quatro convidados posando para uma foto de estúdio, cada um de um mundo diferente",
-    "arquivo": null,
-    "grupo": "O Arquivo"
-  },
-  {
-    "id": "classes-cenario",
-    "onde": "seção \"Classes no cenário\" do Arquivo (tipo B)",
-    "proporcao": "3:4",
-    "px": "768×1024",
-    "pedido": "Retrato de uma figura de época",
-    "arquivo": null,
+    "px": "2560×1100",
+    "pedido": "Um palco de variedades: lantejoulas, holofote, e algo errado na plateia",
+    "arquivo": "abertura-como.png",
     "grupo": "O Arquivo"
   },
   {
@@ -787,71 +1309,116 @@
     "onde": "seção \"A corte\" do Arquivo (tipo A)",
     "proporcao": "3:4",
     "px": "768×1024",
-    "pedido": "O retrato oficial da corte, só a aparição pública",
-    "arquivo": null,
+    "pedido": "O retrato oficial da corte",
+    "arquivo": "corte.png",
     "grupo": "O Arquivo"
   },
   {
     "id": "distincoes",
-    "onde": "seção \"Distinções\" do Arquivo (tipo A)",
+    "onde": "seção \"Entremonts\" do Arquivo (tipo A)",
     "proporcao": "3:4",
     "px": "768×1024",
-    "pedido": "Planta de Rouillac e o Rio Ferrum",
-    "arquivo": null,
+    "pedido": "Rouillac e o Rio Ferrum",
+    "arquivo": "distincoes.png",
     "grupo": "O Arquivo"
   },
   {
-    "id": "modulo-ficha",
-    "onde": "seção \"Módulo de ficha\" do Arquivo (tipo K)",
-    "proporcao": "4:3",
-    "px": "1280×960",
-    "pedido": "Esboço a lápis de uma ficha de personagem",
-    "arquivo": null,
+    "id": "abertura-exposicao",
+    "onde": "seção \"A Exposição\" do Arquivo (tipo I)",
+    "proporcao": "21:9",
+    "px": "2560×1100",
+    "pedido": "Os portões da Exposição de dia, bandeiras de todos os países, multidão",
+    "arquivo": "abertura-exposicao.png",
     "grupo": "O Arquivo"
   },
   {
-    "id": "principios-mestre",
-    "onde": "seção \"Princípios do mestre\" do Arquivo (tipo A)",
+    "id": "abertura-mundo",
+    "onde": "seção \"O Mundo\" do Arquivo (tipo I)",
+    "proporcao": "21:9",
+    "px": "2560×1100",
+    "pedido": "Rouillac do alto: chaminés, casas de ferro, o rio e as fornalhas",
+    "arquivo": "abertura-mundo.png",
+    "grupo": "O Arquivo"
+  },
+  {
+    "id": "classes-cenario",
+    "onde": "seção \"A magia e as transformações\" do Arquivo (tipo B)",
     "proporcao": "3:4",
     "px": "768×1024",
-    "pedido": "Vinheta do mestre",
-    "arquivo": null,
+    "pedido": "Retrato de uma figura de época",
+    "arquivo": "classes-cenario.png",
+    "grupo": "O Arquivo"
+  },
+  {
+    "id": "abertura-proposta",
+    "onde": "seção \"A Proposta\" do Arquivo (tipo I)",
+    "proporcao": "21:9",
+    "px": "2560×1100",
+    "pedido": "O salão de abertura lotado, lustres, convidados de vários países",
+    "arquivo": "abertura-proposta.png",
+    "grupo": "O Arquivo"
+  },
+  {
+    "id": "abertura-quem",
+    "onde": "seção \"Quem Vocês São\" do Arquivo (tipo I)",
+    "proporcao": "21:9",
+    "px": "2560×1100",
+    "pedido": "Convidados posando para uma foto de estúdio",
+    "arquivo": "abertura-quem.png",
     "grupo": "O Arquivo"
   },
   {
     "id": "respiro-como",
-    "onde": "arte de respiro, capítulo V",
+    "onde": "seção \"arte: { id: \"respiro-como\", tipo: C, desc: \"O catálogo de armas e instrumentos da Belle Époque\" }\" do Arquivo (tipo C)",
     "proporcao": "21:9",
-    "px": 2560,
-    "pedido": "o catálogo de armas e instrumentos da Belle Époque, em gravura",
-    "arquivo": null,
+    "px": "2560×1100",
+    "pedido": "O catálogo de armas e instrumentos da Belle Époque",
+    "arquivo": "respiro-como.png",
     "grupo": "O Arquivo"
   },
   {
     "id": "respiro-quem",
-    "onde": "arte de respiro, capítulo IV",
+    "onde": "seção \"contexto: \"As delegações chegam a Rouillac.\"\" do Arquivo (tipo C)",
     "proporcao": "21:9",
-    "px": 2560,
-    "pedido": "delegações chegando de trem à Gare de l'Exposition",
-    "arquivo": null,
+    "px": "2560×1100",
+    "pedido": "As delegações chegam a Rouillac",
+    "arquivo": "respiro-quem.png",
     "grupo": "O Arquivo"
   },
   {
     "id": "chamada-sua-vez",
-    "onde": "chamada final do Arquivo",
+    "onde": "seção \"Sua vez\" do Arquivo (tipo I)",
     "proporcao": "21:9",
-    "px": 2560,
-    "pedido": "a chegada de trem a Rouillac, a plataforma cheia de fumaça e malas",
-    "arquivo": null,
+    "px": "2560×1100",
+    "pedido": "A plataforma da Gare de l'Exposition, fumaça e malas",
+    "arquivo": "chamada-sua-vez.png",
     "grupo": "O Arquivo"
   },
   {
     "id": "abertura-titulo",
-    "onde": "tela de título do Arquivo",
-    "proporcao": "21:9",
-    "px": 2560,
-    "pedido": "a Exposição à noite, vista de longe: a torre de ferro iluminada a gás, os pavilhões, a névoa sobre o rio",
+    "onde": "arte do Arquivo",
+    "proporcao": "",
+    "px": "",
+    "pedido": "",
+    "arquivo": "abertura-titulo.png",
+    "grupo": "Outras"
+  },
+  {
+    "id": "principios-mestre",
+    "onde": "arte do Arquivo",
+    "proporcao": "",
+    "px": "",
+    "pedido": "",
+    "arquivo": "principios-mestre.png",
+    "grupo": "Outras"
+  },
+  {
+    "id": "modulo-ficha",
+    "onde": "arte do Arquivo",
+    "proporcao": "",
+    "px": "",
+    "pedido": "",
     "arquivo": null,
-    "grupo": "O Arquivo"
+    "grupo": "Outras"
   }
 ]

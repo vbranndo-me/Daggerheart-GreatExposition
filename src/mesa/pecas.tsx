@@ -168,6 +168,40 @@ function Opcao({
   );
 }
 
+/** O cartaz 3:4: a arte É o cartão. O nome só aparece por cima quando a arte não o traz escrito (`mostrarNome`); senão fica no tooltip e no painel de detalhes. */
+export function Cartaz({
+  nome,
+  url,
+  srcSet,
+  mostrarNome = true,
+  marcada,
+  aberto,
+  etiqueta,
+  rotuloMarca = "sua escolha",
+  aoClicar,
+}: {
+  nome: string;
+  url?: string | null;
+  srcSet?: string;
+  mostrarNome?: boolean;
+  marcada?: boolean;
+  /** o cartaz cujo detalhe está aberto agora */
+  aberto?: boolean;
+  etiqueta?: string;
+  rotuloMarca?: string;
+  aoClicar: () => void;
+}) {
+  return (
+    <button type="button" className={`cartaz ${marcada ? "marcada" : ""} ${aberto ? "aberto" : ""}`} title={nome} aria-label={nome} aria-pressed={marcada} onClick={aoClicar}>
+      <span className="cartaz-arte">
+        {url ? <img src={url} srcSet={srcSet} sizes="200px" alt="" loading="lazy" /> : <PlaceholderArte id={nome} monograma={nome.slice(0, 1)} />}
+      </span>
+      {mostrarNome && <span className="cartaz-nome">{nome}</span>}
+      {(marcada || etiqueta) && <span className={`opcao-selo ${marcada ? "escolhido" : ""}`}>{marcada ? rotuloMarca : etiqueta}</span>}
+    </button>
+  );
+}
+
 /** Lingueta de latão presa na borda da moldura, com a seta gravada. */
 function Puxador({ sentido }: { sentido: "recolher" | "abrir" }) {
   return (

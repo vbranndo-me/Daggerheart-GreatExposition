@@ -1,29 +1,33 @@
 # A Proposta
 
-*[Exemplo. O texto real vem do `campaign-frame-rascunho.md`.]*
+Há 10 anos a Grande Guerra assola o continente de **Lucentia**, espalhando fome e desespero até para aqueles que nem se lembram por que a guerra começou. Em meio às nações beligerantes está **Entremonts**, um pequeno país que manteve a neutralidade no conflito vendendo armas e ferro para os dois lados. No entanto, as consequências da guerra afetam até quem tenta se manter alheio. Por isso, num último gesto de esperança, o Príncipe de Entremonts organizou a **Exposição Universal**, um evento extravagante onde os maiores intelectuais de todas as nações, inclusive inimigas, se reuniriam em nome da paz.
 
-O continente está em guerra há mais de dez anos. As fronteiras mudam com as estações, as ferrovias são cortadas e reconstruídas, e ninguém mais lembra direito por que a primeira bala foi disparada.
+Vocês estão entre os presentes quando a Exposição começa. Podem ter sido convidados diretamente pelo príncipe, podem ser estudiosos interessados nos debates, podem ser só desavisados que acabaram chegando aqui sem querer. Mas o importante é que agora estão envolvidos.
 
-No meio disso tudo, **Entremonts**, o menor país do continente, neutro por teimosia e por necessidade, convidou o mundo inteiro para a sua capital. Em **Rouillac**, uma antiga vila de mineiros às margens do Rio Ferrum, ergueu-se a **Exposição Universal pela Paz**: pavilhões de ferro e vidro, máquinas que ninguém entende, delegações de países que se odeiam dividindo o mesmo jardim.
+E a maior feira do século vai acabar em sangue quando todos forem jogados numa espécie de competição macabra e misteriosa.
 
-Vocês estão lá. Talvez como convidados, talvez como refugiados, talvez varrendo o chão depois que as luzes se apagam. E alguma coisa, na feira, não está certa.
-
-Esta é uma campanha de **Daggerheart** sobre maravilha e medo: o brilho do progresso e o que se esconde por baixo dele.
+Não há heróis nesta feira. Há sobreviventes, e talvez nem isso.
 
 ## Tom
 
-- A elegância da Belle Époque e a sujeira por trás dela.
-- Horror que cresce devagar: primeiro estranho, depois errado, depois impossível.
-- Personagens que importam, com vidas antes da história começar.
+Camp, Decadente, Desesperador, Elegante, Febril, Grotesco, Opressivo, Paranoico, Trágico.
+
+Nesta campanha vocês vão viver cenas densas e cercadas de horror, com perigo em cada esquina. Mas, sem aviso, a atmosfera de terror é rasgada e o puro camp entra em jogo. Não se engane: o absurdo só está aqui para baixar a sua guarda e abrir espaço para o horror ir ainda mais fundo. Nestas sessões, o horror vai vestir lantejoulas.
 
 ## Temas
 
-- Progresso e o seu preço.
-- Paz como espetáculo e como desejo verdadeiro.
-- O que a gente aceita não ver para continuar vivendo.
+- O preço da paz.
+- Neutralidade é cumplicidade.
+- O luxo erguido sobre a fome.
+- Boas intenções, consequências monstruosas.
+- O olhar sobre o outro.
+- O que você faria para sobreviver.
 
 ## Referências
 
-- Os programas e cartazes da Exposição de Paris de 1900.
-- *O Prestígio*, *Penny Dreadful*, *Bloodborne* (o tom, não a violência).
-- Contos de H. P. Lovecraft e Robert W. Chambers.
+- Fear & Hunger 2: Termina
+- Bloodborne
+- H. P. Lovecraft
+- Elden Ring
+- Battle Royale
+- Jujutsu Kaisen: Culling Games

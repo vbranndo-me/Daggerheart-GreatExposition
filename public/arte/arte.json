@@ -1,0 +1,931 @@
+{
+ "abertura-titulo": {
+  "larguras": [
+   1280,
+   1920,
+   2560
+  ],
+  "proporcao": 2.333,
+  "cor": "rgb(46,60,58)"
+ },
+ "abertura-proposta": {
+  "larguras": [
+   1280,
+   1920,
+   2560
+  ],
+  "proporcao": 2.333,
+  "cor": "rgb(63,64,59)"
+ },
+ "abertura-mundo": {
+  "larguras": [
+   1280,
+   1920,
+   2560
+  ],
+  "proporcao": 2.333,
+  "cor": "rgb(106,73,73)"
+ },
+ "abertura-exposicao": {
+  "larguras": [
+   1280,
+   1920,
+   2560
+  ],
+  "proporcao": 2.333,
+  "cor": "rgb(149,137,119)"
+ },
+ "abertura-quem": {
+  "larguras": [
+   1280,
+   1920,
+   2560
+  ],
+  "proporcao": 1.5,
+  "cor": "rgb(114,95,78)"
+ },
+ "abertura-como": {
+  "larguras": [
+   1280,
+   1920,
+   2560
+  ],
+  "proporcao": 2.333,
+  "cor": "rgb(43,27,20)"
+ },
+ "chamada-sua-vez": {
+  "larguras": [
+   1280,
+   1920,
+   2560
+  ],
+  "proporcao": 2.333,
+  "cor": "rgb(74,54,36)"
+ },
+ "respiro-quem": {
+  "larguras": [
+   1280,
+   1920,
+   2560
+  ],
+  "proporcao": 2.333,
+  "cor": "rgb(81,67,50)"
+ },
+ "respiro-como": {
+  "larguras": [
+   1280,
+   1920,
+   2560
+  ],
+  "proporcao": 1.462,
+  "cor": "rgb(63,56,49)"
+ },
+ "classes-cenario": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(118,105,92)"
+ },
+ "corte": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.76,
+  "cor": "rgb(167,142,126)"
+ },
+ "distincoes": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.76,
+  "cor": "rgb(151,142,121)"
+ },
+ "principios-mestre": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(133,114,97)"
+ },
+ "comunidade-aristocratica": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(148,134,114)"
+ },
+ "comunidade-disciplinada": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(117,108,99)"
+ },
+ "comunidade-erudita": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(112,97,79)"
+ },
+ "comunidade-fora-da-lei": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(105,95,81)"
+ },
+ "comunidade-maritima": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(125,114,102)"
+ },
+ "comunidade-montanhesa": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(133,126,120)"
+ },
+ "comunidade-nomade": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(130,113,97)"
+ },
+ "comunidade-silvestre": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(118,110,93)"
+ },
+ "comunidade-subterranea": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(105,93,75)"
+ },
+ "comunidade-desertica": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(166,151,131)"
+ },
+ "comunidade-polar": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(140,137,131)"
+ },
+ "comunidade-renascida": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(139,121,105)"
+ },
+ "comunidade-sobrevivente": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(120,116,111)"
+ },
+ "ancestralidade-humano": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(110,110,106)"
+ },
+ "ancestralidade-anao": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(112,115,124)"
+ },
+ "ancestralidade-elfo": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(105,104,103)"
+ },
+ "ancestralidade-orc": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(112,114,114)"
+ },
+ "ancestralidade-goblin": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(98,106,111)"
+ },
+ "ancestralidade-pequenino": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(134,127,118)"
+ },
+ "ancestralidade-gigante": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(91,90,95)"
+ },
+ "ancestralidade-firbolg": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(110,108,103)"
+ },
+ "ancestralidade-fauno": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(116,116,113)"
+ },
+ "ancestralidade-fada": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(118,121,125)"
+ },
+ "ancestralidade-fungril": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(106,108,111)"
+ },
+ "ancestralidade-galapa": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(106,107,107)"
+ },
+ "ancestralidade-katari": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(121,119,120)"
+ },
+ "ancestralidade-quacho": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(116,120,120)"
+ },
+ "ancestralidade-simio": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(103,106,106)"
+ },
+ "ancestralidade-drakona": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(120,114,111)"
+ },
+ "ancestralidade-infernis": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(90,82,84)"
+ },
+ "ancestralidade-clank": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(100,100,101)"
+ },
+ "ancestralidade-aetheris": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(160,158,162)"
+ },
+ "ancestralidade-gnomo": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(112,104,100)"
+ },
+ "ancestralidade-elemental-terra": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(125,123,123)"
+ },
+ "ancestralidade-elemental-brasa": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(111,110,118)"
+ },
+ "ancestralidade-elemental-ceu": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(135,134,142)"
+ },
+ "ancestralidade-elemental-mare": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(117,119,119)"
+ },
+ "classe-ocultista": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(85,60,100)"
+ },
+ "classe-medico": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(71,87,131)"
+ },
+ "classe-flagelante": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(141,84,61)"
+ },
+ "classe-galvanista": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(91,111,119)"
+ },
+ "classe-alquimista": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(79,104,79)"
+ },
+ "classe-bardo": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(132,53,93)"
+ },
+ "classe-druida": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(98,113,55)"
+ },
+ "classe-guardiao": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(80,88,105)"
+ },
+ "classe-patrulheiro": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(132,116,87)"
+ },
+ "classe-ladino": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(89,73,90)"
+ },
+ "classe-serafim": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(184,165,129)"
+ },
+ "classe-feiticeiro": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(178,114,59)"
+ },
+ "classe-guerreiro": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(158,78,70)"
+ },
+ "classe-mago": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(70,78,99)"
+ },
+ "classe-assassino": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(94,104,74)"
+ },
+ "classe-pugilista": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(183,119,115)"
+ },
+ "classe-warlock": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(119,64,59)"
+ },
+ "classe-bruxa": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(109,93,125)"
+ },
+ "classe-invocador": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(96,107,104)"
+ },
+ "classe-cacador-de-sangue": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(111,64,58)"
+ },
+ "subclasse-ocultista-antiquario": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(108,81,81)"
+ },
+ "subclasse-ocultista-medium": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(111,96,113)"
+ },
+ "subclasse-medico-cirurgiao": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(132,117,138)"
+ },
+ "subclasse-medico-alienista": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(89,94,106)"
+ },
+ "subclasse-flagelante-martir": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(143,80,71)"
+ },
+ "subclasse-flagelante-zelote": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(145,88,88)"
+ },
+ "subclasse-galvanista-exumador": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(80,93,114)"
+ },
+ "subclasse-galvanista-costureiro": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(111,123,137)"
+ },
+ "subclasse-alquimista-apotecaria": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(120,124,110)"
+ },
+ "subclasse-alquimista-granadeiro": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(113,123,116)"
+ },
+ "subclasse-bardo-beletrista": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(146,92,96)"
+ },
+ "subclasse-druida-guardiao-dos-elementos": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(116,141,125)"
+ },
+ "subclasse-druida-protetor-da-renovacao": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(133,135,93)"
+ },
+ "subclasse-guardiao-baluarte": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(103,98,96)"
+ },
+ "subclasse-guardiao-vingador": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(90,91,108)"
+ },
+ "subclasse-patrulheiro-treinador": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(124,108,80)"
+ },
+ "subclasse-patrulheiro-rastreador": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(135,123,88)"
+ },
+ "subclasse-ladino-mafioso": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(87,72,94)"
+ },
+ "subclasse-serafim-portador-divino": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(148,119,72)"
+ },
+ "subclasse-serafim-sentinela-alada": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(199,185,168)"
+ },
+ "subclasse-feiticeiro-origem-elemental": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(142,98,53)"
+ },
+ "subclasse-feiticeiro-origem-primordial": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(158,100,106)"
+ },
+ "subclasse-guerreiro-escolhido-da-bravura": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(135,92,86)"
+ },
+ "subclasse-guerreiro-escolhido-da-matanca": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(104,70,66)"
+ },
+ "subclasse-mago-discipulo-do-conhecimento": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(94,106,130)"
+ },
+ "subclasse-mago-discipulo-da-guerra": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(103,86,108)"
+ },
+ "subclasse-assassino-guilda-dos-executores": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(72,92,69)"
+ },
+ "subclasse-assassino-guilda-dos-envenenadores": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(82,100,67)"
+ },
+ "subclasse-pugilista-rolo-compressor": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(167,124,114)"
+ },
+ "subclasse-pugilista-artista-marcial": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(168,112,96)"
+ },
+ "subclasse-warlock-pacto-do-eterno": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(136,94,101)"
+ },
+ "subclasse-warlock-pacto-do-furioso": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(133,79,64)"
+ },
+ "subclasse-bruxa-benzedeira": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(102,84,93)"
+ },
+ "subclasse-bruxa-lua": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(112,89,116)"
+ },
+ "subclasse-invocador-necromante": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(87,90,96)"
+ },
+ "subclasse-invocador-teurgista": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(153,148,119)"
+ },
+ "subclasse-cacador-de-sangue-ordem-do-espectro": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(107,56,54)"
+ },
+ "subclasse-cacador-de-sangue-ordem-mutante": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(114,73,64)"
+ },
+ "pais-entremonts": {
+  "larguras": [
+   256,
+   512
+  ],
+  "proporcao": 1,
+  "cor": "rgb(44,37,24)"
+ },
+ "pais-kenturia": {
+  "larguras": [
+   256,
+   512
+  ],
+  "proporcao": 1,
+  "cor": "rgb(42,36,24)"
+ },
+ "pais-maresme": {
+  "larguras": [
+   256,
+   512
+  ],
+  "proporcao": 1,
+  "cor": "rgb(65,51,27)"
+ },
+ "pais-narona": {
+  "larguras": [
+   256,
+   512
+  ],
+  "proporcao": 1,
+  "cor": "rgb(43,35,21)"
+ },
+ "pais-bretemar": {
+  "larguras": [
+   256,
+   512
+  ],
+  "proporcao": 1,
+  "cor": "rgb(47,39,24)"
+ },
+ "pais-codrina": {
+  "larguras": [
+   256,
+   512
+  ],
+  "proporcao": 1,
+  "cor": "rgb(47,40,27)"
+ },
+ "pais-fiorescuro": {
+  "larguras": [
+   256,
+   512
+  ],
+  "proporcao": 1,
+  "cor": "rgb(48,39,23)"
+ }
+}

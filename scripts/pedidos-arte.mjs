@@ -29,14 +29,14 @@ const capitulos = [
 const vagas = [
   ...capitulos.map(([id, nome, pedido]) => ({ id, grupo: "Vinhetas de capítulo", onde: `vinheta do capítulo ${nome}`, proporcao: "1:1", px: 512, pedido })),
   ...origens.map((o) => ({ id: `papel-${o.id}`, grupo: "Papéis", onde: `ramo do papel ${o.nome}`, proporcao: "1:1", px: 512, pedido: `retrato simbólico de um(a) ${o.nome.toLowerCase()} na Exposição Universal, gravura em tons de latão` })),
-  ...classes.map((c) => ({ id: `classe-${c.id}`, grupo: "Classes", onde: `vitrine de classes: ${c.nome}`, proporcao: "3:4", px: "600×800", pedido: `${c.nome}, Belle Époque, ${c.fantasia.replace(/^\[Exemplo\]\s*/, "")}` })),
+  ...classes.map((c) => ({ id: `classe-${c.id}`, grupo: "Classes", onde: `cartaz da classe ${c.nome} (o nome vem escrito na arte)`, proporcao: "3:4", px: "768×1024", pedido: `${c.nome}, Belle Époque${c.fantasia ? ", " + c.fantasia.replace(/^\[Exemplo\]\s*/, "") : ""}` })),
   ...paises.map((p) => ({ id: `pais-${p.id}`, grupo: "Brasões e vinhetas de país", onde: `ficha do país ${p.nome}`, proporcao: "1:1", px: 512, pedido: `brasão ou vinheta de ${p.nome} (sabor ${p.sabor}), estilo gravura do século XIX` })),
   ...builder.categorias.map((c) => ({ id: `verso-${c.d4}`, grupo: "Versos de carta do builder", onde: `verso do monte ${c.d4}: ${c.nome}`, proporcao: "2:3", px: "600×900", pedido: `verso de carta art nouveau para "${c.nome}", moldura de ferro fundido, simetria` })),
   ...[1, 2, 3, 4, 5].map((n) => ({ id: `retrato-${n}`, grupo: "Retratos da tripulação (opcional)", onde: `retrato do jogador ${n} no HUD`, proporcao: "1:1", px: 256, pedido: "retrato do personagem do jogador, recorte circular" })),
   ...ler("comunidades.json").map((c) => ({ id: `comunidade-${c.id}`, grupo: "Quem Vocês São: comunidades", onde: `cartão da comunidade ${c.nome} (ficha, galeria e criador)`, proporcao: "3:4", px: "768×1024", pedido: `retrato simbólico da comunidade ${c.nome}, Belle Époque, gravura em tons de latão` })),
   ...(fs.existsSync(path.join(C, "ancestralidades.json")) ? ler("ancestralidades.json") : []).map((a) => ({ id: `ancestralidade-${a.id}`, grupo: "Quem Vocês São: ancestralidades", onde: `cartão da ancestralidade ${a.nome} (galeria e criador)`, proporcao: "3:4", px: "768×1024", pedido: `retrato de ${a.nome}, Belle Époque` })),
   ...classes.filter((c) => c.nova).map((c) => ({ id: `abertura-classe-${c.id}`, grupo: "Fichas de classe (abertura)", onde: `abertura da ficha da classe ${c.nome}`, proporcao: "21:9", px: "2560×1100", pedido: `${c.nome}: ${c.fantasia.replace(/^\[Exemplo\]\s*/, "")} Deixe a parte de baixo mais simples (chão, sombra, névoa), é nela que entra o texto.` })),
-  ...classes.filter((c) => c.nova).flatMap((c) => c.subclasses.map((sc, i) => ({ id: `subclasse-${c.id}-${i + 1}`, grupo: "Subclasses (criador)", onde: `subclasse ${i + 1} de ${c.nome} no criador`, proporcao: "3:4", px: "768×1024", pedido: `${c.nome}, subclasse ${sc.nome === "a definir" ? i + 1 : sc.nome}` }))),
+  ...classes.flatMap((c) => c.subclasses.map((sc) => ({ id: `subclasse-${sc.id}`, grupo: "Subclasses", onde: `subclasse ${sc.nome} (${c.nome}) no criador`, proporcao: "3:4", px: "768×1024", pedido: `${c.nome}: subclasse ${sc.nome}` }))),
   ...(fs.existsSync(path.join(C, "cartas.json")) ? ler("cartas.json") : []).map((k) => ({ id: `carta-${k.id}`, grupo: "Cartas de domínio (Figma)", onde: `carta ${k.nome}`, proporcao: "63:88", px: "1260×1760", pedido: `carta de domínio "${k.nome}" (${k.dominio}, nível ${k.nivel}); a arte vem do Figma` })),
   { id: "retrato-placeholder", grupo: "O Arquivo", onde: "retrato do personagem no criador, enquanto o jogador não envia uma imagem", proporcao: "3:4", px: "768×1024", pedido: "silhueta em gravura de um convidado da Exposição, de busto, sem rosto definido, tons de latão sobre azul-petróleo" },
   { id: "selo-expo", grupo: "Selo e lacre", onde: "selo da Exposição no HUD", proporcao: "1:1", px: "SVG ou PNG transparente", pedido: "selo circular da Exposição Universal de Rouillac com a torre ao centro, traço de latão" },
@@ -67,13 +67,15 @@ try {
   /* primeira vez */
 }
 const porId = new Map(atual.map((v) => [v.id, v]));
+const mapaArte = fs.existsSync(path.join(C, "arte/mapa-arte.json")) ? JSON.parse(fs.readFileSync(path.join(C, "arte/mapa-arte.json"), "utf8")) : {};
 const final = unicas.map((v) => {
   const antigo = porId.get(v.id);
   const { grupo, ...resto } = v;
-  return antigo ? { ...resto, ...antigo, grupo } : { ...resto, arquivo: null, grupo };
+  // "feita" = o id tem arquivo no mapa-arte.json (os PNG do mestre, em content/arte/fonte)
+  const arquivo = mapaArte[v.id] ?? antigo?.arquivo ?? null;
+  return { ...resto, ...(antigo || {}), arquivo, grupo };
 });
-// vagas criadas à mão no manifesto continuam
-for (const v of atual) if (!final.some((f) => f.id === v.id)) final.push(v);
+for (const [id, nome] of Object.entries(mapaArte)) if (!final.some((f) => f.id === id)) final.push({ id, onde: "arte do Arquivo", proporcao: "", px: "", pedido: "", arquivo: nome, grupo: "Outras" });
 
 fs.mkdirSync(path.dirname(MANIFESTO), { recursive: true });
 fs.writeFileSync(MANIFESTO, JSON.stringify(final, null, 2) + "\n");
@@ -82,9 +84,9 @@ const grupos = [...new Set(final.map((v) => v.grupo || "Outras"))];
 const L = [
   "# Pedidos de arte",
   "",
-  "Gerado por `npm run pedidos-arte` a partir de `content/arte/manifest.json`. Não edite este arquivo; edite o manifesto.",
+  "Gerado por `npm run pedidos-arte` a partir do conteúdo do app e do `content/arte/mapa-arte.json`. Não edite este arquivo.",
   "",
-  "Quando uma imagem ficar pronta: salve em `content/arte/` (de preferência `.webp`) e ponha o nome do arquivo no campo `arquivo` da vaga no manifesto. O app troca o placeholder pela imagem sozinho.",
+  "Quando uma imagem ficar pronta: ponha o PNG em `content/arte/fonte/`, acrescente a linha no `content/arte/mapa-arte.json` (id → nome do arquivo) e rode `npm run arte`. O app troca o placeholder pela imagem sozinho.",
   "",
   `Feitas: ${final.filter((v) => v.arquivo).length} de ${final.length}.`,
   "",

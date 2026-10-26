@@ -261,6 +261,7 @@ function TelaTitulo({ liberados }: { liberados: (Capitulo & { secoesVisiveis: st
         </div>
         <h1 className="n-T titulo-grande">{dados.manifesto.titulo}</h1>
         {dados.manifesto.subtitulo && <p className="n-contexto">{dados.manifesto.subtitulo}</p>}
+        {dados.manifesto.conceito && <p className="n-I conceito-titulo">{dados.manifesto.conceito}</p>}
         <div className="complexidade" aria-label={`complexidade ${dados.manifesto.complexidade ?? 0} de 4`}>
           <span className="n-L">complexidade</span>
           {[1, 2, 3, 4].map((n) => (
@@ -657,7 +658,6 @@ function BlocoView({ bloco }: { bloco: Bloco }) {
           <div className="n-L" style={{ color: "var(--brass)" }}>
             A Proposta
           </div>
-          <p className="n-I">Leia em voz alta para a mesa.</p>
           <Markdown texto={proposta} className="n-N proposta" />
         </div>
       );
@@ -834,16 +834,7 @@ function TelaMapa({ mapa, conteudo, fechar }: { mapa: "continente" | "rouillac";
             </div>
           </dl>
           <p className="n-N">{p.publico}</p>
-          {p.boatos.length > 0 && (
-            <>
-              <div className="n-L">boatos</div>
-              <ul className="n-I">
-                {p.boatos.map((b) => (
-                  <li key={b}>{b}</li>
-                ))}
-              </ul>
-            </>
-          )}
+
         </aside>
       )}
     </div>
@@ -897,14 +888,14 @@ function Efemera({ id }: { id: string }) {
 function itensDe(fonte: string, conteudo: Conteudo, dados: DadosArquivo): { itens: ItemGaleria[]; vazio: string } {
   if (fonte === "comunidades")
     return {
-      itens: conteudo.comunidades.map((c) => ({ id: c.id, nome: c.nome, descricao: (c.descricao || "").replace(/^\[Exemplo\]\s*/, ""), grupo: (c as { grupo?: string }).grupo })),
+      itens: conteudo.comunidades.map((c) => ({ id: c.id, nome: c.nome, original: c.original, descricao: c.descricao || "", grupo: c.grupo, detalhes: [{ rotulo: "Habilidade", valor: c.habilidade || "em tradução" }] })),
       vazio: "As comunidades ainda estão sendo escritas.",
     };
   if (fonte === "classes")
     return {
       itens: conteudo.classes
         .filter((c) => c.nova)
-        .map((c) => ({ id: c.id, nome: c.nome, descricao: c.fantasia.replace(/^\[Exemplo\]\s*/, ""), detalhes: [{ rotulo: "Domínios", valor: c.dominios.join(" · ") }] })),
+        .map((c) => ({ id: c.id, nome: c.nome, descricao: c.fantasia, detalhes: [{ rotulo: "Domínios", valor: c.dominios.join(" · ") }, ...(c.evasao != null ? [{ rotulo: "Evasão", valor: String(c.evasao) }] : []), ...(c.pv != null ? [{ rotulo: "Pontos de vida", valor: String(c.pv) }] : [])] })),
       vazio: "As classes ainda estão sendo escritas.",
     };
   if (fonte === "ancestralidades") return { itens: dados.ancestralidades, vazio: "As ancestralidades ainda estão sendo escritas." };
@@ -949,14 +940,14 @@ function Galeria({ fonte }: { fonte: string }) {
   const abrir = (it: ItemGaleria) =>
     detalhe({
       titulo: it.nome,
-      etiqueta: it.grupo ? NOMES_GRUPO[it.grupo] || it.grupo : fonte,
+      etiqueta: `${it.grupo ? NOMES_GRUPO[it.grupo] || it.grupo : fonte}${it.original ? ` · ${it.original}` : ""}`,
       corpo: (
         <div className="detalhe-grade">
           <div className="detalhe-retrato">
             <Retrato fonte={fonte} it={it} />
           </div>
           <div className="detalhe-texto">
-            {it.descricao && <p className="n-N">{it.descricao}</p>}
+            {it.descricao ? <p className="n-N">{it.descricao}</p> : fonte === "ancestralidades" ? <p className="n-I">descrição e habilidades em produção</p> : fonte === "comunidades" ? <p className="n-I">descrição em produção</p> : null}
             {it.detalhes && (
               <dl className="dados-ficha">
                 {it.detalhes.map((d) => (
@@ -996,10 +987,10 @@ function Galeria({ fonte }: { fonte: string }) {
       >
         <div className="galeria-trilho" style={{ transform: `translateX(-${primeiro * (larg + VAO)}px)` }}>
           {itens.map((it) => (
-            <button key={it.id} className="cartao-galeria" onClick={() => abrir(it)}>
+            <button key={it.id} className={`cartao-galeria ${fonte === "classes" ? "so-arte" : ""}`} title={it.nome} onClick={() => abrir(it)}>
               <Retrato fonte={fonte} it={it} />
-              <span className="cartao-nome n-S">{it.nome}</span>
-              {it.descricao && <span className="cartao-linha n-I">{it.descricao}</span>}
+              {fonte !== "classes" && <span className="cartao-nome n-S">{it.nome}</span>}
+              {fonte !== "classes" && it.descricao && <span className="cartao-linha n-I">{it.descricao}</span>}
             </button>
           ))}
         </div>
@@ -1022,10 +1013,11 @@ function Galeria({ fonte }: { fonte: string }) {
 
 function Retrato({ fonte, it }: { fonte: string; it: ItemGaleria }) {
   const { conteudo } = useArquivo();
-  const url = it.imagem || conteudo.arte[idArte(fonte, it.id)];
+  const aid = idArte(fonte, it.id);
+  const url = it.imagem || conteudo.arte[aid];
   return (
     <span className="retrato-34">
-      {url ? <img src={url} alt="" /> : <PlaceholderArte id={idArte(fonte, it.id)} monograma={it.nome.slice(0, 1)} />}
+      {url ? <img src={url} srcSet={it.imagem ? undefined : conteudo.arteSet[aid]} sizes="260px" alt="" loading="lazy" /> : <PlaceholderArte id={idArte(fonte, it.id)} monograma={it.nome.slice(0, 1)} />}
     </span>
   );
 }

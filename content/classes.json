@@ -3,15 +3,15 @@
     "id": "ocultista",
     "nome": "Ocultista",
     "nova": true,
-    "fantasia": "[Exemplo] Estuda o que os outros fingem não ver, e paga o preço em noites sem sono.",
+    "fantasia": "Rituais, objetos proibidos e conversas com os mortos. Onde o Warlock negocia, o Ocultista sabe.",
     "dominios": [
-      "a definir",
-      "a definir"
+      "Códice",
+      "Dread"
     ],
     "subclasses": [
       {
-        "nome": "a definir",
-        "linha": "[Exemplo]",
+        "nome": "Antiquário",
+        "linha": "Coleciona curiosidades que fazem coisas.",
         "conjuracao": "a definir",
         "fundacao": [
           {
@@ -34,11 +34,12 @@
             "nome": "Maestria (a definir)",
             "texto": "Aqui entra o texto desta habilidade."
           }
-        ]
+        ],
+        "id": "ocultista-antiquario"
       },
       {
-        "nome": "a definir",
-        "linha": "[Exemplo]",
+        "nome": "Médium",
+        "linha": "Anda com um espírito que o acompanha.",
         "conjuracao": "a definir",
         "fundacao": [
           {
@@ -61,18 +62,19 @@
             "nome": "Maestria (a definir)",
             "texto": "Aqui entra o texto desta habilidade."
           }
-        ]
+        ],
+        "id": "ocultista-medium"
       }
     ],
     "origem": [
-      "Qual livro você nunca deveria ter lido, e por que não conseguiu parar?",
-      "Quem te ensinou o primeiro símbolo, e o que aconteceu com essa pessoa?",
-      "O que você carrega para se proteger, e de quê?"
+      "Qual foi o primeiro texto proibido que você leu, e quem pagou por isso?",
+      "Que objeto da sua coleção você nunca venderia, e por quê?",
+      "Quem na sua família acha que você perdeu o juízo?"
     ],
     "conexao": [
-      "Por que você confia em mim para guardar um dos seus cadernos?",
-      "O que eu te vi fazer que você ainda não me explicou?",
-      "Que pergunta você me fez que eu não consegui responder?"
+      "Que segredo de um aliado você descobriu sem querer, e ainda não contou?",
+      "Por que você confia em um aliado mais do que nos seus livros?",
+      "Qual aliado já te viu falando com alguém que não estava lá?"
     ],
     "imagem": null,
     "evasao": 10,
@@ -96,21 +98,23 @@
         "texto": "Aqui entra o texto desta habilidade."
       }
     ],
-    "extras": []
+    "extras": [],
+    "grupo": "cenario",
+    "intro": "Os **ocultistas** estudam o que a ciência não explica e a Igreja prefere não comentar. Traçam círculos de giz e sal, colecionam objetos que deveriam estar enterrados e conversam com quem já morreu. Onde o warlock negocia e a bruxa sente, o ocultista *sabe*, ou pelo menos acha que sabe.\n\nQuase todos fazem parte do **Ateneu**, uma sociedade discreta de salões fechados, ritos de entrada e bibliotecas que a Ecclesia adoraria queimar. Os membros se reconhecem por pequenos sinais, emprestam livros proibidos uns aos outros e se odeiam com uma educação impecável."
   },
   {
     "id": "medico",
     "nome": "Médico",
     "nova": true,
-    "fantasia": "[Exemplo] Costura soldados, operários e reis, e já viu feridas que nenhum livro descreve.",
+    "fantasia": "Lê o corpo de amigos e inimigos: diz onde bater e quem salvar.",
     "dominios": [
-      "a definir",
-      "a definir"
+      "Esplendor",
+      "Falange"
     ],
     "subclasses": [
       {
-        "nome": "a definir",
-        "linha": "[Exemplo]",
+        "nome": "Cirurgião",
+        "linha": "Anatomia e intervenção.",
         "conjuracao": "a definir",
         "fundacao": [
           {
@@ -133,11 +137,12 @@
             "nome": "Maestria (a definir)",
             "texto": "Aqui entra o texto desta habilidade."
           }
-        ]
+        ],
+        "id": "medico-cirurgiao"
       },
       {
-        "nome": "a definir",
-        "linha": "[Exemplo]",
+        "nome": "Alienista",
+        "linha": "Leitura e controle da mente.",
         "conjuracao": "a definir",
         "fundacao": [
           {
@@ -160,18 +165,19 @@
             "nome": "Maestria (a definir)",
             "texto": "Aqui entra o texto desta habilidade."
           }
-        ]
+        ],
+        "id": "medico-alienista"
       }
     ],
     "origem": [
-      "Em qual hospital de campanha você aprendeu de verdade?",
-      "Qual paciente você não conseguiu salvar e ainda visita em sonho?",
-      "Que regra da medicina você quebrou, e quem sabe disso?"
+      "Que paciente você perdeu e ainda vê quando fecha os olhos?",
+      "Por que você largou (ou foi expulso de) onde trabalhava?",
+      "Que coisa da medicina da sua época você sabe que está errada, mas faz mesmo assim?"
     ],
     "conexao": [
-      "Que cicatriz sua fui eu que costurei?",
-      "O que eu prescrevi para você que não era remédio?",
-      "Por que você me procurou fora do horário, aquela noite?"
+      "Que ferida de um aliado você tratou antes da Exposição, e o que ele te contou na mesa de cirurgia?",
+      "Qual aliado se recusa a ser tratado por você, e por quê?",
+      "Que hábito de um aliado te preocupa como médico?"
     ],
     "imagem": null,
     "evasao": 10,
@@ -201,21 +207,23 @@
         "nome": "Entrada extra (a definir)",
         "texto": "Aqui entra o texto desta habilidade."
       }
-    ]
+    ],
+    "grupo": "cenario",
+    "intro": "Os **médicos** de Lucentia aprenderam o ofício nos anfiteatros de anatomia e o aperfeiçoaram nos hospitais de campanha, onde a guerra trouxe mais pacientes do que qualquer faculdade poderia sonhar. Eles leem um corpo como quem lê um mapa: sabem onde dói, onde quebra e quanto tempo ainda resta.\n\nNum combate, o médico raramente dá o golpe mais forte, mas quase sempre é quem diz onde bater e quem ainda dá para salvar. Alguns preferem o bisturi. Outros, os alienistas, preferem a mente, que costuma ser a parte mais assustadora de qualquer paciente."
   },
   {
     "id": "flagelante",
     "nome": "Flagelante",
     "nova": true,
-    "fantasia": "[Exemplo] Transforma a dor em fé, e a fé em força.",
+    "fantasia": "Sangra para que os outros não sangrem. A dor é a prova da fé, e a fé paga em milagres.",
     "dominios": [
-      "a definir",
-      "a definir"
+      "Valor",
+      "Graça"
     ],
     "subclasses": [
       {
-        "nome": "a definir",
-        "linha": "[Exemplo]",
+        "nome": "Mártir",
+        "linha": "O escudo de carne: toma as feridas dos outros.",
         "conjuracao": "a definir",
         "fundacao": [
           {
@@ -238,11 +246,12 @@
             "nome": "Maestria (a definir)",
             "texto": "Aqui entra o texto desta habilidade."
           }
-        ]
+        ],
+        "id": "flagelante-martir"
       },
       {
-        "nome": "a definir",
-        "linha": "[Exemplo]",
+        "nome": "Zelote",
+        "linha": "A fúria santa.",
         "conjuracao": "a definir",
         "fundacao": [
           {
@@ -265,18 +274,19 @@
             "nome": "Maestria (a definir)",
             "texto": "Aqui entra o texto desta habilidade."
           }
-        ]
+        ],
+        "id": "flagelante-zelote"
       }
     ],
     "origem": [
-      "Que culpa você carrega nas costas, literalmente?",
-      "Qual ordem ou irmandade te aceitou, e por que você saiu?",
-      "O que você ouviu na primeira vez que a dor ficou em silêncio?"
+      "Por que pecado você faz penitência, e ele foi seu?",
+      "A sua ordem ainda existe, ou você é o último?",
+      "O que a Igreja oficial pensa de gente como você?"
     ],
     "conexao": [
-      "Por que você tem medo do que eu sou capaz de aguentar?",
-      "Que penitência eu cumpri no seu lugar?",
-      "O que você me confessou?"
+      "Qual aliado tenta te impedir de se machucar, e o que você responde?",
+      "De que aliado você já tomou uma ferida sem ele pedir?",
+      "Que aliado você acha que precisa de salvação, e ele não sabe?"
     ],
     "imagem": null,
     "evasao": 10,
@@ -300,21 +310,23 @@
         "texto": "Aqui entra o texto desta habilidade."
       }
     ],
-    "extras": []
+    "extras": [],
+    "grupo": "cenario",
+    "intro": "Os **flagelantes** são penitentes de uma ordem da Ecclesia Lumini que acredita que a dor em silêncio é a oração mais quieta que existe, a única que não perturba o Sono de Deus. Andam descalços nas procissões, carregam o flagelo na cintura e sangram para que os outros não sangrem.\n\nA Igreja os tolera e, no fundo, tem medo deles. A ordem é popular entre os pobres, não cobra dízimo de ninguém e só obedece a Cluòstra quando concorda com ela. Para um flagelante, o corpo é moeda: ele paga com a própria carne para manter a mente inteira, e para manter os amigos de pé."
   },
   {
     "id": "galvanista",
     "nome": "Galvanista",
     "nova": true,
-    "fantasia": "[Exemplo] Engenheiro da eletricidade, convencido de que a faísca certa acorda qualquer coisa.",
+    "fantasia": "Traz os mortos de volta com eletricidade: eletrodos, baterias e corpos que se contorcem ao voltar.",
     "dominios": [
-      "a definir",
-      "a definir"
+      "Esplendor",
+      "Arcano"
     ],
     "subclasses": [
       {
-        "nome": "a definir",
-        "linha": "[Exemplo]",
+        "nome": "Exumador",
+        "linha": "Levanta uma horda de mortos.",
         "conjuracao": "a definir",
         "fundacao": [
           {
@@ -337,11 +349,12 @@
             "nome": "Maestria (a definir)",
             "texto": "Aqui entra o texto desta habilidade."
           }
-        ]
+        ],
+        "id": "galvanista-exumador"
       },
       {
-        "nome": "a definir",
-        "linha": "[Exemplo]",
+        "nome": "Costureiro",
+        "linha": "Costura uma única obra-prima.",
         "conjuracao": "a definir",
         "fundacao": [
           {
@@ -364,18 +377,19 @@
             "nome": "Maestria (a definir)",
             "texto": "Aqui entra o texto desta habilidade."
           }
-        ]
+        ],
+        "id": "galvanista-costureiro"
       }
     ],
     "origem": [
-      "Qual foi o seu primeiro experimento que deu certo demais?",
-      "Que patente roubaram de você, e quem?",
-      "Qual máquina da Exposição você ajudou a construir?"
+      "Quem foi a primeira pessoa que você trouxe de volta, e o que ela disse ao abrir os olhos?",
+      "Que instituição te expulsou, e o que eles encontraram no seu laboratório?",
+      "Existe alguém que você jurou nunca reanimar? Quem?"
     ],
     "conexao": [
-      "Que aparelho meu eu te deixei usar uma única vez?",
-      "Por que você estava presente no acidente do meu laboratório?",
-      "O que eu prometi inventar para você?"
+      "Que aliado sabe exatamente o que tem na sua maleta, e por que ainda anda com você?",
+      "Que aliado te fez prometer que, se ele morrer, você não vai levantá-lo?",
+      "Que parte de um aliado você já elogiou de um jeito que deixou ele desconfortável?"
     ],
     "imagem": null,
     "evasao": 10,
@@ -405,13 +419,15 @@
         "nome": "Entrada extra (a definir)",
         "texto": "Aqui entra o texto desta habilidade."
       }
-    ]
+    ],
+    "grupo": "cenario",
+    "intro": "Os **galvanistas** são, para ser honesto, uns doidos. Nenhuma universidade ensina o que eles fazem. Aprenderam sozinhos, em porões e açougues, com cadernos roubados e garrafas de Leyden, que a eletricidade certa no lugar certo faz um morto se levantar.\n\nRouillac é o paraíso deles: dínamos em toda esquina, fios em todo poste e, convenhamos, nunca faltam corpos. Alguns preferem trazer de volta uma horda inteira, aos trancos e faíscas. Outros passam anos costurando uma única obra-prima, e ficam ofendidos quando alguém a chama de monstro."
   },
   {
     "id": "alquimista",
     "nome": "Alquimista",
     "nova": true,
-    "fantasia": "[Exemplo] Química, farmácia e um pouco de heresia, tudo na mesma bancada.",
+    "fantasia": "Prepara as respostas antes, na bancada, e improvisa quando o plano falha.",
     "dominios": [
       "Sábio",
       "Códice"
@@ -419,7 +435,7 @@
     "subclasses": [
       {
         "nome": "Apotecária",
-        "linha": "[Exemplo] Cura, venenos e remédios de balcão.",
+        "linha": "Ervas, remédios e venenos.",
         "conjuracao": "a definir",
         "fundacao": [
           {
@@ -442,11 +458,12 @@
             "nome": "Maestria (a definir)",
             "texto": "Aqui entra o texto desta habilidade."
           }
-        ]
+        ],
+        "id": "alquimista-apotecaria"
       },
       {
         "nome": "Granadeiro",
-        "linha": "[Exemplo] Frascos que explodem, de propósito.",
+        "linha": "Pólvora, ácido e fogo.",
         "conjuracao": "a definir",
         "fundacao": [
           {
@@ -469,19 +486,12 @@
             "nome": "Maestria (a definir)",
             "texto": "Aqui entra o texto desta habilidade."
           }
-        ]
+        ],
+        "id": "alquimista-granadeiro"
       }
     ],
-    "origem": [
-      "Qual fórmula você tenta completar há anos?",
-      "Que substância você jurou nunca mais preparar?",
-      "Para quem você trabalhava quando a guerra começou?"
-    ],
-    "conexao": [
-      "Que frasco meu você guarda e nunca abriu?",
-      "Por que eu te devo a vida, ou a cara?",
-      "O que eu te vendi que não estava no rótulo?"
-    ],
+    "origem": [],
+    "conexao": [],
     "imagem": null,
     "evasao": 10,
     "pv": 6,
@@ -510,7 +520,9 @@
         "nome": "Entrada extra (a definir)",
         "texto": "Aqui entra o texto desta habilidade."
       }
-    ]
+    ],
+    "grupo": "cenario",
+    "intro": "Em Rouillac, todo boticário vende láudano, arsênico e pó de múmia, e quase nenhum sabe o que está vendendo. O **alquimista** sabe. A alquimia dele ainda fala em sal, enxofre e mercúrio, como os livros de séculos atrás, mas funciona com a precisão de um laboratório moderno.\n\nO alquimista prepara as respostas antes: passa a noite na bancada do hotel, enchendo frascos de tônicos, venenos e coisas que explodem. E quando o plano dá errado, mistura o que tiver na bolsa ali mesmo, no meio da confusão, e torce. Uns se dedicam às ervas e aos venenos. Outros, à pólvora, ao ácido e ao fogo."
   },
   {
     "id": "bardo",
@@ -523,12 +535,14 @@
     ],
     "subclasses": [
       {
+        "id": "bardo-trovador",
         "nome": "Trovador",
-        "linha": "[Exemplo] Música que muda a cena."
+        "linha": ""
       },
       {
-        "nome": "Artesão das Palavras",
-        "linha": "[Exemplo] Discursos que mudam pessoas."
+        "id": "bardo-beletrista",
+        "nome": "Beletrista",
+        "linha": ""
       }
     ],
     "origem": [
@@ -541,7 +555,8 @@
       "Por que você me pediu para mentir por você?",
       "Em que noite eu te tirei de uma enrascada?"
     ],
-    "imagem": null
+    "imagem": null,
+    "grupo": "livro"
   },
   {
     "id": "druida",
@@ -554,12 +569,14 @@
     ],
     "subclasses": [
       {
+        "id": "druida-guardiao-dos-elementos",
         "nome": "Guardião dos Elementos",
-        "linha": "[Exemplo]"
+        "linha": ""
       },
       {
-        "nome": "Guardião da Renovação",
-        "linha": "[Exemplo]"
+        "id": "druida-protetor-da-renovacao",
+        "nome": "Protetor da Renovação",
+        "linha": ""
       }
     ],
     "origem": [
@@ -572,7 +589,8 @@
       "O que você plantou comigo?",
       "Que cheiro meu você reconhece de longe?"
     ],
-    "imagem": null
+    "imagem": null,
+    "grupo": "livro"
   },
   {
     "id": "guardiao",
@@ -585,12 +603,14 @@
     ],
     "subclasses": [
       {
-        "nome": "Inabalável",
-        "linha": "[Exemplo]"
+        "id": "guardiao-baluarte",
+        "nome": "Baluarte",
+        "linha": ""
       },
       {
-        "nome": "Vingança",
-        "linha": "[Exemplo]"
+        "id": "guardiao-vingador",
+        "nome": "Vingador",
+        "linha": ""
       }
     ],
     "origem": [
@@ -603,7 +623,8 @@
       "Que promessa você me fez?",
       "O que você me pediu para guardar?"
     ],
-    "imagem": null
+    "imagem": null,
+    "grupo": "livro"
   },
   {
     "id": "patrulheiro",
@@ -611,17 +632,19 @@
     "nova": false,
     "fantasia": "[Exemplo] Batedor, caçador e guia das terras de ninguém.",
     "dominios": [
-      "Osso",
+      "Falange",
       "Sábio"
     ],
     "subclasses": [
       {
-        "nome": "Vínculo Animal",
-        "linha": "[Exemplo]"
+        "id": "patrulheiro-treinador",
+        "nome": "Treinador",
+        "linha": ""
       },
       {
-        "nome": "Desbravador",
-        "linha": "[Exemplo]"
+        "id": "patrulheiro-rastreador",
+        "nome": "Rastreador",
+        "linha": ""
       }
     ],
     "origem": [
@@ -634,7 +657,8 @@
       "Que rastro meu você segue?",
       "O que eu te ensinei a ouvir?"
     ],
-    "imagem": null
+    "imagem": null,
+    "grupo": "livro"
   },
   {
     "id": "ladino",
@@ -647,12 +671,14 @@
     ],
     "subclasses": [
       {
-        "nome": "Andarilho Noturno",
-        "linha": "[Exemplo]"
+        "id": "ladino-gatuno",
+        "nome": "Gatuno",
+        "linha": ""
       },
       {
-        "nome": "Sindicato",
-        "linha": "[Exemplo]"
+        "id": "ladino-mafioso",
+        "nome": "Mafioso",
+        "linha": ""
       }
     ],
     "origem": [
@@ -665,7 +691,8 @@
       "Por que você me deixou escapar?",
       "O que eu roubei de você, e devolvi?"
     ],
-    "imagem": null
+    "imagem": null,
+    "grupo": "livro"
   },
   {
     "id": "serafim",
@@ -678,12 +705,14 @@
     ],
     "subclasses": [
       {
+        "id": "serafim-portador-divino",
         "nome": "Portador Divino",
-        "linha": "[Exemplo]"
+        "linha": ""
       },
       {
+        "id": "serafim-sentinela-alada",
         "nome": "Sentinela Alada",
-        "linha": "[Exemplo]"
+        "linha": ""
       }
     ],
     "origem": [
@@ -696,7 +725,8 @@
       "Que dúvida eu plantei em você?",
       "O que eu te vi fazer que parecia milagre?"
     ],
-    "imagem": null
+    "imagem": null,
+    "grupo": "livro"
   },
   {
     "id": "feiticeiro",
@@ -709,12 +739,14 @@
     ],
     "subclasses": [
       {
+        "id": "feiticeiro-origem-elemental",
         "nome": "Origem Elemental",
-        "linha": "[Exemplo]"
+        "linha": ""
       },
       {
+        "id": "feiticeiro-origem-primordial",
         "nome": "Origem Primordial",
-        "linha": "[Exemplo]"
+        "linha": ""
       }
     ],
     "origem": [
@@ -727,7 +759,8 @@
       "O que você queimou por mim?",
       "Que sinal meu você reconhece?"
     ],
-    "imagem": null
+    "imagem": null,
+    "grupo": "livro"
   },
   {
     "id": "guerreiro",
@@ -736,16 +769,18 @@
     "fantasia": "[Exemplo] Veterano de uma guerra sem fim, bom demais no que faz.",
     "dominios": [
       "Lâmina",
-      "Osso"
+      "Falange"
     ],
     "subclasses": [
       {
-        "nome": "Chamado do Bravo",
-        "linha": "[Exemplo]"
+        "id": "guerreiro-escolhido-da-bravura",
+        "nome": "Escolhido da Bravura",
+        "linha": ""
       },
       {
-        "nome": "Chamado do Matador",
-        "linha": "[Exemplo]"
+        "id": "guerreiro-escolhido-da-matanca",
+        "nome": "Escolhido da Matança",
+        "linha": ""
       }
     ],
     "origem": [
@@ -758,7 +793,8 @@
       "Por que você me deve uma?",
       "O que eu vi você fazer na guerra?"
     ],
-    "imagem": null
+    "imagem": null,
+    "grupo": "livro"
   },
   {
     "id": "mago",
@@ -771,12 +807,14 @@
     ],
     "subclasses": [
       {
-        "nome": "Escola do Conhecimento",
-        "linha": "[Exemplo]"
+        "id": "mago-discipulo-do-conhecimento",
+        "nome": "Discípulo do Conhecimento",
+        "linha": ""
       },
       {
-        "nome": "Escola da Guerra",
-        "linha": "[Exemplo]"
+        "id": "mago-discipulo-da-guerra",
+        "nome": "Discípulo da Guerra",
+        "linha": ""
       }
     ],
     "origem": [
@@ -789,6 +827,151 @@
       "O que eu te ensinei?",
       "Que erro meu você corrigiu em público?"
     ],
-    "imagem": null
+    "imagem": null,
+    "grupo": "livro"
+  },
+  {
+    "id": "assassino",
+    "nome": "Assassino",
+    "nova": false,
+    "grupo": "livro",
+    "dominios": [
+      "Meia-noite",
+      "Lâmina"
+    ],
+    "fantasia": "",
+    "origem": [],
+    "conexao": [],
+    "subclasses": [
+      {
+        "id": "assassino-guilda-dos-executores",
+        "nome": "Guilda dos Executores",
+        "linha": ""
+      },
+      {
+        "id": "assassino-guilda-dos-envenenadores",
+        "nome": "Guilda dos Envenenadores",
+        "linha": ""
+      }
+    ]
+  },
+  {
+    "id": "pugilista",
+    "nome": "Pugilista",
+    "nova": false,
+    "grupo": "livro",
+    "dominios": [
+      "Falange",
+      "Valor"
+    ],
+    "fantasia": "",
+    "origem": [],
+    "conexao": [],
+    "subclasses": [
+      {
+        "id": "pugilista-rolo-compressor",
+        "nome": "Rolo Compressor",
+        "linha": ""
+      },
+      {
+        "id": "pugilista-artista-marcial",
+        "nome": "Artista Marcial",
+        "linha": ""
+      }
+    ]
+  },
+  {
+    "id": "warlock",
+    "nome": "Warlock",
+    "nova": false,
+    "grupo": "livro",
+    "dominios": [
+      "Dread",
+      "Graça"
+    ],
+    "fantasia": "",
+    "origem": [],
+    "conexao": [],
+    "subclasses": [
+      {
+        "id": "warlock-pacto-do-eterno",
+        "nome": "Pacto do Eterno",
+        "linha": ""
+      },
+      {
+        "id": "warlock-pacto-do-furioso",
+        "nome": "Pacto do Furioso",
+        "linha": ""
+      }
+    ]
+  },
+  {
+    "id": "bruxa",
+    "nome": "Bruxa",
+    "nova": false,
+    "grupo": "livro",
+    "dominios": [
+      "Dread",
+      "Sábio"
+    ],
+    "fantasia": "",
+    "origem": [],
+    "conexao": [],
+    "subclasses": [
+      {
+        "id": "bruxa-benzedeira",
+        "nome": "Benzedeira",
+        "linha": ""
+      },
+      {
+        "id": "bruxa-lua",
+        "nome": "Lua",
+        "linha": ""
+      }
+    ]
+  },
+  {
+    "id": "invocador",
+    "nome": "Invocador",
+    "nova": false,
+    "grupo": "void",
+    "fantasia": "",
+    "dominios": [],
+    "origem": [],
+    "conexao": [],
+    "subclasses": [
+      {
+        "id": "invocador-necromante",
+        "nome": "Necromante",
+        "linha": ""
+      },
+      {
+        "id": "invocador-teurgista",
+        "nome": "Teurgista",
+        "linha": ""
+      }
+    ]
+  },
+  {
+    "id": "cacador-de-sangue",
+    "nome": "Caçador de Sangue",
+    "nova": false,
+    "grupo": "void",
+    "fantasia": "",
+    "dominios": [],
+    "origem": [],
+    "conexao": [],
+    "subclasses": [
+      {
+        "id": "cacador-de-sangue-ordem-do-espectro",
+        "nome": "Ordem do Espectro",
+        "linha": ""
+      },
+      {
+        "id": "cacador-de-sangue-ordem-mutante",
+        "nome": "Ordem Mutante",
+        "linha": ""
+      }
+    ]
   }
 ]

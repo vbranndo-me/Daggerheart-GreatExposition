@@ -14,6 +14,8 @@ export interface Capitulo {
 export interface ManifestoArquivo {
   titulo: string;
   subtitulo?: string;
+  /** a pergunta do cenário, embaixo do subtítulo da tela de título */
+  conceito?: string;
   complexidade?: number;
   capitulos: Capitulo[];
 }
@@ -42,6 +44,7 @@ export interface ItemGaleria {
   descricao?: string;
   grupo?: string;
   etiqueta?: string;
+  original?: string;
   imagem?: string | null;
   detalhes?: { rotulo: string; valor: string }[];
 }

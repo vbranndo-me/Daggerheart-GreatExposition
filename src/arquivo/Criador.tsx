@@ -6,15 +6,17 @@ import "../jogo/jogo.css";
 import "../jogo/jogo-ajustes.css";
 import "../mesa/mesa.css";
 import "./arquivo.css";
-import type { Conteudo } from "../conteudo";
+import type { Classe, Conteudo, Subclasse } from "../conteudo";
 import { SessaoCtx, type Sessao } from "../db/sala";
 import type { Personagem } from "../db/tipos";
 import { ComTooltip, Janela, MolduraTela, PlaceholderArte, Placa, Ramo, Selo, SeloExposicao } from "../jogo/componentes";
 import { BotaoHextech } from "../jogo/hextech";
 import { Icone } from "../jogo/icones";
 import { BotaoAmbiente, FundoVivo } from "../jogo/FundoVivo";
-import { Opcao } from "../mesa/pecas";
+import { Cartaz } from "../mesa/pecas";
 import { carregarArquivo, type DadosArquivo } from "./dados";
+import { TrilhaDetalhe } from "./FichaClasse";
+import { Markdown } from "../components/ui";
 import { idArte } from "./base";
 
 type PassoId = "comunidade" | "ancestralidade" | "classe" | "subclasse" | "resumo";
@@ -34,7 +36,14 @@ interface Item {
   descricao?: string;
   grupo?: string;
   etiqueta?: string;
-  imagem?: string | null;
+  url?: string | null;
+  srcSet?: string;
+  /** o nome já vem escrito na arte (classes e subclasses): fica só no tooltip e no detalhe */
+  mostrarNome?: boolean;
+  original?: string;
+  detalhes?: { rotulo: string; valor: string }[];
+  classe?: Classe;
+  sub?: Subclasse;
 }
 const limpa = (t?: string) => (t || "").replace(/^\[Exemplo\]\s*/, "");
 
@@ -172,21 +181,44 @@ function CriadorComSala({ s, conteudo, dados }: { s: Sessao; conteudo: Conteudo;
   if (!jid || !jogador) return <div className="jogo criador-raiz" data-paleta="ardosia" />;
 
   // ---- as listas de cada passo ----
-  const comunidades: Item[] = conteudo.comunidades.map((c) => ({ id: c.id, nome: c.nome, descricao: limpa(c.descricao), grupo: (c as { grupo?: string }).grupo, imagem: conteudo.arte[idArte("comunidades", c.id)] }));
-  const ancestralidades: Item[] = dados.ancestralidades.map((a) => ({ id: a.id, nome: a.nome, descricao: a.descricao, imagem: a.imagem || conteudo.arte[idArte("ancestralidades", a.id)] }));
-  const novas = conteudo.classes.filter((c) => c.nova);
-  const livro = conteudo.classes.filter((c) => !c.nova);
+  const arteDe = (id: string) => ({ url: conteudo.arte[id], srcSet: conteudo.arteSet[id] });
+  const comunidades: Item[] = conteudo.comunidades.map((c) => ({
+    id: c.id,
+    nome: c.nome,
+    descricao: limpa(c.descricao),
+    grupo: c.grupo,
+    original: c.original,
+    detalhes: [{ rotulo: "Habilidade", valor: c.habilidade || "em tradução" }],
+    ...arteDe(idArte("comunidades", c.id)),
+  }));
+  const ancestralidades: Item[] = dados.ancestralidades.map((a) => ({ id: a.id, nome: a.nome, descricao: a.descricao, grupo: a.grupo, original: a.original, ...arteDe(idArte("ancestralidades", a.id)) }));
+  const GRUPO_CLASSE: Record<string, string> = { cenario: "Classes do cenário", livro: "Livro básico e Hope & Fear", void: "The Void" };
   const classes: Item[] = [
-    ...novas.map((c) => ({ id: c.id, nome: c.nome, descricao: limpa(c.fantasia), etiqueta: "nova", imagem: conteudo.arte[idArte("classes", c.id)] })),
-    { id: "__livro", nome: "Classe do livro básico", descricao: "Uma das classes do livro básico. Aqui só aparecem os nomes." },
-    { id: "__outra", nome: "Outra", descricao: "Playtest ou homebrew. Escreva o nome." },
+    ...conteudo.classes.map((c) => ({
+      id: c.id,
+      nome: c.nome,
+      descricao: c.nova ? limpa(c.fantasia) : undefined,
+      grupo: GRUPO_CLASSE[c.grupo || (c.nova ? "cenario" : "livro")],
+      mostrarNome: false, // o nome já está escrito na arte
+      classe: c,
+      ...arteDe(idArte("classes", c.id)),
+    })),
+    { id: "__outra", nome: "Outra", descricao: "Playtest ou homebrew. Escreva o nome.", grupo: "Outra" },
   ];
-  const subclasses: Item[] = (classeObj?.subclasses || []).map((x, i) => ({ id: `sub-${i}`, nome: x.nome, descricao: limpa(x.linha), imagem: conteudo.arte[`subclasse-${classeObj?.id}-${i + 1}`] }));
+  const subclasses: Item[] = (classeObj?.subclasses || []).map((x) => ({
+    id: x.id || x.nome,
+    nome: x.nome,
+    descricao: limpa(x.linha),
+    mostrarNome: false,
+    sub: x,
+    classe: classeObj,
+    ...arteDe(`subclasse-${x.id}`),
+  }));
 
   const escolhaDoPasso = (): string | null => {
     if (passo === "comunidade") return p.comunidade ?? null;
     if (passo === "ancestralidade") return ancestralidades.find((x) => x.nome === p.ancestralidade)?.id ?? null;
-    if (passo === "classe") return p.classeOutra ? "__outra" : p.classeLivro ? "__livro" : p.classe ?? null;
+    if (passo === "classe") return p.classeOutra ? "__outra" : p.classe ?? null;
     if (passo === "subclasse") return subclasses.find((x) => x.nome === p.subclasse)?.id ?? null;
     return null;
   };
@@ -213,8 +245,8 @@ function CriadorComSala({ s, conteudo, dados }: { s: Sessao; conteudo: Conteudo;
       else if (!p.ancestralidade) salvar({ ancestralidade: n });
       else salvar({ ancestralidade2: n });
     } else if (passo === "classe") {
-      if (id !== "__livro" && id !== "__outra") {
-        salvar({ classe: id, classeLivro: false, classeOutra: null, subclasse: null });
+      if (id !== "__outra") {
+        salvar({ classe: id, classeLivro: null, classeOutra: null, subclasse: null });
         proximo();
       }
     } else if (passo === "subclasse") {
@@ -298,11 +330,11 @@ function CriadorComSala({ s, conteudo, dados }: { s: Sessao; conteudo: Conteudo;
             {grupos.map((g) => (
               <div key={g}>
                 {g && <div className="selecao-grupo n-L">{NOMES_GRUPO[g] || g}</div>}
-                <div className="ramos grade-opcoes criador-cartoes">
+                <div className="criador-cartazes">
                   {itens
                     .filter((i) => (i.grupo || "") === g)
                     .map((it) => (
-                      <Opcao key={it.id} nome={it.nome} descricao={it.descricao} arte={it.imagem} marcada={marcado(it.id)} etiqueta={it.etiqueta} rotuloMarca="sua escolha" aoClicar={() => setVer(it.id)} />
+                      <Cartaz key={it.id} nome={it.nome} url={it.url} srcSet={it.srcSet} mostrarNome={it.mostrarNome !== false} marcada={marcado(it.id)} aberto={aberto?.id === it.id} aoClicar={() => setVer(it.id)} />
                     ))}
                 </div>
               </div>
@@ -323,43 +355,25 @@ function CriadorComSala({ s, conteudo, dados }: { s: Sessao; conteudo: Conteudo;
                 marcada={marcado(aberto.id)}
                 trancado={trancado}
                 aoEscolher={() => escolher(aberto.id)}
+                semBotao={aberto.id === "__outra"}
                 extra={
-                  passo === "classe" && aberto.id === "__livro" ? (
-                    <div className="lista-livro">
-                      <div className="n-L">escolha uma</div>
-                      <div className="ramos">
-                        {livro.map((c) => (
-                          <Ramo
-                            key={c.id}
-                            titulo={c.nome}
-                            icone="escrever"
-                            estado={p.classeLivro && p.classe === c.id ? "selecionado" : trancado ? "bloqueado" : "normal"}
-                            aoClicar={() => {
-                              salvar({ classe: c.id, classeLivro: true, classeOutra: null, subclasse: null });
-                              proximo();
-                            }}
-                          />
-                        ))}
-                      </div>
-                    </div>
-                  ) : passo === "classe" && novas.some((c) => c.id === aberto.id) ? (
-                    <button className="link" onClick={() => (location.hash = `#/s/${s.salaId}/arquivo/classe/${aberto.id}`)}>
-                      Ver a ficha completa ▸
-                    </button>
-                  ) : passo === "classe" && aberto.id === "__outra" ? (
+                  aberto.id === "__outra" ? (
                     <CampoLivre
                       valor={outra}
                       aoMudar={setOutra}
                       rotulo="nome da classe"
                       desabilitado={trancado}
                       aoUsar={() => {
-                        salvar({ classe: null, classeLivro: false, classeOutra: outra.trim() || null, subclasse: null });
+                        salvar({ classe: null, classeLivro: null, classeOutra: outra.trim() || null, subclasse: null });
                         proximo();
                       }}
                     />
+                  ) : passo === "classe" && aberto.classe?.nova ? (
+                    <button className="link" onClick={() => (location.hash = `#/s/${s.salaId}/arquivo/classe/${aberto.id}`)}>
+                      Ver a ficha completa ▸
+                    </button>
                   ) : null
                 }
-                semBotao={passo === "classe" && (aberto.id === "__livro" || aberto.id === "__outra")}
               />
             ) : (
               <div className="detalhe-vazio">
@@ -540,17 +554,54 @@ function Detalhe({
   semBotao?: boolean;
 }) {
   const rotulo = useMemo(() => (item.grupo ? NOMES_GRUPO[item.grupo] || item.grupo : PASSOS.find((x) => x.id === passo)?.rotulo), [item, passo]);
+  const c = item.classe;
+  const vazio = passo === "ancestralidade" ? "descrição e habilidades em produção" : passo === "comunidade" ? "descrição em produção" : "";
   return (
     <div className="detalhe-criador">
       <div className="detalhe-retrato-criador">
-        <span className="retrato-34">{item.imagem ? <img src={item.imagem} alt="" /> : <PlaceholderArte id={item.nome} monograma={item.nome.slice(0, 1)} />}</span>
+        <span className="retrato-34">{item.url ? <img src={item.url} srcSet={item.srcSet} sizes="360px" alt="" /> : <PlaceholderArte id={item.nome} monograma={item.nome.slice(0, 1)} />}</span>
       </div>
       <div className="detalhe-texto-criador">
         <div className="n-L" style={{ color: "var(--brass)" }}>
           {rotulo}
+          {item.original ? ` · ${item.original}` : ""}
         </div>
         <h2 className="n-T titulo-detalhe">{item.nome}</h2>
-        {item.descricao && <p className="n-N">{item.descricao}</p>}
+        {item.descricao ? <p className="n-N">{item.descricao}</p> : vazio ? <p className="n-I">{vazio}</p> : null}
+        {c && c.intro && passo === "classe" && <Markdown texto={c.intro} className="n-N intro-classe" />}
+        {c && passo === "classe" && c.dominios.length > 0 && (
+          <dl className="dados-ficha">
+            <div>
+              <dt className="n-L">Domínios</dt>
+              <dd>{c.dominios.join(" · ")}</dd>
+            </div>
+            {c.nova && c.evasao != null && (
+              <div>
+                <dt className="n-L">Evasão</dt>
+                <dd>{c.evasao}</dd>
+              </div>
+            )}
+            {c.nova && c.pv != null && (
+              <div>
+                <dt className="n-L">Pontos de vida</dt>
+                <dd>{c.pv}</dd>
+              </div>
+            )}
+          </dl>
+        )}
+        {c && passo === "classe" && !c.nova && <p className="n-I">As regras estão no livro.</p>}
+        {passo === "subclasse" && c && !c.nova && <p className="n-I">As regras estão no livro.</p>}
+        {passo === "subclasse" && item.sub && c?.nova && <TrilhaDetalhe sub={item.sub} />}
+        {item.detalhes && (
+          <dl className="dados-ficha">
+            {item.detalhes.map((d) => (
+              <div key={d.rotulo}>
+                <dt className="n-L">{d.rotulo}</dt>
+                <dd>{d.valor}</dd>
+              </div>
+            ))}
+          </dl>
+        )}
         {extra}
         {!semBotao && (
           <div className="detalhe-acao-criador">

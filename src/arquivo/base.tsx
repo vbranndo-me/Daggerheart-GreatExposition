@@ -24,7 +24,7 @@ export const idArte = (fonte: string, id: string) => `${{ comunidades: "comunida
 export function ArtePeca({ id, placeholder, desc, nevoa, alta }: { id?: string; placeholder?: Secao["placeholder"]; desc?: string; nevoa?: boolean; alta?: boolean }) {
   const { conteudo } = useArquivo();
   const url = id ? conteudo.arte[id] : null;
-  if (url) return <img className="arte-img" src={url} alt={desc || ""} loading="lazy" />;
+  if (url) return <img className="arte-img" src={url} srcSet={id ? conteudo.arteSet[id] : undefined} sizes="100vw" alt={desc || ""} loading="lazy" />;
   const ph = placeholder;
   const arq = !ph ? null : ph.mapa === "continente" ? "mapas/continente.svg" : "mapas/rouillac/distritos.svg";
   return (

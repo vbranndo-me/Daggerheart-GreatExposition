@@ -92,12 +92,17 @@ function Trilha({ sub }: { sub: Subclasse }) {
   );
 }
 
+/** A trilha de uma subclasse, para o painel de detalhes do criador. */
+export function TrilhaDetalhe({ sub }: { sub: Subclasse }) {
+  return <Trilha sub={sub} />;
+}
+
 const SECOES = (c: Classe) => [
   { id: "visao", rotulo: "Visão geral" },
   { id: "habilidades", rotulo: "Habilidades" },
   { id: "subclasses", rotulo: "Subclasses" },
   ...(c.extras || []).map((e) => ({ id: `extra-${e.id}`, rotulo: e.nome.replace(/\s*\(a definir\)/, "") })),
-  { id: "perguntas", rotulo: "Perguntas" },
+  ...((c.origem || []).length + (c.conexao || []).length ? [{ id: "perguntas", rotulo: "Perguntas" }] : []),
   { id: "cartas", rotulo: "Cartas" },
 ];
 
@@ -185,7 +190,7 @@ export function FichaClasse({ classeId, sair }: { classeId: string; sair: () => 
             <div className="abertura-colunas">
               <div className="col-principal">
                 <h2>Visão geral</h2>
-                <p className="n-N">Aqui entra a introdução da classe: quem ela é no cenário e o que ela faz à mesa.</p>
+                {c.intro ? <Markdown texto={c.intro} className="n-N" /> : <p className="n-I">A introdução desta classe está em produção.</p>}
               </div>
               <aside className="col-lateral">
                 <div className="qualidades" style={{ paddingLeft: 0 }}>
@@ -263,6 +268,7 @@ export function FichaClasse({ classeId, sair }: { classeId: string; sair: () => 
         ))}
 
         {/* perguntas */}
+        {((c.origem || []).length + (c.conexao || []).length) > 0 && (
         <section id="fc-perguntas" className="cmp cmp-regras">
           <div className="regras-miolo">
             <h2 className="n-C">Perguntas</h2>
@@ -272,7 +278,7 @@ export function FichaClasse({ classeId, sair }: { classeId: string; sair: () => 
                   De origem
                 </div>
                 <ol className="n-N">
-                  {c.origem.map((q) => (
+                  {(c.origem || []).map((q) => (
                     <li key={q}>{q}</li>
                   ))}
                 </ol>
@@ -282,7 +288,7 @@ export function FichaClasse({ classeId, sair }: { classeId: string; sair: () => 
                   De conexão
                 </div>
                 <ol className="n-N">
-                  {c.conexao.map((q) => (
+                  {(c.conexao || []).map((q) => (
                     <li key={q}>{q}</li>
                   ))}
                 </ol>
@@ -290,6 +296,7 @@ export function FichaClasse({ classeId, sair }: { classeId: string; sair: () => 
             </div>
           </div>
         </section>
+        )}
 
         {/* cartas */}
         <section id="fc-cartas" className="cmp cmp-cartas">

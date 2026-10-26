@@ -4,3 +4,5 @@ dist
 .DS_Store
 .spoilers.txt
 *.tsbuildinfo
+
+content/arte/fonte/

@@ -2214,3 +2214,111 @@ label.btn-pequeno.desligado {
     display: none;
   }
 }
+
+/* ---------- 2ª leva de conteúdo: conceito, cartazes 3:4, tabelas em Markdown ---------- */
+.conceito-titulo {
+  max-width: 60ch;
+  margin: 2px 0 0;
+  font-style: italic;
+  color: var(--text-muted);
+}
+.cartao-galeria.so-arte {
+  min-height: 0;
+  grid-template-rows: 1fr;
+  padding: 6px;
+}
+.cartao-galeria.so-arte .retrato-34 {
+  border: 0;
+}
+.criador-cartazes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(138px, 1fr));
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.cartaz {
+  position: relative;
+  display: block;
+  padding: 0;
+  overflow: hidden;
+  aspect-ratio: 3 / 4;
+  background: #11151f;
+  border: 1px solid #343b52;
+  color: var(--text);
+  transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
+}
+.cartaz-arte {
+  position: absolute;
+  inset: 0;
+}
+.cartaz-arte img,
+.cartaz-arte .placeholder-arte {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.cartaz-nome {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 26px 10px 10px;
+  font-family: var(--font-display);
+  font-size: 16px;
+  text-align: center;
+  background: linear-gradient(180deg, transparent, rgba(8, 10, 16, 0.92));
+}
+.cartaz:hover {
+  border-color: var(--brass);
+  transform: translateY(-3px);
+}
+.cartaz.aberto {
+  border-color: var(--brass-hi);
+  box-shadow: 0 0 0 1px var(--brass-hi);
+}
+.cartaz.marcada {
+  border-color: var(--carmim-hi);
+  box-shadow: 0 0 0 1px var(--carmim-hi), 0 0 16px -4px var(--carmim-brilho);
+}
+.cartaz:focus-visible {
+  outline: none;
+  border-color: var(--brass-hi);
+}
+.intro-classe p {
+  margin: 0 0 10px;
+}
+.cmp table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  margin: 8px 0;
+}
+.cmp table th {
+  text-align: left;
+  padding: 6px 10px;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--brass);
+  border-bottom: 1px solid var(--brass-dark);
+}
+.cmp table td {
+  padding: 7px 10px;
+  vertical-align: top;
+  border-bottom: 1px solid #262c3d;
+}
+.cmp ul,
+.cmp ol {
+  padding-left: 22px;
+}
+
+/* seções de regras com tabela: uma coluna só, para a tabela respirar */
+.regras-corpo:has(table) {
+  columns: 1;
+}
+.regras-corpo:has(table) > p {
+  max-width: 78ch;
+}
+.regras-corpo:has(table) table {
+  table-layout: auto;
+}

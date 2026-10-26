@@ -1,13 +1,15 @@
-## Royaume d'Entremonts
+## EXPOSIÇÃO UNIVERSAL DE ENTREMONTS
 
-### Exposition Universelle de Rouillac
+### A Era da Paz Chegou
 
-*Pour la Paix des Nations*
+Sua Majestade, o Rei de Entremonts, tem a honra de convidar as mentes mais brilhantes do continente para a maior celebração que este século já viu.
 
-Sua Majestade e o Comitê da Exposição têm a honra de convidar **o portador deste cartão** para a abertura solene da Exposição Universal, nas margens do Rio Ferrum.
+Sob pavilhões de ferro forjado nas nossas próprias fornalhas, sábios, artistas e estadistas de todas as nações, inclusive as que hoje se enfrentam nos campos de batalha, sentarão à mesma mesa. Ali verão as maravilhas do mundo conhecido, das pérolas das Ilhas Peroladas às relíquias congeladas da Costa do Marfim, e ali encontrarão juntos o caminho para o fim desta guerra.
 
-Que as nações, cansadas da guerra, venham mostrar ao mundo o que sabem construir.
+*Venha como convidado. Parta como irmão.*
 
-*[Exemplo. O texto real é a Proposta dentro do mundo.]*
+*Que a guerra termine aqui.*
 
-**Rouillac · Pavillon d'Honneur · à la tombée du jour**
+**Domenique de Entremonts**
+
+*Ninguém sairá desta Exposição como entrou.*

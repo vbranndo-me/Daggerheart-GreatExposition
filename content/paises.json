@@ -1,72 +1,175 @@
 [
   {
-    "id": "entremonts", "nome": "Entremonts", "sabor": "francês", "capital": "Rouillac", "lado": "Neutro",
-    "publico": "[Exemplo] O menor país do continente, encaixado entre montanhas e minas de ferro. Neutro desde o primeiro dia da guerra, vive de vender aço para os dois lados e de não fazer perguntas. Agora sedia a Exposição Universal pela Paz.",
-    "boatos": ["[Exemplo] As fundições de Cendrevaux trabalham dia e noite, e ninguém sabe para quem.", "[Exemplo] As minas de Roche-Noire foram fechadas às pressas, anos atrás.", "[Exemplo] O rei não aparece em público há meses."],
-    "viajante": "[Exemplo] Um país pequeno demais para a própria ambição.",
-    "svgId": "pais-entremonts"
+    "id": "entremonts",
+    "nome": "Entremonts",
+    "sabor": "francês",
+    "capital": "Rouillac",
+    "lado": "Neutro (anfitrião)",
+    "publico": "O menor país do continente e o maior polo industrial. Neutro na guerra, vende aço, trilhos e munição para os dois lados, enquanto a própria população passa fome. Sedia a Exposição Universal na capital, Rouillac.",
+    "boatos": [
+      "O príncipe gastou o tesouro inteiro na Exposição.",
+      "As casas de ferro da vila do Rio Ferrum foram esvaziadas à força para a feira.",
+      "Dizem que o rei já não reconhece o próprio filho."
+    ],
+    "viajante": "Ferreiros de aluguel. O balcão da guerra.",
+    "svgId": "pais-entremonts",
+    "governo": "Monarquia constitucional",
+    "brasao": "pais-entremonts",
+    "bandeira": null
   },
   {
-    "id": "bretemar", "nome": "Bretemar", "sabor": "galego", "capital": "Ourantes", "lado": "Bloco B",
-    "publico": "[Exemplo] Terra de rias, névoa e estaleiros. A marinha de Bretemar é a maior do continente, e a sua costa, a mais perigosa.",
-    "boatos": ["[Exemplo] Em Cabo das Ánimas, os pescadores não saem quando a névoa canta.", "[Exemplo] Os estaleiros de Mourelos constroem um navio que ninguém viu.", "[Exemplo] A família real está falida."],
-    "viajante": "[Exemplo] Chove de lado, e todo mundo tem um parente no mar.",
-    "svgId": "pais-bretemar"
+    "id": "kenturia",
+    "nome": "Kenturia",
+    "sabor": "sardo",
+    "capital": "Kastedhu Mannu",
+    "lado": "Aliança Imperial",
+    "publico": "O gigante do oeste, com o maior exército do continente. Invadiu Codrina no primeiro ano da guerra atrás do petróleo e ficou atolado no meio dela.",
+    "boatos": [
+      "Rumores dizem que Kenturia está atrás de medidas drásticas para acabar com a guerra",
+      "A delegação de Kenturia trouxe quarenta “estudiosos de arte” para a Exposição. Nenhum deles sabe dizer quem pintou o quadro mais famoso do próprio país"
+    ],
+    "viajante": "O formigueiro. Botas.",
+    "svgId": "pais-kenturia",
+    "governo": "Império militar",
+    "brasao": "pais-kenturia",
+    "bandeira": null
   },
   {
-    "id": "kenturia", "nome": "Kenturia", "sabor": "sardo", "capital": "Kastedhu Mannu", "lado": "Bloco A",
-    "publico": "[Exemplo] Um país de pedra e de soldados, sede do alto comando do Bloco A. Ocupa parte de Codrina desde o primeiro ano da guerra.",
-    "boatos": ["[Exemplo] As torres antigas de Nuràxedu são mais velhas que qualquer reino.", "[Exemplo] As minas de prata de Pedra Arrùbia pagam a guerra inteira.", "[Exemplo] O alto comando quer a paz mais do que admite."],
-    "viajante": "[Exemplo] Gente de poucas palavras e muitas medalhas.",
-    "svgId": "pais-kenturia"
+    "id": "codrina",
+    "nome": "Codrina",
+    "sabor": "romeno",
+    "capital": "Valea Albă",
+    "lado": "Concórdia",
+    "publico": "Um país pacífico, com áreas de floresta intocada de aparência quase mística cobrindo grandes poços de Petróleo, que são cobiçados pelos poderosos. Metade do país está ocupada por Kenturia, que não perdeu tempo em deflorestar quase tudo que colocou as mãos, e a maioria dos refugiados em Entremonts vem daqui.",
+    "boatos": [
+      "Dizem que um membro importante do ministério de Codrina foi enviado para negociar diretamente com os Kenturianos",
+      "Nas florestas que Kenturia derrubou, os lenhadores param de trabalhar ao anoitecer. Os que não param não voltam."
+    ],
+    "viajante": "Lobos. Os da mata.",
+    "svgId": "pais-codrina",
+    "governo": "Monarquia Parlamentar",
+    "brasao": "pais-codrina",
+    "bandeira": null
   },
   {
-    "id": "codrina", "nome": "Codrina", "sabor": "romeno", "capital": "Valea Albă", "lado": "Bloco B (ocupada em parte)",
-    "publico": "[Exemplo] Metade do país está ocupada por Kenturia desde o primeiro ano da guerra, com os campos de petróleo e as minas de sal. A outra metade resiste a partir de Valea Albă.",
-    "boatos": ["[Exemplo] Há uma resistência organizada dentro da zona ocupada.", "[Exemplo] O petróleo de Păcureni alimenta as máquinas da Exposição.", "[Exemplo] Muitos refugiados da feira vieram de Ocna Neagră."],
-    "viajante": "[Exemplo] Um país que aprendeu a esperar.",
-    "svgId": "pais-codrina"
+    "id": "maresme",
+    "nome": "Maresme",
+    "sabor": "catalão",
+    "capital": "Bellamunt",
+    "lado": "Aliança Imperial",
+    "publico": "Maresme, um condado de Kenturia, é famosa pelas suas suas cidades portuárias e suas fábricas de tecido, que produzem o melhor que o dinheiro pode comprar. Porém, nem tudo é seda aqui, greves e revoltas separatistas são rotina e frequentemente terminam em explosões.",
+    "boatos": [
+      "Dizem que líder do movimento separatista é um primo do Imperador de Kenturia",
+      "O pavilhõa de Maresme foi revistado três vezes antes da inauguração da Exposição. Na terceira encontraram um detonador enrolado em seda"
+    ],
+    "viajante": "Os lojistas. Os de Kenturia com gravata.",
+    "svgId": "pais-maresme",
+    "governo": "Condado autônomo",
+    "brasao": "pais-maresme",
+    "bandeira": null
   },
   {
-    "id": "serrania", "nome": "Serrania", "sabor": "português", "capital": "Almodra", "lado": "Bloco B",
-    "publico": "[Exemplo] Entre a serra e o mar, vinhedos ao norte e minas de volfrâmio no sul, perto da Frente das Serras.",
-    "boatos": ["[Exemplo] O volfrâmio de Penafria vale mais que ouro para os dois lados.", "[Exemplo] Castro Velho contrabandeia vinho para o inimigo.", "[Exemplo] Há aldeias inteiras vazias na serra."],
-    "viajante": "[Exemplo] Saudade engarrafada e vendida a bom preço.",
-    "svgId": "pais-serrania"
+    "id": "bretemar",
+    "nome": "Bretemar",
+    "sabor": "galego",
+    "capital": "Ourantes",
+    "lado": "Concórdia",
+    "publico": "Bretemar, o país quase que eternamente coberto por névoa, é famoso pelo seu ar misterioso e instituições religiosas. Você não passará um dia aqui sem ouvir sobre A Caminhada, e todas as outras lendas de mortos que andam pela neblina.",
+    "boatos": [
+      "Quem vê A Caminhada passar e reconhece um rosto nela sabe que essa pessoa não chega ao fim do ano.",
+      "Dizem que uma religião nascida entre os pescadores e interioranos vem crescendo em popularidade no país"
+    ],
+    "viajante": "Os afogados. Gente da névoa.",
+    "svgId": "pais-bretemar",
+    "governo": "Monarquia parlamentar",
+    "brasao": "pais-bretemar",
+    "bandeira": null
   },
   {
-    "id": "narona", "nome": "Narona", "sabor": "dálmata", "capital": "Cluòstra", "lado": "Bloco A",
-    "publico": "[Exemplo] Uma bacia de rios e cavalos, com a capital erguida sobre as ruínas de uma colônia antiga.",
-    "boatos": ["[Exemplo] As ruínas sob Cluòstra nunca foram todas escavadas.", "[Exemplo] As feiras de cavalos de Cavalèra escondem um mercado de armas.", "[Exemplo] A frente com Fiorescuro está parada por um acordo secreto."],
-    "viajante": "[Exemplo] Todo naronês sabe montar antes de saber ler.",
-    "svgId": "pais-narona"
+    "id": "serrania",
+    "nome": "Serrania",
+    "sabor": "português",
+    "capital": "Almodra",
+    "lado": "Concórdia",
+    "publico": "Serrania era um reino pequeno e desimportante até algumas décadas atrás. Mas quando descobriram que estavam sentados em cima de toneladas de volfrâmio, o minério mais disputado da guerra, se tornaram extremamente influentes e poderosos. Porém o poder não vem sem instabilidade. Três anos depois da descoberta das minas o rei foi deposto e uma república instaurada, que já foi desafiada internamente diversas vezes pelos lealistas da coroa",
+    "boatos": [
+      "O rei deposto nunca saiu do país: está escondido num mosteiro das serras, e metade do exército sabe onde.",
+      "As caixas de “vinho” que a delegação de Serrania trouxe pesam demais para ser vinho."
+    ],
+    "viajante": "Cabras. Os da serra.",
+    "svgId": "pais-serrania",
+    "governo": "República jovem",
+    "brasao": null,
+    "bandeira": null
   },
   {
-    "id": "fiorescuro", "nome": "Fiorescuro", "sabor": "italiano", "capital": "Torremare", "lado": "Bloco B",
-    "publico": "[Exemplo] Bancos, pérolas e perfume. Fiorescuro financia metade do Bloco B e empresta para a outra metade.",
-    "boatos": ["[Exemplo] Os bancos de Torremare emprestam dinheiro aos dois lados.", "[Exemplo] As vidrarias de Vallombra fazem lentes para algo maior que um telescópio.", "[Exemplo] Os campos de jasmim de Gelsomina escondem uma estrada de contrabando."],
-    "viajante": "[Exemplo] Sorriem enquanto contam o seu dinheiro.",
-    "svgId": "pais-fiorescuro"
+    "id": "narona",
+    "nome": "Narona",
+    "sabor": "dálmata",
+    "capital": "Cluòstra",
+    "lado": "Aliança Imperial",
+    "publico": "Narona é a sede de Ecclesia Lumini, um país governado por membros do clero, rico e opulento. A Capital de Narona é construída nas ruínas de uma antiga civilização, que apenas nos últimos anos os arqueólogos vem começando a entender mais sobre.",
+    "boatos": [
+      "Quando os Arqueólogos de Cluòstra finalmente traduziram antigas inscrições das ruínas, a Ecclesia Lumini mandou recolher as anotações no mesmo dia",
+      "Os Ossos que são exibidos no relicário que Narona trouxe para a Exposição não são de nenhum santo, ao contrário do que disseram"
+    ],
+    "viajante": "Carolas. Comedores de pó.",
+    "svgId": "pais-narona",
+    "governo": "Principado eclesiástico",
+    "brasao": "pais-narona",
+    "bandeira": null
   },
   {
-    "id": "maresme", "nome": "Maresme", "sabor": "catalão", "capital": "Bellamunt", "lado": "Bloco A",
-    "publico": "[Exemplo] Porto da foz do Ferrum, fábricas de tecido e uniformes, e uma costa cheia de anarquistas e pescadores.",
-    "boatos": ["[Exemplo] Os uniformes dos dois exércitos saem das mesmas fábricas de Vilallana.", "[Exemplo] Castellsec é governada por um conselho de pescadores.", "[Exemplo] O Ferrum traz coisas estranhas rio abaixo."],
-    "viajante": "[Exemplo] Trabalham muito, discutem mais.",
-    "svgId": "pais-maresme"
+    "id": "fiorescuro",
+    "nome": "Fiorescuro",
+    "sabor": "italiano",
+    "capital": "Torremare",
+    "lado": "Concórdia",
+    "publico": "Rica, elegante e virada para o mar. Seus bancos emprestam a todos os países em guerra. Entre todos os países, Fiorescuro é quem tem uma melhor, e mais frequente, relação com os povos das Ilhas Peroladas, sendo que os portos de Fiorescuro são a porta de entrada de tudo que vem importado de lá",
+    "boatos": [
+      "Alguns dizem que os poderoso de Torremare rezam para que a guerra nunca acabe, por ser lucrativa demais para eles",
+      "Uma das casas navegantes das Ilhas Peroladas tem um assento secreto no conselho de Fiorescuro"
+    ],
+    "viajante": "Agiotas. Os perfumados.",
+    "svgId": "pais-fiorescuro",
+    "governo": "República mercantil",
+    "brasao": "pais-fiorescuro",
+    "bandeira": null
   },
   {
-    "id": "ilhas-peroladas", "nome": "Ilhas Peroladas", "sabor": "a definir", "capital": "a definir", "lado": "Fora do continente", "distante": true,
-    "publico": "[Exemplo] Um arquipélago distante, de onde vêm as pérolas de Torremare e os navios mais rápidos do mundo.",
-    "boatos": ["[Exemplo] As ilhas mandaram à Exposição um pavilhão inteiro de madrepérola.", "[Exemplo] Nenhum mapa das ilhas está completo.", "[Exemplo] Há ilhas que só aparecem na maré baixa."],
-    "viajante": "[Exemplo] Cada ilha jura que é a mais antiga.",
-    "svgId": "pais-ilhas-peroladas"
+    "id": "ilhas-peroladas",
+    "nome": "Ilhas Peroladas",
+    "sabor": "língua própria",
+    "capital": "desconhecida",
+    "lado": "Neutra",
+    "distante": true,
+    "publico": "As Ilhas Peroladas são um conjunto de mais de setecentas ilhas, com diversas casas e cidades estados independentes dentro delas, unidas por uma única cultura e tecnologia de navegação. Para quem os conhece bem, a cultura de uma casa para a outra é tão diferente quanto comparar maçãs e laranjas,mas raramente os habitantes de Lucentia se dão o trabalho o suficiente para entender isso",
+    "boatos": [
+      "As frotas das Ilhas vão até a Costa do Marfim sem pedir licença a ninguém, e voltam com cargas que não aparecem nos registros do porto.",
+      "Uma casa navegadora mandou à Exposição uma princesa, mas ninguém sabe dizer de qual casa, nem se ela é mesmo princesa."
+    ],
+    "viajante": "",
+    "svgId": "pais-ilhas-peroladas",
+    "governo": "Talassocracia (casas navegadoras)",
+    "brasao": null,
+    "bandeira": null
   },
   {
-    "id": "costa-do-marfim", "nome": "Costa do Marfim", "sabor": "a definir", "capital": "a definir", "lado": "Fora da guerra", "distante": true,
-    "publico": "[Exemplo] Um continente ao sul, pouco conhecido, de onde a delegação chegou em silêncio.",
-    "boatos": ["[Exemplo] A delegação da Costa do Marfim não trouxe tradutores.", "[Exemplo] Os navios que vão para lá voltam com menos tripulantes.", "[Exemplo] O pavilhão deles fica fechado durante o dia."],
-    "viajante": "[Exemplo] Quem foi não descreve; só desenha.",
-    "svgId": "pais-costa-do-marfim"
+    "id": "costa-do-marfim",
+    "nome": "Costa do Marfim",
+    "sabor": "a definir",
+    "capital": "desconhecida",
+    "lado": "Fora do conflito",
+    "distante": true,
+    "publico": "O que hoje é conhecido como a Costa do Marfim é apenas um pedaço de terra do enorme continente que se extende ao sul. Coberto de gelo por toda sua extensão, a Costa do Marfim conta com diferentes tribos, cada uma com seu próprio nivel de organização e tecnologia. Mas para o cidadão médio de Lucentia, A Costa do Marfim é a terra dos mamutes, das baleias e do gelo. Nada além disso.",
+    "boatos": [
+      "As múmias mais antigas não estavam deitadas: foram encontradas sentadas em círculo, viradas para o centro.",
+      "Um arqueólogo voltou da Costa falando uma língua que ninguém entendia, e morreu antes de conseguir traduzir uma palavra."
+    ],
+    "viajante": "Selvagens do gelo.",
+    "svgId": "pais-costa-do-marfim",
+    "governo": "Tribos (segundo os viajantes)",
+    "brasao": null,
+    "bandeira": null
   }
 ]

@@ -8,6 +8,4 @@ lado: direita
 status: pronto
 ---
 
-Aqui entra a frase que apresenta o convite.
-
 ::efemera{id="convite"}

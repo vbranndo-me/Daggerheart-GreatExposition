@@ -233,6 +233,13 @@ status: esqueleto      # esqueleto | rascunho | pronto
 - **Peças de papel:** o texto vem de `content/arquivo/efemera-<id>.md` (o convite usa o `convite.md` da sessão).
 - **Trocar um placeholder por arte:** gere a imagem para o `id` pedido em `content/arte/manifest.json` (rode `npm run pedidos-arte` para a lista), ponha o arquivo em `content/arte/` e preencha o campo `arquivo`. O placeholder some sozinho.
 
+**As artes (`npm run arte`)**
+
+- Os PNG originais do mestre ficam em `content/arte/fonte/` (fora do git, com os nomes que ele deu). O arquivo `content/arte/mapa-arte.json` diz qual PNG é qual `id` (`null` = ainda não existe).
+- `npm run arte` gera `public/arte/<id>-<largura>.webp` e o `public/arte/arte.json` (larguras, proporção e cor média). O app pede a arte sempre pelo `id`; o nome original nunca aparece no site. Esses WebP vão para o git, porque a publicação automática não tem os originais.
+- Imagem nova: ponha o PNG na `fonte/`, acrescente a linha no `mapa-arte.json` e rode `npm run arte`. Trocar uma imagem: ponha o PNG com o mesmo nome e rode de novo.
+- O comando avisa (sem falhar) sobre arquivo sem `id`, `id` sem arquivo e imagem menor que o tamanho-alvo. `npm run pedidos-arte` mantém `content/arte/PEDIDOS.md` (o que ainda falta).
+
 **Spoiler:** crie `.spoilers.txt` na raiz (uma palavra por linha; ele já está no `.gitignore`) e rode `npm run spoiler` antes de cada push. O script só avisa, não bloqueia.
 
 ## Créditos

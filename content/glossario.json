@@ -2,13 +2,74 @@
   {
     "termo": "Discernimento",
     "alias": [],
-    "texto": "Aqui entra a definição curta do termo.",
-    "secao": "mecanicas"
+    "texto": "Mede o quanto o seu personagem já enxergou através do véu. Vai de 0 a 12 e fica anotado na ficha, à vista de todos.",
+    "secao": "discernimento"
   },
   {
     "termo": "Frenesi",
     "alias": [],
-    "texto": "Aqui entra a definição curta do termo.",
-    "secao": "mecanicas"
+    "texto": "Mede o quanto o véu está mexendo com a cabeça do seu personagem. É uma trilha separada, de 4 espaços, que começa vazia.",
+    "secao": "frenesi"
+  },
+  {
+    "termo": "véu",
+    "alias": [
+      "cena do véu",
+      "cenas do véu"
+    ],
+    "texto": "O que separa o mundo que a gente vê do mundo como ele é. Quem diz quando uma cena é do véu é o mestre.",
+    "secao": "veu"
+  },
+  {
+    "termo": "Entregar-se",
+    "alias": [
+      "se entrega"
+    ],
+    "texto": "Antes de rolar, você pode declarar que o seu personagem se entrega ao véu e escolher um benefício.",
+    "secao": "frenesi"
+  },
+  {
+    "termo": "Surto",
+    "alias": [
+      "surta"
+    ],
+    "texto": "Quando o último espaço da trilha de Frenesi é marcado, o seu personagem surta. Por um momento, o mestre assume o personagem.",
+    "secao": "frenesi"
+  },
+  {
+    "termo": "Remendar a mente",
+    "alias": [],
+    "texto": "Num descanso longo, com uma cena de consolo com alguém querido, role os Dados de Dualidade: com Esperança, recupere 1 espaço perdido da trilha.",
+    "secao": "frenesi"
+  },
+  {
+    "termo": "compulsão",
+    "alias": [],
+    "texto": "Todo personagem carrega alguma coisa que o puxa: um vício, uma promessa, uma culpa, um medo. Ela precisa doer.",
+    "secao": "compulsao"
+  },
+  {
+    "termo": "Ecclesia Lumini",
+    "alias": [],
+    "texto": "A fé de quase todo o continente, com sede em Cluòstra. Para ela, o Sol é Deus, e Deus está dormindo.",
+    "secao": "ecclesia"
+  },
+  {
+    "termo": "Aliança Imperial",
+    "alias": [],
+    "texto": "Um dos dois blocos de Lucentia: Kenturia, Narona e Maresme.",
+    "secao": "continente"
+  },
+  {
+    "termo": "Concórdia",
+    "alias": [],
+    "texto": "O outro bloco de Lucentia: Bretemar, Serrania, Codrina e Fiorescuro.",
+    "secao": "continente"
+  },
+  {
+    "termo": "Rouillac",
+    "alias": [],
+    "texto": "A capital de Entremonts, com cerca de um milhão de habitantes, quase todos respirando ferro.",
+    "secao": "rouillac"
   }
 ]

@@ -1,6 +1,7 @@
 {
   "titulo": "A Exposição Universal",
-  "subtitulo": "Uma campanha de horror belle époque para Daggerheart.",
+  "subtitulo": "A Era da Paz chegou",
+  "conceito": "O que acontece quando, em busca da paz, algo antigo é liberado no mundo, fazendo com que até inocentes sejam levados a situações extremas?",
   "complexidade": 4,
   "capitulos": [
     {
@@ -8,8 +9,9 @@
       "num": "I",
       "nome": "A Proposta",
       "secoes": [
-        "abertura-proposta",
-        "convite"
+        "proposta",
+        "convite",
+        "citacao-proposta"
       ]
     },
     {
@@ -17,10 +19,14 @@
       "num": "II",
       "nome": "O Mundo",
       "secoes": [
-        "abertura-mundo",
+        "guerra",
+        "entremonts",
         "continente",
-        "distincoes",
-        "rouillac"
+        "rouillac",
+        "refugiados",
+        "ecclesia",
+        "citacao-veu",
+        "veu"
       ]
     },
     {
@@ -28,7 +34,8 @@
       "num": "III",
       "nome": "A Exposição",
       "secoes": [
-        "abertura-exposicao",
+        "exposicao",
+        "recinto",
         "cartaz",
         "corte"
       ]
@@ -38,11 +45,11 @@
       "num": "IV",
       "nome": "Quem Vocês São",
       "secoes": [
-        "abertura-quem",
+        "quem",
         "comunidades",
-        "respiro-quem",
         "ancestralidades",
-        "classes-cenario",
+        "respiro-quem",
+        "magia",
         "classes"
       ]
     },
@@ -51,9 +58,11 @@
       "num": "V",
       "nome": "Como Se Joga Aqui",
       "secoes": [
-        "abertura-como",
-        "principios-mestre",
-        "mecanicas",
+        "como",
+        "discernimento",
+        "citacao-frenesi",
+        "frenesi",
+        "compulsao",
         "respiro-como",
         "equipamento",
         "modulo-ficha"

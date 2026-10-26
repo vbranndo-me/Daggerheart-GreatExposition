@@ -1,38 +1,218 @@
 [
   {
-    "id": "anc-1",
-    "nome": "Ancestralidade A",
-    "descricao": "Aqui entra a descrição desta ancestralidade, no tom do cenário.",
-    "imagem": null
+    "id": "humano",
+    "nome": "Humano",
+    "original": "Human",
+    "grupo": "basico",
+    "imagem": null,
+    "descricao": "",
+    "habilidades": []
   },
   {
-    "id": "anc-2",
-    "nome": "Ancestralidade B",
-    "descricao": "Aqui entra a descrição desta ancestralidade, no tom do cenário.",
-    "imagem": null
+    "id": "anao",
+    "nome": "Anão",
+    "original": "Dwarf",
+    "grupo": "basico",
+    "imagem": null,
+    "descricao": "",
+    "habilidades": []
   },
   {
-    "id": "anc-3",
-    "nome": "Ancestralidade C",
-    "descricao": "Aqui entra a descrição desta ancestralidade, no tom do cenário.",
-    "imagem": null
+    "id": "elfo",
+    "nome": "Elfo",
+    "original": "Elf",
+    "grupo": "basico",
+    "imagem": null,
+    "descricao": "",
+    "habilidades": []
   },
   {
-    "id": "anc-4",
-    "nome": "Ancestralidade D",
-    "descricao": "Aqui entra a descrição desta ancestralidade, no tom do cenário.",
-    "imagem": null
+    "id": "orc",
+    "nome": "Orc",
+    "original": "Orc",
+    "grupo": "basico",
+    "imagem": null,
+    "descricao": "",
+    "habilidades": []
   },
   {
-    "id": "anc-5",
-    "nome": "Ancestralidade E",
-    "descricao": "Aqui entra a descrição desta ancestralidade, no tom do cenário.",
-    "imagem": null
+    "id": "goblin",
+    "nome": "Goblin",
+    "original": "Goblin",
+    "grupo": "basico",
+    "imagem": null,
+    "descricao": "",
+    "habilidades": []
   },
   {
-    "id": "anc-6",
-    "nome": "Ancestralidade F",
-    "descricao": "Aqui entra a descrição desta ancestralidade, no tom do cenário.",
-    "imagem": null
+    "id": "pequenino",
+    "nome": "Pequenino",
+    "original": "Halfling",
+    "grupo": "basico",
+    "imagem": null,
+    "descricao": "",
+    "habilidades": []
+  },
+  {
+    "id": "gigante",
+    "nome": "Gigante",
+    "original": "Giant",
+    "grupo": "basico",
+    "imagem": null,
+    "descricao": "",
+    "habilidades": []
+  },
+  {
+    "id": "firbolg",
+    "nome": "Firbolg",
+    "original": "Firbolg",
+    "grupo": "basico",
+    "imagem": null,
+    "descricao": "",
+    "habilidades": []
+  },
+  {
+    "id": "fauno",
+    "nome": "Fauno",
+    "original": "Faun",
+    "grupo": "basico",
+    "imagem": null,
+    "descricao": "",
+    "habilidades": []
+  },
+  {
+    "id": "fada",
+    "nome": "Fada",
+    "original": "Faerie",
+    "grupo": "basico",
+    "imagem": null,
+    "descricao": "",
+    "habilidades": []
+  },
+  {
+    "id": "fungril",
+    "nome": "Fungril",
+    "original": "Fungril",
+    "grupo": "basico",
+    "imagem": null,
+    "descricao": "",
+    "habilidades": []
+  },
+  {
+    "id": "galapa",
+    "nome": "Galapa",
+    "original": "Galapa",
+    "grupo": "basico",
+    "imagem": null,
+    "descricao": "",
+    "habilidades": []
+  },
+  {
+    "id": "katari",
+    "nome": "Katari",
+    "original": "Katari",
+    "grupo": "basico",
+    "imagem": null,
+    "descricao": "",
+    "habilidades": []
+  },
+  {
+    "id": "quacho",
+    "nome": "Quacho",
+    "original": "Ribbet",
+    "grupo": "basico",
+    "imagem": null,
+    "descricao": "",
+    "habilidades": []
+  },
+  {
+    "id": "simio",
+    "nome": "Símio",
+    "original": "Simiah",
+    "grupo": "basico",
+    "imagem": null,
+    "descricao": "",
+    "habilidades": []
+  },
+  {
+    "id": "drakona",
+    "nome": "Drakona",
+    "original": "Drakona",
+    "grupo": "basico",
+    "imagem": null,
+    "descricao": "",
+    "habilidades": []
+  },
+  {
+    "id": "infernis",
+    "nome": "Infernis",
+    "original": "Infernis",
+    "grupo": "basico",
+    "imagem": null,
+    "descricao": "",
+    "habilidades": []
+  },
+  {
+    "id": "clank",
+    "nome": "Clank",
+    "original": "Clank",
+    "grupo": "basico",
+    "imagem": null,
+    "descricao": "",
+    "habilidades": []
+  },
+  {
+    "id": "aetheris",
+    "nome": "Aetheris",
+    "original": "Aetheris",
+    "grupo": "hope-fear",
+    "imagem": null,
+    "descricao": "",
+    "habilidades": []
+  },
+  {
+    "id": "gnomo",
+    "nome": "Gnomo",
+    "original": "Gnome",
+    "grupo": "hope-fear",
+    "imagem": null,
+    "descricao": "",
+    "habilidades": []
+  },
+  {
+    "id": "elemental-terra",
+    "nome": "Parente da Terra",
+    "original": "Earthkin",
+    "grupo": "hope-fear",
+    "imagem": null,
+    "descricao": "",
+    "habilidades": []
+  },
+  {
+    "id": "elemental-brasa",
+    "nome": "Parente da Brasa",
+    "original": "Emberkin",
+    "grupo": "hope-fear",
+    "imagem": null,
+    "descricao": "",
+    "habilidades": []
+  },
+  {
+    "id": "elemental-ceu",
+    "nome": "Parente do Céu",
+    "original": "Skykin",
+    "grupo": "hope-fear",
+    "imagem": null,
+    "descricao": "",
+    "habilidades": []
+  },
+  {
+    "id": "elemental-mare",
+    "nome": "Parente da Maré",
+    "original": "Tidekin",
+    "grupo": "hope-fear",
+    "imagem": null,
+    "descricao": "",
+    "habilidades": []
   }
 ]
