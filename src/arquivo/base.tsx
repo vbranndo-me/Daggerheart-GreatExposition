@@ -1,7 +1,7 @@
 // Peças compartilhadas do Arquivo: o contexto da apresentação e a arte (imagem pronta ou placeholder em duotom).
 import { createContext, useContext, type ReactNode } from "react";
 import { urlConteudo, type Conteudo } from "../conteudo";
-import { PlaceholderArte } from "../jogo/componentes";
+import { Janela, PlaceholderArte } from "../jogo/componentes";
 import { Markdown } from "../components/ui";
 import type { DadosArquivo, Secao } from "./dados";
 
@@ -70,19 +70,28 @@ export function Habilidades({ habilidades, adjetivos, esperanca }: { habilidades
         </ul>
       )}
       {esperanca && (
-        <div className="habilidade esperanca">
-          <div className="n-L">Habilidade de Esperança</div>
-          <div className="n-S">{esperanca.nome}</div>
-          <Markdown texto={esperanca.texto} className="n-N" />
-        </div>
+        <CartaEsperanca esperanca={esperanca} />
       )}
       {lista.length > 0 && <div className="n-L titulo-habilidades">{lista.length > 1 || esperanca ? "Habilidades" : "Habilidade"}</div>}
       {lista.map((h) => (
         <div key={h.nome} className="habilidade">
           <div className="n-S">{h.nome}</div>
-          <Markdown texto={h.texto} className="n-N" />
+          <Markdown texto={h.texto.charAt(0).toUpperCase() + h.texto.slice(1)} className="n-N" />
         </div>
       ))}
     </div>
+  );
+}
+
+/** A habilidade de Esperança: um cartão de filigrana, como as janelas do jogo. */
+export function CartaEsperanca({ esperanca }: { esperanca: { nome: string; texto: string } }) {
+  return (
+    <Janela tipo="pesada" className="habilidade-filigrana">
+      <div className="n-L" style={{ color: "var(--carmim-hi)" }}>
+        Habilidade de Esperança
+      </div>
+      <div className="n-S">{esperanca.nome}</div>
+      <Markdown texto={esperanca.texto} className="n-N" />
+    </Janela>
   );
 }

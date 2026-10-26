@@ -31,7 +31,7 @@ const porNome = new Map(arquivos.map((f) => [nfc(f), f]));
 /** O tipo da arte (pelo começo do id) decide as larguras do srcset. */
 function tipo(id) {
   if (/^(abertura-|chamada-|respiro-)/.test(id)) return { larguras: [1280, 1920, 2560], rotulo: "abertura 21:9" };
-  if (/^(comunidade-|ancestralidade-|classe-|subclasse-)/.test(id) || ["corte", "distincoes", "classes-cenario", "refugiados", "discernimento", "frenesi", "ecclesia", "veu", "compulsao", "principios-mestre", "modulo-ficha"].includes(id)) return { larguras: [384, 768], rotulo: "cartaz 3:4" };
+  if (/^(comunidade-|ancestralidade-|classe-|subclasse-)/.test(id) || ["corte", "distincoes", "classes-cenario", "refugiados", "armatabela", "discernimento", "frenesi", "ecclesia", "veu", "compulsao", "principios-mestre", "modulo-ficha"].includes(id)) return { larguras: [384, 768], rotulo: "cartaz 3:4" };
   if (/^pais-/.test(id)) return { larguras: [384, 768], rotulo: "brasão 1:1" };
   return { larguras: [512, 1024], rotulo: "outra" };
 }

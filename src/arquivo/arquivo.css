@@ -2690,3 +2690,121 @@ button.trilha-espaco { cursor: pointer; }
 @media (max-width: 1000px) {
   .cmp-regras.com-medidor.com-arte { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* ---------- cartazes de latão: a arte encaixada e o nome gravado embaixo, tudo sobre o metal ---------- */
+.cartaz:not(.poster) {
+  display: flex;
+  flex-direction: column;
+  aspect-ratio: auto;
+  padding: var(--rim);
+  text-align: center;
+}
+.cartaz:not(.poster) .cartaz-arte {
+  position: relative;
+  inset: auto;
+  display: block;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+}
+.cartaz:not(.poster) .cartaz-nome {
+  position: static;
+  padding: 7px 4px 2px;
+  font-size: 17px;
+  font-weight: 700;
+  color: #1d1408 !important;
+  background: none;
+  text-shadow: 0 1px 0 rgba(255, 244, 214, 0.6);
+}
+.cartaz:not(.poster) .opcao-selo { z-index: 5; }
+
+/* ---------- o painel de detalhe do criador: a arte fica parada, só o texto rola, o botão fica no canto ---------- */
+.criador-detalhe {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding-right: 0;
+}
+.detalhe-criador {
+  flex: 1;
+  min-height: 0;
+  align-items: stretch;
+  padding: 0;
+}
+.detalhe-retrato-criador {
+  align-self: start;
+  min-height: 0;
+}
+.detalhe-retrato-criador .retrato-34 {
+  width: 100%;
+  max-height: calc(100vh - 210px);
+}
+.detalhe-coluna {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  min-width: 0;
+}
+.detalhe-coluna .detalhe-texto-criador {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 10px;
+  align-content: start;
+}
+.detalhe-coluna .detalhe-acao-criador {
+  flex: none;
+  align-self: flex-end;
+  margin: 0;
+  padding: 14px 4px 6px 0;
+}
+@media (max-width: 1000px) {
+  .criador-detalhe { overflow: visible; display: block; }
+  .detalhe-coluna .detalhe-texto-criador { overflow: visible; }
+  .detalhe-retrato-criador .retrato-34 { max-height: none; }
+}
+
+/* a classe escolhida, bem grande, ao lado das subclasses */
+.criador-grade.com-classe-grande {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  column-gap: 20px;
+  align-content: start;
+  align-items: start;
+}
+.criador-grade.com-classe-grande > .criador-grade-cab { grid-column: 1 / -1; }
+.criador-grade.com-classe-grande > div:not(.criador-grade-cab) { grid-column: 1; }
+.criador-grade.com-classe-grande .criador-cartazes { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.arte-classe-grande {
+  grid-column: 2;
+  grid-row: 2 / span 6;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  max-height: calc(100vh - 200px);
+  object-fit: contain;
+  justify-self: center;
+  box-shadow: 0 14px 24px -10px #000, 0 2px 4px #000b;
+}
+
+/* o cartão da habilidade de Esperança: filigrana como as janelas do jogo */
+.habilidade-filigrana.janela {
+  display: grid;
+  gap: 6px;
+  margin: 10px 0 18px;
+  padding: 26px 32px 24px;
+}
+.habilidade-filigrana .n-N { margin: 4px 0 0; }
+
+/* equipamento: a arte presa à esquerda, o texto e a tabela à direita */
+.cmp-regras.com-arte-esq {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.42fr) minmax(0, 1fr);
+  gap: 5%;
+  align-items: start;
+}
+.cmp-regras.com-arte-esq .regras-miolo { max-width: none; }
+.regras-arte.esq { grid-column: 1; }
+@media (max-width: 1000px) {
+  .cmp-regras.com-arte-esq { grid-template-columns: minmax(0, 1fr); }
+  .regras-arte.esq { position: static; }
+}

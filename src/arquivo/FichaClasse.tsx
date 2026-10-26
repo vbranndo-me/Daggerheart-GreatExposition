@@ -5,7 +5,7 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import type { CartaDominio, Classe, NoTrilha, Subclasse } from "../conteudo";
 import { Icone } from "../jogo/icones";
 import { Markdown } from "../components/ui";
-import { ArtePeca, useArquivo } from "./base";
+import { ArtePeca, CartaEsperanca, useArquivo } from "./base";
 
 /** Carta de domínio: só o placeholder, na proporção 63 × 88, até a arte chegar do Figma. */
 export function CartaPlaceholder({ carta, aoClicar }: { carta: Pick<CartaDominio, "nome" | "dominio" | "nivel" | "texto" | "imagem">; aoClicar?: () => void }) {
@@ -223,11 +223,7 @@ export function FichaClasse({ classeId, sair }: { classeId: string; sair: () => 
           <div className="regras-miolo">
             <h2 className="n-C">Habilidades</h2>
             {c.esperanca && (
-              <div className="habilidade esperanca">
-                <div className="n-L">Habilidade de Esperança</div>
-                <div className="n-S">{c.esperanca.nome}</div>
-                <Markdown texto={c.esperanca.texto} className="n-N" />
-              </div>
+              <CartaEsperanca esperanca={c.esperanca} />
             )}
             <div className="regras-corpo">
               {(c.habilidades || []).map((h) => (

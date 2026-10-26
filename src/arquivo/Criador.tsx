@@ -250,7 +250,7 @@ function CriadorComSala({ s, conteudo, dados }: { s: Sessao; conteudo: Conteudo;
       else salvar({ ancestralidade2: n });
     } else if (passo === "classe") {
       if (id !== "__outra") {
-        salvar({ classe: id, classeLivro: null, classeOutra: null, subclasse: null });
+        salvar({ classe: id, classeLivro: null, classeOutra: null, subclasse: conteudo.classes.find((x) => x.id === id)?.subclasses[0]?.nome ?? null });
         proximo();
       }
     } else if (passo === "subclasse") {
@@ -311,7 +311,7 @@ function CriadorComSala({ s, conteudo, dados }: { s: Sessao; conteudo: Conteudo;
 
       {passo !== "resumo" ? (
         <main className="criador-tela">
-          <section className="criador-grade">
+          <section className={`criador-grade ${passo === "subclasse" && classeObj && conteudo.arte[idArte("classes", classeObj.id)] ? "com-classe-grande" : ""}`}>
             <div className="criador-grade-cab">
               <h1 className="n-C">{PASSOS[iPasso].rotulo}</h1>
               {passo === "ancestralidade" && (
@@ -343,6 +343,16 @@ function CriadorComSala({ s, conteudo, dados }: { s: Sessao; conteudo: Conteudo;
                 </div>
               </div>
             ))}
+            {passo === "subclasse" && classeObj && conteudo.arte[idArte("classes", classeObj.id)] && (
+              <img
+                className="arte-classe-grande"
+                src={conteudo.arte[idArte("classes", classeObj.id)]}
+                srcSet={conteudo.arteSet[idArte("classes", classeObj.id)]}
+                sizes="40vw"
+                alt={classeObj.nome}
+                style={{ aspectRatio: String(conteudo.arteInfo[idArte("classes", classeObj.id)]?.proporcao || 0.667) }}
+              />
+            )}
             {passo === "subclasse" && classeObj === undefined && p.classeOutra && (
               <div className="detalhe-livre">
                 <p className="n-N">Para "{p.classeOutra}", escreva o nome da subclasse.</p>
@@ -565,6 +575,7 @@ function Detalhe({
       <div className="detalhe-retrato-criador">
         <span className="retrato-34" style={item.url && item.proporcao ? { aspectRatio: String(item.proporcao) } : undefined}>{item.url ? <img src={item.url} srcSet={item.srcSet} sizes="360px" alt="" /> : <PlaceholderArte id={item.nome} monograma={item.nome.slice(0, 1)} />}</span>
       </div>
+      <div className="detalhe-coluna">
       <div className="detalhe-texto-criador">
         <div className="n-L" style={{ color: "var(--brass)" }}>
           {rotulo}
@@ -609,6 +620,7 @@ function Detalhe({
           </dl>
         )}
         {extra}
+      </div>
         {!semBotao && (
           <div className="detalhe-acao-criador">
             <BotaoHextech grande disabled={trancado} onClick={aoEscolher}>

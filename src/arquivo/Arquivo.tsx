@@ -402,12 +402,19 @@ function SecaoView({ s, cap, primeira }: { s: Secao; cap: Capitulo; primeira: bo
 /** Regras: o texto numa coluna de leitura e, em Discernimento e Frenesi, o medidor fixo ao lado. */
 function Regras({ s, blocos, faixa }: { s: Secao; blocos: Bloco[]; faixa: ReactNode }) {
   const { conteudo } = useArquivo();
-  const arte = conteudo.arte[s.id];
+  const arteId = ({ discernimento: "discernimento", frenesi: "frenesi", equipamento: "armatabela" } as Record<string, string>)[s.id];
+  const arte = arteId ? conteudo.arte[arteId] : undefined;
+  const esquerda = s.id === "equipamento" && !!arte;
   const ref = useRef<HTMLElement>(null);
   const progresso = useProgressoDaSecao(ref);
   const lateral = s.id === "discernimento" ? <ColunaDiscernimento progresso={progresso} /> : s.id === "frenesi" ? <ColunaFrenesi progresso={progresso} /> : null;
   return (
-    <section ref={ref} className={`cmp cmp-regras ${lateral ? "com-medidor" : ""} ${lateral && arte ? "com-arte" : ""}`}>
+    <section ref={ref} className={`cmp cmp-regras ${lateral ? "com-medidor" : ""} ${lateral && arte ? "com-arte" : ""} ${esquerda ? "com-arte-esq" : ""}`}>
+      {esquerda && (
+        <figure className="regras-arte esq">
+          <img src={arte} srcSet={conteudo.arteSet[arteId]} sizes="40vw" alt="" loading="lazy" style={conteudo.arteInfo[arteId] ? { aspectRatio: String(conteudo.arteInfo[arteId].proporcao) } : undefined} />
+        </figure>
+      )}
       <div className="regras-miolo">
         {faixa}
         <h2 className="n-C">{s.titulo}</h2>
@@ -419,7 +426,7 @@ function Regras({ s, blocos, faixa }: { s: Secao; blocos: Bloco[]; faixa: ReactN
       {lateral}
       {lateral && arte && (
         <figure className="regras-arte">
-          <img src={arte} srcSet={conteudo.arteSet[s.id]} sizes="40vw" alt="" loading="lazy" style={conteudo.arteInfo[s.id] ? { aspectRatio: String(conteudo.arteInfo[s.id].proporcao) } : undefined} />
+          <img src={arte} srcSet={conteudo.arteSet[arteId]} sizes="40vw" alt="" loading="lazy" style={conteudo.arteInfo[arteId] ? { aspectRatio: String(conteudo.arteInfo[arteId].proporcao) } : undefined} />
         </figure>
       )}
     </section>
