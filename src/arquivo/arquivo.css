@@ -2454,10 +2454,11 @@ button.trilha-espaco { cursor: pointer; }
 .cartao-galeria,
 .cartaz,
 .bandeira-cartao {
-  --rim: 16px;
+  --rim: 22px;
   --chanfro: 11px;
-  --tacha: 15px;
-  --bisel: linear-gradient(180deg, #f6e4b0 0%, #dcbc78 20%, #bd9f62 50%, #9d7f45 51%, #b09257 78%, #8e7240 100%);
+  --tacha: 13px;
+  --sulco: 2px;
+  --bisel: linear-gradient(180deg, #ecd18a 0%, #d8b974 35%, #c3a566 65%, #ae9055 100%);
   --rebite: radial-gradient(circle closest-side, #fff0bf 0 12%, #e0c27c 30%, #8e7240 66%, #3d2e14 88%, transparent 100%);
 }
 .cartao-galeria:not(.so-arte),
@@ -2474,36 +2475,47 @@ button.trilha-espaco { cursor: pointer; }
   transition: filter 0.2s, transform 0.18s cubic-bezier(0.2, 0.8, 0.3, 1);
 }
 .cartao-galeria:not(.so-arte) { padding: var(--rim); }
-.cartaz:not(.poster) { padding: 0; }
-/* a chapa maciça, de cantos chanfrados (o recorte fica numa camada para a sombra e o brilho seguirem o contorno) */
+.cartaz:not(.poster) { --rim: 16px; --chanfro: 8px; --tacha: 10px; padding: 0; }
+/* a chapa maciça, de cantos chanfrados: o bisel (luz em cima e à esquerda), as faces dos chanfros e as tachas */
 .cartao-galeria:not(.so-arte)::before,
 .cartaz:not(.poster)::before,
 .bandeira-cartao::before {
+  --cd: calc(var(--chanfro) * 0.7071);
+  --tx: calc(var(--rim) / 2 - var(--tacha) / 2);
   content: "";
   position: absolute;
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background: var(--bisel);
   clip-path: polygon(var(--chanfro) 0, calc(100% - var(--chanfro)) 0, 100% var(--chanfro), 100% calc(100% - var(--chanfro)), calc(100% - var(--chanfro)) 100%, var(--chanfro) 100%, 0 calc(100% - var(--chanfro)), 0 var(--chanfro));
+  box-shadow: inset 2px 2px 0 rgba(255, 250, 225, 0.7), inset -2px -2px 0 rgba(55, 38, 8, 0.5), inset 0 0 0 1px rgba(40, 28, 6, 0.35);
+  background:
+    var(--rebite) var(--tx) var(--tx) / var(--tacha) var(--tacha) no-repeat,
+    var(--rebite) calc(100% - var(--tx)) var(--tx) / var(--tacha) var(--tacha) no-repeat,
+    var(--rebite) var(--tx) calc(100% - var(--tx)) / var(--tacha) var(--tacha) no-repeat,
+    var(--rebite) calc(100% - var(--tx)) calc(100% - var(--tx)) / var(--tacha) var(--tacha) no-repeat,
+    linear-gradient(135deg, transparent calc(var(--cd) - 0.3px), rgba(255, 250, 225, 0.8) var(--cd), rgba(255, 250, 225, 0.8) calc(var(--cd) + 3px), transparent calc(var(--cd) + 3.4px)) top left / 26px 26px no-repeat,
+    linear-gradient(315deg, transparent calc(var(--cd) - 0.3px), rgba(55, 38, 8, 0.6) var(--cd), rgba(55, 38, 8, 0.6) calc(var(--cd) + 3px), transparent calc(var(--cd) + 3.4px)) bottom right / 26px 26px no-repeat,
+    linear-gradient(225deg, transparent calc(var(--cd) - 0.3px), rgba(255, 240, 190, 0.32) var(--cd), rgba(120, 90, 40, 0.3) calc(var(--cd) + 3px), transparent calc(var(--cd) + 3.4px)) top right / 26px 26px no-repeat,
+    linear-gradient(45deg, transparent calc(var(--cd) - 0.3px), rgba(255, 240, 190, 0.22) var(--cd), rgba(120, 90, 40, 0.4) calc(var(--cd) + 3px), transparent calc(var(--cd) + 3.4px)) bottom left / 26px 26px no-repeat,
+    var(--bisel);
 }
-/* o filete gravado e as quatro tachas */
+/* o sulco gravado: um anel de 2px que acompanha o chanfro (escuro em cima e à esquerda, claro embaixo e à direita) */
 .cartao-galeria:not(.so-arte)::after,
 .cartaz:not(.poster)::after,
 .bandeira-cartao::after {
+  --co: calc(var(--chanfro) - var(--sulco) * 0.586);
+  --ci: calc(var(--co) + 0.83px);
   content: "";
   position: absolute;
   z-index: 3;
-  inset: 4px;
+  inset: var(--sulco);
   pointer-events: none;
-  border: 1px solid rgba(70, 50, 18, 0.7);
-  box-shadow: 0 0 0 1px rgba(255, 240, 200, 0.55);
-  clip-path: polygon(7px 0, calc(100% - 7px) 0, 100% 7px, 100% calc(100% - 7px), calc(100% - 7px) 100%, 7px 100%, 0 calc(100% - 7px), 0 7px);
-  background:
-    var(--rebite) 4px 4px / var(--tacha) var(--tacha) no-repeat,
-    var(--rebite) calc(100% - 4px) 4px / var(--tacha) var(--tacha) no-repeat,
-    var(--rebite) 4px calc(100% - 4px) / var(--tacha) var(--tacha) no-repeat,
-    var(--rebite) calc(100% - 4px) calc(100% - 4px) / var(--tacha) var(--tacha) no-repeat;
+  background: linear-gradient(135deg, rgba(60, 42, 10, 0.8) 0 50%, rgba(255, 244, 205, 0.75) 50% 100%);
+  clip-path: polygon(
+    var(--co) 0, calc(100% - var(--co)) 0, 100% var(--co), 100% calc(100% - var(--co)), calc(100% - var(--co)) 100%, var(--co) 100%, 0 calc(100% - var(--co)), 0 var(--co), var(--co) 0,
+    var(--ci) 2px, 2px var(--ci), 2px calc(100% - var(--ci)), var(--ci) calc(100% - 2px), calc(100% - var(--ci)) calc(100% - 2px), calc(100% - 2px) calc(100% - var(--ci)), calc(100% - 2px) var(--ci), calc(100% - var(--ci)) 2px, var(--ci) 2px
+  );
 }
 .cartao-galeria:not(.so-arte):hover,
 .cartaz:not(.poster):hover,
@@ -2516,7 +2528,7 @@ button.trilha-espaco { cursor: pointer; }
   filter: drop-shadow(0 2px 0 rgba(0, 0, 0, 0.55)) drop-shadow(0 0 7px rgba(232, 184, 102, 0.8)) brightness(1.12);
 }
 .cartaz:not(.poster).marcada {
-  --bisel: linear-gradient(180deg, #ffd0c4 0%, #e8685d 20%, #c24a41 50%, #8f2f29 51%, #a63a33 78%, #6b1f1a 100%);
+  --bisel: linear-gradient(180deg, #f3a79b 0%, #de6a5f 35%, #c24d44 65%, #a63a33 100%);
   border-color: transparent;
   box-shadow: none;
 }
@@ -2546,9 +2558,8 @@ button.trilha-espaco { cursor: pointer; }
   text-shadow: 0 1px 0 rgba(255, 244, 214, 0.45);
 }
 .cartaz:not(.poster) .cartaz-nome { color: #f3e7c4; }
-.bandeira-cartao { color: #1d1408; --rim: 10px; --chanfro: 7px; --tacha: 9px; padding: 9px 12px 9px 14px; }
+.bandeira-cartao { color: #1d1408; --rim: 11px; --chanfro: 5px; --tacha: 7px; --sulco: 1px; padding: 9px 12px 9px 14px; }
 .bandeira-cartao img { box-shadow: 0 0 0 1px #2b200c, 0 0 0 2px rgba(255, 240, 200, 0.5); }
-.bandeira-cartao::after { inset: 3px; }
 
 /* cartazes de classe e subclasse: o papel impresso, preso com um alfinete de latão */
 .cartao-galeria.so-arte,
