@@ -1,5 +1,5 @@
 // Peças compartilhadas do Arquivo: o contexto da apresentação e a arte (imagem pronta ou placeholder em duotom).
-import { createContext, useContext, type ReactNode } from "react";
+import { createContext, useContext, useEffect, type ReactNode, type RefObject } from "react";
 import { urlConteudo, type Conteudo } from "../conteudo";
 import { Janela, PlaceholderArte } from "../jogo/componentes";
 import { Markdown } from "../components/ui";
@@ -94,4 +94,29 @@ export function CartaEsperanca({ esperanca }: { esperanca: { nome: string; texto
       <Markdown texto={esperanca.texto} className="n-N" />
     </Janela>
   );
+}
+
+/** Bordas que desvanecem: o degradê só aparece do lado em que ainda há conteúdo para rolar. */
+export function useDesvanecer(ref: RefObject<HTMLElement | null>) {
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const atualizar = () => {
+      const topo = el.scrollTop > 4;
+      const base = el.scrollTop + el.clientHeight < el.scrollHeight - 4;
+      el.style.setProperty("--fa", topo ? "40px" : "0px");
+      el.style.setProperty("--fb", base ? "40px" : "0px");
+    };
+    atualizar();
+    el.addEventListener("scroll", atualizar, { passive: true });
+    const ro = new ResizeObserver(atualizar);
+    ro.observe(el);
+    const mo = new MutationObserver(atualizar);
+    mo.observe(el, { childList: true, subtree: true });
+    return () => {
+      el.removeEventListener("scroll", atualizar);
+      ro.disconnect();
+      mo.disconnect();
+    };
+  }, [ref]);
 }

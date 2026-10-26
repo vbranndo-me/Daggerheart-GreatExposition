@@ -1,7 +1,7 @@
 // O criador de personagem (pré-criação): comunidade → ancestralidade → classe → subclasse → resumo.
 // Cada passo é uma tela cheia (grade à esquerda, detalhe grande à direita). As escolhas vão direto para
 // personagens/<jid>, o mesmo nó da etapa 4, então a sessão abre com tudo preenchido. Atributos, cartas e equipamento ficam no Foundry.
-import { useContext, useEffect, useMemo, useState, type ReactNode } from "react";
+import { useContext, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import "../jogo/jogo.css";
 import "../jogo/jogo-ajustes.css";
 import "../mesa/mesa.css";
@@ -17,7 +17,7 @@ import { Cartaz } from "../mesa/pecas";
 import { carregarArquivo, type DadosArquivo } from "./dados";
 import { TrilhaDetalhe } from "./FichaClasse";
 import { Markdown } from "../components/ui";
-import { Habilidades, idArte } from "./base";
+import { Habilidades, idArte, useDesvanecer } from "./base";
 
 type PassoId = "comunidade" | "ancestralidade" | "classe" | "subclasse" | "resumo";
 const PASSOS: { id: PassoId; rotulo: string }[] = [
@@ -145,6 +145,8 @@ function CriadorComSala({ s, conteudo, dados }: { s: Sessao; conteudo: Conteudo;
   const [passo, setPasso] = useState<PassoId>("comunidade");
   const [mista, setMista] = useState(!!p.ancestralidade2);
   const [ver, setVer] = useState<string | null>(null); // o item aberto no detalhe
+  const gradeRef = useRef<HTMLElement>(null);
+  useDesvanecer(gradeRef);
   const [outra, setOutra] = useState("");
   const jogador = jid ? sala.jogadores[jid] : null;
   const salvar = (campos: Partial<Record<keyof Personagem, unknown>>) => jid && !trancado && acoes.personagem(jid, campos as never);
@@ -311,7 +313,8 @@ function CriadorComSala({ s, conteudo, dados }: { s: Sessao; conteudo: Conteudo;
 
       {passo !== "resumo" ? (
         <main className="criador-tela">
-          <section className={`criador-grade ${passo === "subclasse" && classeObj && conteudo.arte[idArte("classes", classeObj.id)] ? "com-classe-grande" : ""}`}>
+          <div className="quadro-rolagem">
+          <section ref={gradeRef} className={`criador-grade desvanece ${passo === "subclasse" && classeObj && conteudo.arte[idArte("classes", classeObj.id)] ? "com-classe-grande" : ""}`}>
             <div className="criador-grade-cab">
               <h1 className="n-C">{PASSOS[iPasso].rotulo}</h1>
               {passo === "ancestralidade" && (
@@ -360,6 +363,7 @@ function CriadorComSala({ s, conteudo, dados }: { s: Sessao; conteudo: Conteudo;
               </div>
             )}
           </section>
+          </div>
 
           <aside className="criador-detalhe">
             {aberto ? (
@@ -568,6 +572,8 @@ function Detalhe({
   semBotao?: boolean;
 }) {
   const rotulo = useMemo(() => (item.grupo ? NOMES_GRUPO[item.grupo] || item.grupo : PASSOS.find((x) => x.id === passo)?.rotulo), [item, passo]);
+  const textoRef = useRef<HTMLDivElement>(null);
+  useDesvanecer(textoRef);
   const c = item.classe;
   const vazio = passo === "ancestralidade" && !item.habilidades?.length ? "descrição e habilidades em produção" : passo === "comunidade" && !item.descricao ? "descrição em produção" : "";
   return (
@@ -576,7 +582,8 @@ function Detalhe({
         <span className="retrato-34" style={item.url && item.proporcao ? { aspectRatio: String(item.proporcao) } : undefined}>{item.url ? <img src={item.url} srcSet={item.srcSet} sizes="360px" alt="" /> : <PlaceholderArte id={item.nome} monograma={item.nome.slice(0, 1)} />}</span>
       </div>
       <div className="detalhe-coluna">
-      <div className="detalhe-texto-criador">
+      <div className="quadro-rolagem">
+      <div ref={textoRef} className="detalhe-texto-criador desvanece">
         <div className="n-L" style={{ color: "var(--brass)" }}>
           {rotulo}
           {item.original ? ` · ${item.original}` : ""}
@@ -620,6 +627,7 @@ function Detalhe({
           </dl>
         )}
         {extra}
+      </div>
       </div>
         {!semBotao && (
           <div className="detalhe-acao-criador">
