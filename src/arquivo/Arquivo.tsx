@@ -825,6 +825,12 @@ function TelaMapa({ mapa, conteudo, fechar }: { mapa: "continente" | "rouillac";
           <button className="icone-btn" onClick={() => setPais(null)} aria-label="fechar a ficha">
             <Icone id="fechar" tamanho={14} />
           </button>
+          {(p.bandeira || (p.brasao && conteudo.arte[p.brasao])) && (
+            <div className="pais-emblemas">
+              {p.brasao && conteudo.arte[p.brasao] && <img className="pais-brasao" src={conteudo.arte[p.brasao]} alt="" />}
+              {p.bandeira && <img className="pais-bandeira" src={`${import.meta.env.BASE_URL}arte/${p.bandeira}`} alt={`Bandeira de ${p.nome}`} />}
+            </div>
+          )}
           <div className="n-L">{p.lado}</div>
           <div className="n-S">{p.nome}</div>
           <dl className="dados-ficha">

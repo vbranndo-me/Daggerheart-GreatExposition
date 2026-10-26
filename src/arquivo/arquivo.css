@@ -2322,3 +2322,7 @@ label.btn-pequeno.desligado {
 .regras-corpo:has(table) table {
   table-layout: auto;
 }
+
+.pais-emblemas { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+.pais-brasao { width: 64px; height: 64px; object-fit: contain; }
+.pais-bandeira { height: 44px; width: auto; border: 1px solid var(--latao, #b08d57); }

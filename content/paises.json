@@ -15,7 +15,7 @@
     "svgId": "pais-entremonts",
     "governo": "Monarquia constitucional",
     "brasao": "pais-entremonts",
-    "bandeira": null
+    "bandeira": "bandeira-entremonts.svg"
   },
   {
     "id": "kenturia",
@@ -32,7 +32,7 @@
     "svgId": "pais-kenturia",
     "governo": "Império militar",
     "brasao": "pais-kenturia",
-    "bandeira": null
+    "bandeira": "bandeira-kenturia.svg"
   },
   {
     "id": "codrina",
@@ -49,7 +49,7 @@
     "svgId": "pais-codrina",
     "governo": "Monarquia Parlamentar",
     "brasao": "pais-codrina",
-    "bandeira": null
+    "bandeira": "bandeira-codrina.svg"
   },
   {
     "id": "maresme",
@@ -66,7 +66,7 @@
     "svgId": "pais-maresme",
     "governo": "Condado autônomo",
     "brasao": "pais-maresme",
-    "bandeira": null
+    "bandeira": "bandeira-maresme.svg"
   },
   {
     "id": "bretemar",
@@ -83,7 +83,7 @@
     "svgId": "pais-bretemar",
     "governo": "Monarquia parlamentar",
     "brasao": "pais-bretemar",
-    "bandeira": null
+    "bandeira": "bandeira-bretemar.svg"
   },
   {
     "id": "serrania",
@@ -100,7 +100,7 @@
     "svgId": "pais-serrania",
     "governo": "República jovem",
     "brasao": null,
-    "bandeira": null
+    "bandeira": "bandeira-serrania.svg"
   },
   {
     "id": "narona",
@@ -117,7 +117,7 @@
     "svgId": "pais-narona",
     "governo": "Principado eclesiástico",
     "brasao": "pais-narona",
-    "bandeira": null
+    "bandeira": "bandeira-narona.svg"
   },
   {
     "id": "fiorescuro",
@@ -134,7 +134,7 @@
     "svgId": "pais-fiorescuro",
     "governo": "República mercantil",
     "brasao": "pais-fiorescuro",
-    "bandeira": null
+    "bandeira": "bandeira-fiorescuro.svg"
   },
   {
     "id": "ilhas-peroladas",

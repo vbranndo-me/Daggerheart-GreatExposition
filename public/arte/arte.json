@@ -192,6 +192,14 @@
   "proporcao": 0.667,
   "cor": "rgb(166,151,131)"
  },
+ "comunidade-liberta": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(139,121,105)"
+ },
  "comunidade-polar": {
   "larguras": [
    384,
@@ -215,6 +223,14 @@
   ],
   "proporcao": 0.667,
   "cor": "rgb(120,116,111)"
+ },
+ "comunidade-interiorana": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(139,121,86)"
  },
  "ancestralidade-humano": {
   "larguras": [
