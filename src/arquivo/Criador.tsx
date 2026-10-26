@@ -9,7 +9,7 @@ import "./arquivo.css";
 import type { Classe, Conteudo, Subclasse } from "../conteudo";
 import { SessaoCtx, type Sessao } from "../db/sala";
 import type { Personagem } from "../db/tipos";
-import { ComTooltip, Janela, MolduraTela, PlaceholderArte, Placa, Ramo, Selo, SeloExposicao } from "../jogo/componentes";
+import { ComTooltip, Janela, MolduraTela, PlaceholderArte, Placa, Selo, SeloExposicao } from "../jogo/componentes";
 import { BotaoHextech } from "../jogo/hextech";
 import { Icone } from "../jogo/icones";
 import { BotaoAmbiente, FundoVivo } from "../jogo/FundoVivo";
@@ -56,47 +56,58 @@ export function PortaoIdentidade({ escolher }: { escolher: (jid: string) => Prom
   const [escolhido, setEscolhido] = useState<string | null>(null);
   const [ocupado, setOcupado] = useState(false);
   const lista = Object.entries(s.sala.jogadores).sort((a, b) => (a[1].ordem ?? 0) - (b[1].ordem ?? 0));
+  const nomeEscolhido = escolhido ? s.sala.jogadores[escolhido]?.nome : null;
+  const assumir = async () => {
+    if (!escolhido) return;
+    setOcupado(true);
+    try {
+      await escolher(escolhido);
+    } finally {
+      setOcupado(false);
+    }
+  };
   return (
     <div className="jogo portao-identidade" data-paleta="ardosia">
       <Janela tipo="pesada" className="portao-janela">
-        <div className="n-L" style={{ color: "var(--brass)" }}>
-          Antes de começar
-        </div>
-        <h2 className="n-C">Quem é você?</h2>
-        <p className="n-N">Escolha o seu nome na lista. O que você marcar aqui já chega na sessão.</p>
-        <div className="ramos portao-lista">
-          {lista.map(([jid, j]) => {
+        <header className="portao-cab">
+          <div className="n-L" style={{ color: "var(--brass)" }}>
+            Antes de começar
+          </div>
+          <h2 className="n-T">Quem é você?</h2>
+          <p className="n-N">Escolha o seu nome na lista. O que você marcar aqui já chega na sessão.</p>
+        </header>
+        <div className="portao-cartoes">
+          {lista.map(([jid, j], k) => {
             const aBordo = !!j.uid && j.uid !== s.uid && !!j.online;
             return (
-              <Ramo
+              <button
                 key={jid}
-                titulo={j.nome}
-                descricao={aBordo ? "Já está com este nome em outro lugar." : undefined}
-                icone="pessoa"
-                corMedalhao={j.cor}
-                estado={aBordo ? "bloqueado" : escolhido === jid ? "selecionado" : "normal"}
-                aoClicar={() => setEscolhido(jid)}
-              />
+                type="button"
+                disabled={aBordo}
+                className={`portao-chapa ${escolhido === jid ? "escolhido" : ""} ${aBordo ? "ocupado" : ""}`}
+                style={{ ["--i" as string]: k }}
+                aria-pressed={escolhido === jid}
+                onClick={() => setEscolhido(jid)}
+                onDoubleClick={() => !aBordo && !ocupado && void assumir()}
+              >
+                <span className="portao-medalhao" style={{ background: j.cor }} aria-hidden="true">
+                  {j.nome.slice(0, 1)}
+                </span>
+                <span className="portao-nome n-S">{j.nome}</span>
+                <span className="portao-estado n-L">{aBordo ? "Já está a bordo" : escolhido === jid ? "Este é você" : "Escolher"}</span>
+              </button>
             );
           })}
-          {!lista.length && <p className="n-I">O mestre ainda não cadastrou os nomes. Espere um pouquinho.</p>}
+          {!lista.length && (
+            <p className="n-I portao-espera">O mestre ainda não cadastrou os nomes. Espere um pouquinho.</p>
+          )}
         </div>
-        <div style={{ display: "flex", justifyContent: "flex-end", marginTop: 18 }}>
-          <BotaoHextech
-            disabled={!escolhido || ocupado}
-            onClick={async () => {
-              if (!escolhido) return;
-              setOcupado(true);
-              try {
-                await escolher(escolhido);
-              } finally {
-                setOcupado(false);
-              }
-            }}
-          >
+        <footer className="portao-rodape">
+          <span className="n-I">{nomeEscolhido ? `Você vai entrar como ${nomeEscolhido}.` : "Toque no seu nome para continuar."}</span>
+          <BotaoHextech grande disabled={!escolhido || ocupado} onClick={assumir}>
             Assumir este nome
           </BotaoHextech>
-        </div>
+        </footer>
       </Janela>
     </div>
   );

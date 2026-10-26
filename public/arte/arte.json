@@ -944,6 +944,14 @@
   "proporcao": 0.839,
   "cor": "rgb(63,50,29)"
  },
+ "pais-serrania": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.787,
+  "cor": "rgb(58,47,29)"
+ },
  "refugiados": {
   "larguras": [
    384,
@@ -983,5 +991,21 @@
   ],
   "proporcao": 0.667,
   "cor": "rgb(85,82,78)"
+ },
+ "discernimento": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(139,127,128)"
+ },
+ "armatabela": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(91,77,55)"
  }
 }
