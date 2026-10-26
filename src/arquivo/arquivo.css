@@ -2864,3 +2864,6 @@ button.trilha-espaco { cursor: pointer; }
   padding: 8px 2px 0 0;
   margin-bottom: -8px;
 }
+
+/* respiro entre o último texto do capítulo e a imagem de fechamento */
+.bloco-proximo { margin-top: 22vh; }
