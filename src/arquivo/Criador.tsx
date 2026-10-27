@@ -9,7 +9,7 @@ import "./arquivo.css";
 import type { Classe, Conteudo, Subclasse } from "../conteudo";
 import { SessaoCtx, type Sessao } from "../db/sala";
 import type { Personagem } from "../db/tipos";
-import { ComTooltip, Janela, MolduraTela, PlaceholderArte, Placa, Selo, SeloExposicao } from "../jogo/componentes";
+import { Canto, ComTooltip, Janela, MolduraTela, PlaceholderArte, Placa, Selo, SeloExposicao } from "../jogo/componentes";
 import { BotaoHextech } from "../jogo/hextech";
 import { Icone } from "../jogo/icones";
 import { BotaoAmbiente, FundoVivo } from "../jogo/FundoVivo";
@@ -613,20 +613,27 @@ function PainelSubclasse({
   }, [atual?.id]);
   return (
     <div className="sub-palco">
-      <figure className="sub-classe">
-        {arteClasse.url ? (
-          <img src={arteClasse.url} srcSet={arteClasse.srcSet} sizes="34vw" alt={classe.nome} style={arteClasse.proporcao ? { aspectRatio: String(arteClasse.proporcao) } : undefined} />
+      <figure className="sub-classe" key={atual?.id}>
+        {atual?.url ? (
+          <img src={atual.url} srcSet={atual.srcSet} sizes="34vw" alt={atual.nome} style={atual.proporcao ? { aspectRatio: String(atual.proporcao) } : undefined} />
         ) : (
-          <PlaceholderArte id={classe.nome} monograma={classe.nome.slice(0, 1)} />
+          <div className="sub-sem-arte">
+            <PlaceholderArte id={atual?.nome || classe.nome} monograma={(atual?.nome || classe.nome).slice(0, 1)} />
+          </div>
         )}
-        <figcaption className="n-L">{classe.dominios.join(" · ")}</figcaption>
+        <figcaption className="n-L">{sub?.conjuracao ? `Conjuração: ${sub.conjuracao}` : classe.dominios.join(" · ")}</figcaption>
       </figure>
       <section className="sub-direita">
         <header className="sub-cab">
-          <div className="n-L" style={{ color: "var(--brass)" }}>
-            Subclasse de {classe.nome}
+          <span className="sub-cab-classe" title={classe.nome}>
+            {arteClasse.url ? <img src={arteClasse.url} srcSet={arteClasse.srcSet} sizes="90px" alt={classe.nome} /> : <PlaceholderArte id={classe.nome} monograma={classe.nome.slice(0, 1)} />}
+          </span>
+          <div>
+            <div className="n-L" style={{ color: "var(--brass)" }}>
+              Subclasse de {classe.nome} · {classe.dominios.join(" · ")}
+            </div>
+            <h1 className="n-C">Escolha o seu caminho</h1>
           </div>
-          <h1 className="n-C">Escolha o seu caminho</h1>
         </header>
         <div className="sub-abas" role="tablist">
           {subs.map((x) => (
@@ -638,9 +645,15 @@ function PainelSubclasse({
               className={`sub-aba ${atual?.id === x.id ? "ativa" : ""} ${marcado(x.id) ? "escolhida" : ""}`}
               onClick={() => aoVer(x.id)}
             >
-              <span className="sub-aba-mini">{x.url ? <img src={x.url} srcSet={x.srcSet} sizes="80px" alt="" /> : <PlaceholderArte id={x.nome} monograma={x.nome.slice(0, 1)} />}</span>
+              <span className="sub-aba-cantos" aria-hidden="true">
+                <Canto pos="tl" />
+                <Canto pos="tr" />
+                <Canto pos="bl" />
+                <Canto pos="br" />
+              </span>
+              <span className="sub-aba-brilho" aria-hidden="true" />
               <span className="sub-aba-nome n-S">{x.nome}</span>
-              <span className="sub-aba-estado n-L">{marcado(x.id) ? "Sua escolha" : x.sub?.conjuracao ? `Conjuração: ${x.sub.conjuracao}` : "Ver"}</span>
+              <span className="sub-aba-estado n-L">{marcado(x.id) ? "✦ Sua escolha" : x.sub?.conjuracao ? `Conjuração: ${x.sub.conjuracao}` : "Ver"}</span>
             </button>
           ))}
         </div>
@@ -648,9 +661,6 @@ function PainelSubclasse({
           <div ref={corpoRef} className="sub-corpo desvanece">
             {atual && (
               <div className="sub-detalhe" key={atual.id}>
-                <div className="sub-retrato">
-                  {atual.url ? <img src={atual.url} srcSet={atual.srcSet} sizes="300px" alt={atual.nome} style={atual.proporcao ? { aspectRatio: String(atual.proporcao) } : undefined} /> : <PlaceholderArte id={atual.nome} monograma={atual.nome.slice(0, 1)} />}
-                </div>
                 <div className="sub-texto">
                   <div className="n-L" style={{ color: "var(--brass)" }}>
                     {sub?.conjuracao ? `Conjuração: ${sub.conjuracao}` : "Sem atributo de conjuração"}

@@ -34,7 +34,7 @@ function Tracos({ lista }: { lista: TracoFiligrana[] }) {
   );
 }
 
-function Canto({ pos }: { pos: "tl" | "tr" | "bl" | "br" }) {
+export function Canto({ pos }: { pos: "tl" | "tr" | "bl" | "br" }) {
   return (
     <svg className={`canto ${pos}`} viewBox="0 0 96 96" aria-hidden="true">
       <Tracos lista={FILIGRANA} />
