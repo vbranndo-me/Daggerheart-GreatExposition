@@ -3072,3 +3072,89 @@ button.trilha-espaco { cursor: pointer; }
 /* o botão de escolher não pode ser cortado pela borda do painel */
 .detalhe-coluna .detalhe-acao-criador { padding: 10px 4px 10px 0; margin-bottom: 0; overflow: visible; }
 .criador-detalhe { padding-bottom: 6px; }
+
+/* ---------- a tela de subclasse ---------- */
+.criador-tela.sub-tela { display: block; padding: 20px var(--margem) 14px; }
+.sub-palco {
+  display: grid;
+  grid-template-columns: minmax(240px, 30%) minmax(0, 1fr);
+  gap: clamp(20px, 3vw, 44px);
+  height: 100%;
+  min-height: 0;
+}
+.sub-classe {
+  position: relative;
+  margin: 0;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: 12px;
+  justify-items: center;
+  align-content: center;
+  min-height: 0;
+}
+.sub-classe img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  min-height: 0;
+  object-fit: contain;
+  box-shadow: 0 18px 30px -12px #000, 0 2px 4px #000b;
+}
+.sub-classe figcaption { color: var(--brass); text-align: center; }
+.sub-direita { display: flex; flex-direction: column; gap: 14px; min-height: 0; min-width: 0; }
+.sub-cab { display: grid; gap: 4px; }
+.sub-cab h1 { margin: 0; }
+.sub-abas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.sub-aba {
+  --chanfro: 10px;
+  position: relative;
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 14px;
+  align-items: center;
+  padding: 12px 18px 12px 14px;
+  text-align: left;
+  color: #1d1408;
+  border: 0;
+  cursor: pointer;
+  background: linear-gradient(180deg, #ecd18a 0%, #d8b974 35%, #c3a566 65%, #ae9055 100%);
+  clip-path: polygon(var(--chanfro) 0, calc(100% - var(--chanfro)) 0, 100% var(--chanfro), 100% calc(100% - var(--chanfro)), calc(100% - var(--chanfro)) 100%, var(--chanfro) 100%, 0 calc(100% - var(--chanfro)), 0 var(--chanfro));
+  filter: saturate(0.55) brightness(0.62);
+  transition: filter 0.2s, transform 0.18s;
+}
+.sub-aba:hover { filter: saturate(0.9) brightness(0.9); }
+.sub-aba.ativa { filter: none; }
+.sub-aba.escolhida { background: linear-gradient(180deg, #f3a79b 0%, #de6a5f 35%, #c24d44 65%, #a63a33 100%); }
+.sub-aba-mini { grid-row: 1 / span 2; width: 52px; aspect-ratio: 2 / 3; display: block; box-shadow: 0 0 0 2px #2b200c, 0 0 0 3px rgba(255, 240, 200, 0.5); background: #0b0d14; }
+.sub-aba-mini img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.sub-aba-nome { font-size: 20px; font-weight: 700; color: #1d1408 !important; align-self: end; text-shadow: 0 1px 0 rgba(255, 244, 214, 0.6); line-height: 1.1; }
+.sub-aba-estado { color: #4a3716 !important; font-weight: 700; align-self: start; }
+.sub-aba.escolhida .sub-aba-estado { color: #3a0f0c !important; }
+.sub-quadro { flex: 1; }
+.sub-corpo { flex: 1; min-height: 0; overflow-y: auto; padding: 18px 20px 18px 18px; }
+.sub-detalhe { display: grid; grid-template-columns: minmax(150px, 220px) minmax(0, 1fr); gap: clamp(18px, 2.4vw, 34px); align-items: start; animation: sub-entra 0.35s ease-out both; }
+@keyframes sub-entra { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.sub-retrato { position: sticky; top: 0; }
+.sub-retrato img { width: 100%; height: auto; display: block; box-shadow: 0 14px 24px -10px #000, 0 2px 4px #000b; }
+.sub-titulo { margin: 2px 0 8px; font-size: clamp(30px, 3vw, 46px); }
+.sub-linha { margin: 0 0 18px; font-style: italic; opacity: 0.85; }
+.sub-texto .trilha { margin-top: 6px; }
+.sub-rodape { display: flex; justify-content: flex-end; padding: 2px 4px 6px 0; }
+@media (max-width: 1000px) {
+  .criador-tela.sub-tela { padding: 14px 14px 90px; }
+  .sub-palco { display: block; height: auto; }
+  .sub-classe { display: none; }
+  .sub-abas { gap: 8px; }
+  .sub-aba { grid-template-columns: 38px 1fr; padding: 10px 12px; column-gap: 10px; }
+  .sub-aba-mini { width: 38px; }
+  .sub-aba-nome { font-size: 15px; }
+  .sub-corpo { overflow: visible; padding: 14px 6px; }
+  .sub-detalhe { grid-template-columns: minmax(0, 1fr); }
+  .sub-retrato { position: static; max-width: 200px; margin: 0 auto; }
+  .sub-rodape { position: fixed; right: 12px; bottom: 56px; z-index: 40; }
+}
+.sub-aba-mini { position: relative; overflow: hidden; }
+.sub-aba-mini .placeholder-arte { position: absolute; inset: 0; width: 100%; height: 100%; }
+.sub-retrato .placeholder-arte { aspect-ratio: 2 / 3; width: 100%; }

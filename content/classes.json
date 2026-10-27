@@ -573,35 +573,83 @@
       {
         "id": "bardo-trovador",
         "nome": "Trovador",
-        "linha": ""
+        "linha": "Para quem quer tocar música para fortalecer os aliados.",
+        "conjuracao": "Presença",
+        "fundacao": [
+          {
+            "nome": "Artista Nato",
+            "texto": "Você toca três tipos de canção, cada uma uma vez por descanso longo; descreva a apresentação para ganhar o efeito:\n\n- **Canção Tranquila:** você e todos os aliados a até Próximo limpam 1 PV;\n- **Canção Épica:** um alvo a até Próximo fica temporariamente Vulnerável;\n- **Canção de Partir o Coração:** você e todos os aliados a até Próximo ganham 1 Esperança."
+          }
+        ],
+        "especializacao": [
+          {
+            "nome": "Maestro",
+            "texto": "Quando você dá um Dado de Ânimo a um aliado, ele também pode ganhar 1 Esperança ou limpar 1 Fadiga."
+          }
+        ],
+        "maestria": [
+          {
+            "nome": "Virtuose",
+            "texto": "Você pode tocar cada canção do Artista Nato duas vezes por descanso longo."
+          }
+        ]
       },
       {
         "id": "bardo-beletrista",
         "nome": "Beletrista",
-        "linha": ""
+        "linha": "Para quem quer jogos de palavras espertos e plateias hipnotizadas.",
+        "conjuracao": "Presença",
+        "fundacao": [
+          {
+            "nome": "Discurso Inflamado",
+            "texto": "Uma vez por descanso longo, faça um discurso inspirado. Todos os aliados a até Distante limpam 2 Fadiga."
+          },
+          {
+            "nome": "Coração de Poeta",
+            "texto": "Depois de um teste de ação para impressionar, convencer ou ofender alguém, gaste 1 Esperança para somar um d4 ao teste."
+          }
+        ],
+        "especializacao": [
+          {
+            "nome": "Eloquente",
+            "texto": "Uma vez por sessão, ao encorajar um aliado, escolha:\n\n- ele encontra um objeto comum ou uma ferramenta de que precisa;\n- você Ajuda um Aliado sem gastar Esperança;\n- ele ganha um movimento de descanso a mais no próximo descanso."
+          }
+        ],
+        "maestria": [
+          {
+            "nome": "Poesia Épica",
+            "texto": "O seu Dado de Ânimo vira d10. Além disso, quando Ajudar um Aliado, você pode narrar o momento como se escrevesse as memórias do heroísmo dele; se narrar, role um d10 como dado de vantagem."
+          }
+        ]
       }
     ],
     "origem": [
-      "Em que palco você foi vaiado, e por que voltou?",
-      "Quem é o seu maior rival artístico?",
-      "Que canção você não canta mais?"
+      "Quem da sua comunidade te ensinou a ter tanta confiança em si?",
+      "Você já se apaixonou. Por quem, e como essa pessoa te machucou?",
+      "Você sempre admirou outro bardo. Quem é, e por que você o idolatra?"
     ],
     "conexao": [
-      "Que verso eu escrevi sobre você?",
-      "Por que você me pediu para mentir por você?",
-      "Em que noite eu te tirei de uma enrascada?"
+      "O que te fez perceber que a gente ia ser tão amigo?",
+      "O que eu faço que te irrita?",
+      "Por que você segura a minha mão à noite?"
     ],
     "imagem": null,
     "grupo": "livro",
     "esperanca": {
       "nome": "Fazer uma Cena",
-      "texto": "gaste 3 Esperança para deixar um alvo a até Próximo temporariamente Distraído, com −2 na Dificuldade dele."
+      "texto": "Gaste 3 Esperança para deixar um alvo a até Próximo temporariamente Distraído, com −2 na Dificuldade dele."
     },
     "habilidades": [
       {
         "nome": "Ânimo",
-        "texto": "uma vez por sessão, descreva como você anima o grupo e dê um Dado de Ânimo a você e a cada aliado (d6 no nível 1, d8 a partir do nível 5). Quem tem um pode rolá-lo e somar o resultado a um teste de ação, de reação ou de dano, ou limpar Fadiga igual ao resultado. No fim da sessão, os dados não usados somem."
+        "texto": "Uma vez por sessão, descreva como você anima o grupo e dê um Dado de Ânimo a você e a cada aliado (d6 no nível 1, d8 a partir do nível 5). Quem tem um pode rolá-lo e somar o resultado a um teste de ação, de reação ou de dano, ou limpar Fadiga igual ao resultado. No fim da sessão, os dados não usados somem."
       }
+    ],
+    "intro": "As pessoas mais carismáticas de todos os reinos: cantores, músicos, contadores de histórias, comediantes. Brilham em qualquer situação social. Treinam em escolas e guildas, mas uma veia de vaidade corre por todos eles: o bardo que mais une o grupo é também o que mais pode separá-lo.",
+    "evasao": 10,
+    "pv": 5,
+    "itens": [
+      "Escolha 1: um romance de amor, ou uma carta que nunca foi aberta."
     ]
   },
   {
@@ -617,38 +665,97 @@
       {
         "id": "druida-guardiao-dos-elementos",
         "nome": "Guardião dos Elementos",
-        "linha": ""
+        "linha": "Para quem quer encarnar os elementos da natureza.",
+        "conjuracao": "Instinto",
+        "fundacao": [
+          {
+            "nome": "Encarnação Elemental",
+            "texto": "Marque 1 Fadiga para Canalizar um elemento até sofrer dano Grave ou até o próximo descanso:\n\n- **Fogo:** quando um adversário Corpo a Corpo te causa dano, ele sofre 1d10 de dano mágico;\n- **Terra:** some a sua Proficiência aos seus limiares de dano;\n- **Água:** quando você causa dano a um adversário Corpo a Corpo, todos os outros adversários a até Muito Próximo marcam 1 Fadiga;\n- **Ar:** você flutua e tem vantagem em testes de Agilidade."
+          }
+        ],
+        "especializacao": [
+          {
+            "nome": "Aura Elemental",
+            "texto": "Uma vez por descanso, enquanto Canaliza, assuma uma aura do seu elemento. Ela afeta alvos a até Próximo até a Canalização acabar:\n\n- **Fogo:** quando um adversário marca 1 PV ou mais, também marca 1 Fadiga;\n- **Terra:** os seus aliados ganham +1 em Força;\n- **Água:** quando um adversário te causa dano, marque 1 Fadiga para movê-lo para qualquer ponto a até Muito Próximo de onde ele está;\n- **Ar:** quando você ou um aliado sofre dano de um ataque de fora do alcance Corpo a Corpo, reduza o dano em 1d8."
+          }
+        ],
+        "maestria": [
+          {
+            "nome": "Domínio Elemental",
+            "texto": "Enquanto Canaliza, você ganha:\n\n- **Fogo:** +1 de Proficiência em ataques e feitiços de dano;\n- **Terra:** quando for marcar PV, role um d6 por PV; para cada 6, marque 1 PV a menos;\n- **Água:** quando um ataque contra você acertar, marque 1 Fadiga para deixar o atacante temporariamente Vulnerável;\n- **Ar:** +1 na Evasão, e você voa."
+          }
+        ]
       },
       {
         "id": "druida-protetor-da-renovacao",
         "nome": "Protetor da Renovação",
-        "linha": ""
+        "linha": "Para quem quer magia poderosa para curar o grupo.",
+        "conjuracao": "Instinto",
+        "fundacao": [
+          {
+            "nome": "Clareza da Natureza",
+            "texto": "Uma vez por descanso longo, crie um espaço de serenidade natural a até Próximo. Quem descansar uns minutos ali limpa Fadiga igual ao seu Instinto, distribuída como você quiser entre você e os aliados."
+          },
+          {
+            "nome": "Regeneração",
+            "texto": "Toque uma criatura e gaste 3 Esperança: ela limpa 1d4 PV."
+          }
+        ],
+        "especializacao": [
+          {
+            "nome": "Alcance Regenerador",
+            "texto": "A Regeneração alcança criaturas a até Muito Próximo."
+          },
+          {
+            "nome": "Proteção do Protetor",
+            "texto": "Uma vez por descanso longo, gaste 2 Esperança para limpar 2 PV de 1d4 aliados a até Próximo."
+          }
+        ],
+        "maestria": [
+          {
+            "nome": "Defensor",
+            "texto": "A sua transformação encarna um espírito guardião que cura. Em Forma Animal, quando um aliado a até Próximo marcar 2 PV ou mais, marque 1 Fadiga para ele marcar 1 PV a menos."
+          }
+        ]
       }
     ],
     "origem": [
-      "Que floresta a guerra queimou na sua frente?",
-      "Que animal você seguiu até a cidade?",
-      "O que a terra te disse que você não quis ouvir?"
+      "Por que a comunidade em que você cresceu dependia tanto da natureza e dos bichos?",
+      "Qual foi o primeiro animal selvagem com quem você criou um laço? Por que o laço acabou?",
+      "Quem está tentando te caçar? O que quer de você?"
     ],
     "conexao": [
-      "Por que eu te chamo pelo nome de um bicho?",
-      "O que você plantou comigo?",
-      "Que cheiro meu você reconhece de longe?"
+      "O que você me confiou que me faz pular no perigo por você toda vez?",
+      "Com que animal eu digo que você parece?",
+      "Que apelido carinhoso você me deu?"
     ],
     "imagem": null,
     "grupo": "livro",
     "esperanca": {
       "nome": "Evolução",
-      "texto": "gaste 3 Esperança para assumir uma Forma Animal sem marcar Fadiga. Escolha um atributo para ganhar +1 enquanto estiver nessa forma."
+      "texto": "Gaste 3 Esperança para assumir uma Forma Animal sem marcar Fadiga. Escolha um atributo para ganhar +1 enquanto estiver nessa forma."
     },
     "habilidades": [
       {
         "nome": "Forma Animal",
-        "texto": "marque 1 Fadiga para se transformar numa criatura do seu patamar ou abaixo, da lista de Formas Animais. Você sai da forma quando quiser. Transformado, não usa armas nem conjura feitiços de cartas de domínio, mas mantém as outras habilidades, fala normalmente, e os feitiços já lançados continuam valendo. Você ganha as características da forma, soma o bônus de Evasão dela e ataca com o atributo indicado. A armadura vira parte do corpo: os espaços marcados continuam marcados quando você volta. Se marcar o último PV, você sai da forma."
+        "texto": "Marque 1 Fadiga para se transformar numa criatura do seu patamar ou abaixo, da lista de Formas Animais (apêndice A). Você sai da forma quando quiser. Transformado, não usa armas nem conjura feitiços de cartas de domínio, mas mantém as outras habilidades, fala normalmente, e os feitiços já lançados continuam valendo. Você ganha as características da forma, soma o bônus de Evasão dela e ataca com o atributo indicado. A armadura vira parte do corpo: os espaços marcados continuam marcados quando você volta. Se marcar o último PV, você sai da forma."
       },
       {
         "nome": "Toque Selvagem",
-        "texto": "você faz, à vontade, pequenos efeitos inofensivos ligados à natureza: fazer uma flor crescer, chamar uma brisa, acender uma fogueira."
+        "texto": "Você faz, à vontade, pequenos efeitos inofensivos ligados à natureza: fazer uma flor crescer, chamar uma brisa, acender uma fogueira."
+      }
+    ],
+    "intro": "Mais que uma ocupação, um chamado para quem quer aprender com a magia da natureza e protegê-la. O druida que cultiva plantas em silêncio é fácil de subestimar; o que canaliza as forças selvagens é assustador. Com anos de estudo, aprendem a virar bichos e moldar a própria natureza.",
+    "evasao": 10,
+    "pv": 6,
+    "itens": [
+      "Escolha 1: um saquinho de pedras e ossos, ou um pingente estranho achado na terra."
+    ],
+    "extras": [
+      {
+        "id": "druida-formas",
+        "nome": "Formas Animais",
+        "texto": "Ao usar a Forma Animal, escolha uma categoria do seu patamar ou abaixo. Com o aval do mestre, você pode virar qualquer animal que caiba na categoria. Enquanto transformado: o atributo da forma ganha o bônus listado; os ataques usam o alcance, o atributo e o dado da forma, com a sua Proficiência; some o bônus de Evasão; e você tem vantagem em testes ligados aos verbos listados.\n\n**Patamar 1**\n\n| Forma | Atributo · Evasão | Ataque | Vantagem em | Características |\n|---|---|---|---|---|\n| **Batedor Ágil** (raposa, rato, doninha) | Agilidade +1 · Evasão +2 | Corpo a Corpo, Agilidade, d4 físico | enganar, localizar, esgueirar-se | **Ágil:** você se move em silêncio e pode gastar 1 Esperança para ir até Distante sem rolar. **Frágil:** ao sofrer dano Maior ou pior, você sai da forma. |\n| **Amigo da Casa** (gato, cachorro, coelho) | Instinto +1 · Evasão +2 | Corpo a Corpo, Instinto, d6 físico | escalar, localizar, proteger | **Companhia:** ao Ajudar um Aliado, role um d8 como dado de vantagem. **Frágil.** |\n| **Pastador Ligeiro** (cervo, gazela, cabra) | Agilidade +1 · Evasão +3 | Corpo a Corpo, Agilidade, d6 físico | saltar, esgueirar-se, correr | **Presa Esquiva:** quando um ataque contra você for acertar, marque 1 Fadiga e role um d4; some à Evasão contra esse ataque. **Frágil.** |\n| **Predador de Matilha** (coiote, hiena, lobo) | Força +2 · Evasão +1 | Corpo a Corpo, Força, d8+2 físico | atacar, correr, rastrear | **Golpe Manco:** ao acertar Corpo a Corpo, marque 1 Fadiga para deixar o alvo temporariamente Vulnerável. **Caça em Bando:** ao acertar o mesmo alvo de um aliado que agiu logo antes de você, some um d8 ao dano. |\n| **Batedor Aquático** (enguia, peixe, polvo) | Agilidade +1 · Evasão +2 | Corpo a Corpo, Agilidade, d4 físico | navegar, esgueirar-se, nadar | **Aquático:** você respira e se move normalmente debaixo d'água. **Frágil.** |\n| **Aracnídeo Espreitador** (tarântula, aranha-lobo) | Finura +1 · Evasão +2 | Corpo a Corpo, Finura, d6+1 físico | atacar, escalar, esgueirar-se | **Picada Venenosa:** ao acertar Corpo a Corpo, o alvo fica temporariamente Envenenado (do livro). **Tecelã:** você cria uma teia resistente, que aguenta uma criatura; deixe um alvo a até Próximo temporariamente Imobilizado com um teste de Finura contra ele. |\n\n**Patamar 2**\n\n| Forma | Atributo · Evasão | Ataque | Vantagem em | Características |\n|---|---|---|---|---|\n| **Sentinela Blindada** (tatu, pangolim, tartaruga) | Força +1 · Evasão +1 | Corpo a Corpo, Força, d8+2 físico | cavar, localizar, proteger | **Carapaça:** resistência a dano físico; marque um espaço de Armadura para se recolher: o dano físico cai em um valor igual à sua Armadura (depois da resistência), mas você não faz mais nada sem sair da forma. **Bala de Canhão:** marque 1 Fadiga para um aliado te arremessar: ele faz um ataque de Agilidade ou Força contra um alvo a até Próximo; com sucesso, o alvo sofre d12+2 de dano físico com a Proficiência de quem arremessou. Gaste 1 Esperança para atingir mais um adversário a até Muito Próximo do primeiro, com metade do dano. |\n| **Fera Poderosa** (urso, touro, alce) | Força +3 · Evasão +1 | Corpo a Corpo, Força, d10+4 físico | navegar, proteger, assustar | **Fúria:** quando tirar 1 num dado de dano, role um d10 e some ao dano; antes de atacar, marque 1 Fadiga para +1 de Proficiência nesse ataque. **Couro Grosso:** +2 nos limiares de dano. |\n| **Corredor Possante** (camelo, cavalo, zebra) | Agilidade +1 · Evasão +2 | Corpo a Corpo, Agilidade, d8+1 físico | saltar, navegar, correr | **Montaria:** você leva até dois aliados dispostos quando se move. **Atropelar:** marque 1 Fadiga para avançar até Próximo em linha reta e atacar todos os alvos Corpo a Corpo da linha; os atingidos sofrem d8+1 de dano físico com a sua Proficiência e ficam temporariamente Vulneráveis. |\n| **Serpente do Bote** (naja, cascavel, víbora) | Finura +1 · Evasão +2 | Muito Próximo, Finura, d8+4 físico | escalar, enganar, correr | **Bote Venenoso:** ataque quantos alvos quiser a até Muito Próximo; os atingidos ficam temporariamente Envenenados (do livro). **Sibilo de Aviso:** marque 1 Fadiga para obrigar quantos alvos quiser, Corpo a Corpo, a recuar para Muito Próximo. |\n| **Predador do Salto** (guepardo, leão, pantera) | Instinto +1 · Evasão +3 | Corpo a Corpo, Instinto, d8+6 físico | atacar, escalar, esgueirar-se | **Veloz:** gaste 1 Esperança para ir até Distante sem rolar. **Derrubada:** marque 1 Fadiga para entrar Corpo a Corpo de um alvo e atacá-lo; com sucesso, +2 de Proficiência nesse ataque, e o alvo marca 1 Fadiga. |\n| **Fera Alada** (falcão, coruja, corvo) | Finura +1 · Evasão +3 | Corpo a Corpo, Finura, d4+2 físico | enganar, localizar, assustar | **Vista do Alto:** você voa quando quiser; uma vez por descanso, no ar, faça uma pergunta ao mestre sobre a cena lá embaixo sem rolar; o primeiro teste de qualquer um baseado nisso tem vantagem. **Ossos Ocos:** −2 nos limiares de dano. |\n\n**Patamar 3**\n\n| Forma | Atributo · Evasão | Ataque | Vantagem em | Características |\n|---|---|---|---|---|\n| **Grande Predador** (lobo-terrível, velociraptor, tigre-dentes-de-sabre) | Força +2 · Evasão +2 | Corpo a Corpo, Força, d12+8 físico | atacar, esgueirar-se, correr | **Montaria:** leva até dois aliados. **Dentada Cruel:** ao acertar, gaste 1 Esperança para deixar o alvo temporariamente Vulnerável e ganhar +1 de Proficiência nesse ataque. |\n| **Lagarto Possante** (jacaré, crocodilo, monstro-de-gila) | Instinto +2 · Evasão +1 | Corpo a Corpo, Instinto, d10+7 físico | atacar, esgueirar-se, rastrear | **Defesa Física:** +3 nos limiares de dano. **Mordida Firme:** ao acertar Corpo a Corpo, gaste 1 Esperança para prender o oponente na mandíbula: ele fica temporariamente Imobilizado e Vulnerável. |\n| **Grande Fera Alada** (águia gigante, falcão) | Finura +2 · Evasão +3 | Corpo a Corpo, Finura, d8+6 físico | enganar, distrair, localizar | **Vista do Alto** (como acima). **Montaria:** leva até dois aliados. |\n| **Predador Aquático** (golfinho, orca, tubarão) | Agilidade +2 · Evasão +4 | Corpo a Corpo, Agilidade, d10+6 físico | atacar, nadar, rastrear | **Aquático.** **Dentada Cruel:** ao acertar, gaste 1 Esperança para deixar o alvo Vulnerável e ganhar +1 de Proficiência nesse ataque. |\n| **Fera Lendária** (versão maior de uma forma do patamar 1) | | | | **Evoluída:** escolha uma forma do patamar 1 e vire uma versão maior e mais poderosa dela, mantendo tudo da original, mais: +6 nas rolagens de dano, +1 no atributo da forma e +2 na Evasão. |\n| **Híbrido Lendário** (grifo, esfinge) | Força +2 · Evasão +3 | Corpo a Corpo, Força, d10+8 físico | (ver abaixo) | **Traços Híbridos:** para assumir esta forma, marque 1 Fadiga a mais. Escolha duas formas dos patamares 1 e 2, e um total de quatro vantagens e duas características delas. |\n\n**Patamar 4**\n\n| Forma | Atributo · Evasão | Ataque | Vantagem em | Características |\n|---|---|---|---|---|\n| **Colosso** (elefante, mamute, rinoceronte) | Força +3 · Evasão +1 | Corpo a Corpo, Força, d12+12 físico | localizar, proteger, assustar, correr | **Montaria:** leva até quatro aliados. **Demolir:** gaste 1 Esperança para avançar até Distante em linha reta e atacar todos os alvos Corpo a Corpo da linha; os atingidos sofrem d8+10 de dano físico com a sua Proficiência e ficam temporariamente Vulneráveis. **Indômito:** +2 em todos os limiares de dano. |\n| **Lagarto Terrível** (braquiossauro, tiranossauro) | Força +3 · Evasão +2 | Corpo a Corpo, Força, d12+10 físico | atacar, enganar, assustar, rastrear | **Golpes Devastadores:** ao causar dano Grave Corpo a Corpo, marque 1 Fadiga para o alvo marcar 1 PV a mais. **Passada Imensa:** você vai até Distante sem rolar e ignora terreno difícil (a critério do mestre), pelo tamanho. |\n| **Caçador Aéreo Mítico** (dragão, pterodáctilo, roca, serpe) | Finura +3 · Evasão +4 | Corpo a Corpo, Finura, d10+11 físico | atacar, enganar, localizar, navegar | **Montaria:** leva até três aliados. **Rapina Mortal:** você voa quando quiser e se move até Distante como parte da ação. Quando avançar em linha reta, de pelo menos Próximo, até Corpo a Corpo de um alvo e atacá-lo na mesma ação, rerrole todos os dados de dano que saíram menores que a sua Proficiência. |\n| **Fera Aquática Épica** (lula gigante, baleia) | Agilidade +3 · Evasão +3 | Corpo a Corpo, Agilidade, d10+10 físico | localizar, proteger, assustar, rastrear | **Senhor do Oceano:** você respira e se move normalmente debaixo d'água; ao acertar Corpo a Corpo, pode deixar o alvo temporariamente Imobilizado. **Inquebrável:** quando for marcar um espaço de Armadura, role um d6; com 5 ou mais, reduza a gravidade em um limiar sem marcar o espaço. |\n| **Fera Mítica** (versão maior de uma forma dos patamares 1 ou 2) | | | | **Evoluída:** escolha uma forma dos patamares 1 ou 2 e vire uma versão maior dela, mantendo tudo da original, mais: +9 nas rolagens de dano, +2 no atributo da forma, +3 na Evasão, e o dado de dano sobe um passo (d6 para d8, d8 para d10...). |\n| **Híbrido Mítico** (quimera, cocatriz, mantícora) | Força +3 · Evasão +2 | Corpo a Corpo, Força, d12+10 físico | (ver abaixo) | **Traços Híbridos:** para assumir esta forma, marque 2 Fadiga a mais. Escolha três formas dos patamares 1 a 3, e um total de cinco vantagens e três características delas. |"
       }
     ]
   },
@@ -665,35 +772,95 @@
       {
         "id": "guardiao-baluarte",
         "nome": "Baluarte",
-        "linha": ""
+        "linha": "Para quem quer aguentar golpes pesados e continuar lutando.",
+        "conjuracao": "",
+        "fundacao": [
+          {
+            "nome": "Inabalável",
+            "texto": "+1 permanente nos limiares de dano."
+          },
+          {
+            "nome": "Vontade de Ferro",
+            "texto": "Quando sofrer dano físico, você pode marcar um espaço de Armadura a mais para reduzir a gravidade."
+          }
+        ],
+        "especializacao": [
+          {
+            "nome": "Implacável",
+            "texto": "+2 permanente nos limiares de dano."
+          },
+          {
+            "nome": "Companheiros de Armas",
+            "texto": "Quando um aliado a até Muito Próximo sofrer dano, marque um espaço de Armadura para reduzir a gravidade em um limiar."
+          }
+        ],
+        "maestria": [
+          {
+            "nome": "Destemido",
+            "texto": "+3 permanente nos limiares de dano."
+          },
+          {
+            "nome": "Protetor Leal",
+            "texto": "Quando um aliado a até Próximo tiver 2 PV ou menos e for sofrer dano, marque 1 Fadiga para correr até ele e sofrer o dano no lugar."
+          }
+        ]
       },
       {
         "id": "guardiao-vingador",
         "nome": "Vingador",
-        "linha": ""
+        "linha": "Para quem quer derrubar quem machuca você ou os seus aliados.",
+        "conjuracao": "",
+        "fundacao": [
+          {
+            "nome": "À Vontade",
+            "texto": "Ganhe um espaço de Fadiga a mais."
+          },
+          {
+            "nome": "Revanche",
+            "texto": "Quando um adversário Corpo a Corpo acertar um ataque em você, marque 2 Fadiga para ele marcar 1 PV."
+          }
+        ],
+        "especializacao": [
+          {
+            "nome": "Represália",
+            "texto": "Quando um adversário causar dano a um aliado Corpo a Corpo, você ganha +1 de Proficiência no próximo acerto contra esse adversário."
+          }
+        ],
+        "maestria": [
+          {
+            "nome": "Nêmesis",
+            "texto": "Gaste 2 Esperança para Priorizar um adversário até o próximo descanso. Ao atacar o adversário Priorizado, você pode trocar os resultados dos Dados de Esperança e de Medo. Só um adversário Priorizado por vez."
+          }
+        ]
       }
     ],
     "origem": [
-      "Quem você não conseguiu proteger?",
-      "A quem você jurou lealdade, e o juramento ainda vale?",
-      "Que muralha você segurou sozinho?"
+      "Quem da sua comunidade você não conseguiu proteger, e por que ainda pensa nessa pessoa?",
+      "Você recebeu a tarefa de proteger algo importante e levá-lo a um lugar perigoso. O que é, e para onde precisa ir?",
+      "Você considera um aspecto seu uma fraqueza. Qual é, e como ele te afetou?"
     ],
     "conexao": [
-      "Por que eu me coloquei na sua frente aquela vez?",
-      "Que promessa você me fez?",
-      "O que você me pediu para guardar?"
+      "Como eu salvei a sua vida na primeira vez que a gente se viu?",
+      "Que presentinho você me deu que eu sempre carrego comigo?",
+      "Que mentira você me contou sobre si mesmo em que eu acredito completamente?"
     ],
     "imagem": null,
     "grupo": "livro",
     "esperanca": {
       "nome": "Linha de Frente",
-      "texto": "gaste 3 Esperança para limpar 2 espaços de Armadura."
+      "texto": "Gaste 3 Esperança para limpar 2 espaços de Armadura."
     },
     "habilidades": [
       {
         "nome": "Imparável",
-        "texto": "uma vez por descanso longo, você fica Imparável e ganha um Dado de Imparável (d4 no nível 1, d6 a partir do nível 5), que começa com o 1 virado para cima. Cada vez que uma rolagem de dano sua fizer o alvo marcar 1 PV ou mais, aumente o valor do dado em 1. Quando ele passar do valor máximo, ou a cena acabar, o dado sai e você deixa de estar Imparável. Enquanto Imparável:\n\n- a gravidade do dano físico que você sofre cai um limiar (Grave para Maior, Maior para Menor, Menor para nenhum);\n- você soma o valor atual do dado às suas rolagens de dano;\n- você não pode ficar Imobilizado nem Vulnerável."
+        "texto": "Uma vez por descanso longo, você fica Imparável e ganha um Dado de Imparável (d4 no nível 1, d6 a partir do nível 5), que começa com o 1 virado para cima. Cada vez que uma rolagem de dano sua fizer o alvo marcar 1 PV ou mais, aumente o valor do dado em 1. Quando ele passar do valor máximo, ou a cena acabar, o dado sai e você deixa de estar Imparável. Enquanto Imparável:\n\n- a gravidade do dano físico que você sofre cai um limiar (Grave para Maior, Maior para Menor, Menor para nenhum);\n- você soma o valor atual do dado às suas rolagens de dano;\n- você não pode ficar Imobilizado nem Vulnerável."
       }
+    ],
+    "intro": "O título fala mais da bússola moral e da firmeza do que do jeito de lutar. Muitos entram em milícias por um país ou uma causa, mas seguem mesmo os poucos com quem se importam. Lutam com uma ferocidade impressionante contra qualquer chance, e ai de quem ferir um aliado deles.",
+    "evasao": 9,
+    "pv": 7,
+    "itens": [
+      "Escolha 1: um amuleto do seu mestre, ou uma chave secreta."
     ]
   },
   {
@@ -709,34 +876,97 @@
       {
         "id": "patrulheiro-treinador",
         "nome": "Treinador",
-        "linha": ""
+        "linha": "Para quem quer um laço profundo com um animal.",
+        "conjuracao": "Agilidade",
+        "fundacao": [
+          {
+            "nome": "Companheiro",
+            "texto": "Você tem um companheiro animal à sua escolha (combinado com o mestre). Ele fica do seu lado, a menos que você mande outra coisa. Pegue a ficha de Companheiro (apêndice C); a cada nível, escolha também uma melhoria para ele."
+          }
+        ],
+        "especializacao": [
+          {
+            "nome": "Treino Avançado",
+            "texto": "Escolha uma melhoria a mais para o companheiro."
+          },
+          {
+            "nome": "Laço de Batalha",
+            "texto": "Quando um adversário te ataca estando ao alcance Corpo a Corpo do seu companheiro, você ganha +2 na Evasão contra esse ataque."
+          }
+        ],
+        "maestria": [
+          {
+            "nome": "Treino de Elite",
+            "texto": "Escolha duas melhorias a mais para o companheiro."
+          },
+          {
+            "nome": "Amigo Leal",
+            "texto": "Uma vez por descanso longo, quando o dano de um ataque for marcar a última Fadiga do companheiro ou o seu último PV, e vocês estiverem a até Próximo um do outro, um corre até o outro e sofre o dano no lugar."
+          }
+        ]
       },
       {
         "id": "patrulheiro-rastreador",
         "nome": "Rastreador",
-        "linha": ""
+        "linha": "Para quem quer caçar a presa e golpear com força mortal.",
+        "conjuracao": "Agilidade",
+        "fundacao": [
+          {
+            "nome": "Predador Impiedoso",
+            "texto": "Ao rolar dano, marque 1 Fadiga para ganhar +1 de Proficiência. Além disso, quando causar dano Grave a um adversário, ele marca 1 Fadiga."
+          },
+          {
+            "nome": "Caminho em Frente",
+            "texto": "Indo para um lugar onde já esteve, ou carregando um objeto que já esteve lá, você identifica o caminho mais curto e direto até o destino."
+          }
+        ],
+        "especializacao": [
+          {
+            "nome": "Predador Esquivo",
+            "texto": "Quando o seu Foco te atacar, você ganha +2 na Evasão contra o ataque."
+          }
+        ],
+        "maestria": [
+          {
+            "nome": "Predador Supremo",
+            "texto": "Antes de atacar o seu Foco, você pode gastar 1 Esperança. Se acertar, tire 1 Medo da reserva do mestre."
+          }
+        ]
       }
     ],
     "origem": [
-      "Que trilha da frente só você conhece?",
-      "Quem você caça, e por quê?",
-      "Qual foi a pior noite que você passou ao relento?"
+      "Uma criatura terrível feriu a sua comunidade, e você jurou caçá-la. O que é, e que rastro ou sinal ela deixa?",
+      "A sua primeira caça quase te matou também. O que era, e que parte de você nunca mais foi a mesma?",
+      "Você já andou por muitas terras perigosas, mas qual é o único lugar aonde se recusa a ir?"
     ],
     "conexao": [
-      "Por que eu te encontrei perdido?",
-      "Que rastro meu você segue?",
-      "O que eu te ensinei a ouvir?"
+      "Que competição amigável a gente tem?",
+      "Por que você age diferente quando a gente está sozinho e quando tem gente por perto?",
+      "Que ameaça você me pediu para vigiar, e por que ela te preocupa?"
     ],
     "imagem": null,
     "grupo": "livro",
     "esperanca": {
       "nome": "Segurar a Linha",
-      "texto": "quando acertar um ataque com arma, gaste 3 Esperança para usar a mesma rolagem contra mais dois adversários ao alcance."
+      "texto": "Quando acertar um ataque com arma, gaste 3 Esperança para usar a mesma rolagem contra mais dois adversários ao alcance."
     },
     "habilidades": [
       {
         "nome": "Foco do Patrulheiro",
-        "texto": "gaste 1 Esperança e ataque um alvo. Com sucesso, cause o dano normal e faça dele o seu Foco, temporariamente. Contra o seu Foco:\n\n- você sabe exatamente em que direção ele está;\n- quando você causa dano a ele, ele marca 1 Fadiga;\n- quando você erra um ataque contra ele, pode encerrar o Foco para rerrolar os Dados de Dualidade."
+        "texto": "Gaste 1 Esperança e ataque um alvo. Com sucesso, cause o dano normal e faça dele o seu Foco, temporariamente. Contra o seu Foco:\n\n- você sabe exatamente em que direção ele está;\n- quando você causa dano a ele, ele marca 1 Fadiga;\n- quando você erra um ataque contra ele, pode encerrar o Foco para rerrolar os Dados de Dualidade."
+      }
+    ],
+    "intro": "Caçadores habilidosíssimos que raramente emprestam a espada a um exército. Dominando o corpo e conhecendo a natureza a fundo, viram táticos espertos que perseguem a presa com astúcia e paciência. Muitos rastreiam e lutam ao lado de um companheiro animal.",
+    "evasao": 12,
+    "pv": 6,
+    "itens": [
+      "Escolha 1: um troféu da sua primeira caça, ou uma bússola que parece quebrada."
+    ],
+    "extras": [
+      {
+        "id": "patrulheiro-companheiro",
+        "nome": "Companheiro do Treinador",
+        "texto": "**Montando o companheiro**\n1. **Nome:** combine com o mestre que animal ele é, dê um nome e um retrato.\n2. **Evasão:** começa em 10.\n3. **Experiências:** crie duas, ligadas ao treino e à história de vocês, ambas em +2. Sempre que você ganhar uma Experiência nova, ele também ganha uma, em +2.\n- Exemplos: Distração Ousada, Escalador Exímio, Buscar, Amigável, Guardião da Floresta, Aterrorizante, Intimidador, Leal Até o Fim, Navegação, Ágil, Ninguém Fica para Trás, Em Alerta, Protetor, Companheiro Real, Batedor, Animal de Serviço, Montaria de Confiança, Vigilante, A Gente Sempre Acha, Não Dá para Acertar o Que Não se Acha.\n4. **Ataque:** descreva como ele causa dano. No nível 1, d6 Corpo a Corpo; escolha se é físico ou mágico.\n\n**Jogando com ele**\n- **Comandar:** faça um teste de conjuração para mandá-lo agir. Gaste 1 Esperança para somar uma Experiência dele. Num sucesso com Esperança, se a sua próxima ação aproveitar o que ele fez, você tem vantagem.\n- **Atacar:** ele ganha os benefícios que normalmente seriam só seus (como o Foco do Patrulheiro). Com sucesso, o dano usa a sua Proficiência e o dado dele.\n- **Dano vira Fadiga:** qualquer dano faz ele marcar 1 Fadiga. Na última Fadiga, ele sai da cena (se esconde, foge) e só volta no começo do seu próximo descanso longo, com 1 Fadiga limpa. Quando você escolhe um movimento de descanso que limpa Fadiga em você, ele limpa a mesma quantidade.\n\n**Melhorias** (uma a cada nível seu)\n- **Inteligente**: +1 permanente numa Experiência dele.\n- **Luz no Escuro**: um espaço de Esperança a mais para você.\n- **Aconchego**: uma vez por descanso, num momento tranquilo de carinho e atenção, você ganha 1 Esperança, ou os dois limpam 1 Fadiga.\n- **Blindado**: quando ele sofrer dano, você pode marcar um espaço de Armadura seu no lugar da Fadiga dele.\n- **Feroz**: o dado de dano ou o alcance dele sobe um passo (d6 para d8, Próximo para Distante...).\n- **Resistente**: um espaço de Fadiga a mais para ele.\n- **Laço**: quando você marcar o último PV, ele corre para te consolar: role d6s iguais aos espaços de Fadiga livres dele e marque-os; se algum der 6, ele te levanta: limpe o último PV e volte para a cena.\n- **Atento**: +2 permanente na Evasão dele."
       }
     ]
   },
@@ -753,39 +983,91 @@
       {
         "id": "ladino-gatuno",
         "nome": "Gatuno",
-        "linha": ""
+        "linha": "Para quem quer manipular as sombras para se mover pelo ambiente.",
+        "conjuracao": "Finura",
+        "fundacao": [
+          {
+            "nome": "Passo de Sombra",
+            "texto": "Você passa de sombra em sombra. Ao entrar numa área escura ou na sombra de uma criatura ou objeto, marque 1 Fadiga para sumir e reaparecer em outra sombra a até Distante. Ao reaparecer, você está Encoberto."
+          }
+        ],
+        "especializacao": [
+          {
+            "nome": "Nuvem Escura",
+            "texto": "Faça um teste de conjuração (15). Com sucesso, crie uma nuvem escura temporária cobrindo uma área a até Próximo. Quem está dentro não vê fora, e quem está fora não vê dentro. Você fica Encoberto para qualquer adversário cuja visão a nuvem bloqueia."
+          },
+          {
+            "nome": "Adrenalina",
+            "texto": "Enquanto estiver Vulnerável, some o seu nível às rolagens de dano."
+          }
+        ],
+        "maestria": [
+          {
+            "nome": "Sombra Fugaz",
+            "texto": "+1 permanente na Evasão. O Passo de Sombra alcança até Muito Distante."
+          },
+          {
+            "nome": "Sumiço",
+            "texto": "Marque 1 Fadiga para ficar Encoberto a qualquer momento. Encoberto assim, você se livra na hora de Imobilizado, se estiver. Você fica Encoberto até rolar com Medo ou até o próximo descanso."
+          }
+        ]
       },
       {
         "id": "ladino-mafioso",
         "nome": "Mafioso",
-        "linha": ""
+        "linha": "Para quem quer ter uma rede de contatos em todo lugar.",
+        "conjuracao": "Finura",
+        "fundacao": [
+          {
+            "nome": "Bem Relacionado",
+            "texto": "Ao chegar numa cidade ou lugar importante, você conhece alguém que mora ali. Dê um nome, anote como essa pessoa pode ser útil e escolha um fato:\n\n- ela me deve um favor, mas vai ser difícil de achar;\n- ela vai pedir algo em troca;\n- ela está sempre metida em encrenca;\n- a gente já foi um casal; é uma longa história;\n- a gente não se despediu muito bem."
+          }
+        ],
+        "especializacao": [
+          {
+            "nome": "Contatos em Toda Parte",
+            "texto": "Uma vez por sessão, chame rapidamente um contato duvidoso. Escolha um benefício e descreva o que o trouxe até ali:\n\n- ele arranja 1 punhado de ouro, uma ferramenta única ou um objeto comum de que a situação precisa;\n- no seu próximo teste de ação, a ajuda dele dá +3 no resultado do seu Dado de Esperança ou de Medo;\n- na próxima vez que você causar dano, ele atira das sombras: +2d8 no dano."
+          }
+        ],
+        "maestria": [
+          {
+            "nome": "Reforço Garantido",
+            "texto": "Você usa os Contatos em Toda Parte três vezes por sessão, e ganha mais duas opções:\n\n- quando você marcar 1 PV ou mais, ele corre para te proteger: marque 1 PV a menos;\n- num teste de Presença numa conversa, ele te apoia: role um d20 como Dado de Esperança."
+          }
+        ]
       }
     ],
     "origem": [
-      "Qual foi o maior golpe da sua vida, e quem pagou por ele?",
-      "A quem você deve dinheiro?",
-      "Que identidade falsa você usa na Exposição?"
+      "Em que você foi pego que te fez ser expulso da sua comunidade?",
+      "Você tinha outra vida e tentou deixá-la para trás. Quem do seu passado ainda está atrás de você?",
+      "De quem do seu passado você mais sofreu ao se despedir?"
     ],
     "conexao": [
-      "Que segredo seu eu descobri?",
-      "Por que você me deixou escapar?",
-      "O que eu roubei de você, e devolvi?"
+      "O que eu te convenci a fazer recentemente que meteu a gente em encrenca?",
+      "O que eu descobri sobre o seu passado e guardo em segredo dos outros?",
+      "Quem do meu passado você conhece, e como essa pessoa influencia o que você sente por mim?"
     ],
     "imagem": null,
     "grupo": "livro",
     "esperanca": {
       "nome": "Esquiva do Ladino",
-      "texto": "gaste 3 Esperança para ganhar +2 na Evasão até o próximo ataque que te acertar, ou até o seu próximo descanso."
+      "texto": "Gaste 3 Esperança para ganhar +2 na Evasão até o próximo ataque que te acertar, ou até o seu próximo descanso."
     },
     "habilidades": [
       {
         "nome": "Encoberto",
-        "texto": "sempre que for ficar Escondido, você fica Encoberto. Além dos benefícios de Escondido, se você estiver parado quando um adversário chega aonde normalmente te veria, ele continua sem te ver. Depois de atacar, ou de terminar um movimento à vista de um adversário, você deixa de estar Encoberto."
+        "texto": "Sempre que for ficar Escondido, você fica Encoberto. Além dos benefícios de Escondido, se você estiver parado quando um adversário chega aonde normalmente te veria, ele continua sem te ver. Depois de atacar, ou de terminar um movimento à vista de um adversário, você deixa de estar Encoberto."
       },
       {
         "nome": "Ataque Furtivo",
-        "texto": "quando acertar um ataque estando Encoberto, ou com um aliado Corpo a Corpo do alvo, some ao dano um d6 por patamar."
+        "texto": "Quando acertar um ataque estando Encoberto, ou com um aliado Corpo a Corpo do alvo, some ao dano um d6 por patamar. (Patamar 1: nível 1; patamar 2: níveis 2 a 4; patamar 3: níveis 5 a 7; patamar 4: níveis 8 a 10.)"
       }
+    ],
+    "intro": "Patifes, na atitude e na prática. Conhecidos como mentirosos e ladrões, os melhores passam pelo mundo sem ser notados. Enganam com a mesma facilidade com que arrombam fechaduras, entram por janelas e dão golpes baixos, e manipulam a sombra e o movimento com magia. Muitos formam guildas, provando que existe honra entre ladrões.",
+    "evasao": 12,
+    "pv": 6,
+    "itens": [
+      "Escolha 1: um kit de falsificação, ou um gancho de escalada."
     ]
   },
   {
@@ -801,35 +1083,87 @@
       {
         "id": "serafim-portador-divino",
         "nome": "Portador Divino",
-        "linha": ""
+        "linha": "Para quem quer dominar o campo de batalha com uma arma lendária.",
+        "conjuracao": "Força",
+        "fundacao": [
+          {
+            "nome": "Arma Espiritual",
+            "texto": "Uma arma equipada de alcance Corpo a Corpo ou Muito Próximo pode voar da sua mão para atacar um adversário a até Próximo e voltar. Marque 1 Fadiga para atingir mais um adversário ao alcance com a mesma rolagem."
+          },
+          {
+            "nome": "Toque Poupador",
+            "texto": "Uma vez por descanso longo, toque uma criatura: ela limpa 2 PV ou 2 Fadiga."
+          }
+        ],
+        "especializacao": [
+          {
+            "nome": "Devoto",
+            "texto": "Ao rolar os Dados de Oração, role um a mais e descarte o menor. Além disso, o Toque Poupador pode ser usado duas vezes por descanso longo."
+          }
+        ],
+        "maestria": [
+          {
+            "nome": "Ressonância Sagrada",
+            "texto": "Ao rolar o dano da Arma Espiritual, os dados com resultados iguais valem o dobro (dois 5 contam como dois 10)."
+          }
+        ]
       },
       {
         "id": "serafim-sentinela-alada",
         "nome": "Sentinela Alada",
-        "linha": ""
+        "linha": "Para quem quer voar e golpear do céu.",
+        "conjuracao": "Força",
+        "fundacao": [
+          {
+            "nome": "Asas de Luz",
+            "texto": "Você voa. Voando, você pode:\n\n- marcar 1 Fadiga para carregar outra criatura disposta, do seu tamanho ou menor;\n- gastar 1 Esperança para causar 1d8 de dano a mais num acerto."
+          }
+        ],
+        "especializacao": [
+          {
+            "nome": "Semblante Etéreo",
+            "texto": "O seu semblante sobrenatural inspira assombro e medo. Voando, você tem vantagem em testes de Presença. Quando tiver sucesso com Esperança num teste de Presença, pode tirar 1 Medo da reserva do mestre em vez de ganhar Esperança."
+          }
+        ],
+        "maestria": [
+          {
+            "nome": "Ascendente",
+            "texto": "+4 permanente no limiar Grave."
+          },
+          {
+            "nome": "Poder dos Deuses",
+            "texto": "Voando, as Asas de Luz causam 1d12 a mais em vez de 1d8."
+          }
+        ]
       }
     ],
     "origem": [
-      "Em que você acredita, e quando essa fé foi testada?",
-      "Que milagre você presenciou?",
-      "Que igreja ou ordem você deixou para trás?"
+      "A que deus você se dedicou? Que feito incrível ele fez por você num momento de desespero?",
+      "Como a sua aparência mudou depois do juramento?",
+      "De que jeito estranho ou único você se comunica com o seu deus?"
     ],
     "conexao": [
-      "Por que você reza por mim?",
-      "Que dúvida eu plantei em você?",
-      "O que eu te vi fazer que parecia milagre?"
+      "Que promessa você me fez aceitar, para o caso de você morrer em batalha?",
+      "Por que você me faz tantas perguntas sobre o meu deus?",
+      "Você me pediu para proteger um membro do grupo acima de todos, até de você. Quem é, e por quê?"
     ],
     "imagem": null,
     "grupo": "livro",
     "esperanca": {
       "nome": "Socorro",
-      "texto": "gaste 3 Esperança para limpar 1 PV de um aliado a até Próximo."
+      "texto": "Gaste 3 Esperança para limpar 1 PV de um aliado a até Próximo."
     },
     "habilidades": [
       {
         "nome": "Dados de Oração",
-        "texto": "no começo de cada sessão, role um número de d4 igual ao atributo de conjuração da sua subclasse e guarde-os na ficha. Gaste quantos quiser para ajudar você ou um aliado a até Distante: use o valor do dado para reduzir um dano recebido, somar a um resultado depois da rolagem ou ganhar Esperança igual ao valor. No fim da sessão, os dados não usados somem."
+        "texto": "No começo de cada sessão, role um número de d4 igual ao atributo de conjuração da sua subclasse e guarde-os na ficha. Gaste quantos quiser para ajudar você ou um aliado a até Distante: use o valor do dado para reduzir um dano recebido, somar a um resultado depois da rolagem ou ganhar Esperança igual ao valor. No fim da sessão, os dados não usados somem."
       }
+    ],
+    "intro": "Guerreiros e curandeiros divinos, imbuídos de um propósito sagrado. Cada divindade nomeia os seus, e o ethos deles segue os objetivos do deus: defender os fracos, vingar, proteger uma terra ou um artefato, guardar uma fé. É melhor ser aliado de um serafim do que inimigo.",
+    "evasao": 9,
+    "pv": 7,
+    "itens": [
+      "Escolha 1: um feixe de oferendas, ou um símbolo do seu deus."
     ]
   },
   {
@@ -845,43 +1179,87 @@
       {
         "id": "feiticeiro-origem-elemental",
         "nome": "Origem Elemental",
-        "linha": ""
+        "linha": "Para quem quer canalizar magia bruta na forma de um elemento.",
+        "conjuracao": "Instinto",
+        "fundacao": [
+          {
+            "nome": "Elementalista",
+            "texto": "Na criação, escolha um elemento: ar, terra, fogo, raio ou água. Você molda esse elemento em efeitos inofensivos. Além disso, gaste 1 Esperança e descreva como o seu controle sobre o elemento ajuda um teste de ação que vai fazer: ganhe +2 no teste ou +3 no dano dele."
+          }
+        ],
+        "especializacao": [
+          {
+            "nome": "Evasão Natural",
+            "texto": "Quando um ataque contra você acertar, marque 1 Fadiga e descreva como o elemento te defende: role um d6 e some à sua Evasão contra esse ataque."
+          }
+        ],
+        "maestria": [
+          {
+            "nome": "Transcendência",
+            "texto": "Uma vez por descanso longo, vire uma manifestação física do seu elemento. Descreva a transformação e escolha dois benefícios até o próximo descanso:\n\n- +4 no limiar Grave;\n- +1 num atributo à sua escolha;\n- +1 de Proficiência;\n- +2 na Evasão."
+          }
+        ]
       },
       {
         "id": "feiticeiro-origem-primordial",
         "nome": "Origem Primordial",
-        "linha": ""
+        "linha": "Para quem quer ampliar os feitiços de jeitos poderosos.",
+        "conjuracao": "Instinto",
+        "fundacao": [
+          {
+            "nome": "Manipular a Magia",
+            "texto": "Depois de lançar um feitiço ou atacar com uma arma de dano mágico, marque 1 Fadiga para escolher:\n\n- aumentar o alcance em um passo;\n- +2 no resultado do teste de ação;\n- dobrar um dado de dano à sua escolha;\n- atingir mais um alvo ao alcance."
+          }
+        ],
+        "especializacao": [
+          {
+            "nome": "Auxílio Encantado",
+            "texto": "Quando Ajudar um Aliado num teste de conjuração, você pode rolar um d8 como dado de vantagem. Uma vez por descanso longo, depois que um aliado fizer um teste de conjuração com a sua ajuda, você pode trocar os resultados dos Dados de Dualidade dele."
+          }
+        ],
+        "maestria": [
+          {
+            "nome": "Carga Arcana",
+            "texto": "Quando sofrer dano mágico, você fica Carregado; ou gaste 2 Esperança para ficar Carregado. Ao acertar um ataque de dano mágico estando Carregado, gaste a Carga para ganhar +10 no dano, ou +3 na Dificuldade de um teste de reação que o feitiço obriga o alvo a fazer. A Carga acaba no seu próximo descanso longo."
+          }
+        ]
       }
     ],
     "origem": [
-      "Quando o seu poder apareceu pela primeira vez, e quem viu?",
-      "O que você quebrou sem querer?",
-      "Quem tentou te estudar?"
+      "O que você fez que deixou o pessoal da sua comunidade desconfiado de você?",
+      "Que mestre te ensinou a controlar a sua magia selvagem, e por que ele não pode mais te guiar?",
+      "Você tem um medo profundo que esconde de todos. Qual é, e por que te assusta?"
     ],
     "conexao": [
-      "Por que eu sou a única pessoa que não tem medo de você?",
-      "O que você queimou por mim?",
-      "Que sinal meu você reconhece?"
+      "Por que você confia tanto em mim?",
+      "O que eu fiz que te deixa cauteloso perto de mim?",
+      "Por que a gente esconde o passado que tem em comum?"
     ],
     "imagem": null,
     "grupo": "livro",
     "esperanca": {
       "nome": "Magia Volátil",
-      "texto": "gaste 3 Esperança para rerrolar quantos dados de dano quiser num ataque de dano mágico."
+      "texto": "Gaste 3 Esperança para rerrolar quantos dados de dano quiser num ataque de dano mágico."
     },
     "habilidades": [
       {
         "nome": "Sentido Arcano",
-        "texto": "você sente a presença de pessoas e objetos mágicos a até Próximo."
+        "texto": "Você sente a presença de pessoas e objetos mágicos a até Próximo."
       },
       {
         "nome": "Ilusão Menor",
-        "texto": "faça um teste de conjuração (10). Com sucesso, crie uma ilusão visual pequena, do seu tamanho no máximo, a até Próximo. Ela convence qualquer um que olhe de Próximo ou mais longe."
+        "texto": "Faça um teste de conjuração (10). Com sucesso, crie uma ilusão visual pequena, do seu tamanho no máximo, a até Próximo. Ela convence qualquer um que olhe de Próximo ou mais longe."
       },
       {
         "nome": "Canalizar Poder Bruto",
-        "texto": "uma vez por descanso longo, mande uma carta de domínio das suas cartas ativas para o cofre e escolha: ganhe Esperança igual ao nível da carta, ou some o dobro do nível da carta ao dano de um feitiço."
+        "texto": "Uma vez por descanso longo, mande uma carta de domínio das suas cartas ativas para o cofre e escolha: ganhe Esperança igual ao nível da carta, ou some o dobro do nível da carta ao dano de um feitiço."
       }
+    ],
+    "intro": "Nem todo mundo que nasce com magia decide cultivá-la; os que decidem podem virar feiticeiros poderosos. O dom passa de família em família, às vezes sem que ninguém saiba ou queira praticar. Ser feiticeiro é aprender a controlar o poder que já se tem, e a magia de um feiticeiro sem disciplina é perigosa de verdade.",
+    "evasao": 10,
+    "pv": 6,
+    "itens": [
+      "Escolha 1: uma esfera que sussurra, ou uma herança de família."
     ]
   },
   {
@@ -897,39 +1275,87 @@
       {
         "id": "guerreiro-escolhido-da-bravura",
         "nome": "Escolhido da Bravura",
-        "linha": ""
+        "linha": "Para quem quer usar a força dos inimigos para alimentar o próprio poder.",
+        "conjuracao": "",
+        "fundacao": [
+          {
+            "nome": "Coragem",
+            "texto": "Quando falhar com Medo, ganhe 1 Esperança."
+          },
+          {
+            "nome": "Ritual de Batalha",
+            "texto": "Uma vez por descanso longo, antes de tentar algo incrivelmente perigoso ou de enfrentar um inimigo claramente mais forte, descreva o ritual ou a preparação que você faz. Limpe 2 Fadiga e ganhe 2 Esperança."
+          }
+        ],
+        "especializacao": [
+          {
+            "nome": "À Altura do Desafio",
+            "texto": "Com 2 PV ou menos sem marcar, você pode rolar um d20 como Dado de Esperança."
+          }
+        ],
+        "maestria": [
+          {
+            "nome": "Camaradagem",
+            "texto": "Você pode iniciar um Teste em Dupla uma vez a mais por sessão. Além disso, quando um aliado iniciar um Teste em Dupla com você, ele só gasta 2 Esperança."
+          }
+        ]
       },
       {
         "id": "guerreiro-escolhido-da-matanca",
         "nome": "Escolhido da Matança",
-        "linha": ""
+        "linha": "Para quem quer derrubar os adversários com força imensa.",
+        "conjuracao": "",
+        "fundacao": [
+          {
+            "nome": "Matador",
+            "texto": "Você tem uma reserva de Dados de Matador. Numa rolagem com Esperança, você pode pôr um d6 neste cartão em vez de ganhar a Esperança. Guarde até a sua Proficiência em dados. Ao fazer uma rolagem de ataque ou de dano, gaste quantos quiser, rolando-os e somando ao resultado. No fim de cada sessão, os dados não usados somem, e você ganha 1 Esperança por dado."
+          }
+        ],
+        "especializacao": [
+          {
+            "nome": "Especialista em Armas",
+            "texto": "Ao acertar um ataque, gaste 1 Esperança para somar ao dano um dos dados de dano da sua arma secundária. Além disso, uma vez por descanso longo, ao rolar os Dados de Matador, rerrole os 1."
+          }
+        ],
+        "maestria": [
+          {
+            "nome": "Preparação Marcial",
+            "texto": "O seu grupo ganha o movimento de descanso Preparação Marcial: descreva como você treina o grupo. Você e cada aliado que escolher esse movimento ganham um Dado de Matador d6, que pode ser rolado e somado a uma rolagem de ataque ou de dano."
+          }
+        ]
       }
     ],
     "origem": [
-      "Em que batalha você deveria ter morrido?",
-      "Por que você largou o uniforme, ou não largou?",
-      "Quem lutou ao seu lado e hoje está do outro lado?"
+      "Quem te ensinou a lutar, e por que essa pessoa ficou para trás quando você saiu de casa?",
+      "Alguém te derrotou anos atrás e te deixou para morrer. Quem foi, e como te traiu?",
+      "Que lugar lendário você sempre quis visitar, e por que ele é tão especial?"
     ],
     "conexao": [
-      "Em que trincheira a gente se conheceu?",
-      "Por que você me deve uma?",
-      "O que eu vi você fazer na guerra?"
+      "A gente se conhecia muito antes deste grupo se formar. De onde?",
+      "Em que tarefa comum você costuma me ajudar, longe da luta?",
+      "Que medo eu estou te ajudando a superar?"
     ],
     "imagem": null,
     "grupo": "livro",
     "esperanca": {
       "nome": "Sem Piedade",
-      "texto": "gaste 3 Esperança para ganhar +1 nas rolagens de ataque até o seu próximo descanso."
+      "texto": "Gaste 3 Esperança para ganhar +1 nas rolagens de ataque até o seu próximo descanso."
     },
     "habilidades": [
       {
         "nome": "Ataque de Oportunidade",
-        "texto": "se um adversário Corpo a Corpo tentar sair do seu alcance, faça um teste de reação com um atributo à sua escolha contra a Dificuldade dele. Com sucesso, escolha um efeito; com sucesso crítico, dois:\n\n- ele não sai do lugar;\n- você causa a ele o dano da sua arma principal;\n- você se move junto com ele."
+        "texto": "Se um adversário Corpo a Corpo tentar sair do seu alcance, faça um teste de reação com um atributo à sua escolha contra a Dificuldade dele. Com sucesso, escolha um efeito; com sucesso crítico, dois:"
       },
       {
         "nome": "Treino de Combate",
-        "texto": "você ignora o peso ao empunhar armas. Quando causar dano físico, some o seu nível à rolagem de dano."
+        "texto": "Você ignora o peso ao empunhar armas. Quando causar dano físico, some o seu nível à rolagem de dano."
       }
+    ],
+    "intro": "Ser guerreiro pede anos, às vezes uma vida inteira, de treino com armas e violência. Sabem que um corpo e uma mente ágeis importam tanto quanto a força, e por isso são dos lutadores mais procurados. Trabalham em exércitos, bandos de mercenários ou guardas reais, e todos têm uma arma favorita: ficar entre um guerreiro e a lâmina dele é um erro grave.",
+    "evasao": 11,
+    "pv": 6,
+    "itens": [
+      "Escolha 1: o desenho de um amor, ou uma pedra de amolar."
     ]
   },
   {
@@ -945,39 +1371,107 @@
       {
         "id": "mago-discipulo-do-conhecimento",
         "nome": "Discípulo do Conhecimento",
-        "linha": ""
+        "linha": "Para quem quer entender a fundo o mundo ao redor.",
+        "conjuracao": "Conhecimento",
+        "fundacao": [
+          {
+            "nome": "Preparado",
+            "texto": "Pegue uma carta de domínio a mais, do seu nível ou abaixo, de um domínio a que você tem acesso."
+          },
+          {
+            "nome": "Perito",
+            "texto": "Ao Usar uma Experiência, você pode marcar 1 Fadiga em vez de gastar 1 Esperança. Se fizer isso, dobre o modificador da Experiência nesse teste."
+          }
+        ],
+        "especializacao": [
+          {
+            "nome": "Realizado",
+            "texto": "Pegue uma carta de domínio a mais, do seu nível ou abaixo, de um domínio a que você tem acesso."
+          },
+          {
+            "nome": "Memória Perfeita",
+            "texto": "Uma vez por descanso, ao recuperar uma carta de domínio do cofre, reduza o custo de recuperação dela em 1."
+          }
+        ],
+        "maestria": [
+          {
+            "nome": "Brilhante",
+            "texto": "Pegue uma carta de domínio a mais, do seu nível ou abaixo, de um domínio a que você tem acesso."
+          },
+          {
+            "nome": "Saber Afiado",
+            "texto": "Ao usar uma Experiência, role um d6. Com 5 ou mais, você a usa sem gastar Esperança."
+          }
+        ]
       },
       {
         "id": "mago-discipulo-da-guerra",
         "nome": "Discípulo da Guerra",
-        "linha": ""
+        "linha": "Para quem quer usar magia treinada para a violência.",
+        "conjuracao": "Conhecimento",
+        "fundacao": [
+          {
+            "nome": "Mago de Batalha",
+            "texto": "Você estudou para ser uma força invencível no campo de batalha. Ganhe um espaço de PV a mais."
+          },
+          {
+            "nome": "Encare o Medo",
+            "texto": "Quando acertar um ataque com Medo, cause 1d10 de dano mágico a mais."
+          }
+        ],
+        "especializacao": [
+          {
+            "nome": "Conjurar Escudo",
+            "texto": "Você mantém uma barreira mágica protetora. Enquanto tiver pelo menos 2 Esperança, some a sua Proficiência à Evasão."
+          },
+          {
+            "nome": "Movido pelo Medo",
+            "texto": "O dano extra do Encare o Medo vira 2d10."
+          }
+        ],
+        "maestria": [
+          {
+            "nome": "Prosperar no Caos",
+            "texto": "Ao acertar um ataque, marque 1 Fadiga depois de rolar o dano para o alvo marcar 1 PV a mais."
+          },
+          {
+            "nome": "Sem Medo",
+            "texto": "O dano extra do Encare o Medo vira 3d10."
+          }
+        ]
       }
     ],
     "origem": [
-      "Que academia te expulsou, ou te premiou?",
-      "Que livro você roubou de uma biblioteca?",
-      "Que teoria sua todo mundo ri?"
+      "Que responsabilidades a sua comunidade confiava a você? Como você decepcionou todo mundo?",
+      "Você passou a vida procurando um livro ou objeto muito importante. O que é, e por que importa tanto?",
+      "Você tem um rival poderoso. Quem é, e por que você quer tanto derrotá-lo?"
     ],
     "conexao": [
-      "Por que eu peço a sua opinião antes de qualquer experimento?",
-      "O que eu te ensinei?",
-      "Que erro meu você corrigiu em público?"
+      "Que favor eu te pedi que você não sabe se consegue cumprir?",
+      "Que hobby esquisito ou fascínio estranho a gente tem em comum?",
+      "Que segredo seu você confiou só a mim?"
     ],
     "imagem": null,
     "grupo": "livro",
     "esperanca": {
       "nome": "Desta Vez Não",
-      "texto": "gaste 3 Esperança para obrigar um adversário a até Distante a rerrolar um ataque ou uma rolagem de dano."
+      "texto": "Gaste 3 Esperança para obrigar um adversário a até Distante a rerrolar um ataque ou uma rolagem de dano."
     },
     "habilidades": [
       {
         "nome": "Prestidigitação",
-        "texto": "você faz, à vontade, pequenos efeitos mágicos inofensivos: mudar a cor de um objeto, criar um cheiro, acender uma vela, fazer um objeto pequeno flutuar, iluminar uma sala, consertar um objeto pequeno."
+        "texto": "Você faz, à vontade, pequenos efeitos mágicos inofensivos: mudar a cor de um objeto, criar um cheiro, acender uma vela, fazer um objeto pequeno flutuar, iluminar uma sala, consertar um objeto pequeno."
       },
       {
         "nome": "Padrões Estranhos",
-        "texto": "escolha um número de 1 a 12. Quando tirar esse número num dos Dados de Dualidade, ganhe 1 Esperança ou limpe 1 Fadiga. Você pode trocar o número num descanso longo."
+        "texto": "Escolha um número de 1 a 12. Quando tirar esse número num dos Dados de Dualidade, ganhe 1 Esperança ou limpe 1 Fadiga. Você pode trocar o número num descanso longo."
       }
+    ],
+    "intro": "Por uma instituição ou por estudo próprio, os magos acumulam um poder imenso ao longo de anos, com livros, pedras, poções e ervas. Uns dedicam a vida a uma escola de magia; outros aprendem de tudo. Muitos viram figuras sábias e poderosas, mas é entre os próprios magos que mais há conflito: guardar ou dividir segredos poderosos já custou incontáveis vidas.",
+    "evasao": 11,
+    "pv": 5,
+    "itens": [
+      "Escolha 1: um livro que você está tentando traduzir, ou um bichinho elemental pequeno e inofensivo."
     ]
   },
   {
@@ -990,33 +1484,105 @@
       "Lâmina"
     ],
     "fantasia": "",
-    "origem": [],
-    "conexao": [],
+    "origem": [
+      "Você já matou alguém próximo. O que aconteceu, e como isso te mudou?",
+      "Que organização te treinou na arte de matar, e como você entrou nela?",
+      "Ao longo da carreira, um alvo sempre te escapou. Quem é, e como ele escorregou dos seus dedos?"
+    ],
+    "conexao": [
+      "Eu matei alguém por você. Quem era?",
+      "Como você me salvou quando eu estava à beira da morte? O que eu prometi em troca?",
+      "Que segredo meu eu te contei, e como isso mudou o que você pensa de mim?"
+    ],
     "subclasses": [
       {
         "id": "assassino-guilda-dos-executores",
         "nome": "Guilda dos Executores",
-        "linha": ""
+        "linha": "Para quem quer derrubar o alvo com precisão letal.",
+        "conjuracao": "Agilidade",
+        "fundacao": [
+          {
+            "nome": "Primeiro Golpe",
+            "texto": "Na primeira vez que acertar um ataque numa cena, você causa o dobro do dano."
+          },
+          {
+            "nome": "Emboscada",
+            "texto": "O Marcado para Morrer usa d6 no lugar de d4."
+          }
+        ],
+        "especializacao": [
+          {
+            "nome": "Golpe de Misericórdia",
+            "texto": "Quando causar dano Grave a uma criatura, marque 1 Fadiga para ela marcar 1 PV a mais."
+          },
+          {
+            "nome": "Pose de Escorpião",
+            "texto": "+2 na Evasão contra ataques de uma criatura que você Marcou para Morrer."
+          }
+        ],
+        "maestria": [
+          {
+            "nome": "Golpe Certeiro",
+            "texto": "Uma vez por descanso longo, quando errar um ataque, gaste 1 Esperança para transformá-lo em acerto."
+          },
+          {
+            "nome": "Punhalada pelas Costas",
+            "texto": "O Marcado para Morrer usa d8 no lugar de d6."
+          }
+        ]
       },
       {
         "id": "assassino-guilda-dos-envenenadores",
         "nome": "Guilda dos Envenenadores",
-        "linha": ""
+        "linha": "Para quem quer enfraquecer o alvo com aflições cruéis.",
+        "conjuracao": "Conhecimento",
+        "fundacao": [
+          {
+            "nome": "Venenos Caseiros",
+            "texto": "Marque 1 Fadiga para pôr 1d4+1 fichas neste cartão. Ao acertar um ataque com arma, gaste uma ficha para envenenar o alvo com um veneno que você conhece. No descanso longo, as fichas não usadas somem. Você conhece:\n\n- **Pétala-Fantasma:** o alvo fica temporariamente Vulnerável;\n- **Esporo de Cova:** o alvo também marca 1 Fadiga;\n- **Erva-Sanguessuga:** +1d6 de dano neste ataque."
+          }
+        ],
+        "especializacao": [
+          {
+            "nome": "Compêndio de Venenos",
+            "texto": "Você também conhece:\n\n- **Vinha da Meia-noite:** o alvo tem desvantagem nos ataques até marcar 1 Fadiga para se livrar;\n- **Raiz de Górgona:** o alvo fica temporariamente Imobilizado."
+          },
+          {
+            "nome": "Presa Dupla",
+            "texto": "Quando envenenar um alvo Marcado para Morrer, gaste mais uma ficha para aplicar também o efeito de um segundo veneno."
+          }
+        ],
+        "maestria": [
+          {
+            "nome": "Venenomante",
+            "texto": "Você também conhece:\n\n- **Semente da Praga:** o alvo tem −3 nos limiares de dano até o fim da cena (não acumula);\n- **Folha do Medo:** dano extra igual ao seu Dado de Medo neste ataque;\n- **Espinho de Cadáver:** o alvo tem desvantagem nos testes de reação até o fim da cena."
+          },
+          {
+            "nome": "Bênção da Víbora",
+            "texto": "Você é imune a venenos e toxinas."
+          }
+        ]
       }
     ],
     "esperanca": {
       "nome": "Determinação Mortal",
-      "texto": "gaste 3 Esperança para limpar 2 Fadiga."
+      "texto": "Gaste 3 Esperança para limpar 2 Fadiga."
     },
     "habilidades": [
       {
         "nome": "Marcado para Morrer",
-        "texto": "ao acertar um ataque com arma, marque 1 Fadiga para deixar o alvo Marcado para Morrer. Quando causar dano a ele, some ao dano um d4 por patamar. Só um adversário fica marcado por vez; a marca dura até você descansar, até ele ser derrotado ou até o mestre gastar Medo igual ao seu patamar."
+        "texto": "Ao acertar um ataque com arma, marque 1 Fadiga para deixar o alvo Marcado para Morrer. Quando causar dano a ele, some ao dano um d4 por patamar. Só um adversário fica marcado por vez; a marca dura até você descansar, até ele ser derrotado ou até o mestre gastar Medo igual ao seu patamar."
       },
       {
         "nome": "Entrar e Sair",
-        "texto": "gaste 1 Esperança para perguntar ao mestre um jeito rápido ou discreto de entrar ou sair de um lugar que você vê. O próximo teste que usar essa informação tem vantagem."
+        "texto": "Gaste 1 Esperança para perguntar ao mestre um jeito rápido ou discreto de entrar ou sair de um lugar que você vê. O próximo teste que usar essa informação tem vantagem."
       }
+    ],
+    "intro": "Mestres em ferimentos mortais com golpes precisos. Para o assassino, a morte é uma profissão; muitos entram em guildas para aprimorar o ofício. Uns matam qualquer um pelo preço certo; outros têm códigos rígidos sobre quem pode ser alvo.",
+    "evasao": 12,
+    "pv": 5,
+    "itens": [
+      "Escolha 1: uma lista de nomes com vários riscados, ou uma lâmina enferrujada gravada com uma insígnia."
     ]
   },
   {
@@ -1029,32 +1595,111 @@
       "Valor"
     ],
     "fantasia": "",
-    "origem": [],
-    "conexao": [],
+    "origem": [
+      "Onde você passou os anos de formação que te ensinaram, direta ou indiretamente, a lutar do seu jeito?",
+      "Que organização jurou te matar assim que te ver, e o que você fez para merecer?",
+      "Para quem você perdeu uma luta recentemente, e de quem quer a revanche desesperadamente?"
+    ],
+    "conexao": [
+      "Do que nós dois temos medo?",
+      "Para que eu dependo de você nas nossas viagens? Como você se sente sobre isso?",
+      "Eu ainda não te perdoei por uma coisa que você me disse. O que foi, e por que você disse?"
+    ],
     "subclasses": [
       {
         "id": "pugilista-rolo-compressor",
         "nome": "Rolo Compressor",
-        "linha": ""
+        "linha": "Para quem quer pulverizar os oponentes com golpes esmagadores.",
+        "conjuracao": "",
+        "fundacao": [
+          {
+            "nome": "Casca Grossa",
+            "texto": "+3 permanente no limiar Grave."
+          },
+          {
+            "nome": "Arrasar",
+            "texto": "Ao acertar um ataque, gaste 1 Esperança para arremessar o alvo até Próximo, ou para ele marcar 1 Fadiga."
+          }
+        ],
+        "especializacao": [
+          {
+            "nome": "Cercado",
+            "texto": "Ao atacar com arma Corpo a Corpo, gaste quanta Esperança quiser para atingir o mesmo número de criaturas a mais, Corpo a Corpo."
+          },
+          {
+            "nome": "Olho por Olho",
+            "texto": "Uma vez por descanso, quando um adversário Corpo a Corpo te fizer marcar PV, marque 1 Fadiga para ele marcar o mesmo número de PV."
+          }
+        ],
+        "maestria": [
+          {
+            "nome": "Alegria do Soco",
+            "texto": "Num sucesso crítico com arma Corpo a Corpo, ganhe 1 Esperança a mais, limpe 1 Fadiga a mais e ganhe +1 de Proficiência nesse ataque."
+          },
+          {
+            "nome": "Ainda Não Acabou",
+            "texto": "Quando sofrer dano Grave, ganhe 1 Esperança ou limpe 1 Fadiga."
+          }
+        ]
       },
       {
         "id": "pugilista-artista-marcial",
         "nome": "Artista Marcial",
-        "linha": ""
+        "linha": "Para quem quer usar vários estilos de luta.",
+        "conjuracao": "",
+        "fundacao": [
+          {
+            "nome": "Lutador de Posturas",
+            "texto": "Você entra em posturas marciais que dão benefícios no combate. Pegue a ficha de Posturas (apêndice B) e escolha duas posturas do patamar 1. A cada nível, escolha mais uma do seu patamar ou abaixo."
+          }
+        ],
+        "especializacao": [
+          {
+            "nome": "Defesa Afiada",
+            "texto": "Quando for alvo de um ataque, gaste 1 Foco para ganhar bônus na Evasão igual ao seu patamar contra ele."
+          },
+          {
+            "nome": "Canhão de Foco",
+            "texto": "Gaste 1 Foco e faça um teste de Instinto contra um adversário a até Distante. Com sucesso, cause d20+3 de dano mágico com a sua Proficiência."
+          }
+        ],
+        "maestria": [
+          {
+            "nome": "Além do Limite",
+            "texto": "Uma vez por descanso, faça uma proeza atlética inacreditável (correr sobre a água, saltar entre telhados distantes, escalar um prédio) sem rolar. Ganhe 1 Esperança e limpe 1 Fadiga."
+          },
+          {
+            "nome": "Estado de Fluxo",
+            "texto": "Você pode marcar 1 Fadiga em vez de gastar 1 Foco para trocar de postura, e gastar 1 Foco em vez de marcar 1 Fadiga para começar um combo."
+          }
+        ]
       }
     ],
     "esperanca": {
       "nome": "Encarar",
-      "texto": "gaste 3 Esperança para intimidar um alvo a até Próximo, deixando-o temporariamente Vulnerável."
+      "texto": "Gaste 3 Esperança para intimidar um alvo a até Próximo, deixando-o temporariamente Vulnerável."
     },
     "habilidades": [
       {
         "nome": "Eu Sou a Arma",
-        "texto": "os seus punhos valem uma lâmina. Sem outras armas ativas, você tem a arma principal Golpe de Pugilista: atributo à sua escolha, alcance Corpo a Corpo, d8+d6 de dano físico com a sua Proficiência (os dois dados escalam). Com ela ativa, você ganha +1 na Evasão."
+        "texto": "Sem outras armas ativas, você tem a arma principal Golpe de Pugilista: atributo à sua escolha, alcance Corpo a Corpo, d8+d6 de dano físico com a sua Proficiência (os dois dados escalam). Com ela ativa, você ganha +1 na Evasão."
       },
       {
         "nome": "Combo",
-        "texto": "depois de rolar o dano de um acerto Corpo a Corpo, marque 1 Fadiga para começar um combo: role o Dado de Combo e anote; continue rolando até sair um resultado menor que o anterior. Cause dano extra igual à soma de todas as rolagens do combo (nada modifica esses resultados). O Dado de Combo começa em d4 e pode subir um passo por patamar, como opção de avanço de nível."
+        "texto": "Depois de rolar o dano de um acerto Corpo a Corpo, marque 1 Fadiga para começar um combo: role o Dado de Combo e anote; continue rolando até sair um resultado menor que o anterior. Cause dano extra igual à soma de todas as rolagens do combo (nada modifica esses resultados). O Dado de Combo começa em d4 e pode subir um passo por patamar, como opção de avanço de nível."
+      }
+    ],
+    "intro": "Especialistas em luta desarmada, que transformam o corpo numa arma letal. Aprenderam com treino formal, com um mestre ou uma briga de cada vez. Parecem inofensivos para quem espera inimigos armados até os dentes, mas fazem mais com os punhos do que um soldado com espada.",
+    "evasao": 10,
+    "pv": 6,
+    "itens": [
+      "Escolha 1: faixas para as mãos, presente de um mestre, ou um livro sobre o seu hobby secreto."
+    ],
+    "extras": [
+      {
+        "id": "pugilista-posturas",
+        "nome": "Posturas Marciais",
+        "texto": "**Foco.** O Foco é o equilíbrio, a clareza e o controle do personagem. Uma vez por descanso, num momento de calma, limpe a trilha de Foco, role d6s iguais ao seu Instinto e ganhe Foco igual ao maior resultado. Máximo de 6 Foco.\n\n**Entrar numa postura.** Gaste 1 Foco para entrar numa postura que você conhece e ganhar o efeito dela. Só uma postura ativa por vez.\n\n**Sair de uma postura.** Você sai da postura ativa quando entra em outra, quando sofre dano Grave, quando marca o último PV ou no fim da cena. Ao sair, os benefícios dela acabam.\n\n**Aprender.** Duas posturas do patamar 1 na Fundação; mais uma do seu patamar ou abaixo a cada nível.\n\n| Patamar | Postura | Efeito |\n|---|---|---|\n| 1 | **Favorita** | Bônus nas rolagens de dano igual a um atributo à sua escolha. |\n| 1 | **Revigorante** | Ao acertar um ataque, role um d4; num 4, ganhe 1 Foco. |\n| 1 | **Rápida** | Ao atacar, gaste 1 Foco ou marque 1 Fadiga para atingir mais uma criatura ao alcance com o mesmo ataque. |\n| 1 | **Confiável** | +1 nas rolagens de ataque. |\n| 2 | **Agressiva** | −1 na Evasão. Ao acertar, role um dado de dano a mais e descarte o menor. |\n| 2 | **Ancorada** | +2 nos limiares de dano; ninguém te move contra a sua vontade. |\n| 2 | **Defensiva** | Ataques Corpo a Corpo contra você têm desvantagem, a menos que o atacante marque 1 Fadiga para anular. |\n| 2 | **De Outro Mundo** | Ao acertar, você escolhe causar dano físico ou mágico. |\n| 3 | **Agarrada** | Ao acertar Corpo a Corpo, gaste 1 Foco ou marque 1 Fadiga para deixar o alvo temporariamente Imobilizado ou arremessá-lo até Próximo. |\n| 3 | **Assustadora** | Ao acertar, o alvo marca 1 Fadiga. |\n| 3 | **Estável** | Você pode gastar 1 Foco no lugar de um espaço de Armadura para reduzir o dano. |\n| 3 | **Vigilante** | Quando for alvo de um ataque, marque 1 Fadiga para ganhar +d6 na Evasão contra ele. |\n| 4 | **Esmagadora** | Ao causar dano Grave, gaste 1 Esperança para o alvo marcar 1 PV a mais. |\n| 4 | **Precisa** | Quando tirar 1 num dado de dano, conte como o valor máximo do dado. |\n| 4 | **Afiada** | Gaste 1 Foco antes do ataque para +1 de Proficiência nele. |\n| 4 | **Isolante** | Vantagem nos ataques quando não houver outras criaturas a até Muito Próximo de você ou do alvo. |"
       }
     ]
   },
@@ -1068,33 +1713,109 @@
       "Graça"
     ],
     "fantasia": "",
-    "origem": [],
-    "conexao": [],
+    "origem": [
+      "Quem da sua comunidade te rejeitou depois do pacto com o patrono?",
+      "Que situação desesperada te levou a entregar a vida ao patrono?",
+      "O patrono te deu uma tarefa que você precisa cumprir acima de tudo. Qual é, e por que te preocupa?"
+    ],
+    "conexao": [
+      "Por que você acha que eu te confio o que o meu patrono diz e faz?",
+      "A nossa relação mudou depois que você me viu prestar tributo ao meu patrono. O que você viu, e como isso te afetou?",
+      "Uma vez eu fiz uma besteira enorme, e você nunca me deixa esquecer. O que foi?"
+    ],
     "subclasses": [
       {
         "id": "warlock-pacto-do-eterno",
         "nome": "Pacto do Eterno",
-        "linha": ""
+        "linha": "Para quem quer resistir aos inimigos e escapar da morte.",
+        "conjuracao": "Presença",
+        "fundacao": [
+          {
+            "nome": "Manto do Patrono",
+            "texto": "Gaste 1 Favor para se cobrir de um aspecto aterrorizante do patrono, até sofrer dano Grave ou a cena acabar. Enquanto durar, some o seu patamar aos limiares de dano e tenha vantagem em testes de ação para intimidar."
+          },
+          {
+            "nome": "Abraço Imortal",
+            "texto": "Uma vez por descanso, gaste quanto Favor quiser para rolar o mesmo número de Dados do Patrono. Para cada 4 ou mais, limpe 1 PV."
+          }
+        ],
+        "especializacao": [
+          {
+            "nome": "Invocação Aterradora",
+            "texto": "Quando um adversário atacar você ou um aliado a até Muito Próximo, gaste 1 Favor para dar desvantagem ao ataque. Se ele errar, também marca 1 Fadiga."
+          },
+          {
+            "nome": "Escoadouro",
+            "texto": "Uma vez por descanso, gaste 1 Favor para reduzir à metade um dano que vai sofrer."
+          }
+        ],
+        "maestria": [
+          {
+            "nome": "Égide Sombria",
+            "texto": "Uma vez por descanso longo, quando for sofrer dano, gaste 1 Favor no lugar de marcar PV."
+          },
+          {
+            "nome": "Ruína Drenante",
+            "texto": "Quando um adversário atacar você ou um aliado a até Muito Próximo, gaste 1 Favor para Drená-lo: ele marca 1 Fadiga, e você pode limpar 1 Fadiga. Drenado, ele usa d12 em vez de d20 nos ataques (inclusive com vantagem ou desvantagem) até falhar num teste."
+          }
+        ]
       },
       {
         "id": "warlock-pacto-do-furioso",
         "nome": "Pacto do Furioso",
-        "linha": ""
+        "linha": "Para quem quer destruir quem age contra você.",
+        "conjuracao": "Presença",
+        "fundacao": [
+          {
+            "nome": "Fúria do Patrono",
+            "texto": "Gaste 1 Favor para imbuir os seus ataques com o poder do patrono, até causar dano Grave ou a cena acabar. Enquanto durar, ao rolar dano, role também Dados do Patrono iguais ao seu patamar e some ao dano."
+          },
+          {
+            "nome": "Vingança Mortal",
+            "texto": "Quando marcar PV por causa de um ataque, gaste 1 Favor para rolar o mesmo número de Dados do Patrono. Para cada 4 ou mais, o atacante marca 1 PV."
+          }
+        ],
+        "especializacao": [
+          {
+            "nome": "Alcance Ameaçador",
+            "texto": "Gaste 1 Favor para aumentar o alcance da sua arma principal em um passo (Corpo a Corpo para Muito Próximo, Muito Próximo para Próximo...), até Muito Distante no máximo. O efeito acaba quando você acertar um ataque com ela."
+          },
+          {
+            "nome": "Diminuir os Inimigos",
+            "texto": "Quando tiver sucesso com Esperança num teste de ação contra um alvo, gaste quanto Favor quiser para ele marcar a mesma quantidade de Fadiga."
+          }
+        ],
+        "maestria": [
+          {
+            "nome": "Ataque Temível",
+            "texto": "Gaste 1 Favor para rerrolar quantos dados de dano quiser. Pode continuar gastando Favor na mesma rolagem."
+          },
+          {
+            "nome": "Ira de Outro Mundo",
+            "texto": "Uma vez por descanso, quando sofrer dano, gaste quanto Favor quiser para rolar o mesmo número de Dados do Patrono e escolher um número de criaturas a até Próximo igual ao maior resultado. Cada uma marca 1 PV."
+          }
+        ]
       }
     ],
     "esperanca": {
       "nome": "Dádiva do Patrono",
-      "texto": "quando falhar num teste, gaste 3 Esperança para rerrolar com vantagem."
+      "texto": "Quando falhar num teste, gaste 3 Esperança para rerrolar com vantagem."
     },
     "habilidades": [
       {
         "nome": "Pacto com o Patrono",
-        "texto": "você se comprometeu com uma entidade sobrenatural (um deus, uma fada, um demônio) em troca de poder. Escreva o nome dela na ficha e combine com o mestre a esfera de influência dela. Antes de um teste de ação ligado a essa esfera, gaste 1 Favor para rolar o Dado do Patrono (d6, d8 a partir do nível 5) e somar ao total.\n\n- Esferas de exemplo: Ambição, Artistas, Caos, Escuridão, Morte, Apostadores, Honra, Justiça, Líderes, Amor, Misericórdia, Travessura, Natureza, Protetores, Vingança, Estudiosos, Segredos, Soldados, Força, Viajantes, Trapaceiros, Verdade, Guerra, Sabedoria."
+        "texto": "Você se comprometeu com uma entidade sobrenatural (um deus, uma fada, um demônio) em troca de poder. Escreva o nome dela na ficha e combine com o mestre a esfera de influência dela. Antes de um teste de ação ligado a essa esfera, gaste 1 Favor para rolar o Dado do Patrono (d6, d8 a partir do nível 5) e somar ao total."
       },
       {
         "nome": "Favor",
-        "texto": "você começa com 3 Favor (máximo 6). Use um movimento de descanso para prestar tributo ao patrono: descreva como e ganhe Favor igual ao seu atributo de conjuração. Quando tiver sucesso com Esperança num teste de ação, você pode ganhar 1 Favor no lugar da Esperança."
+        "texto": "Você começa com 3 Favor (máximo 6). Use um movimento de descanso para prestar tributo ao patrono: descreva como e ganhe Favor igual ao seu atributo de conjuração. Quando tiver sucesso com Esperança num teste de ação, você pode ganhar 1 Favor no lugar da Esperança."
       }
+    ],
+    "intro": "Quem trocou a vida, ou a alma, com um patrono de outro mundo em troca de um poder incrível. Quase sempre chegaram ao desespero: querem proteger alguém, ajudar a comunidade, se vingar, subir na vida. Os patronos são deuses, espíritos, demônios, ou coisas que nem o warlock conhece. E, apesar da magia terrível, o warlock pode descobrir que é outro quem puxa as cordas.",
+    "evasao": 11,
+    "pv": 5,
+    "itens": [
+      "Escolha 1: uma escultura que simboliza o seu patrono, ou um anel que você não consegue tirar."
     ]
   },
   {
@@ -1107,33 +1828,97 @@
       "Sábio"
     ],
     "fantasia": "",
-    "origem": [],
-    "conexao": [],
+    "origem": [
+      "Quem da sua comunidade tinha medo da sua magia? Que boato espalhou sobre você, e que verdade havia nele?",
+      "Você já usou o seu poder para ajudar alguém numa situação desesperadora. Quem era, e por que veio até você?",
+      "A sua magia já abriu uma porta que devia ficar fechada. Quem, ou o que, estava do outro lado?"
+    ],
+    "conexao": [
+      "Que ritual ou prática eu te ensinei que agora a gente faz junto?",
+      "Uma vez eu apareci num sonho seu e mostrei uma visão do futuro. O que eu te disse?",
+      "Sobre o que você costuma vir me pedir conselho?"
+    ],
     "subclasses": [
       {
         "id": "bruxa-benzedeira",
         "nome": "Benzedeira",
-        "linha": ""
+        "linha": "Para quem quer usar o ofício para fortalecer a si e ao grupo.",
+        "conjuracao": "Conhecimento",
+        "fundacao": [
+          {
+            "nome": "Remédios de Ervas",
+            "texto": "Quando você ou um aliado na cena limpar 1 PV ou mais, ou 1 Fadiga ou mais, por causa de um consumível, limpe 1 a mais."
+          },
+          {
+            "nome": "Talismã Encantado",
+            "texto": "Uma vez por descanso, imbua um objeto pequeno com a sua essência protetora. Gaste quanta Esperança quiser para pôr o mesmo número de fichas neste cartão. Quando quem segura o talismã sofrer dano, gaste uma ficha para ele marcar 1 PV a menos. As fichas somem quando você descansa."
+          }
+        ],
+        "especializacao": [
+          {
+            "nome": "Andar Entre Mundos",
+            "texto": "Num momento de calma, faça um teste de conjuração (13). Uma vez por descanso, com sucesso, marque 1 Fadiga para atravessar o véu da morte e conversar com os espíritos por perto. Ponha fichas iguais ao seu atributo de conjuração neste cartão e tire uma a cada pergunta que um espírito responder. Quando a última sair, ou a cena acabar, você volta ao mundo dos vivos no mesmo lugar."
+          },
+          {
+            "nome": "Maldição Irritante",
+            "texto": "Você tem vantagem em ataques contra criaturas com Mau-Olhado."
+          }
+        ],
+        "maestria": [
+          {
+            "nome": "Círculo de Poder",
+            "texto": "Uma vez por descanso, desenhe no chão um círculo cobrindo uma área Muito Próxima ao seu redor e ponha fichas iguais ao seu atributo de conjuração neste cartão. Dentro do círculo, você e os aliados ganham +2 nos limiares de dano, nos ataques e na Evasão. Tire uma ficha cada vez que você ou um aliado dentro do círculo fizer um teste de ação ou se esquivar de um ataque. O feitiço dura até a última ficha sair ou até você sair do círculo."
+          }
+        ]
       },
       {
         "id": "bruxa-lua",
         "nome": "Lua",
-        "linha": ""
+        "linha": "Para quem quer encarnar o poder celeste para ampliar a magia.",
+        "conjuracao": "Instinto",
+        "fundacao": [
+          {
+            "nome": "Encanto Noturno",
+            "texto": "Faça um teste de conjuração (13) para se Encantar com uma fachada fascinante. Encantada, você tem vantagem em testes que usam a sua aparência ilusória, e os adversários a até Próximo precisam marcar 1 Fadiga para te atacar. A menos que você marque 1 Fadiga para mantê-lo, o Encanto cai quando você marca 1 PV ou causa dano."
+          }
+        ],
+        "especializacao": [
+          {
+            "nome": "Raio de Luar",
+            "texto": "Uma vez por sessão, conjure uma coluna de luar que ilumina uma área a até Próximo até o fim da cena. Banhados nessa luz, você e os aliados ganham +1 nos testes de conjuração e veem através de ilusões."
+          },
+          {
+            "nome": "Ira da Luz Pálida",
+            "texto": "Quando uma criatura com Mau-Olhado a até Muito Distante errar um ataque, ela marca 1 Fadiga."
+          }
+        ],
+        "maestria": [
+          {
+            "nome": "Fases da Lua",
+            "texto": "No começo de cada sessão, role um d6 e ponha neste cartão. Você ganha o efeito da fase até o fim da sessão:\n\n- **1, Nova:** gaste 1 Esperança para anular um dano Menor;\n- **2 ou 3, Crescente:** +2 nas rolagens de dano;\n- **4, Cheia:** +3 nos limiares de dano;\n- **5 ou 6, Minguante:** +1 na Evasão.\nUma vez por descanso, gaste 1 Esperança para aumentar o valor do dado em 1 (o 6 vira 1)."
+          }
+        ]
       }
     ],
     "esperanca": {
       "nome": "Encanto da Bruxa",
-      "texto": "quando você ou um aliado a até Distante falhar num teste de ação, gaste 3 Esperança para transformar a falha num sucesso com Medo."
+      "texto": "Quando você ou um aliado a até Distante falhar num teste de ação, gaste 3 Esperança para transformar a falha num sucesso com Medo."
     },
     "habilidades": [
       {
         "nome": "Mau-Olhado",
-        "texto": "marque 1 Fadiga para lançar um Mau-Olhado temporário num alvo a até Distante. Enquanto durar, ele tem uma penalidade igual ao seu patamar nas rolagens de dano e na Dificuldade. Você pode manter Mau-Olhados em criaturas até o seu atributo de conjuração."
+        "texto": "Marque 1 Fadiga para lançar um Mau-Olhado temporário num alvo a até Distante. Enquanto durar, ele tem uma penalidade igual ao seu patamar nas rolagens de dano e na Dificuldade. Você pode manter Mau-Olhados em criaturas até o seu atributo de conjuração."
       },
       {
         "nome": "Comungar",
-        "texto": "uma vez por descanso longo, num momento de calma, comungue com um antepassado, uma divindade, um espírito ou um ser de outro mundo. Faça uma pergunta e role d6s iguais ao seu atributo de conjuração; escolha um resultado:\n\n- **1 a 3:** você sente um gosto, um cheiro ou uma sensação ligada à resposta;\n- **4 ou 5:** você ouve sons ou tem uma visão ligada à resposta;\n- **6:** você vive, na mente, uma cena ligada à resposta, como se estivesse lá."
+        "texto": "Uma vez por descanso longo, num momento de calma, comungue com um antepassado, uma divindade, um espírito ou um ser de outro mundo. Faça uma pergunta e role d6s iguais ao seu atributo de conjuração; escolha um resultado:"
       }
+    ],
+    "intro": "Praticantes de magia que comungam com as forças da natureza e com seres de outros reinos. Invocam o poder pelo ofício: feitiços, encantamentos murmurados, talismãs, ilusões. O conhecimento vem desses seres ou de gerações de praticantes reunidos em pequenos grupos, os coventos. São temidas e mal compreendidas, e andam sem medo na fronteira entre a luz e a sombra.",
+    "evasao": 10,
+    "pv": 6,
+    "itens": [
+      "Escolha 1: um bichinho pequeno e inofensivo, ou uma pedra de vidência."
     ]
   },
   {

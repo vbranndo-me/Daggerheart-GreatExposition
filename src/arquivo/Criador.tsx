@@ -214,7 +214,7 @@ function CriadorComSala({ s, conteudo, dados }: { s: Sessao; conteudo: Conteudo;
     ...conteudo.classes.map((c) => ({
       id: c.id,
       nome: c.nome,
-      descricao: c.nova ? limpa(c.fantasia) : undefined,
+      descricao: c.nova ? limpa(c.fantasia) : c.intro,
       grupo: GRUPO_CLASSE[c.grupo || (c.nova ? "cenario" : "livro")],
       mostrarNome: false, // o nome já está escrito na arte
       classe: c,
@@ -322,7 +322,20 @@ function CriadorComSala({ s, conteudo, dados }: { s: Sessao; conteudo: Conteudo;
 
       {trancado && <div className="criador-aviso">O mestre trancou as escolhas. Você pode ler, mas não mudar.</div>}
 
-      {passo !== "resumo" ? (
+      {passo === "subclasse" && classeObj ? (
+        <main className="criador-tela sub-tela">
+          <PainelSubclasse
+            classe={classeObj}
+            subs={subclasses}
+            aberto={aberto}
+            marcado={marcado}
+            trancado={trancado}
+            arteClasse={{ url: conteudo.arte[idArte("classes", classeObj.id)], srcSet: conteudo.arteSet[idArte("classes", classeObj.id)], proporcao: conteudo.arteInfo[idArte("classes", classeObj.id)]?.proporcao }}
+            aoVer={setVer}
+            aoEscolher={escolher}
+          />
+        </main>
+      ) : passo !== "resumo" ? (
         <main className="criador-tela">
           <div className="quadro-rolagem">
           <section ref={gradeRef} className={`criador-grade desvanece ${passo === "subclasse" && classeObj && conteudo.arte[idArte("classes", classeObj.id)] ? "com-classe-grande" : ""}`}>
@@ -402,7 +415,7 @@ function CriadorComSala({ s, conteudo, dados }: { s: Sessao; conteudo: Conteudo;
                         proximo();
                       }}
                     />
-                  ) : passo === "classe" && aberto.classe?.nova ? (
+                  ) : passo === "classe" && (aberto.classe?.nova || aberto.classe?.habilidades?.length) ? (
                     <button className="link" onClick={() => (location.hash = `#/s/${s.salaId}/arquivo/classe/${aberto.id}`)}>
                       Ver a ficha completa ▸
                     </button>
@@ -570,6 +583,98 @@ function CampoLivre({ valor, aoMudar, rotulo, aoUsar, desabilitado }: { valor: s
   );
 }
 
+/** A tela de subclasse: a classe em grande, as duas subclasses como abas de latão e a trilha da escolhida. */
+function PainelSubclasse({
+  classe,
+  subs,
+  aberto,
+  marcado,
+  trancado,
+  arteClasse,
+  aoVer,
+  aoEscolher,
+}: {
+  classe: Classe;
+  subs: Item[];
+  aberto: Item | null;
+  marcado: (id: string) => boolean;
+  trancado: boolean;
+  arteClasse: { url?: string | null; srcSet?: string; proporcao?: number };
+  aoVer: (id: string) => void;
+  aoEscolher: (id: string) => void;
+}) {
+  const corpoRef = useRef<HTMLDivElement>(null);
+  useDesvanecer(corpoRef);
+  const atual = aberto && subs.some((x) => x.id === aberto.id) ? aberto : subs[0];
+  const sub = atual?.sub;
+  const temTrilha = !!sub && !!(sub.fundacao?.length || sub.especializacao?.length || sub.maestria?.length);
+  useEffect(() => {
+    corpoRef.current?.scrollTo({ top: 0 });
+  }, [atual?.id]);
+  return (
+    <div className="sub-palco">
+      <figure className="sub-classe">
+        {arteClasse.url ? (
+          <img src={arteClasse.url} srcSet={arteClasse.srcSet} sizes="34vw" alt={classe.nome} style={arteClasse.proporcao ? { aspectRatio: String(arteClasse.proporcao) } : undefined} />
+        ) : (
+          <PlaceholderArte id={classe.nome} monograma={classe.nome.slice(0, 1)} />
+        )}
+        <figcaption className="n-L">{classe.dominios.join(" · ")}</figcaption>
+      </figure>
+      <section className="sub-direita">
+        <header className="sub-cab">
+          <div className="n-L" style={{ color: "var(--brass)" }}>
+            Subclasse de {classe.nome}
+          </div>
+          <h1 className="n-C">Escolha o seu caminho</h1>
+        </header>
+        <div className="sub-abas" role="tablist">
+          {subs.map((x) => (
+            <button
+              key={x.id}
+              type="button"
+              role="tab"
+              aria-selected={atual?.id === x.id}
+              className={`sub-aba ${atual?.id === x.id ? "ativa" : ""} ${marcado(x.id) ? "escolhida" : ""}`}
+              onClick={() => aoVer(x.id)}
+            >
+              <span className="sub-aba-mini">{x.url ? <img src={x.url} srcSet={x.srcSet} sizes="80px" alt="" /> : <PlaceholderArte id={x.nome} monograma={x.nome.slice(0, 1)} />}</span>
+              <span className="sub-aba-nome n-S">{x.nome}</span>
+              <span className="sub-aba-estado n-L">{marcado(x.id) ? "Sua escolha" : x.sub?.conjuracao ? `Conjuração: ${x.sub.conjuracao}` : "Ver"}</span>
+            </button>
+          ))}
+        </div>
+        <div className="quadro-rolagem sub-quadro">
+          <div ref={corpoRef} className="sub-corpo desvanece">
+            {atual && (
+              <div className="sub-detalhe" key={atual.id}>
+                <div className="sub-retrato">
+                  {atual.url ? <img src={atual.url} srcSet={atual.srcSet} sizes="300px" alt={atual.nome} style={atual.proporcao ? { aspectRatio: String(atual.proporcao) } : undefined} /> : <PlaceholderArte id={atual.nome} monograma={atual.nome.slice(0, 1)} />}
+                </div>
+                <div className="sub-texto">
+                  <div className="n-L" style={{ color: "var(--brass)" }}>
+                    {sub?.conjuracao ? `Conjuração: ${sub.conjuracao}` : "Sem atributo de conjuração"}
+                  </div>
+                  <h2 className="n-T sub-titulo">{atual.nome}</h2>
+                  {atual.descricao && <p className="n-N sub-linha">{atual.descricao}</p>}
+                  {temTrilha && sub ? <TrilhaDetalhe sub={sub} /> : <p className="n-I">As regras estão no livro.</p>}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+        <footer className="sub-rodape">
+          {atual && (
+            <BotaoHextech disabled={trancado} onClick={() => aoEscolher(atual.id)}>
+              {marcado(atual.id) ? `${atual.nome} (escolhida)` : `Escolher ${atual.nome}`}
+            </BotaoHextech>
+          )}
+        </footer>
+      </section>
+    </div>
+  );
+}
+
 function Detalhe({
   item,
   passo,
@@ -613,13 +718,13 @@ function Detalhe({
               <dt className="n-L">Domínios</dt>
               <dd>{c.dominios.join(" · ")}</dd>
             </div>
-            {c.nova && c.evasao != null && (
+            {c.evasao != null && (
               <div>
                 <dt className="n-L">Evasão</dt>
                 <dd>{c.evasao}</dd>
               </div>
             )}
-            {c.nova && c.pv != null && (
+            {c.pv != null && (
               <div>
                 <dt className="n-L">Pontos de vida</dt>
                 <dd>{c.pv}</dd>

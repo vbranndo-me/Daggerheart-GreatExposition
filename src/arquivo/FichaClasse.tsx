@@ -182,7 +182,7 @@ export function FichaClasse({ classeId, sair }: { classeId: string; sair: () => 
             <header className="abertura-titulo">
               <span className="barra-latao" aria-hidden="true" />
               <div>
-                <div className="n-L">Classe nova</div>
+                <div className="n-L">{c.nova ? "Classe nova" : "Classe do livro"}</div>
                 <h1 className="n-T">{c.nome}</h1>
                 <p className="n-contexto contexto-grande">{c.fantasia.replace(/^\[Exemplo\]\s*/, "")}</p>
               </div>

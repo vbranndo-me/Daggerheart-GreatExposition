@@ -664,6 +664,14 @@
   "proporcao": 0.667,
   "cor": "rgb(113,123,116)"
  },
+ "subclasse-bardo-trovador": {
+  "larguras": [
+   384,
+   768
+  ],
+  "proporcao": 0.667,
+  "cor": "rgb(164,86,100)"
+ },
  "subclasse-bardo-beletrista": {
   "larguras": [
    384,
@@ -726,7 +734,7 @@
    768
   ],
   "proporcao": 0.667,
-  "cor": "rgb(87,72,94)"
+  "cor": "rgb(96,85,72)"
  },
  "subclasse-serafim-portador-divino": {
   "larguras": [
