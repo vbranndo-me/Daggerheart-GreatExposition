@@ -70,6 +70,8 @@ export interface Sessao {
   conectado: boolean;
   conteudo: Conteudo;
   acoes: ReturnType<typeof criarAcoes>;
+  /** solta o nome que esta pessoa assumiu, para ela escolher outro */
+  trocarNome?: () => Promise<void>;
 }
 
 export const SessaoCtx = createContext<Sessao | null>(null);
@@ -233,7 +235,7 @@ export function useCarregarSessao(salaId: string, chaveUrl: string | null, conte
 
   const sessao: Sessao | null =
     b && acoes && conteudo
-      ? { b, uid: b.uid, salaId, chave, mestre, erroMestre, meuJid, sala, carregada, conectado, conteudo, acoes }
+      ? { b, uid: b.uid, salaId, chave, mestre, erroMestre, meuJid, sala, carregada, conectado, conteudo, acoes, trocarNome: naoSouEu }
       : null;
   return { sessao, erroBackend, escolher, naoSouEu };
 }

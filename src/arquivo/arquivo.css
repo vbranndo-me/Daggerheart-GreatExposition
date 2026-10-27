@@ -3225,3 +3225,4 @@ button.trilha-espaco { cursor: pointer; }
 .sub-aba.escolhida { background: linear-gradient(180deg, rgba(52, 43, 27, 0.96), rgba(24, 20, 14, 0.98)); }
 .sub-aba.escolhida.ativa { border-color: var(--gaslight); }
 .sub-texto .trilha.acesa .trilha-no { background: var(--gaslight); border-color: var(--brass-hi); box-shadow: 0 0 10px rgba(232, 184, 102, 0.55); }
+.consulta-rodape { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--brass-dark); }

@@ -83,18 +83,17 @@ export function PortaoIdentidade({ escolher }: { escolher: (jid: string) => Prom
               <button
                 key={jid}
                 type="button"
-                disabled={aBordo}
                 className={`portao-chapa ${escolhido === jid ? "escolhido" : ""} ${aBordo ? "ocupado" : ""}`}
                 style={{ ["--i" as string]: k }}
                 aria-pressed={escolhido === jid}
                 onClick={() => setEscolhido(jid)}
-                onDoubleClick={() => !aBordo && !ocupado && void assumir()}
+                onDoubleClick={() => !ocupado && void assumir()}
               >
                 <span className="portao-medalhao" style={{ background: j.cor }} aria-hidden="true">
                   {j.nome.slice(0, 1)}
                 </span>
                 <span className="portao-nome n-S">{j.nome}</span>
-                <span className="portao-estado n-L">{aBordo ? "Já está a bordo" : escolhido === jid ? "Este é você" : "Escolher"}</span>
+                <span className="portao-estado n-L">{escolhido === jid ? "Este é você" : aBordo ? "Em uso em outro aparelho" : "Escolher"}</span>
               </button>
             );
           })}
@@ -103,7 +102,13 @@ export function PortaoIdentidade({ escolher }: { escolher: (jid: string) => Prom
           )}
         </div>
         <footer className="portao-rodape">
-          <span className="n-I">{nomeEscolhido ? `Você vai entrar como ${nomeEscolhido}.` : "Toque no seu nome para continuar."}</span>
+          <span className="n-I">
+            {escolhido && s.sala.jogadores[escolhido] && !!s.sala.jogadores[escolhido].uid && s.sala.jogadores[escolhido].uid !== s.uid && !!s.sala.jogadores[escolhido].online
+              ? `${nomeEscolhido} está em uso em outro aparelho. Se for você, ao assumir, o outro aparelho sai.`
+              : nomeEscolhido
+                ? `Você vai entrar como ${nomeEscolhido}.`
+                : "Toque no seu nome para continuar."}
+          </span>
           <BotaoHextech grande disabled={!escolhido || ocupado} onClick={assumir}>
             Assumir este nome
           </BotaoHextech>
@@ -314,6 +319,17 @@ function CriadorComSala({ s, conteudo, dados }: { s: Sessao; conteudo: Conteudo;
         </div>
         <div className="criador-acoes-topo">
           <BotaoAmbiente />
+          {s.trocarNome && !s.mestre && jogador && (
+            <button
+              className="link pequeno-link"
+              title="Soltar este nome e escolher outro"
+              onClick={() => {
+                if (window.confirm(`Você não é ${jogador.nome}? O nome fica livre para outra pessoa, e você escolhe de novo.`)) void s.trocarNome?.();
+              }}
+            >
+              Não sou {jogador.nome}
+            </button>
+          )}
           <button className="link pequeno-link" onClick={() => (location.hash = `#/s/${s.salaId}/arquivo`)}>
             Voltar ao Arquivo
           </button>

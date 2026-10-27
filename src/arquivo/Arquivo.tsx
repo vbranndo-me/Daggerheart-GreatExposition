@@ -2,7 +2,7 @@
 // Tela de título → um capítulo de cada vez (rolagem vertical, seções com composições de tela cheia) → o criador.
 // A moldura de filigrana fica nos cantos da tela; o texto usa a largura toda, em colunas de leitura.
 import { BotaoFechar } from "../jogo/BotaoFechar";
-import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import { useContext, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import "../jogo/jogo.css";
 import "../jogo/jogo-ajustes.css";
 import "../mesa/mesa.css";
@@ -611,6 +611,8 @@ function BlocoProximo({ proximo }: { proximo?: Capitulo }) {
 // ---------- Consulta (☰): índice sem estado ----------
 function Consulta({ capitulos, fechar }: { capitulos: (Capitulo & { secoesVisiveis: string[] })[]; fechar: () => void }) {
   const { dados, ir } = useArquivo();
+  const sessao = useContext(SessaoCtx);
+  const meuNome = sessao?.meuJid ? sessao.sala.jogadores[sessao.meuJid]?.nome : null;
   return (
     <div className="sobreposicao" onMouseDown={(e) => e.target === e.currentTarget && fechar()}>
       <Janela tipo="pesada" className="consulta">
@@ -636,6 +638,22 @@ function Consulta({ capitulos, fechar }: { capitulos: (Capitulo & { secoesVisive
             </section>
           ))}
         </div>
+        {sessao?.trocarNome && !sessao.mestre && meuNome && (
+          <div className="consulta-rodape n-I">
+            Você está como <strong>{meuNome}</strong>.{" "}
+            <button
+              className="link"
+              onClick={() => {
+                if (window.confirm(`Você não é ${meuNome}? O nome fica livre para outra pessoa, e você escolhe de novo.`)) {
+                  fechar();
+                  void sessao.trocarNome?.();
+                }
+              }}
+            >
+              Não sou eu, trocar de nome
+            </button>
+          </div>
+        )}
       </Janela>
     </div>
   );
