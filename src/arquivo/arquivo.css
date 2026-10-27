@@ -1572,14 +1572,14 @@
   padding: 0;
   position: relative;
 }
-.trilha li {
+.trilha > li {
   position: relative;
   display: grid;
   grid-template-columns: 22px 1fr;
   gap: 14px;
   padding-bottom: 22px;
 }
-.trilha li:not(:last-child)::before {
+.trilha > li:not(:last-child)::before {
   content: "";
   position: absolute;
   left: 10px;
@@ -3051,3 +3051,20 @@ button.trilha-espaco { cursor: pointer; }
   .regras-arte img { max-height: 70vh; }
   .regras-arte { margin-top: 10px; }
 }
+
+/* listas e texto corrido dentro dos nós da trilha: o estilo da árvore vale só para os nós */
+.trilha > li > div { min-width: 0; }
+.trilha ul,
+.trilha ol {
+  margin: 8px 0 4px;
+  padding-left: 20px;
+  list-style: disc;
+}
+.trilha ol { list-style: decimal; }
+.trilha ul li,
+.trilha ol li { display: list-item; padding: 0 0 6px; margin: 0; }
+.trilha ul li::before,
+.trilha ol li::before { content: none; }
+.trilha p { margin: 0 0 8px; }
+.trilha p:last-child { margin-bottom: 0; }
+.trilha .n-S { margin: 2px 0 6px; }

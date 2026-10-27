@@ -20,23 +20,23 @@
           },
           {
             "nome": "Gabinete de Curiosidades",
-            "texto": "Comece com 2 curiosidades e ganhe mais 1 por patamar. As regras completas e a tabela de 36 curiosidades estão no **Gabinete de Curiosidades**, mais abaixo.\n\n- **Uso comum**: o efeito normal, seguro.\n- **Despertar**: um efeito bem mais forte, mas o uso conta como **se Entregar**: se o véu te tocar, marque Frenesi mesmo com Esperança.\n- **Afinidade**: +1 no efeito das curiosidades (dano, cura ou bônus) a cada limiar de Discernimento alcançado (4, 8 e 12)."
+            "texto": "Você começa com 2 curiosidades e ganha mais 1 por patamar. As regras completas e a tabela de 36 curiosidades estão em **Gabinete de Curiosidades**, mais abaixo.\n\n- **Uso comum**: o efeito normal, seguro.\n- **Despertar**: um efeito bem mais forte, mas que conta como **se Entregar**: se o véu te tocar, você marca Frenesi mesmo com Esperança.\n- **Afinidade**: +1 nos números da curiosidade (dano, cura ou bônus) para cada limiar de Discernimento alcançado (4, 8 e 12)."
           }
         ],
         "especializacao": [
           {
             "nome": "Colecionador",
-            "texto": "Ao fim de uma cena em que algo estranho foi derrotado ou encontrado, colha uma curiosidade nova."
+            "texto": "Ao fim de uma cena em que algo estranho foi derrotado ou encontrado, você colhe uma curiosidade nova."
           }
         ],
         "maestria": [
           {
             "nome": "Maestria do Antiquário",
-            "texto": "Melhora o Gabinete: uma vez por cena, desperte uma curiosidade **sem se Entregar**."
+            "texto": "Melhora o Gabinete: uma vez por cena, você pode despertar uma curiosidade **sem se Entregar**."
           },
           {
             "nome": "Proteja-me!",
-            "texto": "*Rara, de acompanhamento.* Uma vez por descanso, quando você for atingido, um aliado Próximo pode entrar na frente e tomar o golpe no seu lugar."
+            "texto": "*Rara, de acompanhamento.* Uma vez por descanso, quando você for atingido, um aliado Próximo pode se pôr na frente e tomar o golpe no seu lugar."
           }
         ],
         "id": "ocultista-antiquario"
@@ -48,27 +48,27 @@
         "fundacao": [
           {
             "nome": "Espírito Companheiro",
-            "texto": "Você anda com um espírito que não toma o seu corpo: é um **companheiro**. Use a ficha de companheiro do Treinador, com estas mudanças:\n\n- **Quem ele foi**: o espírito é alguém que morreu. Dê nome, rosto e o jeito como morreu. As **2 Experiências** (+2) vêm da vida dele.\n- **Ataque**: d6, alcance **Próximo**, dano **mágico** (o frio do túmulo, objetos arremessados).\n- **Dano vira Fadiga** do espírito; quando ela enche, ele se **dissipa** até o próximo descanso longo.\n- **Comandar** é um teste de conjuração, e **todo teste de comando conta como teste do véu, só para a Médium**.\n- **O que ele sabe**: uma vez por cena, quando um teste seu tocar a vida do espírito, some uma Experiência dele ao seu teste (gastando 1 Esperança, como uma Experiência sua).\n- **Trocar de espírito**: só num **descanso longo**, com um **ritual**, e o morto precisa ter morrido desde o último descanso longo, perto de você. Solte o espírito atual e prenda o novo. As melhorias continuam; as Experiências passam a ser as da vida do novo. O antigo vai embora para sempre."
+            "texto": "Você anda com um espírito que não toma o seu corpo: ele é um **companheiro**. Use a ficha de companheiro do Treinador, com estas mudanças:\n\n- **Quem ele foi**: o espírito é alguém que morreu. Dê a ele um nome, um rosto e o jeito como morreu. As **2 Experiências** (+2) vêm da vida dele.\n- **Ataque**: d6, alcance **Próximo**, dano **mágico** (o frio do túmulo, objetos arremessados).\n- **Dano vira Fadiga**: o dano que o espírito sofre vira Fadiga dele. Quando ela enche, ele se **dissipa** até o próximo descanso longo.\n- **Comandar** é um teste de conjuração, e **todo teste de comando conta como teste do véu, só para a Médium**.\n- **O que ele sabe**: uma vez por cena, quando um teste seu tocar a vida do espírito, você soma uma Experiência dele ao teste (gastando 1 Esperança, como se fosse sua).\n- **Trocar de espírito**: só num **descanso longo**, com um **ritual**, e o morto precisa ter morrido desde o último descanso longo, perto de você. Você solta o espírito atual e prende o novo. As melhorias continuam; as Experiências passam a ser as da vida do novo espírito. O antigo vai embora para sempre."
           }
         ],
         "especializacao": [
           {
             "nome": "Melhoria extra",
-            "texto": "Uma melhoria extra para o espírito (veja as **Melhorias do espírito**, abaixo)."
+            "texto": "O espírito ganha uma melhoria extra (veja **Melhorias do espírito**, abaixo)."
           },
           {
             "nome": "Do Outro Lado",
-            "texto": "O espírito atravessa paredes e portas e pode ir até Distante de você para ver e ouvir o que há lá, contando o que viu."
+            "texto": "O espírito atravessa paredes e portas e pode ir até Distante de você para ver e ouvir o que há lá e contar o que viu."
           }
         ],
         "maestria": [
           {
             "nome": "Melhorias extras",
-            "texto": "Duas melhorias extras para o espírito."
+            "texto": "O espírito ganha duas melhorias extras."
           },
           {
             "nome": "Último Favor",
-            "texto": "*Rara, de acompanhamento.* Uma vez por descanso longo, quando você for marcar o último PV, o espírito toma o golpe e se dissipa."
+            "texto": "*Rara, de acompanhamento.* Uma vez por descanso longo, quando você for marcar o seu último PV, o espírito toma o golpe no seu lugar e se dissipa."
           }
         ],
         "id": "ocultista-medium"
@@ -132,19 +132,19 @@
         "fundacao": [
           {
             "nome": "Incisão",
-            "texto": "Todos os seus acertos contra a criatura Diagnosticada recebem o Ponto Fraco (não só o primeiro)."
+            "texto": "Todos os seus acertos contra a criatura Diagnosticada causam o Ponto Fraco, não só o primeiro."
           }
         ],
         "especializacao": [
           {
             "nome": "Intervenção",
-            "texto": "Uma vez por descanso, como reação: quando um aliado Próximo for marcar PV, reduza a gravidade em um limiar (Grave → Maior, Maior → Menor)."
+            "texto": "Uma vez por descanso, como reação: quando um aliado Próximo for marcar PV, reduza a gravidade do golpe em um limiar (Grave → Maior, Maior → Menor)."
           }
         ],
         "maestria": [
           {
             "nome": "Aula de Anatomia",
-            "texto": "*Passivo.* O Ponto Fraco usa **d6** em vez de d4, para você e para o grupo."
+            "texto": "*Passivo.* O Ponto Fraco passa a usar **d6** em vez de d4, para você e para o grupo."
           },
           {
             "nome": "Ainda Não",
@@ -160,7 +160,7 @@
         "fundacao": [
           {
             "nome": "Anamnese",
-            "texto": "O Diagnóstico também funciona em pessoas fora de combate. No sucesso com Esperança, troque o conjunto de informação por uma pergunta: o que ela quer, do que tem medo, ou se está mentindo."
+            "texto": "O Diagnóstico também funciona em quem está fora de combate. Quando o ataque ou o teste sai com Esperança, em vez de escolher um conjunto de informação, você pode fazer uma pergunta: o que a pessoa quer, do que tem medo ou se está mentindo."
           },
           {
             "nome": "Ao Pé do Leito",
@@ -170,7 +170,7 @@
         "especializacao": [
           {
             "nome": "Sugestão",
-            "texto": "Quando você **acerta** a criatura Diagnosticada, pode marcar 1 Fadiga: ela marca 1 Fadiga e, na próxima ação, ataca **outro adversário** à escolha do mestre."
+            "texto": "Quando você **acerta** a criatura Diagnosticada, pode marcar 1 Fadiga: ela marca 1 Fadiga e, na próxima ação dela, ataca **outro adversário**, à escolha do mestre."
           }
         ],
         "maestria": [
@@ -180,7 +180,7 @@
           },
           {
             "nome": "Hipnose",
-            "texto": "*De acompanhamento.* Uma vez por sessão, uma criatura Diagnosticada obedece a uma ordem simples (nunca se machucar), ou você suspende a compulsão de um aliado até o próximo descanso."
+            "texto": "*De acompanhamento.* Uma vez por sessão, uma criatura Diagnosticada obedece a uma ordem simples (nunca a de se machucar), ou você suspende a compulsão de um aliado até o próximo descanso."
           }
         ],
         "id": "medico-alienista"
@@ -237,7 +237,7 @@
         "fundacao": [
           {
             "nome": "Tomar a Ferida",
-            "texto": "Reação, quando um aliado Próximo for marcar PV: tome até 2 desses PV e marque **1 a menos** do que tomou (mínimo 1). Tomar 2 PV de um aliado custa 1 a você. Sem custo de Fadiga. **Pode marcar o seu último PV** (o sacrifício; o Movimento de Morte vem em seguida), ao contrário da *Penitência* e da *Mortificação*."
+            "texto": "Como reação, quando um aliado Próximo for marcar PV, tome até 2 desses PV para você. Você marca **1 PV a menos** do que tomou (no mínimo 1): tomar 2 PV de um aliado custa 1 PV a você. Não custa Fadiga. **Você pode marcar o seu último PV** desse jeito (é o sacrifício; o Movimento de Morte vem em seguida), ao contrário da *Penitência* e da *Mortificação*."
           }
         ],
         "especializacao": [
@@ -249,11 +249,11 @@
         "maestria": [
           {
             "nome": "Coroa de Espinhos",
-            "texto": "Melhora a Fundação: com metade dos PV marcados ou mais, o *Tomar a Ferida* toma **até 3 PV** (marcando 2)."
+            "texto": "Melhora a Fundação: com metade dos PV marcados ou mais, o *Tomar a Ferida* toma **até 3 PV** (e você marca 2)."
           },
           {
             "nome": "Getsêmani",
-            "texto": "*Rara, de acompanhamento.* Uma vez por descanso longo, quando você marcar o último PV, em vez do Movimento de Morte você entra em **Agonia** até o fim da cena:\n\n- você continua de pé e age normalmente;\n- cada golpe que você tomaria vira **1 Fadiga** (o *Tomar a Ferida* também marca Fadiga no lugar dos PV);\n- se um aliado limpar 1 PV seu, a Agonia acaba e você fica de pé normalmente;\n- se a Fadiga encher, ou a cena acabar sem ninguém te curar, você faz o Movimento de Morte."
+            "texto": "*Rara, de acompanhamento.* Uma vez por descanso longo, quando você marcar o último PV, em vez de fazer o Movimento de Morte você entra em **Agonia** até o fim da cena:\n\n- você continua de pé e age normalmente;\n- cada golpe que você tomaria vira **1 Fadiga** (o *Tomar a Ferida* também marca Fadiga no lugar dos PV);\n- se um aliado limpar 1 PV seu, a Agonia acaba e você segue de pé;\n- se a Fadiga encher, ou se a cena acabar sem ninguém te curar, você faz o Movimento de Morte."
           }
         ],
         "id": "flagelante-martir"
@@ -265,13 +265,13 @@
         "fundacao": [
           {
             "nome": "Fúria Santa",
-            "texto": "Seus ataques causam +1 de dano **por patamar** para cada PV que você tem marcado (até 3 PV contam)."
+            "texto": "Seus ataques causam +1 de dano **por patamar** para cada PV que você tem marcado (contam até 3 PV)."
           }
         ],
         "especializacao": [
           {
             "nome": "Não Sinto Nada",
-            "texto": "Com metade dos PV marcados ou mais, +2 nos limiares de dano."
+            "texto": "Com metade dos PV marcados ou mais, você ganha +2 nos limiares de dano."
           }
         ],
         "maestria": [
@@ -281,7 +281,7 @@
           },
           {
             "nome": "Último Sermão",
-            "texto": "*Rara, de acompanhamento.* Quando você marcar o último PV, antes do Movimento de Morte, faça um ataque contra todos os inimigos Muito Próximos."
+            "texto": "*Rara, de acompanhamento.* Quando você marcar o último PV, antes do Movimento de Morte, faça um ataque contra todos os adversários Muito Próximos."
           }
         ],
         "id": "flagelante-zelote"
@@ -342,27 +342,27 @@
           },
           {
             "nome": "Matilha",
-            "texto": "Quando dois ou mais Mortos atacam o mesmo alvo num comando, role o dano da arma uma vez e some +1d6 para cada Morto a mais."
+            "texto": "Quando dois ou mais Mortos atacam o mesmo alvo num comando, role o dano da arma uma vez e some +1d6 para cada Morto além do primeiro."
           }
         ],
         "especializacao": [
           {
             "nome": "Escudo de Carne",
-            "texto": "Reação, quando um adversário ataca um aliado Muito Próximo de um Morto seu: o Morto se joga na frente, o ataque acerta o Morto e ele cai."
+            "texto": "Como reação, quando um adversário ataca um aliado Muito Próximo de um Morto seu: o Morto se joga na frente, o ataque o acerta no lugar do aliado e ele cai."
           },
           {
             "nome": "Sobrecarga",
-            "texto": "Com uma ação, sem teste, sobrecarregue um Morto até ele estourar em faíscas e carne: as criaturas Muito Próximas dele marcam 1 Fadiga e ficam temporariamente Vulneráveis."
+            "texto": "Com uma ação, sem teste, você sobrecarrega um Morto até ele estourar em faíscas e carne: as criaturas Muito Próximas dele marcam 1 Fadiga e ficam temporariamente Vulneráveis."
           }
         ],
         "maestria": [
           {
             "nome": "Legião",
-            "texto": "Melhora: limite de **6 Mortos**, e eles duram até o seu próximo descanso."
+            "texto": "Melhora a Fundação: o limite sobe para **6 Mortos**, e eles duram até o seu próximo descanso."
           },
           {
             "nome": "Tempestade Galvânica",
-            "texto": "*Rara.* Uma vez por descanso longo, uma única *Descarga* levanta quantos cadáveres Próximos você quiser, **até o seu limite**, pagando só 1 Fadiga no total. Eles duram até o fim da cena."
+            "texto": "*Rara.* Uma vez por descanso longo, uma única *Descarga* levanta quantos cadáveres Próximos você quiser, **até o seu limite**, por 1 Fadiga no total. Eles duram até o fim da cena."
           }
         ],
         "id": "galvanista-exumador"
@@ -374,11 +374,11 @@
         "fundacao": [
           {
             "nome": "A Obra",
-            "texto": "Uma criação costurada permanente, na ficha de companheiro do Treinador (Evasão 10, ataque d6 Corpo a Corpo com a sua Proficiência, dano vira Fadiga dela). Quando a Fadiga enche, ela desmonta até você remontá-la num descanso longo. As 2 Experiências vêm da carne de que é feita. Ela **não ganha** as melhorias de nível do Treinador: cresce por **Partes**."
+            "texto": "Você tem uma criação costurada, permanente, que usa a ficha de companheiro do Treinador (Evasão 10, ataque d6 Corpo a Corpo com a sua Proficiência; o dano que ela sofre vira Fadiga). Quando a Fadiga enche, ela desmonta, até você remontá-la num descanso longo. As 2 Experiências dela vêm da carne de que é feita. Ela **não ganha** as melhorias de nível do Treinador: cresce por **Partes**."
           },
           {
             "nome": "Colher Partes",
-            "texto": "Num descanso longo, com um cadáver que morreu desde o último descanso longo, colha uma Parte ligada a quem a pessoa foi e costure na Obra. Espaços de Parte = **seu nível + 1**; cheios, você troca uma. A lista de 19 Partes está em **Partes do Costureiro**, abaixo."
+            "texto": "Num descanso longo, com um cadáver que morreu desde o último descanso longo, você colhe uma Parte ligada a quem a pessoa foi e a costura na Obra. Os espaços de Parte são **seu nível + 1**; com todos cheios, você troca uma. A lista de 19 Partes está em **Partes do Costureiro**, abaixo."
           }
         ],
         "especializacao": [
@@ -394,7 +394,7 @@
         "maestria": [
           {
             "nome": "Magnum Opus",
-            "texto": "Melhora: a Obra fica **Grande**, ganha +2 espaços de Parte, e o ataque dela atinge todos os inimigos Muito Próximos uma vez por cena."
+            "texto": "Melhora a Fundação: a Obra fica **Grande**, ganha +2 espaços de Parte, e o ataque dela atinge todos os adversários Muito Próximos, uma vez por cena."
           }
         ],
         "id": "galvanista-costureiro"
@@ -453,31 +453,31 @@
         "fundacao": [
           {
             "nome": "Herbário",
-            "texto": "Você conhece **4 ervas** e aprende mais 1 por patamar. Ao engarrafar ou improvisar, pode temperar a mistura com uma erva que conhece: ela ganha a virtude da erva. Cada erva pode ser usada uma vez por descanso (uma caixinha por erva). Um frasco temperado guarda a virtude. Ervas novas se aprendem no mundo (o jardim botânico da Exposição, uma botica de Maresme, o bolso de um morto). A tabela de ervas está em **Herbário**, abaixo."
+            "texto": "Você conhece **4 ervas** e aprende mais 1 por patamar. Ao engarrafar ou improvisar, você pode temperar a mistura com uma erva que conhece, e ela ganha a virtude da erva. Cada erva pode ser usada uma vez por descanso (uma caixinha por erva), e um frasco temperado guarda a virtude. Ervas novas se aprendem no mundo: o jardim botânico da Exposição, uma botica de Maresme, o bolso de um morto. A tabela de ervas está em **Herbário**, abaixo."
           },
           {
             "nome": "Mistura Mirabolante",
-            "texto": "Gaste 2 Princípios ou mais e diga o efeito que quer, fora da tabela (um pó que revela digitais, uma tinta que muda de cor numa carta forjada, um perfume que acalma um cão de guarda). Teste de Conhecimento: Dificuldade **10** (simples), **15** (esperto) ou **20** (quase impossível), **+2 por patamar acima do 1**. Uma erva que faz sentido para o efeito dá +2. Com Medo, funciona com um efeito colateral. **Na luta, só efeitos do tamanho de um frasco** (apagar um lampião, grudar uma porta, deixar alguém Distraído), nada que substitua uma carta de domínio."
+            "texto": "Gaste 2 Princípios ou mais e diga o efeito que quer, mesmo que não esteja na tabela (um pó que revela digitais, uma tinta que muda de cor numa carta forjada, um perfume que acalma um cão de guarda). Faça um teste de Conhecimento. A Dificuldade é **10** (simples), **15** (esperto) ou **20** (quase impossível), com **+2 por patamar acima do 1º**. Uma erva que faça sentido para o efeito dá +2. Com Medo, funciona, mas com um efeito colateral. **Na luta, só valem efeitos do tamanho de um frasco** (apagar um lampião, grudar uma porta, deixar alguém Distraído), nada que substitua uma carta de domínio."
           }
         ],
         "especializacao": [
           {
             "nome": "Língua de Provadora",
-            "texto": "Ao provar algo, você sabe o que tem nele e se é veneno. Venenos comuns não te afetam; os raros fazem você marcar 1 Fadiga no lugar do efeito."
+            "texto": "Ao provar algo, você sabe o que há nele e se é veneno. Venenos comuns não te afetam; os raros fazem você marcar 1 Fadiga no lugar do efeito."
           },
           {
             "nome": "Estufa",
-            "texto": "No descanso, ganhe +2 Princípios de Sal ou Mercúrio. Cada erva pode ser usada duas vezes por descanso."
+            "texto": "No descanso, você ganha +2 Princípios de Sal ou de Mercúrio. Cada erva pode ser usada duas vezes por descanso."
           }
         ],
         "maestria": [
           {
             "nome": "Panaceia",
-            "texto": "Melhora: as suas misturas de beber temperadas com uma erva limpam +1 PV ou +1 Fadiga, à escolha de quem bebe. As suas Reações improvisadas de beber nunca ficam instáveis."
+            "texto": "Melhora o Herbário: as suas misturas de beber temperadas com uma erva limpam +1 PV ou +1 Fadiga, à escolha de quem bebe. Suas Reações improvisadas de beber nunca ficam instáveis."
           },
           {
             "nome": "Cobaia",
-            "texto": "*Rara.* Uma vez por sessão, quando um aliado Próximo for sofrer um veneno, uma doença ou o efeito de uma substância, você prova antes. O efeito vai para você, e a próxima mistura que der a ele limpa tudo."
+            "texto": "*Rara.* Uma vez por sessão, quando um aliado Próximo for sofrer um veneno, uma doença ou o efeito de uma substância, você prova antes. O efeito vai para você, e a próxima mistura que você der a ele limpa tudo."
           }
         ],
         "id": "alquimista-apotecaria"
@@ -489,31 +489,31 @@
         "fundacao": [
           {
             "nome": "Invólucros",
-            "texto": "Você conhece **3 invólucros** e aprende mais 1 por patamar. Ao engarrafar ou improvisar uma Explosão ou um Gás, pode montá-lo num invólucro: ele muda o formato. Cada invólucro pode ser usado uma vez por descanso. Invólucros novos se aprendem vendo funcionar ou desmontando um. A tabela está em **Invólucros**, abaixo."
+            "texto": "Você conhece **3 invólucros** e aprende mais 1 por patamar. Ao engarrafar ou improvisar uma Explosão ou um Gás, você pode montá-lo num invólucro, que muda o formato dele. Cada invólucro pode ser usado uma vez por descanso. Invólucros novos se aprendem vendo um funcionar ou desmontando um. A tabela está em **Invólucros**, abaixo."
           },
           {
             "nome": "Paiol",
-            "texto": "No descanso, ganhe +2 Enxofre."
+            "texto": "No descanso, você ganha +2 Enxofre."
           },
           {
             "nome": "Demolidor",
-            "texto": "Gaste 2 Enxofre ou mais para derrubar, abrir ou romper algo. Teste de Finura: Dificuldade 10 (porta), 15 (parede de tijolo), 20 (ponte de ferro, abóbada); cada Enxofre além do segundo dá +2. Com Medo, sai maior do que você queria."
+            "texto": "Gaste 2 Enxofre ou mais para derrubar, abrir ou romper algo. Faça um teste de Finura contra a Dificuldade 10 (porta), 15 (parede de tijolo) ou 20 (ponte de ferro, abóbada); cada Enxofre além do segundo dá +2. Com Medo, o estrago sai maior do que você queria."
           }
         ],
         "especializacao": [
           {
             "nome": "Mão Firme",
-            "texto": "Você escolhe quem as suas explosões poupam, e escolhe o efeito colateral das suas Reações."
+            "texto": "Você escolhe quem as suas explosões poupam, e também o efeito colateral das suas Reações."
           }
         ],
         "maestria": [
           {
             "nome": "Nitroglicerina",
-            "texto": "Melhora: a Explosão causa d12 (d12+2 com Reação)."
+            "texto": "Melhora a Explosão: ela passa a causar d12 (d12+2 com Reação)."
           },
           {
             "nome": "Barril de Pólvora",
-            "texto": "*Rara.* Uma vez por descanso longo, gaste até **5 Enxofre** numa explosão só: raio Próximo, +1d8 de dano por Enxofre gasto. Você marca 1 Fadiga."
+            "texto": "*Rara.* Uma vez por descanso longo, gaste até **5 Enxofre** numa só explosão: raio Próximo, +1d8 de dano por Enxofre gasto. Você marca 1 Fadiga."
           }
         ],
         "id": "alquimista-granadeiro"
