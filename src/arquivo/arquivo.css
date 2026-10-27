@@ -3068,3 +3068,7 @@ button.trilha-espaco { cursor: pointer; }
 .trilha p { margin: 0 0 8px; }
 .trilha p:last-child { margin-bottom: 0; }
 .trilha .n-S { margin: 2px 0 6px; }
+
+/* o botão de escolher não pode ser cortado pela borda do painel */
+.detalhe-coluna .detalhe-acao-criador { padding: 10px 4px 10px 0; margin-bottom: 0; overflow: visible; }
+.criador-detalhe { padding-bottom: 6px; }
