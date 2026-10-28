@@ -50,6 +50,7 @@ export interface Personagem {
   subclasse?: string;
   /** o jogador fechou o criador ("Pronto") */
   criadorPronto?: boolean;
+  registroConfirmado?: boolean;
   /** retrato opcional, já reduzido (data URL JPEG, ~3:4) */
   retrato?: string;
   origem?: Record<string, Record<string, string>>; // classe -> índice -> resposta
@@ -139,8 +140,8 @@ export const ETAPAS = [
   { n: 0, nome: "Registro de chegada", curto: "Chegada" },
   { n: 1, nome: "O convite", curto: "Convite" },
   { n: 2, nome: "Protocolo", curto: "Protocolo" },
-  { n: 3, nome: "O continente", curto: "Continente" },
-  { n: 4, nome: "Ficha de registro", curto: "Ficha" },
+  { n: 3, nome: "Ficha de registro", curto: "Ficha" },
+  { n: 4, nome: "O continente", curto: "Continente" },
   { n: 5, nome: "A Exposição", curto: "Exposição" },
   { n: 6, nome: "Laços", curto: "Laços" },
   { n: 7, nome: "Fecho do registro", curto: "Fecho" },

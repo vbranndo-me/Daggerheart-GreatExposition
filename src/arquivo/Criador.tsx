@@ -30,7 +30,7 @@ const PASSOS: { id: PassoId; rotulo: string }[] = [
 const ICONES_PASSO: Record<PassoId, string> = { comunidade: "lente-cidades", ancestralidade: "pessoa", classe: "escrever", subclasse: "memoria", resumo: "selar" };
 const NOMES_GRUPO: Record<string, string> = { basico: "Livro básico", "hope-fear": "Hope & Fear" };
 
-interface Item {
+export interface Item {
   id: string;
   nome: string;
   descricao?: string;
@@ -600,7 +600,7 @@ function CampoLivre({ valor, aoMudar, rotulo, aoUsar, desabilitado }: { valor: s
 }
 
 /** A tela de subclasse: a classe em grande, as duas subclasses como abas de latão e a trilha da escolhida. */
-function PainelSubclasse({
+export function PainelSubclasse({
   classe,
   subs,
   aberto,
@@ -701,7 +701,7 @@ function PainelSubclasse({
   );
 }
 
-function Detalhe({
+export function Detalhe({
   item,
   passo,
   marcada,

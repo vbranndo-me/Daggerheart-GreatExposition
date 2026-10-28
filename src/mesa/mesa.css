@@ -2356,26 +2356,25 @@ button.qualidade {
 .fixar-linha {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 6px 10px;
-  background: none;
-  color: var(--text);
-  border: 1px solid #262c3d;
+  justify-content: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 12px 20px;
+  background: linear-gradient(160deg, #f0d69a, #b99450);
+  color: #21190e;
+  border: 1px solid #f5dda7;
+  box-shadow: inset 0 1px 0 #fff4cc80, 0 4px 16px #0006;
   font-family: var(--font-ui);
-  font-size: 14px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: filter .15s, box-shadow .15s;
 }
-.fixar-linha:hover {
-  border-color: var(--brass);
-}
-.fixar-linha.selecionado {
-  border-color: var(--carmim-hi);
-}
-.fixar-linha.feito {
-  border-color: var(--brass-dark);
-}
-.fixar-linha .ico {
-  color: var(--brass);
-}
+.fixar-linha:hover { filter: brightness(1.12); box-shadow: 0 0 18px #c9ad6e50, 0 4px 16px #0006; }
+.fixar-linha:focus-visible { outline: 2px solid var(--brass-hi); outline-offset: 4px; }
+.fixar-linha.selecionado { background: #f4e3b9; border-color: #fff1ca; }
+.fixar-linha.feito { background: #202b2b; color: #f0dfb7; border-color: var(--brass); }
+.fixar-linha .ico { color: inherit; flex-shrink: 0; }
 .enviar-resposta {
   display: flex;
   align-items: center;
@@ -2411,93 +2410,42 @@ button.qualidade {
 
 /* ---------- fase 1: o sorteio, no centro da tela ---------- */
 .sorteio-veu {
-  position: absolute;
-  inset: 0;
-  z-index: 26;
-  display: grid;
-  place-items: center;
-  pointer-events: none;
-  background: radial-gradient(ellipse at 50% 50%, rgba(6, 8, 13, 0.78), rgba(6, 8, 13, 0.55));
-  animation: sorteio-entra 0.3s ease-out;
-  transition: opacity 0.4s;
+  position: absolute; inset: 0; z-index: 26;
+  display: grid; place-items: center; overflow: hidden;
+  background: radial-gradient(ellipse at 50% 48%, rgba(35,31,28,.96), rgba(6,8,13,.95));
+  backdrop-filter: blur(8px);
+  animation: sorteio-entra .65s ease-out;
+  transition: opacity .7s;
 }
-.sorteio-veu.saindo {
-  opacity: 0;
-}
-.sorteio-veu.saindo .sorteio-palco {
-  transform: translate(-28vw, 8vh) scale(0.45);
-}
-.sorteio-palco {
-  display: grid;
-  justify-items: center;
-  gap: 20px;
-  transition: transform 0.45s cubic-bezier(0.5, 0, 0.7, 0.4);
-}
-.montes-grandes {
-  gap: 22px;
-  margin: 0;
-}
-.montes-grandes .monte {
-  width: 104px;
-  --carta-w: 104px;
-  transition: opacity 0.3s, transform 0.3s;
-}
-.montes-grandes .monte.apagado {
-  opacity: 0.35;
-}
-.montes-grandes .monte.sorteado {
-  transform: translateY(-8px) scale(1.08);
-}
-.montes-grandes .rotulo-monte {
-  margin-top: 8px;
-  text-align: center;
-  font-size: 11px;
-  white-space: nowrap;
-}
-.dados-sorteio {
-  display: flex;
-  gap: 28px;
-}
+.sorteio-veu.saindo { opacity: 0; pointer-events: none; }
+.sorteio-palco { position: relative; width: 100%; height: 100%; display: grid; place-items: center; }
+.sorteio-chamada { position: absolute; top: 5%; text-align: center; color: var(--brass-hi); letter-spacing: .2em; }
+.montes-grandes { position: absolute; gap: clamp(12px,3vw,40px); margin: 0; transition: opacity .8s, transform 1s; }
+.montes-grandes .monte { width: clamp(64px,13vw,160px); --carta-w: clamp(64px,13vw,160px); transition: opacity .7s, transform 1s; }
+.montes-grandes .monte.apagado { opacity: .15; transform: scale(.92); }
+.montes-grandes .monte.sorteado { transform: translateY(-24px) scale(1.15); filter: drop-shadow(0 0 22px #c9ad6e80); }
+.montes-grandes .rotulo-monte { margin-top: 12px; text-align: center; font-size: clamp(10px,1.2vw,14px); }
+.dados-sorteio { position: absolute; bottom: 9%; display: flex; gap: 36px; transform: scale(1.3); transition: opacity .8s; }
 .carta-sorteio {
-  transition: opacity 0.3s;
+  --carta-w: min(380px,70vw,48dvh);
+  position: relative; opacity: 1; transform: translateY(12px) scale(1);
+  transition: opacity .7s, transform 1.2s cubic-bezier(.2,.7,.2,1);
+  filter: drop-shadow(0 20px 45px #000b);
 }
-.carta-sorteio.escondida {
-  opacity: 0;
-}
-@keyframes sorteio-entra {
-  from {
-    opacity: 0;
-  }
-}
-@media (max-width: 900px) {
-  .montes-grandes .monte {
-    width: 64px;
-    --carta-w: 64px;
-  }
-  .sorteio-veu {
-    top: var(--topo);
-  }
-}
-@media (max-height: 760px) {
-  .carta-sorteio {
-    --carta-w: 150px !important;
-  }
-  .montes-grandes .monte {
-    width: 80px;
-    --carta-w: 80px;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .sorteio-veu {
-    display: none;
-  }
-}
+.carta-sorteio .carta { transition-duration: 1.4s; }
+.carta-sorteio.escondida { opacity: 0; transform: translateY(50px) scale(.8); pointer-events: none; }
+.fase-rola .carta-sorteio { visibility: hidden; }
+.fase-vira .montes-grandes, .fase-sai .montes-grandes { opacity: 0; transform: translateY(-60px) scale(.85); }
+.fase-escolhe .carta-sorteio { opacity: 0; transform: translateY(50px) scale(.8); }
+.fase-vira .dados-sorteio, .fase-sai .dados-sorteio { opacity: 0; }
+@keyframes sorteio-entra { from { opacity: 0; } }
+@media (max-width: 900px) { .sorteio-veu { top: var(--topo); } }
+@media (prefers-reduced-motion: reduce) { .sorteio-veu { display: none; } }
 
-/* ---------- a barra única de camadas e ferramentas, na borda direita do mapa ---------- */
 .barra-mapa {
   position: absolute;
   top: 50%;
-  right: calc(var(--mesa-w) + 14px);
+  right: 14px;
   transform: translateY(-50%);
   z-index: 12;
   display: grid;
@@ -2506,7 +2454,7 @@ button.qualidade {
   background: rgba(20, 24, 36, 0.92);
   border: 1px solid var(--brass-dark);
   box-shadow: 0 6px 18px -6px #000c, inset 0 0 0 2px rgba(182, 154, 96, 0.1);
-  transition: right 0.3s;
+  max-height: calc(100% - 28px);
 }
 .barra-grupo {
   display: grid;
@@ -2569,15 +2517,15 @@ button.qualidade {
 }
 .legenda-mapa {
   position: absolute;
-  right: calc(var(--mesa-w) + 70px);
+  right: 78px;
   bottom: 16px;
   z-index: 12;
   width: 250px;
-  max-height: 46vh;
+  max-height: min(46cqh, calc(100% - 32px));
   overflow-y: auto;
   background: rgba(20, 24, 36, 0.92);
   border: 1px solid var(--brass-dark);
-  transition: right 0.3s;
+  max-width: calc(100% - 100px);
 }
 .legenda-cab {
   display: flex;
@@ -2657,9 +2605,6 @@ button.qualidade {
 /* o aviso de releitura não pode cobrir a moldura da janela de gestão */
 .aviso-releitura {
   top: 60px;
-}
-.mesa-raiz:has(.aviso-releitura) .janela-principal.gestao {
-  top: 104px;
 }
 
 .linha-enviar {
@@ -3109,3 +3054,70 @@ button.qualidade {
   pointer-events: none;
   z-index: 9;
 }
+
+/* Escolha pessoal do mapa de origem. */
+.origem-mapas { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 16px; }
+.origem-mapas button { flex: 1; padding: 10px 12px; border: 1px solid var(--brass-dark); background: rgba(12,16,25,.8); color: var(--text); font-family: var(--font-ui); cursor: pointer; }
+.origem-mapas button[aria-pressed="true"] { border-color: var(--brass-hi); color: var(--brass-hi); background: rgba(182,154,96,.16); box-shadow: inset 0 -2px var(--brass-hi); }
+.origem-mapas button:focus-visible { outline: 2px solid var(--brass-hi); outline-offset: 3px; }
+
+/* Map controls use the map viewport; its width already excludes the GM drawer. */
+@container cartao-mapa (max-height: 500px) {
+  .barra-mapa { top: 12px; right: 12px; transform: none; }
+  .barra-grupo { grid-template-columns: repeat(2, 36px); }
+  .legenda-mapa { right: 120px; bottom: 12px; }
+}
+@container cartao-mapa (max-width: 900px) {
+  .barra-mapa {
+    top: auto; bottom: 12px; right: 12px; transform: none;
+    display: flex; flex-wrap: wrap; justify-content: flex-end;
+    max-width: calc(100% - 24px); max-height: calc(100% - 24px);
+  }
+  .barra-grupo { display: flex; flex-wrap: wrap; gap: 4px; }
+  .barra-grupo + .barra-grupo { padding: 0 0 0 8px; border-top: 0; border-left: 1px solid var(--brass-dark); }
+  .legenda-mapa { display: none; }
+}
+
+.mapa-fundo.pan-scroll > svg, .mapa-fundo.pan-scroll > svg * { cursor: grabbing !important; }
+
+/* Compact actions for the continent and city maps. */
+.mapa-acoes { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 8px; margin-top: 16px; }
+.mapa-acoes > button { display: flex; align-items: center; gap: 8px; min-width: 0; min-height: 64px; padding: 10px 12px; text-align: left; font-family: var(--font-ui); font-size: 14px; font-weight: 600; line-height: 1.25; color: var(--text); background: linear-gradient(180deg,#ffffff0c,#00000020); border: 1px solid #3b4258; cursor: pointer; }
+.mapa-acoes > button .ico { flex-shrink: 0; color: var(--brass); }
+.mapa-acoes > button:hover, .mapa-acoes > button.ativa { border-color: var(--brass); background: #b69a6020; }
+.mapa-acoes > button:focus-visible { outline: 2px solid var(--brass-hi); outline-offset: 3px; }
+.mapa-acoes > button:disabled { opacity: .5; cursor: not-allowed; }
+.mapa-acao-contagem { margin-left: auto; color: var(--brass-hi); font-size: 12px; }
+.mapa-paises { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 6px; margin-top: 12px; }
+.mapa-paises .ramo { min-height: 48px; padding: 10px; }
+.mapa-paises .ramo .n-R { font-size: 14px; }
+.mapa-paises .medalhao { display: none; }
+.mapa-instrucao, .mapa-ajuda-curta { margin: 10px 0 0; font-size: 12px; }
+.mapa-instrucao { color: var(--brass-hi); }
+.mapa-convite { margin-bottom: 0; }
+
+/* Reading another chapter never consumes room in the current screen. */
+.mesa-raiz .aviso-releitura {
+  position: absolute; top: auto; bottom: 14px;
+  left: calc((100% - var(--mesa-w)) / 2); transform: translateX(-50%);
+  z-index: 45; max-width: min(720px, calc(100% - var(--mesa-w) - 32px));
+  width: max-content; padding: 10px 12px 10px 16px; gap: 12px;
+  border: 1px solid var(--brass-dark); border-radius: 5px;
+  box-shadow: 0 8px 28px #0008; font-size: 12px;
+}
+.releitura-fechar { flex: none; display: grid; place-items: center; width: 24px; height: 24px; padding: 0; border: 0; border-radius: 3px; color: var(--text); background: #ffffff0d; cursor: pointer; font-size: 18px; }
+.releitura-fechar:hover { background: #ffffff20; }
+@media (max-width: 900px) {
+  .mesa-raiz .aviso-releitura { left: 50%; max-width: calc(100% - 24px); flex-wrap: wrap; }
+}
+
+.rota-painel { position: absolute; bottom: 18px; right: 78px; z-index: 15; width: min(390px,calc(100% - 100px)); padding: 14px 16px; color: var(--text); background: #131a28f5; border: 1px solid var(--brass-dark); border-radius: 5px; box-shadow: 0 8px 28px #0008; }
+.rota-painel header { display: flex; align-items: center; justify-content: space-between; gap: 16px; color: var(--brass); }
+.rota-painel p { margin: 12px 0; font-size: 15px; line-height: 1.45; }
+.rota-painel .n-I { font-size: 12px; }
+.rota-resumo { display: flex; align-items: baseline; flex-wrap: wrap; gap: 10px; margin-top: 12px; font-family: var(--font-ui); }
+.rota-resumo strong { font-size: 22px; color: #f4cf75; }
+.rota-fechar { display: grid; place-items: center; width: 26px; height: 26px; border: 0; background: #ffffff0c; color: var(--text); cursor: pointer; font-size: 20px; }
+.rota-acoes { display: flex; flex-wrap: wrap; gap: 20px; margin-top: 12px; }
+.rota-nota { margin-top: 12px; color: #aeb5c0; font-family: var(--font-ui); font-size: 11px; }
+@container cartao-mapa (max-width: 900px) { .rota-painel { right: 12px; bottom: 78px; width: min(390px,calc(100% - 24px)); } }

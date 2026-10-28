@@ -1,0 +1,10 @@
+import fs from 'node:fs';
+import sharp from 'sharp';
+import {construirRede,ajustarPonto,encontrarRota} from '../src/mesa/rotas.ts';
+const g=construirRede(JSON.parse(fs.readFileSync('content/mapas/rouillac/rotas.json')));
+const a=ajustarPonto(g,{x:950.739,y:2028.5335}),b=ajustarPonto(g,{x:1200,y:1900});
+const r=encontrarRota(g,a,b);if(!r)throw Error('Local route disconnected');
+let svg=fs.readFileSync('content/mapas/rouillac/distritos.svg','utf8');
+svg=svg.replace('</svg>',`<polyline points="${r.pontos.map(p=>`${p.x},${p.y}`).join(' ')}" fill="none" stroke="#f00" stroke-width="3"/><circle cx="${a.ponto.x}" cy="${a.ponto.y}" r="5" fill="lime"/><circle cx="${b.ponto.x}" cy="${b.ponto.y}" r="5" fill="blue"/></svg>`);
+await sharp(Buffer.from(svg)).extract({left:800,top:1750,width:650,height:500}).resize({width:1100}).png().toFile(process.env.TEMP+'/rouillac-local-qa.png');
+console.log('Local route meters:',r.metros);

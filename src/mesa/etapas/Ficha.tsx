@@ -1,23 +1,29 @@
-// Capítulo IV · Ficha de registro. Storylet em páginas, uma decisão por página.
+// Capítulo III · Ficha de registro. Storylet em páginas, uma decisão por página.
 // Cada escolha é um conjunto de ramos; cada texto, um ramo que abre no lugar.
-// À direita, as qualidades do personagem (insígnias) e o resumo da tripulação.
-import { useState } from "react";
+// O Signoff encerra o registro com uma revisão das escolhas.
+import { useId, useState } from "react";
 import { useSessao } from "../../db/sala";
 import type { Personagem, Privado } from "../../db/tipos";
-import { Insignia, Placa, Ramo, Selo } from "../../jogo/componentes";
+import { Insignia, Placa, Selo } from "../../jogo/componentes";
 import { Icone } from "../../jogo/icones";
-import { Escolhas, Escrita, Gestao, Opcao, Painel } from "../pecas";
+import { Gestao, Painel, TextoVivo } from "../pecas";
 import { useVisao } from "../Casca";
+
+import { SelecaoFicha, type AcaoFicha } from "./SelecaoFicha";
+import "./ficha-registro.css";
 
 const PAGINAS = [
   { id: "pais", rotulo: "País", icone: "cap-3" },
   { id: "papel", rotulo: "Papel", icone: "convidado" },
   { id: "comunidade", rotulo: "Comunidade", icone: "lente-cidades" },
+  { id: "ancestralidade", rotulo: "Ancestralidade", icone: "pessoa" },
   { id: "classe", rotulo: "Classe", icone: "escrever" },
+  { id: "subclasse", rotulo: "Subclasse", icone: "memoria" },
   { id: "origem", rotulo: "Origem", icone: "memoria" },
   { id: "compulsao", rotulo: "Compulsão", icone: "rumor" },
   { id: "oculto", rotulo: "O oculto", icone: "boato" },
   { id: "segredo", rotulo: "Segredo", icone: "selar" },
+  { id: "signoff", rotulo: "Signoff", icone: "visto" },
 ] as const;
 type IdPagina = (typeof PAGINAS)[number]["id"];
 
@@ -30,7 +36,7 @@ export function Ficha({ trancada }: { trancada: boolean }) {
   const [pag, setPag] = useState<IdPagina>("pais");
   if (!jid || !sala.jogadores[jid]) {
     return (
-      <Gestao n={4} titulo="Ficha de registro" colunas="1fr">
+      <Gestao n={3} titulo="Ficha de registro" colunas="1fr">
         <Painel>
           <p className="n-I">Nenhum jogador cadastrado.</p>
         </Painel>
@@ -38,7 +44,7 @@ export function Ficha({ trancada }: { trancada: boolean }) {
     );
   }
   return (
-    <PaginaFicha jid={jid} pag={pag} setPag={setPag} trancada={trancada} escolherJogador={mestre ? setDe : null} />
+    <PaginaFicha key={jid} jid={jid} pag={pag} setPag={setPag} trancada={trancada} escolherJogador={mestre ? setDe : null} />
   );
 }
 
@@ -48,11 +54,14 @@ function feitas(p: Personagem, pr: Privado): Record<IdPagina, boolean> {
     pais: !!p.pais,
     papel: !!p.papel,
     comunidade: !!p.comunidade,
-    classe: !!p.classe,
+    ancestralidade: !!p.ancestralidade,
+    classe: !!(p.classe || p.classeOutra),
+    subclasse: !!p.subclasse,
     origem: origem >= 3,
     compulsao: !!p.compulsao?.trim(),
     oculto: !!p.oculto?.trim(),
     segredo: !!pr.segredo?.trim(),
+    signoff: !!p.registroConfirmado,
   };
 }
 
@@ -73,8 +82,9 @@ function PaginaFicha({
   const p: Personagem = sala.personagens[jid] || {};
   const pr: Privado = sala.privado[jid] || {};
   const set = (campo: keyof Personagem, v: unknown) => acoes.personagem(jid, { [campo]: v ?? null });
-  const [aberto, setAberto] = useState<string | null>(null);
-  const alt = (k: string) => setAberto(aberto === k ? null : k);
+  const [acaoEscolha, setAcaoEscolha] = useState<AcaoFicha | null>(null);
+  const selecao = ["pais", "papel", "comunidade", "ancestralidade", "classe", "subclasse"].includes(pag);
+  const proxima = () => setPag(PAGINAS[Math.min(PAGINAS.length - 1, PAGINAS.findIndex((x) => x.id === pag) + 1)].id);
   const classe = c.classes.find((x) => x.id === p.classe);
   const respostas: Record<string, string> = (p.classe && (p.origem?.[p.classe] as Record<string, string>)) || {};
 
@@ -82,95 +92,75 @@ function PaginaFicha({
     pais: { titulo: "De onde você vem?", texto: "Primeiro, a nacionalidade, como manda o regulamento da Exposição." },
     papel: { titulo: "O que faz na Exposição?", texto: "Convidado, refugiado, funcionário, ou outra coisa que não cabe no formulário." },
     comunidade: { titulo: "A que gente você pertence?", texto: "Onde você aprendeu a ser quem é." },
-    classe: { titulo: "Que tipo de pessoa você é?", texto: "Marque a classe que te interessa. Não é a escolha final; é só para o mestre saber." },
-    origem: { titulo: "Perguntas de origem", texto: classe ? `Três perguntas de ${classe.nome}. Se você trocar de classe, estas respostas ficam guardadas.` : "Escolha uma classe primeiro (página anterior)." },
+    classe: { titulo: "Que tipo de pessoa você é?", texto: "Conheça os domínios e habilidades antes de escolher sua classe." },
+    ancestralidade: { titulo: "Ancestralidade", texto: "Escolha sua ancestralidade e conheça suas habilidades." },
+    subclasse: { titulo: "Escolha o seu caminho", texto: "Conheça as habilidades de cada subclasse e escolha a sua." },
+    origem: { titulo: "Perguntas de origem", texto: classe ? `Três perguntas de ${classe.nome}. Se você trocar de classe, estas respostas ficam guardadas.` : "Escolha uma classe na aba Classe para responder às perguntas de origem." },
     compulsao: { titulo: "Compulsão", texto: c.compulsao.explicacao },
     oculto: { titulo: "Ligação com o oculto", texto: c.geral.perguntaOculto },
+    signoff: { titulo: "Signoff", texto: "Revise o registro antes de confirmar sua ficha." },
     segredo: { titulo: "O segredo", texto: c.geral.ajudaSegredo || "Uma coisa que o seu personagem esconde de todo mundo." },
   };
 
   return (
     <Gestao
-      n={4}
+      n={3}
       titulo="Ficha de registro"
      
-      colunas="minmax(184px, 0.4fr) minmax(0, 1.9fr) minmax(230px, 0.8fr)"
+      semMoldura
+      className="ficha-registro"
+      colunas="minmax(0, 1fr)"
+      rodape={<div className="registro-nav">
+        <button className="link" disabled={pag === "pais"} onClick={() => setPag(PAGINAS[Math.max(0, PAGINAS.findIndex((x) => x.id === pag) - 1)].id)}>Anterior</button>
+        <span className="n-I">{PAGINAS.findIndex((x) => x.id === pag) + 1} / {PAGINAS.length}</span>
+        {selecao ? <Placa disabled={trancada || !acaoEscolha || acaoEscolha.desabilitada} onClick={() => acaoEscolha?.executar()}>{acaoEscolha?.rotulo || "Escolher"}</Placa> : pag !== "signoff" ? <Placa onClick={proxima}>Próxima etapa</Placa> : <Placa disabled={trancada || !!p.registroConfirmado} onClick={() => acoes.personagem(jid, { registroConfirmado: true })}>{p.registroConfirmado ? "Ficha confirmada" : "Confirmar ficha"}</Placa>}
+      </div>}
     >
+      {escolherJogador && <div className="registro-jogador"><label className="n-L" htmlFor="registro-jogador">Ficha de</label><select id="registro-jogador" value={jid} onChange={(e) => escolherJogador(e.target.value)}>{Object.entries(sala.jogadores).map(([id, j]) => <option key={id} value={id}>{j.nome}</option>)}</select></div>}
       <Abas jid={jid} pag={pag} setPag={setPag} />
-      <Painel titulo={TEXTOS[pag].titulo} className="pagina-ficha">
-      {TEXTOS[pag].texto && <p className="n-N">{TEXTOS[pag].texto}</p>}
-      {pag === "compulsao" && (
-        <ul className="n-I" style={{ margin: "8px 0 0", paddingLeft: 18 }}>
-          {c.compulsao.exemplos.map((e) => (
-            <li key={e}>{e}</li>
-          ))}
-        </ul>
-      )}
-      {pag === "oculto" && c.geral.ajudaOculto && <p className="n-I" style={{ marginTop: 8 }}>{c.geral.ajudaOculto}</p>}
-
-      <Escolhas grade={["pais", "papel", "comunidade", "classe"].includes(pag)}>
-        {pag === "pais" &&
-          c.paises.map((x) => (
-            <Opcao key={x.id} nome={x.nome} descricao={x.lado} arte={c.arte[`pais-${x.id}`]} marcada={p.pais === x.id} bloqueada={trancada} aoClicar={() => set("pais", p.pais === x.id ? null : x.id)} />
-          ))}
-        {pag === "papel" && (
-          <>
-            {c.origens.map((x) => (
-              <Opcao key={x.id} nome={x.nome} descricao={x.descricao} arte={c.arte[`papel-${x.id}`]} marcada={p.papel === x.id} bloqueada={trancada} aoClicar={() => set("papel", p.papel === x.id ? null : x.id)} />
-            ))}
-            {p.papel === "outro" && <Escrita rotulo="qual?" valor={p.papelOutro} salvar={(v) => set("papelOutro", v)} linhas={1} desabilitado={trancada} />}
-          </>
-        )}
-        {pag === "comunidade" &&
-          c.comunidades.map((x) => (
-            <Opcao key={x.id} nome={x.nome} descricao={x.descricao} arte={c.arte[`comunidade-${x.id}`]} marcada={p.comunidade === x.id} bloqueada={trancada} aoClicar={() => set("comunidade", p.comunidade === x.id ? null : x.id)} />
-          ))}
-        {pag === "classe" &&
-          c.classes.map((x) => (
-            <Opcao
-              key={x.id}
-              nome={x.nome}
-              descricao={
-                <>
-                  {x.fantasia.replace(/^\[Exemplo\]\s*/, "")} <span style={{ color: "var(--brass)" }}>· {x.dominios.join(" · ")}</span>
-                </>
-              }
-              arte={c.arte[`classe-${x.id}`]}
-              marcada={p.classe === x.id}
-              etiqueta={x.nova ? "nova" : undefined}
-              bloqueada={trancada}
-              aoClicar={() => set("classe", p.classe === x.id ? null : x.id)}
-            />
-          ))}
-        {pag === "origem" &&
-          classe?.origem.map((q, k) => {
-            const r = respostas[k];
-            return (
-              <Ramo key={classe.id + k} titulo={q} descricao={r && aberto !== `o${k}` ? <span className="n-J resposta-curta">{r}</span> : undefined} chamada={r ? undefined : "Responda aqui mesmo."} icone="memoria" estado={trancada ? "bloqueado" : r && aberto !== `o${k}` ? "feito" : "normal"} aberto={aberto === `o${k}`} aoClicar={() => alt(`o${k}`)}>
-                <Escrita rotulo="sua resposta" valor={r} salvar={(v) => acoes.respostaOrigem(jid, classe.id, k, v)} desabilitado={trancada} />
-              </Ramo>
-            );
-          })}
-        {pag === "compulsao" && (
-          <Ramo titulo={c.compulsao.pergunta || "A compulsão do seu personagem"} descricao={p.compulsao && aberto !== "comp" ? <span className="n-J resposta-curta">{p.compulsao}</span> : undefined} chamada={p.compulsao ? undefined : "Escreva aqui mesmo."} icone="rumor" estado={trancada ? "bloqueado" : p.compulsao && aberto !== "comp" ? "feito" : "normal"} aberto={aberto === "comp"} aoClicar={() => alt("comp")}>
-            <Escrita rotulo="compulsão" valor={p.compulsao} salvar={(v) => set("compulsao", v)} linhas={2} desabilitado={trancada} />
-          </Ramo>
-        )}
-        {pag === "oculto" && (
-          <Ramo titulo="O que você viu" descricao={p.oculto && aberto !== "oc" ? <span className="n-J resposta-curta">{p.oculto}</span> : undefined} chamada={p.oculto ? undefined : "Escreva aqui mesmo."} icone="boato" estado={trancada ? "bloqueado" : p.oculto && aberto !== "oc" ? "feito" : "normal"} aberto={aberto === "oc"} aoClicar={() => alt("oc")}>
-            <Escrita rotulo="a sua ligação com o oculto" valor={p.oculto} salvar={(v) => set("oculto", v)} desabilitado={trancada} />
-          </Ramo>
-        )}
-        {pag === "segredo" && (
-          <Ramo titulo="Selar o segredo" descricao={pr.segredo && aberto !== "seg" ? "Selado. Só o mestre vai ler." : "Só o mestre vai ler isto."} icone="selar" estado={trancada ? "bloqueado" : pr.segredo && aberto !== "seg" ? "feito" : "normal"} selo={<Selo tipo="privado">só o mestre vê</Selo>} aberto={aberto === "seg"} aoClicar={() => alt("seg")}>
-            <Escrita rotulo="o segredo" valor={pr.segredo} salvar={(v) => acoes.privado(jid, "segredo", v || null)} desabilitado={trancada} />
-          </Ramo>
-        )}
-      </Escolhas>
+      <Painel titulo={selecao ? undefined : TEXTOS[pag].titulo} className={`pagina-ficha ${selecao ? "com-selecao" : ""}`}>
+      {pag === "signoff" ? <Signoff jid={jid} setPag={setPag} /> : ["pais", "papel", "comunidade", "ancestralidade", "classe", "subclasse"].includes(pag) ? (
+        <SelecaoFicha key={jid + pag} jid={jid} pagina={pag as "pais" | "papel" | "comunidade" | "ancestralidade" | "classe" | "subclasse"} titulo={TEXTOS[pag].titulo} trancada={trancada} aoAcao={setAcaoEscolha} aoProximo={proxima} />
+      ) : <div className="registro-narrativa">
+        {pag === "origem" && <>
+          {classe?.origem?.length ? <>
+            <div className="registro-perguntas-meta"><span className="n-L">{classe.nome}</span><span className="n-I">{classe.origem.filter((_, i) => respostas[i]?.trim()).length} / {classe.origem.length} respondidas</span></div>
+            <div className="registro-perguntas-lista">{classe.origem.map((q, k) => <PerguntaRegistro key={classe.id + k} numero={k + 1} pergunta={q} valor={respostas[k]} salvar={(v) => acoes.respostaOrigem(jid, classe.id, k, v)} trancada={trancada} />)}</div>
+          </> : <div className="registro-perguntas-vazio">
+            <Icone id="memoria" tamanho={28} />
+            <p className="n-N">{classe ? "Esta classe ainda n?o tem perguntas de origem cadastradas." : "Escolha uma classe para ver suas perguntas de origem."}</p>
+            {!classe && <Placa onClick={() => setPag("classe")}>Escolher classe</Placa>}
+          </div>}
+        </>}
+        {pag === "compulsao" && <div className="registro-escrita-layout">
+          <PerguntaRegistro pergunta={c.compulsao.pergunta || "O que seu personagem n?o consegue evitar?"} valor={p.compulsao} salvar={(v) => set("compulsao", v)} trancada={trancada} linhas={7} />
+          <aside className="registro-inspiracao"><h3 className="n-L">Compuls?o</h3><p className="n-I">{c.compulsao.explicacao}</p>{!!c.compulsao.exemplos.length && <><h3 className="n-L">Exemplos</h3><ul>{c.compulsao.exemplos.map((e) => <li key={e} className="n-I">{e}</li>)}</ul></>}</aside>
+        </div>}
+        {pag === "oculto" && <div className="registro-escrita-layout">
+          <PerguntaRegistro pergunta={c.geral.perguntaOculto || "Qual ? a sua liga??o com o oculto?"} valor={p.oculto} salvar={(v) => set("oculto", v)} trancada={trancada} linhas={8} />
+          {c.geral.ajudaOculto && <aside className="registro-inspiracao"><Icone id="boato" tamanho={24} /><p className="n-I">{c.geral.ajudaOculto}</p></aside>}
+        </div>}
+        {pag === "segredo" && <div className="registro-escrita-layout">
+          <PerguntaRegistro pergunta="O que seu personagem esconde?" valor={pr.segredo} salvar={(v) => acoes.privado(jid, "segredo", v || null)} trancada={trancada} linhas={8} privada />
+          <aside className="registro-inspiracao"><Icone id="selar" tamanho={24} /><p className="n-I">{c.geral.ajudaSegredo || "Uma coisa que seu personagem esconde de todo mundo."}</p><p className="n-I">Apenas voc? e o mestre podem ler esta resposta.</p></aside>
+        </div>}
+      </div>}
       </Painel>
-      <Resumo jid={jid} pag={pag} setPag={setPag} escolherJogador={escolherJogador} />
     </Gestao>
   );
+}
+
+function PerguntaRegistro({ pergunta, numero, valor, salvar, trancada, linhas = 4, privada = false }: { pergunta: string; numero?: number; valor?: string; salvar: (v: string) => void; trancada: boolean; linhas?: number; privada?: boolean }) {
+  const id = useId();
+  return <article className="registro-pergunta">
+    <div className="registro-pergunta-cab">
+      {numero != null && <span className="registro-pergunta-numero" aria-hidden="true">{String(numero).padStart(2, "0")}</span>}
+      <label htmlFor={id}>{pergunta}</label>
+      {privada && <Selo tipo="privado"><Icone id="selar" tamanho={12} /> Privado</Selo>}
+    </div>
+    <TextoVivo id={id} valor={valor} salvar={salvar} linhas={linhas} desabilitado={trancada} placeholder="Escreva sua resposta..." />
+    <div className="registro-pergunta-rodape"><span>{trancada ? "Edi??o trancada pelo mestre" : "Salvamento autom?tico"}</span>{!!valor?.trim() && <span className="registro-resposta-preenchida"><Icone id="visto" tamanho={12} /> Respondida</span>}</div>
+  </article>;
 }
 
 function valoresDe(c: ReturnType<typeof useSessao>["conteudo"], p: Personagem, pr: Privado): Record<IdPagina, string> {
@@ -180,109 +170,40 @@ function valoresDe(c: ReturnType<typeof useSessao>["conteudo"], p: Personagem, p
     pais: nomeDe(c.paises, p.pais) || "—",
     papel: p.papel === "outro" ? p.papelOutro || "Outro" : nomeDe(c.origens, p.papel) || "—",
     comunidade: nomeDe(c.comunidades, p.comunidade) || "—",
-    classe: nomeDe(c.classes, p.classe) || "—",
+    ancestralidade: [p.ancestralidade, p.ancestralidade2].filter(Boolean).join(" + ") || "—",
+    classe: p.classeOutra || nomeDe(c.classes, p.classe) || "—",
+    subclasse: p.subclasse || "—",
     origem: p.classe ? `${origem}/3` : "—",
     compulsao: p.compulsao?.trim() ? "escrita" : "—",
     oculto: p.oculto?.trim() ? "escrita" : "—",
     segredo: pr.segredo?.trim() ? "selado" : "—",
+    signoff: p.registroConfirmado ? "confirmada" : "pendente",
   };
 }
 
-/** As páginas da ficha como abas verticais, à esquerda. */
 function Abas({ jid, pag, setPag }: { jid: string; pag: IdPagina; setPag: (p: IdPagina) => void }) {
   const { sala } = useSessao();
   const ok = feitas(sala.personagens[jid] || {}, sala.privado[jid] || {});
-  return (
-    <Painel className="painel-abas">
-      <ol className="passos" aria-label="páginas da ficha">
-        {PAGINAS.map((x) => (
-          <li key={x.id} className={`passo ${ok[x.id] ? "feita" : "pendente"} ${x.id === pag ? "atual" : ""}`}>
-            <button type="button" onClick={() => setPag(x.id)} aria-current={x.id === pag ? "step" : undefined}>
-              <span className="aba-ico">
-                <Insignia icone={x.icone} tamanho={32} ativa={x.id === pag} />
-                {ok[x.id] && (
-                  <span className="check-bola" aria-label="feito">
-                    <Icone id="visto" tamanho={9} />
-                  </span>
-                )}
-              </span>
-              <span className="nome">{x.rotulo}</span>
-            </button>
-          </li>
-        ))}
-      </ol>
-    </Painel>
-  );
+  return <nav className="registro-stepper" aria-label="Etapas da ficha"><ol className="passos">
+    {PAGINAS.map((x) => <li key={x.id} className={`passo ${pag === x.id ? "atual" : ""} ${ok[x.id] ? "feita" : "pendente"}`}>
+      <button type="button" onClick={() => setPag(x.id)} aria-current={pag === x.id ? "step" : undefined}>
+        <span className="aba-ico"><Insignia icone={x.icone} tamanho={32} ativa={pag === x.id} />{ok[x.id] && <span className="check-bola" aria-label="feito"><Icone id="visto" tamanho={9} /></span>}</span>
+        <span className="nome">{x.rotulo}</span>
+      </button>
+    </li>)}
+  </ol></nav>;
 }
 
-/** As qualidades do personagem e a tripulação ao vivo, sempre à vista, à direita. */
-function Resumo({ jid, pag, setPag, escolherJogador }: { jid: string; pag: IdPagina; setPag: (p: IdPagina) => void; escolherJogador: ((j: string) => void) | null }) {
-  const i = PAGINAS.findIndex((x) => x.id === pag);
-  const { sala, conteudo: c, meuJid } = useSessao();
-  const { mestre } = useVisao();
-  const p: Personagem = sala.personagens[jid] || {};
-  const pr: Privado = sala.privado[jid] || {};
-  const nomeDe = (l: { id: string; nome: string }[], id?: string) => l.find((x) => x.id === id)?.nome;
-  const valores = valoresDe(c, p, pr);
-  // o mestre vê todos (e pode abrir a ficha de qualquer um pelo olho); o jogador, só os outros
-  const outros = Object.entries(sala.jogadores)
-    .filter(([id]) => !!escolherJogador || id !== jid)
-    .sort((a, b) => (a[1].ordem ?? 0) - (b[1].ordem ?? 0));
-  return (
-    <Painel titulo="Resumo" className="painel-resumo">
-      <dl className="dados-ficha">
-        {PAGINAS.map((x) => (
-          <div key={x.id}>
-            <dt className="n-L">{x.rotulo}</dt>
-            <dd>{valores[x.id]}</dd>
-          </div>
-        ))}
-        <div>
-          <dt className="n-L">Ancestralidade</dt>
-          <dd>{[p.ancestralidade, p.ancestralidade2].filter(Boolean).join(" + ") || "—"}</dd>
-        </div>
-        <div>
-          <dt className="n-L">Subclasse</dt>
-          <dd>{p.subclasse || "—"}</dd>
-        </div>
-      </dl>
-      <details className="tripulacao-viva">
-        <summary className="n-L">a tripulação, ao vivo</summary>
-      <ul className="lista-simples">
-        {outros.map(([id, j]) => {
-          const q = sala.personagens[id] || {};
-          const resumo = [nomeDe(c.paises, q.pais), q.papel === "outro" ? q.papelOutro : nomeDe(c.origens, q.papel), nomeDe(c.classes, q.classe)].filter(Boolean).join(" · ");
-          return (
-            <li key={id} style={{ display: "flex", gap: 8, alignItems: "baseline" }}>
-              <span className="cabeca-cor" style={{ background: j.cor }} />
-              <span style={{ fontFamily: "var(--font-display)", fontSize: 14 }}>{j.nome}</span>
-              <span className="n-I" style={{ fontSize: 13, flex: 1, textAlign: "right" }}>
-                {resumo || "em branco"}
-              </span>
-              {escolherJogador && (
-                <button type="button" className={`olho-mestre ${id === jid ? "ligado" : ""}`} onClick={() => escolherJogador(id)} title={id === jid ? "Você está vendo esta ficha" : `Ver a ficha de ${j.nome} (só o mestre)`} aria-label={`Ver a ficha de ${j.nome}`}>
-                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <path d="M1.5 12S5.5 5 12 5s10.5 7 10.5 7-4 7-10.5 7S1.5 12 1.5 12Z" />
-                    <circle cx="12" cy="12" r="3" />
-                  </svg>
-                </button>
-              )}
-            </li>
-          );
-        })}
-      </ul>
-      </details>
-      {(mestre || jid === meuJid) && <p className="n-I" style={{ fontSize: 12, marginTop: 10 }}>O segredo nunca aparece para os outros jogadores.</p>}
-      <div className="nav-ficha">
-        {i > 0 ? (
-          <button className="link" onClick={() => setPag(PAGINAS[i - 1].id)}>
-            ◂ anterior
-          </button>
-        ) : (
-          <span />
-        )}
-        {i < PAGINAS.length - 1 ? <Placa onClick={() => setPag(PAGINAS[i + 1].id)}>Próxima página ▸</Placa> : <Placa onClick={() => setPag("pais")}>Voltar ao início</Placa>}
-      </div>
-    </Painel>
-  );
+function Signoff({ jid, setPag }: { jid: string; setPag: (p: IdPagina) => void }) {
+  const { sala, conteudo } = useSessao();
+  const p = sala.personagens[jid] || {};
+  const valores = valoresDe(conteudo, p, sala.privado[jid] || {});
+  return <section className="registro-signoff">
+    <h2 className="n-T">{sala.jogadores[jid]?.nome}</h2>
+    <div className="signoff-itens">{PAGINAS.filter((x) => x.id !== "signoff").map((x) => <button type="button" key={x.id} onClick={() => setPag(x.id)}>
+      <span className="n-L">{x.rotulo}</span><span>{valores[x.id]}</span><Icone id="escrever" tamanho={16} />
+    </button>)}</div>
+    <p className="n-I">O segredo permanece privado. Clique em qualquer item para revisar.</p>
+    {p.registroConfirmado && <Selo tipo="feito">Ficha confirmada</Selo>}
+  </section>;
 }

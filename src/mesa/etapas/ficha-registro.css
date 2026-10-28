@@ -1,0 +1,118 @@
+.ficha-registro { container: ficha / inline-size; }
+.ficha-registro .gestao-grade { display: flex; flex-direction: column; overflow: hidden; }
+.ficha-registro .pagina-ficha { flex: 1; min-height: 0; min-width: 0; container: registro / inline-size; border: 0; box-shadow: none; padding: 12px 24px 24px; }
+.registro-stepper { flex: none; padding: 0 0 16px; }
+.registro-stepper .passos { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; list-style: none; margin: 0; padding: 0; }
+.registro-stepper .passo { flex: 0 0 auto; width: auto; margin: 0; padding: 0; }
+.registro-stepper .passo::after { display: none; }
+.registro-stepper .passo > button { display: flex; align-items: center; gap: 8px; min-height: 44px; margin: 0; padding: 6px 12px 6px 6px; }
+.registro-stepper .passo .nome { font-size: 13px; line-height: 1.15; }
+.registro-stepper .aba-ico { position: relative; display: inline-flex; align-items: center; flex: none; }
+.registro-jogador { display: flex; align-items: center; gap: 12px; padding: 0 24px 12px; }
+.registro-jogador select { padding: 6px 10px; background: #171c2b; color: var(--text); border: 1px solid #3b4258; }
+.registro-selecao { display: grid; grid-template-columns: minmax(240px,.7fr) minmax(0,1.3fr); gap: 32px; align-items: start; margin-top: 20px; }
+.registro-galeria { min-width: 0; }
+.registro-galeria .criador-cartazes { grid-template-columns: repeat(auto-fill,minmax(120px,1fr)); gap: 12px; }
+.registro-galeria .interruptor { flex-wrap: wrap; margin-bottom: 18px; }
+.registro-detalhe { position: sticky; top: 0; min-width: 0; }
+.registro-detalhe .detalhe-criador { display: block; }
+.registro-detalhe .detalhe-retrato-criador { float: left; width: 130px; margin: 0 20px 12px 0; }
+.registro-detalhe .retrato-34 { border: 0; max-height: none; }
+.registro-detalhe .detalhe-coluna { display: block; }
+.registro-detalhe .detalhe-texto-criador { display: block; overflow: visible; padding: 0; background: none; border: 0; box-shadow: none; }
+.registro-detalhe .quadro-rolagem { display: contents; }
+.registro-detalhe .detalhe-acao-criador { clear: both; padding-top: 18px; }
+.registro-galeria .cartaz-nome { white-space: normal; overflow-wrap: anywhere; font-size: 15px; line-height: 1.2; text-align: center; }
+.registro-galeria .opcao-selo { display: none; }
+.registro-pais-card { position: relative; display: grid; grid-template-rows: 80px minmax(38px,auto); align-items: center; justify-items: center; gap: 10px; min-width: 0; min-height: 154px; height: auto; aspect-ratio: auto; overflow: hidden; padding: 12px 10px; border: 1px solid #41475a; border-radius: 4px; background: #10152170; color: var(--text); cursor: pointer; }
+.registro-pais-card.aberto { border-color: var(--brass); background: #b69a6018; }
+.registro-pais-card.escolhido { border-color: #d7bd7c; }
+.registro-pais-card:focus-visible { outline: 2px solid var(--brass-hi); outline-offset: 3px; }
+.registro-pais-arte { position: relative; display: block; width: 100%; height: 80px; min-height: 0; overflow: hidden; }
+.registro-pais-arte img { position: absolute; inset: 0; display: block; width: 100%; height: 80px; max-width: 100%; max-height: 80px; object-fit: contain; object-position: center; }
+.registro-pais-nome { position: static; display: block; align-self: center; min-width: 0; width: 100%; text-align: center; font-family: var(--font-display); font-size: 15px; line-height: 1.25; white-space: normal; overflow-wrap: anywhere; }
+.registro-monograma { display: grid; place-items: center; width: 100%; height: 100%; color: var(--brass-hi); font-family: var(--font-display); font-size: 40px; }
+.registro-pais-check { position: absolute; top: 6px; right: 6px; display: grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; color: #171b26; background: #dcc17f; }
+.registro-brasao { position: relative; overflow: hidden; float: left; display: block; width: 130px; height: 130px; margin: 0 22px 12px 0; }
+.registro-brasao img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; max-width: 100%; max-height: 100%; object-fit: contain; }
+.registro-pais-texto { display: flow-root; }
+.registro-pais-texto h2 { font-size: clamp(28px,3vw,42px); line-height: 1.15; overflow-wrap: anywhere; margin: 8px 0 14px; }
+.registro-pais-texto p { margin: 0; }
+.registro-pais-dados { clear: both; display: flex; flex-wrap: wrap; gap: 16px 36px; margin: 20px 0; }
+.registro-pais-dados dd { margin: 4px 0 0; }
+.registro-subclasse { display: block; }
+.registro-subclasse .sub-palco { height: auto; grid-template-columns: minmax(150px,.3fr) minmax(0,1fr); gap: 24px; }
+.registro-subclasse .sub-classe { position: sticky; top: 0; }
+.registro-subclasse .sub-quadro, .registro-subclasse .sub-corpo { overflow: visible; }
+.registro-subclasse .sub-detalhe { grid-template-columns: 1fr; }
+.registro-subclasse .sub-retrato { display: none; }
+.registro-nav { display: flex; align-items: center; justify-content: space-between; gap: 20px; width: 100%; padding: 8px 18px; }
+.registro-signoff { max-width: 1000px; margin: 0 auto; }
+.signoff-itens { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; margin: 24px 0; }
+.signoff-itens button { display: grid; grid-template-columns: minmax(100px,.6fr) minmax(0,1fr) 16px; gap: 12px; align-items: center; padding: 16px; text-align: left; background: #141a2670; color: var(--text); border: 1px solid #3b4258; cursor: pointer; }
+.signoff-itens button:hover { border-color: var(--brass); }
+@container registro (max-width: 650px) {
+  .registro-selecao { grid-template-columns: 1fr; gap: 22px; }
+  .registro-detalhe { position: static; }
+  .registro-galeria { max-height: 290px; overflow-y: auto; padding: 4px 8px 12px 0; }
+  .registro-galeria .criador-cartazes { grid-template-columns: repeat(auto-fill,minmax(100px,1fr)); }
+  .registro-subclasse .sub-palco { grid-template-columns: 1fr; }
+  .registro-subclasse .sub-classe { display: none; }
+  .registro-subclasse .sub-abas, .signoff-itens { grid-template-columns: 1fr; }
+  .registro-brasao { width: 96px; height: 96px; margin-right: 14px; }
+}
+
+/* The registration uses the whole surface beneath the HUD. */
+.janela-principal.gestao.ficha-registro {
+  inset: 60px var(--mesa-w) 0 0; width: auto; max-width: none;
+  margin: 0; padding: 12px 24px 0; border: 0; box-shadow: none; background: none;
+  display: flex; flex-direction: column; min-height: 0;
+}
+.ficha-registro > .gestao-grade { flex: 1; min-height: 0; overflow: hidden; }
+.ficha-registro .pagina-ficha { padding: 0; }
+.ficha-registro .pagina-ficha.com-selecao { display: flex; overflow: hidden; }
+.ficha-registro .pagina-ficha.com-selecao > .registro-selecao { flex: 1; min-height: 0; height: 100%; width: 100%; margin: 0; align-items: stretch; }
+.ficha-registro .registro-galeria { height: 100%; max-height: none; min-height: 0; overflow-y: auto; padding: 4px 14px 28px 0; }
+.ficha-registro .registro-detalhe { position: static; height: 100%; min-height: 0; overflow-y: auto; padding: 4px 12px 28px 0; }
+.ficha-registro .registro-titulo { margin: 0 0 18px; }
+.registro-fade {
+  --fa: 0px; --fb: 0px;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 var(--fa), #000 calc(100% - var(--fb)), transparent);
+  mask-image: linear-gradient(to bottom, transparent, #000 var(--fa), #000 calc(100% - var(--fb)), transparent);
+}
+.registro-rodape { flex: none; padding: 8px 0 12px; }
+.registro-rodape .registro-nav { min-height: 48px; padding: 0; }
+.ficha-registro .registro-subclasse { min-height: 0; overflow-y: auto; }
+.registro-subclasse .sub-rodape { display: none; }
+@container registro (max-width: 650px) {
+  .ficha-registro .pagina-ficha.com-selecao > .registro-selecao { grid-template-rows: minmax(160px,.45fr) minmax(0,.55fr); gap: 16px; }
+  .ficha-registro .registro-galeria { padding-bottom: 18px; }
+  .ficha-registro .registro-detalhe { padding-top: 0; }
+}
+@media (max-width: 900px) {
+  .janela-principal.gestao.ficha-registro { right: 0; padding: 10px 16px 0; }
+}
+
+/* Questions are always open, with a direct label and writing area. */
+.registro-narrativa { max-width: 1240px; padding: 8px 14px 28px 0; }
+.registro-perguntas-meta { display: flex; align-items: center; justify-content: space-between; gap: 16px; max-width: 960px; margin: 6px 0 18px; }
+.registro-perguntas-lista { display: grid; gap: 24px; max-width: 960px; }
+.registro-pergunta { min-width: 0; }
+.registro-pergunta-cab { display: flex; align-items: baseline; gap: 12px; margin-bottom: 12px; }
+.registro-pergunta-cab label { flex: 1; font-family: var(--font-narrative); font-size: 20px; line-height: 1.5; color: var(--text); cursor: text; }
+.registro-pergunta-numero { color: var(--brass); font-family: var(--font-ui); font-size: 12px; font-weight: 700; letter-spacing: .08em; }
+.registro-pergunta textarea { display: block; width: 100%; min-height: 112px; padding: 16px 18px; resize: vertical; color: var(--text); background: #10152180; border: 1px solid #454b5c; border-radius: 4px; font-family: var(--font-narrative); font-size: 17px; line-height: 1.6; transition: border-color .15s, background .15s; }
+.registro-pergunta textarea::placeholder { color: #9498a5; }
+.registro-pergunta textarea:focus { outline: 0; border-color: var(--brass); box-shadow: 0 0 0 2px #b69a6020; background: #101521b0; }
+.registro-pergunta textarea:disabled { opacity: .65; cursor: not-allowed; }
+.registro-pergunta-rodape { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; margin-top: 7px; color: #9ea4b2; font-family: var(--font-ui); font-size: 12px; }
+.registro-resposta-preenchida { display: inline-flex; align-items: center; gap: 5px; color: var(--brass); }
+.registro-escrita-layout { display: grid; grid-template-columns: minmax(0,1fr) minmax(200px,.36fr); gap: 40px; align-items: start; }
+.registro-inspiracao { padding-left: 20px; border-left: 1px solid #b69a6040; }
+.registro-inspiracao h3 { margin: 0 0 10px; color: var(--brass); }
+.registro-inspiracao h3:not(:first-child) { margin-top: 24px; }
+.registro-inspiracao ul { padding-left: 18px; }
+.registro-inspiracao li { margin-bottom: 10px; }
+.registro-perguntas-vazio { max-width: 640px; padding: 28px 0; color: var(--brass); }
+@container registro (max-width: 800px) { .registro-escrita-layout { grid-template-columns: 1fr; gap: 24px; } .registro-inspiracao { padding: 16px 0 0; border-left: 0; border-top: 1px solid #b69a6040; } }
+@container registro (max-width: 500px) { .registro-pergunta-cab { flex-wrap: wrap; } .registro-pergunta-cab label { font-size: 18px; } }

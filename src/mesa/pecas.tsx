@@ -95,12 +95,16 @@ export function Gestao({
   colunas,
   rodape,
   semCabecalho,
+  semMoldura,
+  className = "",
   children,
 }: {
   n: number;
   titulo: string;
   /** sem o cabeçalho (capítulo e título): a janela é só os painéis */
   semCabecalho?: boolean;
+  semMoldura?: boolean;
+  className?: string;
   /** (ignorado nas telas de gestão: sem subtítulos) */
   contexto?: string;
   /** `grid-template-columns` da grade de painéis (ex.: "1.2fr 1fr") */
@@ -108,9 +112,13 @@ export function Gestao({
   rodape?: ReactNode;
   children: ReactNode;
 }) {
+  if (semMoldura) return <section className={`janela-principal gestao ${className}`} aria-label={titulo}>
+    <div className="gestao-grade" style={{ ["--colunas" as string]: colunas }}>{children}</div>
+    {rodape && <footer className="registro-rodape">{rodape}</footer>}
+  </section>;
   const rotulo = n === 0 ? "Prólogo" : `Capítulo ${ROMANOS[n]}`;
   return (
-    <div className="janela-principal gestao">
+    <div className={`janela-principal gestao ${className}`}>
       <Janela tipo="pesada" className="gestao-janela" rodape={rodape} topo={semCabecalho ? undefined : <div className="topo-storylet"><Cabecalho capitulo={rotulo} nomeCap={ETAPAS[n]?.nome} titulo={titulo} /></div>}>
         <div className="gestao-grade" style={{ ["--colunas" as string]: colunas }}>
           {children}

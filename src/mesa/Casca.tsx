@@ -6,7 +6,7 @@ import "../jogo/jogo.css";
 import "../jogo/jogo-ajustes.css";
 import "./mesa.css";
 import { useSessao } from "../db/sala";
-import { ETAPAS, ROMANOS } from "../db/tipos";
+import { ETAPAS, ROMANOS, type MapaId } from "../db/tipos";
 import { HUD, Janela, ProvedorNotificacoes, useNotificar, type PassoHUD, type Tripulante } from "../jogo/componentes";
 import { Icone } from "../jogo/icones";
 import { BotaoAmbiente, FundoVivo } from "../jogo/FundoVivo";
@@ -55,6 +55,7 @@ export function Casca({ escolher, naoSouEu }: { escolher: (jid: string) => Promi
   const etapaAtual = sala.meta.etapaAtual ?? 0;
   const [vendo, setVendo] = useState(etapaAtual);
   const [lista, setLista] = useState(false);
+  const [releituraFechada, setReleituraFechada] = useState<string | null>(null);
   const [mesaAberta, setMesaAberta] = useState(true);
   const [abaMesa, setAbaMesa] = useState("conducao");
   const [comoJogador, setComoJogador] = useState(false);
@@ -72,9 +73,10 @@ export function Casca({ escolher, naoSouEu }: { escolher: (jid: string) => Promi
   const visivel = semNome ? 0 : aberta(vendo) ? vendo : etapaAtual;
   const mestreVisivel = mestre && !comoJogador;
   const trancada = !!etapas[visivel]?.trancada && !mestre;
-  const mapa = visivel === 5 ? "rouillac" : "continente";
+  const [mapaOrigem, setMapaOrigem] = useState<MapaId>("continente");
+  const mapa = visivel === 5 ? "rouillac" : visivel === 4 ? mapaOrigem : "continente";
   // só os capítulos de mapa (III e V) têm mapa; o resto é tela de gestão, a janela usa a largura toda
-  const telaMapa = !semNome && (visivel === 3 || visivel === 5);
+  const telaMapa = !semNome && (visivel === 4 || visivel === 5);
   const vezJid = sala.builder?.vezJid || null;
 
   // objetivo do HUD, por capítulo e papel
@@ -122,7 +124,7 @@ export function Casca({ escolher, naoSouEu }: { escolher: (jid: string) => Promi
               : e.n < etapaAtual
                 ? "Já passou. Clique para rever."
                 : "O mestre já liberou. Clique para espiar.";
-        return { n: e.n, nome, icone: `cap-${e.n}`, estado, vendo: e.n === visivel, dica } as PassoHUD;
+        return { n: e.n, nome, icone: `cap-${e.n === 3 ? 4 : e.n === 4 ? 3 : e.n}`, estado, vendo: e.n === visivel, dica } as PassoHUD;
       });
 
   const abrirMesa = (aba?: string) => {
@@ -207,18 +209,19 @@ export function Casca({ escolher, naoSouEu }: { escolher: (jid: string) => Promi
               </div>
             )}
 
-            {visivel !== etapaAtual && !semNome && (
+            {visivel !== etapaAtual && !semNome && releituraFechada !== `${visivel}:${etapaAtual}` && (
               <div className="aviso-releitura">
                 Você está relendo o Capítulo {ROMANOS[visivel]}. A mesa está no Capítulo {ROMANOS[etapaAtual]}.
                 <button className="link" onClick={() => setVendo(etapaAtual)}>
                   voltar para a mesa
                 </button>
+                <button type="button" className="releitura-fechar" aria-label="Fechar aviso de releitura" onClick={() => setReleituraFechada(`${visivel}:${etapaAtual}`)}>×</button>
               </div>
             )}
 
             <div className="camada-janelas">
               <Protecao chave={visivel}>
-                {semNome ? <Chegada escolher={escolher} /> : <EtapaN n={visivel} trancada={trancada} />}
+                {semNome ? <Chegada escolher={escolher} /> : <EtapaN n={visivel} trancada={trancada} mapaOrigem={mapaOrigem} setMapaOrigem={setMapaOrigem} />}
               </Protecao>
             </div>
 
@@ -241,7 +244,7 @@ export function Casca({ escolher, naoSouEu }: { escolher: (jid: string) => Promi
   );
 }
 
-function EtapaN({ n, trancada }: { n: number; trancada: boolean }) {
+function EtapaN({ n, trancada, mapaOrigem, setMapaOrigem }: { n: number; trancada: boolean; mapaOrigem: MapaId; setMapaOrigem: (mapa: MapaId) => void }) {
   switch (n) {
     case 0:
       return <Chegada />;
@@ -250,9 +253,9 @@ function EtapaN({ n, trancada }: { n: number; trancada: boolean }) {
     case 2:
       return <Protocolo trancada={trancada} />;
     case 3:
-      return <Continente trancada={trancada} />;
-    case 4:
       return <Ficha trancada={trancada} />;
+    case 4:
+      return <Continente trancada={trancada} mapa={mapaOrigem} setMapa={setMapaOrigem} />;
     case 5:
       return <Exposicao trancada={trancada} />;
     case 6:

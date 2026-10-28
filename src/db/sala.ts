@@ -308,13 +308,14 @@ export function criarAcoes(b: Backend, salaId: string) {
 
     // personagem
     async personagem(jid: string, campos: Partial<Record<keyof Personagem, any>>) {
-      await b.update(`${P}/personagens/${jid}`, campos as any);
+      await b.update(`${P}/personagens/${jid}`, { ...campos, ...(Object.keys(campos).some((k) => k !== "registroConfirmado") ? { registroConfirmado: null } : {}) });
     },
     async respostaOrigem(jid: string, classe: string, i: number, texto: string) {
-      await b.set(`${P}/personagens/${jid}/origem/${classe}/${i}`, texto || null);
+      await b.update(`${P}/personagens/${jid}`, { [`origem/${classe}/${i}`]: texto || null, registroConfirmado: null });
     },
     async privado(jid: string, campo: keyof Privado, valor: any) {
       await b.set(`${P}/privado/${jid}/${campo}`, valor ?? null);
+      if (campo === "segredo") await b.update(`${P}/personagens/${jid}`, { registroConfirmado: null });
     },
 
     // segurança: o item público não tem autor; o autor fica no privado de quem escreveu

@@ -15,7 +15,10 @@ import { Escrita, JanelaLateral, Storylet } from "../pecas";
 import { useConfigurarMapa } from "../MapaFundo";
 import { useVisao } from "../Casca";
 
-const DURACAO_SORTEIO = 2600;
+const DURACAO_SORTEIO = 8500;
+const ESCOLHER_MONTE = 1600;
+const VIRAR_CARTA = 2900;
+const SAIR_DO_SORTEIO = 7800;
 const semAnimacao = () => !!window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
 
 export function Exposicao({ trancada }: { trancada: boolean }) {
@@ -47,18 +50,25 @@ export function Exposicao({ trancada }: { trancada: boolean }) {
   );
 
   // fase 1: o teatro do sorteio. Quem chega atrasado (ou prefere sem animação) já vê o resultado.
-  const [teatro, setTeatro] = useState<"rola" | "vira" | "sai" | null>(null);
+  const [teatro, setTeatro] = useState<"rola" | "escolhe" | "vira" | "sai" | null>(null);
   useEffect(() => {
     if (!atual || semAnimacao() || Date.now() - atual.ts > DURACAO_SORTEIO) {
       setTeatro(null);
       return;
     }
-    const resta = DURACAO_SORTEIO - (Date.now() - atual.ts);
-    setTeatro("rola");
-    const t1 = window.setTimeout(() => setTeatro("vira"), Math.max(0, 1050 - (DURACAO_SORTEIO - resta)));
-    const t2 = window.setTimeout(() => setTeatro("sai"), Math.max(200, resta - 450));
-    const t3 = window.setTimeout(() => setTeatro(null), resta);
-    return () => [t1, t2, t3].forEach(window.clearTimeout);
+    const decorrido = Date.now() - atual.ts;
+    const fase = decorrido >= SAIR_DO_SORTEIO ? "sai" : decorrido >= VIRAR_CARTA ? "vira" : decorrido >= ESCOLHER_MONTE ? "escolhe" : "rola";
+    setTeatro(fase);
+    const tempos = [
+      [ESCOLHER_MONTE, "escolhe"],
+      [VIRAR_CARTA, "vira"],
+      [SAIR_DO_SORTEIO, "sai"],
+      [DURACAO_SORTEIO, null],
+    ] as const;
+    const timers = tempos.filter(([tempo]) => tempo > decorrido).map(([tempo, proxima]) =>
+      window.setTimeout(() => setTeatro(proxima), tempo - decorrido),
+    );
+    return () => timers.forEach(window.clearTimeout);
   }, [atual?.ts]);
 
   const nomeVez = bld.vezJid ? sala.jogadores[bld.vezJid]?.nome || "alguém" : null;
@@ -68,7 +78,6 @@ export function Exposicao({ trancada }: { trancada: boolean }) {
   const sobra = (d4: number) => totais[d4 - 1] - usadas.filter((k) => k.startsWith(`${d4}-`)).length;
   const pinAtual = atual?.pin ? sala.pins.rouillac?.[atual.pin] : null;
   const categoria = atual ? c.builder.categorias.find((x) => x.d4 === atual.cat) : null;
-  const sugestao = pergunta?.pin ? c.rouillac.tiposPin.find((t) => t.id === pergunta.pin)?.rotulo : null;
 
   let corpo;
   if (!bld.iniciado) {
@@ -149,12 +158,13 @@ export function Exposicao({ trancada }: { trancada: boolean }) {
                 <button
                   type="button"
                   className={`fixar-linha ${pinAtual ? "feito" : fixando ? "selecionado" : ""}`}
+                  aria-pressed={fixando && !pinAtual}
                   onClick={() => (pinAtual ? acoes.pinBuilder(null) : setFixando(!fixando))}
                   title={pinAtual ? "Desligar o alfinete desta resposta" : "Ponha um alfinete em Rouillac ligado à resposta"}
                 >
-                  <Icone id="lugar" tamanho={16} />
+                  <Icone id="lugar" tamanho={22} />
                   <span>{pinAtual ? `No mapa: ${pinAtual.titulo}` : fixando ? "Clique em Rouillac · Esc cancela" : "Fixar no mapa"}</span>
-                  {pinAtual ? <Selo tipo="feito">desligar</Selo> : sugestao && !fixando ? <span className="n-I">sugestão: {sugestao}</span> : null}
+                  {pinAtual && <Selo tipo="feito">desligar</Selo>}
                 </button>
               )}
               {minhaVez && !mestre && (
@@ -187,8 +197,9 @@ export function Exposicao({ trancada }: { trancada: boolean }) {
         {corpo}
       </Storylet>
       {teatro && atual && (
-        <div className={`sorteio-veu ${teatro === "sai" ? "saindo" : ""}`} role="status" aria-live="polite">
+        <div className={`sorteio-veu fase-${teatro} ${teatro === "sai" ? "saindo" : ""}`} role="status" aria-live="polite">
           <div className="sorteio-palco">
+            <div className="sorteio-chamada n-L">{teatro === "rola" ? "Os dados escolhem o destino?" : teatro === "escolhe" ? categoria?.nome : "A carta da vez"}</div>
             <div className="montes montes-grandes" aria-label="os quatro montes">
               {categorias.map((cat) => (
                 <div key={cat.d4} className={`monte ${teatro !== "rola" && atual.cat === cat.d4 ? "sorteado" : ""} ${teatro !== "rola" && atual.cat !== cat.d4 ? "apagado" : ""}`}>
@@ -205,8 +216,8 @@ export function Exposicao({ trancada }: { trancada: boolean }) {
               <Dado lados={4} valor={atual.d4} girar={atual.ts} />
               <Dado lados={10} valor={atual.d10} girar={atual.ts} />
             </div>
-            <div style={{ ["--carta-w" as string]: "210px" }} className={`carta-sorteio ${teatro === "rola" ? "escondida" : ""}`}>
-              <CartaBuilder virada={teatro !== "rola"} cat={atual.cat} nome={categoria?.nome || ""} num={atual.num} pergunta={textoPergunta} arteVerso={c.arte[`verso-${atual.cat}`]} />
+            <div className={`carta-sorteio ${teatro === "rola" ? "escondida" : ""}`}>
+              <CartaBuilder virada={teatro === "vira" || teatro === "sai"} cat={atual.cat} nome={categoria?.nome || ""} num={atual.num} pergunta={textoPergunta} arteVerso={c.arte[`verso-${atual.cat}`]} />
             </div>
           </div>
         </div>

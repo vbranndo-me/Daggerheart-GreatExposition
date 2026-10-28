@@ -17,6 +17,8 @@ import { Janela, Insignia, Placa, Selo } from "../jogo/componentes";
 import { Icone } from "../jogo/icones";
 import { FILIGRANA } from "../jogo/filigrana";
 
+import { ajustarPonto, construirRede, encontrarRota, type DadosRotas, type PontoNaRua, type PontoRota, type RedeRotas } from "./rotas";
+
 // ---------- estado do mapa, controlado pela etapa ----------
 export interface EstadoMapa {
   interativo: boolean;
@@ -110,9 +112,33 @@ export function MapaFundo({ mapa }: { mapa: MapaId }) {
   const [lentes, setLentes] = useState<Record<string, boolean>>({ politica: true, guerra: true, ferrovias: true, cidades: true });
   const [pop, setPop] = useState<Pop | null>(null);
   const [regua, setRegua] = useState(false);
+  const [roteando, setRoteando] = useState(false);
+  const [rede, setRede] = useState<RedeRotas | null>(null);
+  const [erroRede, setErroRede] = useState(false);
+  const [pontosRota, setPontosRota] = useState<PontoNaRua[]>([]);
+  const [avisoRota, setAvisoRota] = useState("");
+  useEffect(() => {
+    if (!roteando || rede || mapa !== "rouillac") return;
+    let ativa = true;
+    const abort = new AbortController();
+    setErroRede(false);
+    fetch(urlConteudo("mapas/rouillac/rotas.json"), { signal: abort.signal })
+      .then((r) => { if (!r.ok) throw new Error("street graph"); return r.json() as Promise<DadosRotas>; })
+      .then((dados) => { if (ativa) setRede(construirRede(dados)); })
+      .catch(() => { if (ativa) setErroRede(true); });
+    return () => { ativa = false; abort.abort(); };
+  }, [roteando, mapa, rede]);
+  const trajeto = useMemo(() => rede && pontosRota.length === 2 ? encontrarRota(rede, pontosRota[0], pontosRota[1]) : null, [rede, pontosRota]);
+  const marcarRota = (ponto: PontoRota) => {
+    if (!rede) return;
+    const ajustado = ajustarPonto(rede, ponto);
+    if (!ajustado) { setAvisoRota("Clique mais perto de uma rua ou ponte."); return; }
+    setAvisoRota("");
+    setPontosRota((p) => p.length >= 2 ? [ajustado] : [...p, ajustado]);
+  };
   const [pontos, setPontos] = useState<{ x: number; y: number }[]>([]);
-  const modoRef = useRef({ regua: false, fixando: false });
-  modoRef.current = { regua, fixando: estado.fixando };
+  const modoRef = useRef({ regua: false, fixando: false, roteando: false });
+  modoRef.current = { regua, fixando: estado.fixando, roteando };
   const pins = sala.pins[mapa] || {};
   const autor = mestre ? "mestre" : meuJid;
 
@@ -208,7 +234,8 @@ export function MapaFundo({ mapa }: { mapa: MapaId }) {
     const lat = document.querySelector(".janela-lateral")?.getBoundingClientRect();
     const barra = svg.parentElement?.querySelector(".barra-mapa")?.getBoundingClientRect();
     // o mapa se enquadra no espaço que sobra entre os painéis, não atrás deles
-    const dir = Math.max(lat ? r.right - lat.left + 14 : 0, barra ? r.right - barra.left + 14 : 0);
+    const barraLateral = barra && barra.height > barra.width;
+    const dir = Math.max(0, lat ? r.right - lat.left + 14 : 0, barraLateral ? r.right - barra.left + 14 : 0);
     const k = Math.min(((r.width - esq - dir) * 0.94) / (obj.w * s), (r.height * 0.94) / (obj.h * s));
     return pontoNoMeio(ocx, ocy, k, esq, dir);
   };
@@ -238,6 +265,8 @@ export function MapaFundo({ mapa }: { mapa: MapaId }) {
       select(svg).on(".zoom", null);
       setPop(null);
       setRegua(false);
+      setRoteando(false);
+      setPontosRota([]);
       return;
     }
     const z = zoom<SVGSVGElement, unknown>()
@@ -259,10 +288,18 @@ export function MapaFundo({ mapa }: { mapa: MapaId }) {
       })
       .filter((e: Event) => {
         const ev = e as MouseEvent;
-        if (ev.type === "dblclick" && (modoRef.current.regua || modoRef.current.fixando)) return false;
+        if (ev.type === "dblclick" && (modoRef.current.regua || modoRef.current.fixando || modoRef.current.roteando)) return false;
+        // Middle-button drag pans even while placing pins or measuring.
+        if (ev.type === "mousedown" && ev.button === 1) return true;
         return (!ev.ctrlKey || ev.type === "wheel") && !ev.button;
       })
       .clickDistance(4)
+      .on("start", (e) => {
+        if (e.sourceEvent?.type === "mousedown" && e.sourceEvent.button === 1) {
+          caixa.current?.classList.add("pan-scroll");
+        }
+      })
+      .on("end", () => caixa.current?.classList.remove("pan-scroll"))
       .on("zoom", (e) => {
         camada.current?.setAttribute("transform", e.transform.toString());
         setT(e.transform);
@@ -272,6 +309,7 @@ export function MapaFundo({ mapa }: { mapa: MapaId }) {
     select(svg).call(z);
     return () => {
       select(svg).on(".zoom", null);
+      caixa.current?.classList.remove("pan-scroll");
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [estado.interativo, vx, vy, vw, vh]);
@@ -334,13 +372,15 @@ export function MapaFundo({ mapa }: { mapa: MapaId }) {
       setPop(null);
       setPontos([]);
       setRegua(false);
+      setRoteando(false);
+      setPontosRota([]);
       estado.aoSairDoFixar?.();
     };
     window.addEventListener("keydown", k);
     return () => window.removeEventListener("keydown", k);
   }, [estado.aoSairDoFixar]);
   useEffect(() => {
-    if (estado.fixando) setRegua(false);
+    if (estado.fixando) { setRegua(false); setRoteando(false); }
   }, [estado.fixando]);
 
   const pontoMapa = (ev: React.MouseEvent) => {
@@ -359,9 +399,13 @@ export function MapaFundo({ mapa }: { mapa: MapaId }) {
     return { x: ev.clientX - r.left, y: ev.clientY - r.top };
   };
   const aoClicar = (ev: React.MouseEvent) => {
-    if (!estado.interativo || ev.defaultPrevented) return;
+    if (!estado.interativo || ev.defaultPrevented || ev.button !== 0) return;
     const pm = pontoMapa(ev);
     if (!pm) return;
+    if (roteando) {
+      if (pm.u >= 0 && pm.u <= 1 && pm.v >= 0 && pm.v <= 1) marcarRota({ x: vx + pm.u * vw, y: vy + pm.v * vh });
+      return;
+    }
     if (regua) {
       if (pm.u < 0 || pm.u > 1 || pm.v < 0 || pm.v > 1) return;
       const ponto = { x: vx + pm.u * vw, y: vy + pm.v * vh };
@@ -397,10 +441,12 @@ export function MapaFundo({ mapa }: { mapa: MapaId }) {
   return (
     <div
       ref={caixa}
-      className={`mapa-fundo mapa-noturno ${estado.interativo ? "interativo" : ""} ${estado.fixando ? "fixando" : ""} ${regua ? "regua-ativa" : ""}`}
+      className={`mapa-fundo mapa-noturno ${estado.interativo ? "interativo" : ""} ${estado.fixando ? "fixando" : ""} ${regua || roteando ? "regua-ativa" : ""}`}
       style={{ ["--painel-px" as string]: `${estado.interativo ? estado.painel || 0 : 0}px` }}
     >
-      <svg ref={svgRef} viewBox={viewBox} onClick={aoClicar} role="img" aria-label={manifesto.titulo}>
+      <svg ref={svgRef} viewBox={viewBox} onClick={aoClicar}
+        onMouseDown={(ev) => { if (estado.interativo && ev.button === 1) ev.preventDefault(); }}
+        onAuxClick={(ev) => { if (estado.interativo && ev.button === 1) ev.preventDefault(); }} role="img" aria-label={manifesto.titulo}>
         <defs>
           <clipPath id={`${uid}-cartao`}>
             <rect x={vx} y={vy} width={vw} height={vh} />
@@ -431,6 +477,16 @@ export function MapaFundo({ mapa }: { mapa: MapaId }) {
             <rect x={vx} y={vy} width={vw} height={vh} fill={`url(#${uid}-vinheta)`} pointerEvents="none" />
           </g>
 
+          {roteando && <g className="rota-no-mapa" pointerEvents="none">
+            {trajeto && <>
+              <polyline points={trajeto.pontos.map((p) => `${p.x},${p.y}`).join(" ")} fill="none" stroke="#101421" strokeWidth={9 * e1} strokeLinejoin="round" strokeLinecap="round" />
+              <polyline points={trajeto.pontos.map((p) => `${p.x},${p.y}`).join(" ")} fill="none" stroke="#f4cf75" strokeWidth={4 * e1} strokeLinejoin="round" strokeLinecap="round" />
+            </>}
+            {pontosRota.map((p, i) => <g key={i} transform={`translate(${p.ponto.x} ${p.ponto.y}) scale(${e1})`}>
+              <circle r="15" fill={i ? "#c35350" : "#488d78"} stroke="#fff1cd" strokeWidth="2" />
+              <text textAnchor="middle" y="5" fill="#fff9ed" fontSize="14" fontWeight="700" fontFamily="sans-serif">{i ? "B" : "A"}</text>
+            </g>)}
+          </g>}
           {lista.map(([pid, p]) => (
             <Alfinete
               key={pid}
@@ -445,6 +501,7 @@ export function MapaFundo({ mapa }: { mapa: MapaId }) {
               onClick={(ev) => {
                 ev.preventDefault();
                 ev.stopPropagation();
+                if (roteando) { marcarRota({ x: vx + p.u * vw, y: vy + p.v * vh }); return; }
                 setPop({ tipo: "ver", ...posTela(ev), pid });
               }}
             />
@@ -526,14 +583,29 @@ export function MapaFundo({ mapa }: { mapa: MapaId }) {
                 dica="Régua: medir entre dois pontos"
                 ligado={regua}
                 aoClicar={() => {
+                  setRoteando(false);
                   setRegua(!regua);
                   setPontos([]);
                 }}
               />
+              {mapa === "rouillac" && <BotaoBarra icone="lente-ferrovias" dica="Traçar caminho: partida e chegada" ligado={roteando} aoClicar={() => {
+                setRoteando(!roteando); setRegua(false); setPop(null); setPontosRota([]); setAvisoRota(""); estado.aoSairDoFixar?.();
+              }} />}
             </div>
           </nav>
 
-          <LegendaMapa itens={legendaAtiva} />
+          {!roteando && <LegendaMapa itens={legendaAtiva} />}
+          {roteando && <section className="rota-painel" aria-label="Caminho pela cidade">
+            <header><span className="n-L">Caminho pela cidade</span><button type="button" className="rota-fechar" aria-label="Fechar caminho" onClick={() => setRoteando(false)}>×</button></header>
+            <div role="status" aria-live="polite">
+              {erroRede ? <p>Não foi possível carregar as ruas. Feche e abra o modo para tentar novamente.</p> : !rede ? <p>Abrindo as ruas de Rouillac...</p> : avisoRota ? <p>{avisoRota}</p> : pontosRota.length < 2 ? <p>{pontosRota.length ? "Agora marque a chegada (B)." : "Marque a partida (A) no mapa."}</p> : trajeto ? <>
+                <div className="rota-resumo"><strong>{trajeto.metros < 1000 ? `${Math.round(trajeto.metros)} m` : `${(trajeto.metros / 1000).toLocaleString("pt-BR", { maximumFractionDigits: 1 })} km`}</strong><span>·</span><strong>{trajeto.metros === 0 ? "0 min" : `${Math.max(1, Math.ceil(trajeto.metros / 1000 / (manifesto.escala?.viagem?.kmh || 5) * 60))} min`}</strong><span>a pé</span></div>
+                <p className="n-I">Menor caminho pelas ruas e pontes. Estimativa a {manifesto.escala?.viagem?.kmh || 5} km/h.</p>
+              </> : <p>Esses pontos não estão conectados pela rede de ruas desenhada.</p>}
+            </div>
+            {!!pontosRota.length && <div className="rota-acoes"><button type="button" className="link" onClick={() => { setPontosRota([]); setAvisoRota(""); }}>Nova rota</button>{pontosRota.length === 2 && <button type="button" className="link" onClick={() => { setPontosRota(([a,b]) => [b,a]); setAvisoRota(""); }}>Inverter A / B</button>}</div>}
+            <div className="rota-nota">Pontos ajustados às ruas próximas · Esc sai</div>
+          </section>}
 
           {regua && (
             <div className="faixa-regua">
@@ -619,7 +691,7 @@ function JanelaAlfinete(p: {
 }) {
   const { sala } = useSessao();
   const existente = p.pop.tipo === "ver" ? p.pins[p.pop.pid] : null;
-  const [tipo, setTipo] = useState(existente?.tipo || p.tipoSugerido || p.tipos[0].id);
+  const [tipo, setTipo] = useState(existente?.tipo || p.tipos.find((t) => t.id === p.tipoSugerido)?.id || p.tipos[0].id);
   const [titulo, setTitulo] = useState(existente?.titulo || "");
   const [texto, setTexto] = useState(existente?.texto || "");
   const [confirmando, setConfirmando] = useState(false);

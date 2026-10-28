@@ -1,24 +1,25 @@
-// Capítulo III · O continente. O mapa ganha vida: lentes, ficha do país, alfinetes.
+// Capítulo IV · O continente. O mapa ganha vida: lentes, ficha do país, alfinetes.
 // A janela principal encolhe para um painel à esquerda; a lateral mostra a ficha do país,
 // os alfinetes da mesa (por pessoa) ou as terras distantes.
 import { useEffect, useState } from "react";
 import { useSessao } from "../../db/sala";
-import { Insignia, Ramo, Selo, Vinheta } from "../../jogo/componentes";
+import { Insignia, Ramo, Vinheta } from "../../jogo/componentes";
 import { localizadorDePaises } from "../../geo";
 import { Icone } from "../../jogo/icones";
+import type { MapaId } from "../../db/tipos";
 import type { Pais } from "../../conteudo";
-import { Escolhas, JanelaLateral, Storylet } from "../pecas";
+import { JanelaLateral, Storylet } from "../pecas";
 import { useConfigurarMapa } from "../MapaFundo";
 
 type Lateral = { tipo: "pais"; id: string } | { tipo: "alfinetes" } | { tipo: "distantes" } | null;
 
-export function Continente({ trancada }: { trancada: boolean }) {
+export function Continente({ trancada, mapa, setMapa }: { trancada: boolean; mapa: MapaId; setMapa: (mapa: MapaId) => void }) {
   const { conteudo, sala, meuJid, mestre } = useSessao();
   const [fixando, setFixando] = useState(false);
   const [lateral, setLateral] = useState<Lateral>(null);
   const [aberto, setAberto] = useState<string | null>(null);
   const [onde, setOnde] = useState<((u: number, v: number) => string | null) | null>(null);
-  const pins = sala.pins.continente || {};
+  const pins = sala.pins[mapa] || {};
   const sel = lateral?.tipo === "pais" ? lateral.id : null;
   const podeFixar = !trancada && (!!meuJid || mestre);
 
@@ -29,13 +30,13 @@ export function Continente({ trancada }: { trancada: boolean }) {
   useConfigurarMapa(
     {
       interativo: true,
-      fixando,
-      bloqueado: trancada,
-      paisSelecionado: sel,
-      aoClicarPais: (id) => setLateral(id ? { tipo: "pais", id } : null),
+      fixando: fixando && podeFixar,
+      bloqueado: !podeFixar,
+      paisSelecionado: mapa === "continente" ? sel : null,
+      aoClicarPais: mapa === "continente" ? (id) => setLateral(id ? { tipo: "pais", id } : null) : undefined,
       aoSairDoFixar: () => setFixando(false),
     },
-    [fixando, trancada, sel],
+    [fixando, podeFixar, sel, mapa],
   );
 
   const meusPins = Object.values(pins).filter((p) => p && p.autor === (mestre ? "mestre" : meuJid)).length;
@@ -43,48 +44,46 @@ export function Continente({ trancada }: { trancada: boolean }) {
 
   return (
     <>
-      <Storylet n={3} titulo="O Continente" contexto="Dez anos de guerra, oito países e uma feira pela paz." forma="painel" vinheta={false}>
-        <p className="n-N">
-          O mapa está aberto sobre a mesa do cartógrafo. As frentes estão marcadas em vermelho, as ferrovias cortadas em cruz. Marque de onde seu personagem vem,
-          por onde passou, o que viu.
-        </p>
-        <div className="dica" style={{ marginTop: 10 }}>
-          <Icone id="info" tamanho={16} />
-          <p className="n-I">Arraste para mover o mapa, use a roda do mouse para aproximar. As lentes ficam embaixo.</p>
+      <Storylet n={4} titulo="O Continente" contexto="Dez anos de guerra, oito países e uma feira pela paz." forma="painel" vinheta={false}>
+        <div className="origem-mapas" role="group" aria-label="Escolher mapa">
+          {([ ["continente", "Continente"], ["rouillac", "Cidade de Rouillac"] ] as const).map(([id, nome]) => (
+            <button type="button" key={id} aria-pressed={mapa === id} onClick={() => {
+              setFixando(false);
+              setLateral(null);
+              setAberto(null);
+              setMapa(id);
+            }}>{nome}</button>
+          ))}
         </div>
-        <Escolhas>
-          <Ramo
-            titulo={fixando ? "Fixando: clique no mapa" : "Fixar um alfinete"}
-            descricao={fixando ? "Esc cancela." : "Origem, memória, rumor ou pessoa."}
-            chamada={fixando ? undefined : "Clique no mapa para escolher o lugar."}
-            icone="lugar"
-            estado={!podeFixar ? "bloqueado" : fixando ? "selecionado" : "normal"}
-            selo={meusPins ? <Selo tipo="feito">{meusPins === 1 ? "1 seu" : `${meusPins} seus`}</Selo> : undefined}
-            aoClicar={() => setFixando(!fixando)}
-          />
-          <Ramo
-            titulo="Ler a ficha de um país"
-            descricao="Clique num país no mapa, ou escolha aqui."
-            icone="lente-politica"
-            aberto={aberto === "paises"}
-            aoClicar={() => setAberto(aberto === "paises" ? null : "paises")}
-          >
-            <div className="sub-ramos">
-              {proximos.map((p) => (
-                <Ramo key={p.id} titulo={p.nome} descricao={p.lado} icone="cap-3" estado={sel === p.id ? "selecionado" : "normal"} aoClicar={() => setLateral({ tipo: "pais", id: p.id })} />
-              ))}
-            </div>
-          </Ramo>
-          <Ramo titulo="Os alfinetes da mesa" descricao="Tudo o que cada um marcou, por pessoa." icone="memoria" estado={lateral?.tipo === "alfinetes" ? "selecionado" : "normal"} aoClicar={() => setLateral(lateral?.tipo === "alfinetes" ? null : { tipo: "alfinetes" })} />
-          <Ramo titulo="Terras distantes" descricao="As Ilhas Peroladas e a Costa do Marfim." icone="lente-ferrovias" estado={lateral?.tipo === "distantes" ? "selecionado" : "normal"} aoClicar={() => setLateral(lateral?.tipo === "distantes" ? null : { tipo: "distantes" })} />
-        </Escolhas>
+        <p className="n-N mapa-convite">{mapa === "rouillac" ? "Marque os lugares que fazem parte da sua hist?ria em Rouillac." : "Marque de onde voc? vem, por onde passou e o que viu."}</p>
+        <div className="mapa-acoes" aria-label="A??es do mapa">
+          <button type="button" className={fixando ? "ativa" : ""} disabled={!podeFixar} aria-pressed={fixando} onClick={() => setFixando(!fixando)}>
+            <Icone id="lugar" tamanho={22} />
+            <span>{fixando ? "Cancelar" : "Fixar alfinete"}</span>
+            {!!meusPins && <span className="mapa-acao-contagem" title="Seus alfinetes">{meusPins}</span>}
+          </button>
+          {mapa === "continente" && <button type="button" className={aberto === "paises" ? "ativa" : ""} aria-expanded={aberto === "paises"} aria-controls="mapa-lista-paises" onClick={() => setAberto(aberto === "paises" ? null : "paises")}>
+            <Icone id="lente-politica" tamanho={22} /><span>{"Pa?ses"}</span>
+          </button>}
+          <button type="button" className={lateral?.tipo === "alfinetes" ? "ativa" : ""} aria-pressed={lateral?.tipo === "alfinetes"} onClick={() => setLateral(lateral?.tipo === "alfinetes" ? null : { tipo: "alfinetes" })}>
+            <Icone id="memoria" tamanho={22} /><span>Alfinetes da mesa</span>
+          </button>
+          {mapa === "continente" && <button type="button" className={lateral?.tipo === "distantes" ? "ativa" : ""} aria-pressed={lateral?.tipo === "distantes"} onClick={() => setLateral(lateral?.tipo === "distantes" ? null : { tipo: "distantes" })}>
+            <Icone id="lente-ferrovias" tamanho={22} /><span>Terras distantes</span>
+          </button>}
+        </div>
+        {fixando && <p className="n-I mapa-instrucao">Clique no mapa para fixar. Esc cancela.</p>}
+        {mapa === "continente" && aberto === "paises" && <div id="mapa-lista-paises" className="mapa-paises">
+          {proximos.map((p) => <Ramo key={p.id} titulo={p.nome} icone="cap-3" estado={sel === p.id ? "selecionado" : "normal"} aoClicar={() => setLateral({ tipo: "pais", id: p.id })} />)}
+        </div>}
+        <p className="n-I mapa-ajuda-curta">{"Arraste para mover ? Rodinha para zoom"}</p>
       </Storylet>
 
       {lateral?.tipo === "pais" && (
         <FichaPais pais={conteudo.paises.find((p) => p.id === lateral.id)!} fechar={() => setLateral(null)} onde={onde} />
       )}
       {lateral?.tipo === "alfinetes" && (
-        <JanelaLateral rotulo="por pessoa" titulo="Alfinetes da mesa" fechar={() => setLateral(null)}>
+        <JanelaLateral rotulo="por pessoa" titulo={mapa === "rouillac" ? "Alfinetes de Rouillac" : "Alfinetes do continente"} fechar={() => setLateral(null)}>
           {[...Object.entries(sala.jogadores).sort((a, b) => (a[1].ordem ?? 0) - (b[1].ordem ?? 0)), ["mestre", { nome: "Mestre", cor: "#a5463c" }] as const].map(([jid, j]) => {
             const dele = Object.values(pins).filter((p) => p && p.autor === jid);
             if (!dele.length) return null;
@@ -95,7 +94,7 @@ export function Continente({ trancada }: { trancada: boolean }) {
                 </div>
                 <ul className="lista-simples">
                   {dele.map((p, i) => {
-                    const pais = onde?.(p.u, p.v);
+                    const pais = mapa === "continente" ? onde?.(p.u, p.v) : null;
                     return (
                       <li key={i} style={{ display: "flex", gap: 10, alignItems: "center" }}>
                         <Insignia icone={p.tipo} tamanho={28} />
@@ -104,7 +103,7 @@ export function Continente({ trancada }: { trancada: boolean }) {
                             {p.titulo}
                           </div>
                           <div className="n-I" style={{ fontSize: 12 }}>
-                            {conteudo.paises.find((x) => x.id === pais)?.nome || "mar e outros lugares"}
+                            {mapa === "rouillac" ? "Rouillac" : conteudo.paises.find((x) => x.id === pais)?.nome || "mar e outros lugares"}
                           </div>
                         </div>
                       </li>
