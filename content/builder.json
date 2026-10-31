@@ -1,53 +1,55 @@
 {
   "titulo": "Programme Officiel de l'Exposition",
   "categorias": [
-    { "d4": 1, "nome": "A construção", "perguntas": [
-      { "d10": 1, "texto": "[Exemplo] Que prédio da cidade velha foi derrubado para erguer a feira, e quem ainda chora por ele?", "pin": "lugar" },
-      { "d10": 2, "texto": "[Exemplo] Que acidente aconteceu durante as obras, e como foi abafado?", "pin": "escandalo" },
-      { "d10": 3, "texto": "[Exemplo] Qual é o pavilhão mais caro da Exposição, e quem pagou por ele?", "pin": "pavilhao" },
-      { "d10": 4, "texto": "[Exemplo] Que máquina nova faz a feira funcionar à noite?", "pin": "lugar" },
-      { "d10": 5, "texto": "[Exemplo] Quem é o arquiteto-chefe, e o que dizem dele nos cafés?", "pin": "pessoa" },
-      { "d10": 6, "texto": "[Exemplo] Que material estranho foi usado numa das estruturas?", "pin": "boato" },
-      { "d10": 7, "texto": "[Exemplo] Que parte da feira ainda não ficou pronta?", "pin": "lugar" },
-      { "d10": 8, "texto": "[Exemplo] Que operários foram contratados de longe, e por quê?", "pin": "pessoa" },
-      { "d10": 9, "texto": "[Exemplo] O que encontraram ao cavar as fundações?", "pin": "boato" },
-      { "d10": 10, "texto": "[Exemplo] Qual é o símbolo da Exposição, e onde ele aparece?", "pin": "lugar" }
+    { "d4": 1, "nome": "A Cidade", "perguntas": [
+      { "d12": 1, "texto": "Que prédio da antiga vila foi derrubado para erguer a feira? E para quem ele era importante?", "pin": "lugar" },
+      { "d12": 2, "texto": "", "pin": "lugar" },
+      { "d12": 3, "texto": "", "pin": "pavilhao" },
+      { "d12": 4, "texto": "", "pin": "lugar" },
+      { "d12": 5, "texto": "", "pin": "pessoa" },
+      { "d12": 6, "texto": "", "pin": "boato" },
+      { "d12": 7, "texto": "", "pin": "lugar" },
+      { "d12": 8, "texto": "", "pin": "pessoa" },
+      { "d12": 9, "texto": "", "pin": "boato" },
+      { "d12": 10, "texto": "", "pin": "lugar" },
+      { "d12": 11, "texto": "", "pin": "lugar" },
+      { "d12": 12, "texto": "", "pin": "lugar" }
     ]},
-    { "d4": 2, "nome": "Os pavilhões", "perguntas": [
-      { "d10": 1, "texto": "[Exemplo] Qual país em guerra montou o pavilhão mais bonito, e o que ele esconde?", "pin": "pavilhao" },
-      { "d10": 2, "texto": "[Exemplo] Que pavilhão foi fechado no primeiro dia?", "pin": "escandalo" },
-      { "d10": 3, "texto": "[Exemplo] Que invenção todo mundo faz fila para ver?", "pin": "pavilhao" },
-      { "d10": 4, "texto": "[Exemplo] Que obra de arte causou briga entre duas delegações?", "pin": "escandalo" },
-      { "d10": 5, "texto": "[Exemplo] Que pavilhão só abre à noite?", "pin": "pavilhao" },
-      { "d10": 6, "texto": "[Exemplo] O que as Ilhas Peroladas trouxeram para mostrar?", "pin": "pavilhao" },
-      { "d10": 7, "texto": "[Exemplo] Que animal ou planta exótica está em exposição?", "pin": "lugar" },
-      { "d10": 8, "texto": "[Exemplo] Que pavilhão tem um guarda que nunca dorme?", "pin": "pessoa" },
-      { "d10": 9, "texto": "[Exemplo] Qual é a atração mais popular entre as crianças?", "pin": "lugar" },
-      { "d10": 10, "texto": "[Exemplo] Que pavilhão ninguém visita, e por quê?", "pin": "boato" }
+    { "d4": 2, "nome": "Os Pavilhões", "perguntas": [
+      { "d10": 1, "texto": "O Pavilhão mais bonito foi montado por um país convidado. Que foi país foi esse e o que ele esconde?", "pin": "pavilhao" },
+      { "d10": 2, "texto": "Qual era a palestra que estava marcada para acontecer, mas foi misteriosamente removida", "pin": "escandalo" },
+      { "d10": 3, "texto": "Que invenção todo mundo faz fila para ver?", "pin": "pavilhao" },
+      { "d10": 4, "texto": "Que obra de arte causou briga entre duas delegações?", "pin": "escandalo" },
+      { "d10": 5, "texto": "De qual Pavilhão os civis dizem ouvir barulhos estranhos durante a noite?", "pin": "pavilhao" },
+      { "d10": 6, "texto": "O que a maior Casa das Ilhas Peroladas trouxe para expor?", "pin": "pavilhao" },
+      { "d10": 7, "texto": "Que animal ou planta exótica está em exposição?", "pin": "lugar" },
+      { "d10": 8, "texto": "Um Pavilhão é conhecido por ter um Guarda que nunca dorme. Qual é esse pavilhão, e quem é ele?", "pin": "pessoa" },
+      { "d10": 9, "texto": "Qual é a atração mais popular entre as crianças?", "pin": "lugar" },
+      { "d10": 10, "texto": "Que pavilhão ninguém visita, e por quê?", "pin": "boato" }
     ]},
-    { "d4": 3, "nome": "A gente da feira", "perguntas": [
-      { "d10": 1, "texto": "[Exemplo] Quem é a estrela da Exposição, e o que ela quer de verdade?", "pin": "pessoa" },
-      { "d10": 2, "texto": "[Exemplo] Que delegado chegou com mais seguranças do que o protocolo permite?", "pin": "pessoa" },
-      { "d10": 3, "texto": "[Exemplo] Onde os funcionários se encontram depois do expediente?", "pin": "lugar" },
-      { "d10": 4, "texto": "[Exemplo] Que jornalista está fazendo perguntas demais?", "pin": "pessoa" },
-      { "d10": 5, "texto": "[Exemplo] Onde dormem os refugiados que trabalham na feira?", "pin": "lugar" },
-      { "d10": 6, "texto": "[Exemplo] Que casal proibido se encontra nos jardins?", "pin": "escandalo" },
-      { "d10": 7, "texto": "[Exemplo] Quem vende ingressos falsos, e a quem paga proteção?", "pin": "pessoa" },
-      { "d10": 8, "texto": "[Exemplo] Que criança aparece em todas as fotos da feira?", "pin": "boato" },
-      { "d10": 9, "texto": "[Exemplo] Que cozinheiro famoso abriu um restaurante na Exposição?", "pin": "lugar" },
-      { "d10": 10, "texto": "[Exemplo] Quem foi demitido na véspera da abertura?", "pin": "escandalo" }
+    { "d4": 3, "nome": "Pessoas da Feira", "perguntas": [
+      { "d10": 1, "texto": "Quem é a estrela da Exposição, e o que ela quer de verdade?", "pin": "pessoa" },
+      { "d10": 2, "texto": "Que delegado chegou com mais seguranças do que o protocolo permite?", "pin": "pessoa" },
+      { "d10": 3, "texto": "Onde os funcionários se encontram depois do expediente?", "pin": "lugar" },
+      { "d10": 4, "texto": "Que jornalista está fazendo perguntas demais?", "pin": "pessoa" },
+      { "d10": 5, "texto": "Onde dormem os refugiados que trabalham na feira?", "pin": "lugar" },
+      { "d10": 6, "texto": "Que casal proibido se encontra nos jardins?", "pin": "escandalo" },
+      { "d10": 7, "texto": "Quem é que está contrabandeando coisas raras para fora da feira?", "pin": "pessoa" },
+      { "d10": 8, "texto": "Uma criança curiosamente aparece em todas as fotos da feira. Quem é ela?", "pin": "boato" },
+      { "d10": 9, "texto": "Que cozinheiro famoso abriu um restaurante na Exposição?", "pin": "lugar" },
+      { "d10": 10, "texto": "Quem foi demitido na véspera da abertura?", "pin": "escandalo" }
     ]},
     { "d4": 4, "nome": "Os rumores", "perguntas": [
-      { "d10": 1, "texto": "[Exemplo] Que som estranho se ouve na feira de madrugada?", "pin": "boato" },
-      { "d10": 2, "texto": "[Exemplo] Que visitante desapareceu, e o que dizem que aconteceu?", "pin": "escandalo" },
-      { "d10": 3, "texto": "[Exemplo] Que lugar da feira os cães se recusam a atravessar?", "pin": "boato" },
-      { "d10": 4, "texto": "[Exemplo] Que tratado secreto dizem que será assinado na Exposição?", "pin": "boato" },
-      { "d10": 5, "texto": "[Exemplo] Que objeto em exposição foi roubado e devolvido no dia seguinte?", "pin": "escandalo" },
-      { "d10": 6, "texto": "[Exemplo] Qual relógio da feira está sempre errado, e por quanto?", "pin": "lugar" },
-      { "d10": 7, "texto": "[Exemplo] O que os mineiros velhos de Rouillac dizem sobre a feira?", "pin": "pessoa" },
-      { "d10": 8, "texto": "[Exemplo] Que sonho vários visitantes tiveram na mesma noite?", "pin": "boato" },
-      { "d10": 9, "texto": "[Exemplo] Que fotografia da feira mostra algo que não estava lá?", "pin": "boato" },
-      { "d10": 10, "texto": "[Exemplo] Que aposta corre entre os garçons da Exposição?", "pin": "escandalo" }
+      { "d10": 1, "texto": "Que som estranho se ouve na feira de madrugada?", "pin": "boato" },
+      { "d10": 2, "texto": "Na noite antes da abertura, um visitante importante desapareceu. Quem era ela, e o que dizem que aconteceu?", "pin": "escandalo" },
+      { "d10": 3, "texto": "Que lugar da feira os cães se recusam a atravessar?", "pin": "boato" },
+      { "d10": 4, "texto": "Que tratado secreto dizem que será assinado na Exposição?", "pin": "boato" },
+      { "d10": 5, "texto": "Que objeto em exposição foi roubado durante a organização da feira, mas curiosamente estava de volta no dia da exposição?", "pin": "escandalo" },
+      { "d10": 6, "texto": "Dizem que um grupo de ocultistas, espalhados ente as federações, estão atrás de algo. Quem são e o que procuram?", "pin": "boato" },
+      { "d10": 7, "texto": "O que os mineiros velhos de Rouillac dizem sobre a feira?", "pin": "boato" },
+      { "d10": 8, "texto": "Na noite antes da abertura, vários visitantes tiveram um sonho em comum. Senho sonho foi esse?", "pin": "boato" },
+      { "d10": 9, "texto": "Dizem que um convidado muito imporante está com o rosto muito diferente desde a útlima vez que foi visto. Quem é ele? E o que mudou", "pin": "escandalo" },
+      { "d10": 10, "texto": "Dizem que tem algo estranho na forma que a feira foi organizada. O que é que dizem?", "pin": "boato" }
     ]}
   ]
 }
