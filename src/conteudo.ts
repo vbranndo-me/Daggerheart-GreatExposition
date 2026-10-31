@@ -106,6 +106,12 @@ export interface CartaDominio {
   nome: string;
   dominio: string;
   nivel: number;
+  /** Habilidade, Feitiço, Grimório */
+  tipo?: string;
+  /** custo de recuperação (Recall) */
+  recuperacao?: number;
+  /** a classe nova a que a carta pertence */
+  classe?: string;
   texto?: string;
   imagem?: string | null;
 }

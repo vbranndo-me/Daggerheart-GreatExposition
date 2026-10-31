@@ -3226,3 +3226,32 @@ button.trilha-espaco { cursor: pointer; }
 .sub-aba.escolhida.ativa { border-color: var(--gaslight); }
 .sub-texto .trilha.acesa .trilha-no { background: var(--gaslight); border-color: var(--brass-hi); box-shadow: 0 0 10px rgba(232, 184, 102, 0.55); }
 .consulta-rodape { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--brass-dark); }
+
+/* cartas com texto: na fileira o texto é cortado; ampliada, a carta cresce para caber tudo */
+.carta-placeholder .carta-tipo {
+  font-size: 9px;
+  color: var(--brass);
+}
+.carta-placeholder .carta-texto {
+  font-size: 12px;
+  line-height: 1.4;
+  text-align: left;
+}
+.carta-placeholder .carta-texto p {
+  margin: 0 0 6px;
+}
+.cartas-fileira .carta-placeholder .carta-texto {
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.carta-ampliada .carta-placeholder {
+  height: auto;
+  min-height: calc(min(340px, 80vw) * 88 / 63);
+  aspect-ratio: auto;
+  padding: 22px 20px 34px;
+}
+.carta-ampliada .carta-placeholder .carta-texto {
+  font-size: 14px;
+}

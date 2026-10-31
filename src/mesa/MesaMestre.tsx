@@ -4,7 +4,7 @@
 import { useState, type ReactNode } from "react";
 import { useSessao, CORES_JOGADORES } from "../db/sala";
 import { comoLista } from "../db/backend";
-import { ETAPAS, ROMANOS } from "../db/tipos";
+import { ETAPAS, ROMANOS, etapaAnterior, etapaDe, normalizarEtapa, proximaEtapa, romanoDe } from "../db/tipos";
 import { perguntaBuilder } from "../conteudo";
 import { BotaoHextech } from "../jogo/hextech";
 import { Icone } from "../jogo/icones";
@@ -66,6 +66,8 @@ export function MesaMestre({
   setComoJogador: (v: boolean) => void;
   vendo: number;
 }) {
+  const { sala, acoes } = useSessao();
+  const atual = normalizarEtapa(sala.meta.etapaAtual ?? 0);
   return (
     <aside className={`mesa-mestre ${aberta ? "aberta" : ""}`} aria-label="Mesa do Mestre" aria-hidden={!aberta}>
       <div className="mesa-cab">
@@ -83,85 +85,188 @@ export function MesaMestre({
         ))}
       </nav>
       <div className="mesa-corpo">
-        {aba === "conducao" && <Conducao comoJogador={comoJogador} setComoJogador={setComoJogador} />}
+        {aba === "conducao" && <Conducao setAba={setAba} />}
         {aba === "pessoas" && <Pessoas />}
         {aba === "dados" && <Dados />}
         {aba === "moderacao" && <Moderacao />}
         {aba === "sala" && <SalaAba />}
         {aba === "exportar" && <Exportar />}
       </div>
+      <div className="mesa-rodape">
+        <BotaoHextech disabled={atual >= ETAPAS[ETAPAS.length - 1].n} onClick={() => acoes.irParaEtapa(proximaEtapa(atual))}>
+          Próximo capítulo ▸
+        </BotaoHextech>
+        <button className={`mesa-ver-jogador ${comoJogador ? "ativo" : ""}`} onClick={() => setComoJogador(!comoJogador)} title="Esconde a Mesa e tudo que é só seu, para ver a tela como a mesa vê. O botão da Mesa no HUD traz tudo de volta.">
+          {comoJogador ? "voltar à visão de mestre" : "ver como jogador"}
+        </button>
+      </div>
     </aside>
   );
 }
 
 // ---------------- Condução ----------------
-function Conducao({ comoJogador, setComoJogador }: { comoJogador: boolean; setComoJogador: (v: boolean) => void }) {
-  const { sala, acoes } = useSessao();
-  const atual = sala.meta.etapaAtual ?? 0;
+function Conducao({ setAba }: { setAba: (a: string) => void }) {
+  const { sala, acoes, conteudo: c } = useSessao();
+  const atual = normalizarEtapa(sala.meta.etapaAtual ?? 0);
   const etapas = sala.meta.etapas || {};
+  const vezJid = sala.builder?.vezJid;
+  const objetivo = (c.objetivos[String(atual)]?.mestre || "").replace("{vez}", vezJid ? sala.jogadores[vezJid]?.nome || "alguém" : "alguém");
   return (
     <>
       <div className="mesa-bloco">
         <span className="n-L">na mesa</span>
         <div className="n-S" style={{ color: "#f0e4d8" }}>
-          {atual === 0 ? "Prólogo · " : `Capítulo ${ROMANOS[atual]} · `}
-          {ETAPAS[atual].nome}
+          {atual === 0 ? "Prólogo · " : `Capítulo ${romanoDe(atual)} · `}
+          {etapaDe(atual).nome}
         </div>
-        <div className="mesa-linha" style={{ justifyContent: "space-between" }}>
-          <button className="btn-gm" disabled={atual <= 0} onClick={() => acoes.irParaEtapa(atual - 1)}>
-            ◂ anterior
-          </button>
-          <BotaoHextech disabled={atual >= ETAPAS.length - 1} onClick={() => acoes.irParaEtapa(atual + 1)}>
-            Próximo capítulo ▸
-          </BotaoHextech>
-        </div>
-        {atual === 1 && (
-          <button className={`btn-gm ${sala.meta.conviteAberto ? "" : "ativo"}`} onClick={() => acoes.abrirConvite(!sala.meta.conviteAberto)}>
-            {sala.meta.conviteAberto ? "lacrar o convite de novo" : "entregar o convite para todos"}
+        {objetivo && <p className="n-I mesa-objetivo">{objetivo}</p>}
+        {atual > 0 && (
+          <button className="mesa-ver-jogador" style={{ justifySelf: "start" }} onClick={() => acoes.irParaEtapa(etapaAnterior(atual))}>
+            ◂ voltar um capítulo
           </button>
         )}
       </div>
 
-      {(atual === 5 || sala.builder?.iniciado) && <ControleBuilder />}
+      <AcoesCapitulo atual={atual} setAba={setAba} />
 
-      <div className="mesa-bloco">
-        <span className="n-L">capítulos</span>
-        {ETAPAS.map((e) => {
-          const est = etapas[e.n] || {};
-          return (
-            <div key={e.n} className={`mesa-etapa ${e.n === atual ? "atual" : ""}`}>
-              <span className="num">{e.n === 0 ? "·" : ROMANOS[e.n]}</span>
-              <span>{e.nome}</span>
-              {e.n === atual ? (
-                <span className="n-L" style={{ color: "#f0c4bd" }}>
-                  na mesa
-                </span>
-              ) : (
-                <button className="btn-gm" onClick={() => acoes.irParaEtapa(e.n)} title="abrir e levar a mesa para este capítulo">
-                  {est.aberta || e.n === 0 ? "levar a mesa" : "abrir"}
-                </button>
-              )}
-              {e.n > 0 ? (
-                <button className={`btn-gm ${est.trancada ? "ativo" : ""}`} onClick={() => acoes.trancarEtapa(e.n, !est.trancada)} title={est.trancada ? "destrancar" : "trancar: os jogadores leem mas não editam"}>
-                  <Icone id="cadeado" tamanho={12} />
-                </button>
-              ) : (
-                <span />
-              )}
+      <details className="mesa-acordeao">
+        <summary>Capítulos</summary>
+        <div className="mesa-acordeao-corpo">
+          {ETAPAS.map((e) => {
+            const est = etapas[e.n] || {};
+            return (
+              <div key={e.n} className={`mesa-etapa ${e.n === atual ? "atual" : ""}`}>
+                <span className="num">{e.n === 0 ? "·" : romanoDe(e.n)}</span>
+                <span>{e.nome}</span>
+                {e.n === atual ? (
+                  <span className="n-L" style={{ color: "#f0c4bd" }}>
+                    na mesa
+                  </span>
+                ) : (
+                  <button className="btn-gm" onClick={() => acoes.irParaEtapa(e.n)} title="abrir e levar a mesa para este capítulo">
+                    {est.aberta || e.n === 0 ? "levar a mesa" : "abrir"}
+                  </button>
+                )}
+                {e.n > 0 ? (
+                  <button className={`btn-gm ${est.trancada ? "ativo" : ""}`} onClick={() => acoes.trancarEtapa(e.n, !est.trancada)} title={est.trancada ? "destrancar" : "trancar: os jogadores leem mas não editam"}>
+                    <Icone id="cadeado" tamanho={12} />
+                  </button>
+                ) : (
+                  <span />
+                )}
+              </div>
+            );
+          })}
+          <p className="n-I" style={{ color: "#a9b5a9", fontSize: 12, margin: "6px 0 0" }}>
+            Dica: clique com o botão direito num capítulo do topo da tela para abrir, mover todos ou trancar.
+          </p>
+        </div>
+      </details>
+    </>
+  );
+}
+
+/** O que o mestre faz neste capítulo, em poucos botões. */
+function AcoesCapitulo({ atual, setAba }: { atual: number; setAba: (a: string) => void }) {
+  const { sala, acoes, conteudo: c } = useSessao();
+  const lista = Object.entries(sala.jogadores).sort((a, b) => (a[1].ordem ?? 0) - (b[1].ordem ?? 0));
+  const trancada = !!sala.meta.etapas?.[atual]?.trancada;
+  let corpo: ReactNode = null;
+  let titulo = "o que fazer agora";
+  switch (atual) {
+    case 0: {
+      titulo = `tripulação a bordo · ${lista.filter(([, j]) => j.online).length} de ${lista.length}`;
+      corpo = (
+        <>
+          {lista.map(([jid, j]) => (
+            <div key={jid} className="mesa-linha">
+              <span className="cabeca-cor" style={{ background: j.cor }} />
+              <span className="cresce">{j.nome}</span>
+              <span className={`presenca-ponto ${j.online ? "on" : ""}`} title={j.online ? "na sala" : "fora"} />
             </div>
-          );
-        })}
-      </div>
-
-      <div className="mesa-bloco">
-        <span className="n-L">visão</span>
-        <button className={`btn-gm ${comoJogador ? "ativo" : ""}`} onClick={() => setComoJogador(!comoJogador)}>
-          {comoJogador ? "voltar à visão de mestre" : "ver como jogador"}
+          ))}
+          <button className="btn-gm" onClick={() => setAba("pessoas")}>
+            cadastrar jogadores e copiar o link
+          </button>
+        </>
+      );
+      break;
+    }
+    case 1:
+      corpo = (
+        <button className={`btn-gm ${sala.meta.conviteAberto ? "" : "ativo"}`} onClick={() => acoes.abrirConvite(!sala.meta.conviteAberto)}>
+          {sala.meta.conviteAberto ? "lacrar o convite de novo" : "entregar o convite para todos"}
         </button>
-        <p className="n-I" style={{ color: "#a9b5a9", fontSize: 12, margin: 0 }}>
-          Esconde a Mesa e tudo que é só seu, para você ver a tela como a mesa vê. O botão da Mesa no HUD traz tudo de volta.
-        </p>
-      </div>
+      );
+      break;
+    case 3: {
+      const criadorTrancado = !!sala.meta.criadorTrancado;
+      titulo = "fichas de registro";
+      corpo = (
+        <>
+          {lista.map(([jid, j]) => {
+            const pr = progresso(c, sala.personagens[jid], sala.privado[jid]);
+            return (
+              <div key={jid} style={{ display: "grid", gap: 3 }}>
+                <div className="mesa-linha">
+                  <span className="cabeca-cor" style={{ background: j.cor }} />
+                  <span className="cresce">{j.nome}</span>
+                  <span className="n-I">
+                    {pr.feitos}/{pr.total}
+                  </span>
+                </div>
+                <div className="barra-progresso">
+                  <span style={{ width: `${(pr.feitos / pr.total) * 100}%` }} />
+                </div>
+              </div>
+            );
+          })}
+          <button className={`btn-gm ${criadorTrancado ? "ativo" : ""}`} onClick={() => acoes.trancarCriador(!criadorTrancado)}>
+            {criadorTrancado ? "criador de personagem trancado · destrancar" : "trancar o criador de personagem"}
+          </button>
+        </>
+      );
+      break;
+    }
+    case 4: {
+      const pins = Object.values(sala.pins.continente || {});
+      const quem = [...lista.map(([jid, j]) => [jid, j.nome] as const), ["mestre", "Mestre"] as const];
+      titulo = `alfinetes no mapa · ${pins.length}`;
+      corpo = <p className="n-I mesa-objetivo">{quem.map(([id, nome]) => `${nome} ${pins.filter((p) => p && p.autor === id).length}`).join(" · ")}</p>;
+      break;
+    }
+    case 6:
+      titulo = `laços formados · ${Object.keys(sala.lacos || {}).length}`;
+      corpo = (
+        <button className="btn-gm" onClick={() => setAba("moderacao")}>
+          moderar laços
+        </button>
+      );
+      break;
+    case 7:
+      corpo = (
+        <button className="btn-gm ativo" onClick={() => setAba("exportar")}>
+          exportar a noite
+        </button>
+      );
+      break;
+  }
+  return (
+    <>
+      {corpo && (
+        <div className="mesa-bloco">
+          <span className="n-L">{titulo}</span>
+          {corpo}
+        </div>
+      )}
+      {(atual === 5 || sala.builder?.iniciado) && <ControleBuilder />}
+      {atual >= 3 && atual <= 6 && (
+        <div className="mesa-bloco">
+          <button className={`btn-gm ${trancada ? "ativo" : ""}`} onClick={() => acoes.trancarEtapa(atual, !trancada)} title="Trancado: os jogadores leem, mas não editam.">
+            {trancada ? "edição trancada · destrancar" : "trancar a edição deste capítulo"}
+          </button>
+        </div>
+      )}
     </>
   );
 }

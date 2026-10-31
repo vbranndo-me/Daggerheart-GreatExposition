@@ -1,3 +1,5 @@
+import { esquecerSala } from "./salasSalvas";
+import { carregarArquivo } from "../arquivo/dados";
 import { createContext, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { obterBackend, comoLista, type Backend } from "./backend";
 import {
@@ -269,6 +271,9 @@ export function criarAcoes(b: Backend, salaId: string) {
     async trancarEtapa(n: number, trancada: boolean) {
       await b.set(`${P}/meta/etapas/${n}/trancada`, trancada || null);
     },
+    async abrirEtapa(n: number) {
+      await b.set(`${P}/meta/etapas/${n}/aberta`, true);
+    },
     async fecharEtapa(n: number) {
       await b.set(`${P}/meta/etapas/${n}/aberta`, null);
     },
@@ -456,6 +461,7 @@ export function criarAcoes(b: Backend, salaId: string) {
     },
     async apagarSala() {
       await b.remove(P);
+      esquecerSala(salaId);
     },
     async modoEnsaio(conteudo: Conteudo) {
       await criarEnsaio(b, P, conteudo);
@@ -478,47 +484,65 @@ function proximaVez(builder: Builder): Record<string, any> {
   return { "builder/vez": vez, "builder/rodada": rodada, "builder/vezJid": ordem[vez] ?? null };
 }
 
-// ---------- modo ensaio: 5 jogadores falsos com dados de exemplo ----------
+// ---------- modo ensaio: 5 jogadores falsos, cada um com o personagem pronto ----------
+// Atenção: o Firebase recusa um update com caminhos que se sobrepõem (ex.: "privado/x" e
+// "privado/x/seguranca/y"), então cada jogador vai inteiro num único caminho.
 async function criarEnsaio(b: Backend, P: string, conteudo: Conteudo) {
   const nomes = ["Amélie", "Bastien", "Céleste", "Dorian", "Eulália"];
-  const classes = conteudo.classes.map((c) => c.id);
+  const ancestralidades = (await carregarArquivo()).ancestralidades;
   const paises = conteudo.paises.map((p) => p.id);
   const papeis = conteudo.origens.map((o) => o.id);
+  const em = <T,>(lista: T[], i: number): T | undefined => (lista.length ? lista[i % lista.length] : undefined);
+  const agora = Date.now();
+  // classes espalhadas pela lista, para o ensaio mostrar variedade
+  const passo = Math.max(1, Math.floor(conteudo.classes.length / nomes.length));
   const upd: Record<string, any> = {};
   const jids: string[] = [];
   nomes.forEach((nome, i) => {
     const jid = "ensaio" + (i + 1);
     jids.push(jid);
-    const classe = classes[i % classes.length];
+    const classe = em(conteudo.classes, i * passo);
+    const sub = classe?.subclasses.length ? classe.subclasses[i % classe.subclasses.length].nome : null;
+    const anc = em(ancestralidades, i * 2 + 1);
+    const anc2 = i === 4 ? em(ancestralidades, i * 2 + 4) : null; // uma ancestralidade mista
+    const origemTexto: Record<number, string> = {};
+    const perguntas = Math.max(3, classe?.origem?.length || 0);
+    for (let k = 0; k < perguntas; k++) origemTexto[k] = `Resposta de exemplo ${k + 1} de ${nome}.`;
     upd[`jogadores/${jid}`] = { nome: nome + " (ensaio)", cor: CORES_JOGADORES[i], ordem: 100 + i };
     upd[`personagens/${jid}`] = {
-      pais: paises[(i * 3) % paises.length],
-      papel: papeis[i % papeis.length],
-      comunidade: conteudo.comunidades[i % Math.max(1, conteudo.comunidades.length)]?.id ?? null,
-      classe,
-      origem: { [classe]: { 0: `Resposta de exemplo de ${nome}.` } },
-      compulsao: i % 2 ? "Não consigo deixar uma porta trancada sem saber o que há atrás." : null,
-      oculto: i % 3 ? null : "Vi uma luz que não devia existir, uma vez, no fundo de um poço.",
+      pais: em(paises, i * 3),
+      papel: em(papeis, i),
+      comunidade: em(conteudo.comunidades, i)?.id ?? null,
+      ancestralidade: anc?.nome ?? null,
+      ancestralidade2: anc2?.nome && anc2.nome !== anc?.nome ? anc2.nome : null,
+      classe: classe?.id ?? null,
+      subclasse: sub,
+      criadorPronto: true,
+      registroConfirmado: true,
+      origem: classe ? { [classe.id]: origemTexto } : null,
+      compulsao: "Não consigo deixar uma porta trancada sem saber o que há atrás.",
+      oculto: "Vi uma luz que não devia existir, uma vez, no fundo de um poço.",
     };
     upd[`privado/${jid}`] = {
       segredo: `Segredo de exemplo de ${nome}: guardo uma carta que nunca abri.`,
-      morte: conteudo.seguranca.morte.opcoes[i % conteudo.seguranca.morte.opcoes.length]?.id ?? null,
+      morte: em(conteudo.seguranca.morte.opcoes, i)?.id ?? null,
+      seguranca: i === 0 ? { "ensaio-s1": true } : i === 1 ? { "ensaio-s2": true } : null,
     };
-    const u = 0.15 + 0.15 * i;
-    upd[`pins/continente/ensaio-pin-${i}`] = {
-      u,
-      v: 0.45 + 0.05 * (i % 3),
-      tipo: conteudo.continente.tiposPin[i % conteudo.continente.tiposPin.length].id,
-      titulo: `Alfinete de ${nome}`,
-      texto: "Texto curto de exemplo.",
-      autor: jid,
-      criadoEm: Date.now() + i,
-    };
+    const tipo = em(conteudo.continente.tiposPin, i)?.id;
+    if (tipo) {
+      upd[`pins/continente/ensaio-pin-${i}`] = {
+        u: 0.15 + 0.15 * i,
+        v: 0.45 + 0.05 * (i % 3),
+        tipo,
+        titulo: `Alfinete de ${nome}`,
+        texto: "Texto curto de exemplo.",
+        autor: jid,
+        criadoEm: agora + i,
+      };
+    }
   });
-  upd["seguranca/itens/ensaio-s1"] = { lista: "linha", texto: "Violência contra crianças", criadoEm: Date.now() };
-  upd["seguranca/itens/ensaio-s2"] = { lista: "veu", texto: "Tortura", criadoEm: Date.now() };
-  upd["privado/ensaio1/seguranca/ensaio-s1"] = true;
-  upd["privado/ensaio2/seguranca/ensaio-s2"] = true;
+  upd["seguranca/itens/ensaio-s1"] = { lista: "linha", texto: "Violência contra crianças", criadoEm: agora };
+  upd["seguranca/itens/ensaio-s2"] = { lista: "veu", texto: "Tortura", criadoEm: agora };
   upd["builder/ordem"] = jids;
   upd["builder/rodadas"] = 1;
   upd["meta/ensaio"] = true;

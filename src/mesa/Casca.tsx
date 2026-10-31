@@ -6,7 +6,7 @@ import "../jogo/jogo.css";
 import "../jogo/jogo-ajustes.css";
 import "./mesa.css";
 import { useSessao } from "../db/sala";
-import { ETAPAS, ROMANOS, type MapaId } from "../db/tipos";
+import { ETAPAS, etapaDe, normalizarEtapa, romanoDe, type MapaId } from "../db/tipos";
 import { HUD, Janela, ProvedorNotificacoes, useNotificar, type PassoHUD, type Tripulante } from "../jogo/componentes";
 import { Icone } from "../jogo/icones";
 import { BotaoAmbiente, FundoVivo } from "../jogo/FundoVivo";
@@ -14,7 +14,6 @@ import { MapaFundo, ProvedorMapa } from "./MapaFundo";
 import { MesaMestre } from "./MesaMestre";
 import { Chegada } from "./etapas/Chegada";
 import { Convite } from "./etapas/Convite";
-import { Protocolo } from "./etapas/Protocolo";
 import { Continente } from "./etapas/Continente";
 import { Ficha } from "./etapas/Ficha";
 import { Exposicao } from "./etapas/Exposicao";
@@ -52,7 +51,7 @@ class Protecao extends Component<{ children: ReactNode; chave: number }, { erro:
 export function Casca({ escolher, naoSouEu }: { escolher: (jid: string) => Promise<void>; naoSouEu: () => Promise<void> }) {
   const s = useSessao();
   const { sala, mestre, meuJid, conteudo } = s;
-  const etapaAtual = sala.meta.etapaAtual ?? 0;
+  const etapaAtual = normalizarEtapa(sala.meta.etapaAtual ?? 0);
   const [vendo, setVendo] = useState(etapaAtual);
   const [lista, setLista] = useState(false);
   const [releituraFechada, setReleituraFechada] = useState<string | null>(null);
@@ -61,6 +60,7 @@ export function Casca({ escolher, naoSouEu }: { escolher: (jid: string) => Promi
   const [comoJogador, setComoJogador] = useState(false);
   // o programa da noite (Cap. V) é uma janela lateral; o botão fica no HUD
   const [programa, setPrograma] = useState(false);
+  const [menuPasso, setMenuPasso] = useState<{ n: number; x: number; y: number } | null>(null);
   const refCap = useRef<HTMLSpanElement>(null);
   const refVez = useRef<HTMLSpanElement>(null);
 
@@ -112,7 +112,7 @@ export function Casca({ escolher, naoSouEu }: { escolher: (jid: string) => Promi
     : ETAPAS.map((e) => {
         const pode = aberta(e.n);
         const estado = !pode ? "fechado" : e.n === etapaAtual ? "mesa" : e.n < etapaAtual ? "feito" : "aberto";
-        const nome = `${e.n === 0 ? "Prólogo" : `Capítulo ${ROMANOS[e.n]}`} · ${e.nome}`;
+        const nome = `${e.n === 0 ? "Prólogo" : `Capítulo ${romanoDe(e.n)}`} · ${e.nome}`;
         const dica = !pode
           ? "O mestre ainda não abriu este capítulo."
           : e.n === etapaAtual
@@ -124,7 +124,8 @@ export function Casca({ escolher, naoSouEu }: { escolher: (jid: string) => Promi
               : e.n < etapaAtual
                 ? "Já passou. Clique para rever."
                 : "O mestre já liberou. Clique para espiar.";
-        return { n: e.n, nome, icone: `cap-${e.n === 3 ? 4 : e.n === 4 ? 3 : e.n}`, estado, vendo: e.n === visivel, dica } as PassoHUD;
+        const notaMestre = mestre ? [e.n > 0 && e.n > etapaAtual && !etapas[e.n]?.aberta && "fechado para os jogadores", etapas[e.n]?.trancada && "edição trancada"].filter(Boolean).join(", ") : "";
+        return { n: e.n, nome, icone: `cap-${e.n === 3 ? 4 : e.n === 4 ? 3 : e.n}`, estado, vendo: e.n === visivel, dica: notaMestre ? `${dica} (${notaMestre}; botão direito para opções)` : mestre ? `${dica} (botão direito para opções)` : dica } as PassoHUD;
       });
 
   const abrirMesa = (aba?: string) => {
@@ -142,8 +143,8 @@ export function Casca({ escolher, naoSouEu }: { escolher: (jid: string) => Promi
             <FundoVivo ativo={!telaMapa} />
             <div className="hud-fixo">
               <HUD
-                capitulo={ROMANOS[visivel] || "·"}
-                nomeCapitulo={ETAPAS[visivel].nome}
+                capitulo={romanoDe(visivel) || "·"}
+                nomeCapitulo={etapaDe(visivel).nome}
                 objetivo={objetivo}
                 tripulacao={tripulacao}
                 vez={visivel === 5 ? vezJid : null}
@@ -154,6 +155,7 @@ export function Casca({ escolher, naoSouEu }: { escolher: (jid: string) => Promi
                   setVendo(n);
                   setLista(false);
                 }}
+                aoMenuPasso={mestreVisivel ? (n, x, y) => setMenuPasso({ n, x, y }) : undefined}
                 aoMesa={() => (mestreVisivel ? setMesaAberta(!mesaAberta) : abrirMesa())}
                 refCapitulo={refCap}
                 refVez={refVez}
@@ -182,6 +184,8 @@ export function Casca({ escolher, naoSouEu }: { escolher: (jid: string) => Promi
               />
             </div>
 
+            {menuPasso && mestreVisivel && <MenuPasso {...menuPasso} fechar={() => setMenuPasso(null)} />}
+
             {lista && (
               <div className="lista-capitulos-fixa" onMouseLeave={() => setLista(false)}>
                 <Janela tipo="leve" className="lista-capitulos">
@@ -199,7 +203,7 @@ export function Casca({ escolher, naoSouEu }: { escolher: (jid: string) => Promi
                       >
                         <Icone id={pode ? `cap-${e.n}` : "cadeado"} tamanho={20} />
                         <span className="n-L" style={{ width: 28, color: "inherit" }}>
-                          {e.n === 0 ? "·" : ROMANOS[e.n]}
+                          {e.n === 0 ? "·" : romanoDe(e.n)}
                         </span>
                         <span style={{ fontFamily: "var(--font-display)", fontSize: 15 }}>{e.nome}</span>
                       </button>
@@ -211,7 +215,7 @@ export function Casca({ escolher, naoSouEu }: { escolher: (jid: string) => Promi
 
             {visivel !== etapaAtual && !semNome && releituraFechada !== `${visivel}:${etapaAtual}` && (
               <div className="aviso-releitura">
-                Você está relendo o Capítulo {ROMANOS[visivel]}. A mesa está no Capítulo {ROMANOS[etapaAtual]}.
+                Você está relendo o Capítulo {romanoDe(visivel)}. A mesa está no Capítulo {romanoDe(etapaAtual)}.
                 <button className="link" onClick={() => setVendo(etapaAtual)}>
                   voltar para a mesa
                 </button>
@@ -244,14 +248,51 @@ export function Casca({ escolher, naoSouEu }: { escolher: (jid: string) => Promi
   );
 }
 
+// Menu de botão direito nos capítulos do HUD: só mostra o que faz sentido para aquele capítulo
+function MenuPasso({ n, x, y, fechar }: { n: number; x: number; y: number; fechar: () => void }) {
+  const { sala, acoes } = useSessao();
+  const atual = normalizarEtapa(sala.meta.etapaAtual ?? 0);
+  const est = sala.meta.etapas?.[n] || {};
+  useEffect(() => {
+    const f = (e: KeyboardEvent) => e.key === "Escape" && fechar();
+    window.addEventListener("keydown", f);
+    window.addEventListener("resize", fechar);
+    return () => {
+      window.removeEventListener("keydown", f);
+      window.removeEventListener("resize", fechar);
+    };
+  }, [fechar]);
+  const itens: { rotulo: string; fazer: () => void }[] = [];
+  if (n !== atual) itens.push({ rotulo: "Mover todos para cá", fazer: () => acoes.irParaEtapa(n) });
+  if (n > atual && n > 0) {
+    itens.push(est.aberta ? { rotulo: "Fechar para os jogadores", fazer: () => acoes.fecharEtapa(n) } : { rotulo: "Abrir para os jogadores", fazer: () => acoes.abrirEtapa(n) });
+  }
+  if (n >= 3 && n <= 6) itens.push({ rotulo: est.trancada ? "Destrancar a edição" : "Trancar a edição", fazer: () => acoes.trancarEtapa(n, !est.trancada) });
+  return (
+    <>
+      <div className="menu-passo-fundo" onClick={fechar} onContextMenu={(e) => (e.preventDefault(), fechar())} />
+      <div className="menu-passo" role="menu" style={{ left: Math.min(x, window.innerWidth - 230), top: y + 6 }}>
+        <div className="n-L menu-passo-titulo">{n === 0 ? "Prólogo" : `Capítulo ${romanoDe(n)}`} · {etapaDe(n).nome}</div>
+        {itens.length ? (
+          itens.map((i) => (
+            <button key={i.rotulo} role="menuitem" onClick={() => (i.fazer(), fechar())}>
+              {i.rotulo}
+            </button>
+          ))
+        ) : (
+          <span className="n-I" style={{ padding: "6px 12px" }}>A mesa já está aqui.</span>
+        )}
+      </div>
+    </>
+  );
+}
+
 function EtapaN({ n, trancada, mapaOrigem, setMapaOrigem }: { n: number; trancada: boolean; mapaOrigem: MapaId; setMapaOrigem: (mapa: MapaId) => void }) {
   switch (n) {
     case 0:
       return <Chegada />;
     case 1:
       return <Convite trancada={trancada} />;
-    case 2:
-      return <Protocolo trancada={trancada} />;
     case 3:
       return <Ficha trancada={trancada} />;
     case 4:
@@ -288,7 +329,7 @@ function Eventos({ refCap, refVez }: { refCap: React.RefObject<HTMLSpanElement>;
     if (!a) return;
     if (agora.etapa !== a.etapa && agora.etapa != null) {
       reiniciar(refCap.current, "anim-cap-brilha");
-      if (!mestre) notificar(`cap-${agora.etapa}`, <>O mestre abriu o Capítulo {ROMANOS[agora.etapa]}</>);
+      if (!mestre) notificar(`cap-${agora.etapa}`, <>O mestre abriu o Capítulo {romanoDe(agora.etapa)}</>);
     }
     if (agora.vez && agora.vez !== a.vez) {
       window.setTimeout(() => reiniciar(refVez.current, "anim-vez"), 50);

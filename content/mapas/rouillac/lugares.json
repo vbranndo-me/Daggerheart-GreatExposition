@@ -1,0 +1,191 @@
+[
+  {
+    "id": "palais-royal",
+    "nome": "Palais Royal",
+    "x": 2024.6,
+    "y": 1486.4,
+    "texto": "O palácio ocupa a ponta da cidade, onde os dois rios se encontram, e os jardins descem em canteiros até a água. O rei Rogier quase não sai dos aposentos; quem entra e sai pela grade, todos os dias, são os secretários do ministro."
+  },
+  {
+    "id": "cathedrale-saint-eloi",
+    "nome": "Cathédrale Saint-Éloi",
+    "x": 2168.1,
+    "y": 1409.4,
+    "texto": "A catedral do padroeiro dos ferreiros, com um óculo no alto da cúpula que joga um feixe de sol sobre o altar ao meio-dia. Nos solstícios, a praça enche, e os círios bentos esgotam antes do anoitecer."
+  },
+  {
+    "id": "les-halles",
+    "nome": "Les Halles",
+    "x": 2068.8,
+    "y": 1427.2,
+    "texto": "O mercado central, todo de ferro e vidro. Desde o racionamento, as filas dão a volta no prédio antes do amanhecer, e a guarda chega antes dos feirantes."
+  },
+  {
+    "id": "bourse",
+    "nome": "Bourse",
+    "x": 2137.7,
+    "y": 1441.4,
+    "texto": "A bolsa de Rouillac, onde o aço de Entremonts é vendido para os dois lados da guerra. Durante a trégua, corretores de blocos inimigos dividem o mesmo pregão e fingem que não se conhecem."
+  },
+  {
+    "id": "hotel-du-ministre",
+    "nome": "Hôtel du Ministre",
+    "x": 2101.9,
+    "y": 1281.4,
+    "texto": "O gabinete do primeiro-ministro Armand Delcour. A luz do segundo andar fica acesa até tarde, e na porta há sempre alguém esperando para cobrar uma conta da Exposição."
+  },
+  {
+    "id": "opera",
+    "nome": "Opéra",
+    "x": 1997.7,
+    "y": 1251.6,
+    "texto": "A ópera de Les Tilleuls preparou uma temporada inteira para a Exposição. Os camarotes viraram disputa diplomática: ninguém quer ficar de frente para uma delegação inimiga."
+  },
+  {
+    "id": "caserne-de-la-garde",
+    "nome": "Caserne de la Garde",
+    "x": 2068.6,
+    "y": 902.9,
+    "texto": "O quartel da guarda que tem a tarefa de manter a trégua. Os uniformes são novos, feitos para a feira; os soldados, nem tanto."
+  },
+  {
+    "id": "universite",
+    "nome": "Université",
+    "x": 2634.0,
+    "y": 858.8,
+    "texto": "As faculdades e a biblioteca de Les Facultés. Boa parte dos debates da Exposição acontece nos anfiteatros daqui, e os estudantes vendem lugar na plateia."
+  },
+  {
+    "id": "galerie-du-prince-musee",
+    "nome": "Galerie du Prince",
+    "x": 2537.2,
+    "y": 732.6,
+    "texto": "O museu das antiguidades que o príncipe trouxe da Costa do Marfim: máscaras, marfim gravado, objetos de uso que ninguém identifica. Fora os estudiosos, quase ninguém visita."
+  },
+  {
+    "id": "hopital-saint-lazare",
+    "nome": "Hôpital Saint-Lazare",
+    "x": 1479.6,
+    "y": 1471.7,
+    "texto": "O hospital de Saint-Roch, lotado de feridos de guerra e de gente que desmaiou de fome na fila do pão. Os médicos dormem em turnos no corredor."
+  },
+  {
+    "id": "parc-des-tilleuls",
+    "nome": "Parc des Tilleuls",
+    "x": 1299.5,
+    "y": 1114.0,
+    "texto": "O parque da burguesia, com coreto, lago e tílias enfileiradas. Aos domingos, a banda toca valsas, e a cidade finge que não está com fome."
+  },
+  {
+    "id": "promenade-des-remparts",
+    "nome": "Promenade des Remparts",
+    "x": 1951.1,
+    "y": 1309.3,
+    "texto": "A faixa verde que corre por dentro da antiga muralha da cidade velha. De dia é passeio de namorados; à noite, dormitório de quem não tem onde ficar."
+  },
+  {
+    "id": "cimetiere-de-mont-repos",
+    "nome": "Cimetière de Mont-Repos",
+    "x": 987.5,
+    "y": 615.0,
+    "texto": "O cemitério-jardim no morro, na borda da cidade, com mausoléus de ferro fundido e anjos de bronze. Dá para ver a cidade inteira lá de cima, e a fumaça cobrindo tudo."
+  },
+  {
+    "id": "le-vieux-puits",
+    "nome": "Le Vieux Puits",
+    "x": 1012.5,
+    "y": 2152.5,
+    "texto": "O primeiro poço de mina de Rouillac, no alto de Les Corons. A cidade nasceu dele. Hoje está fechado, mas os mineiros velhos ainda tiram o chapéu quando passam."
+  },
+  {
+    "id": "tour-de-l-exposition",
+    "nome": "Tour de l'Exposition",
+    "x": 1658.2,
+    "y": 2307.2,
+    "texto": "A torre de ferro no centro da feira, vista de qualquer ponto da cidade. À noite, milhares de lampiões de gás a contornam de cima a baixo."
+  },
+  {
+    "id": "galerie-des-machines",
+    "nome": "Galerie des Machines",
+    "x": 1612.8,
+    "y": 2497.9,
+    "texto": "Um salão gigantesco de ferro e vidro, ao sul do recinto, onde cada nação mostra do que as suas fábricas são capazes. Dentro, o barulho das máquinas não deixa ninguém conversar."
+  },
+  {
+    "id": "eglise-sainte-barbe",
+    "nome": "Église Sainte-Barbe",
+    "x": 1778.1,
+    "y": 2076.5,
+    "texto": "A igreja da padroeira dos mineiros, na antiga vila do Rio Ferrum. Foi restaurada para a feira, mas os fiéis que a frequentavam foram removidos junto com a vila."
+  },
+  {
+    "id": "gare-du-nord",
+    "nome": "Gare du Nord",
+    "x": 1450.0,
+    "y": 627.5,
+    "texto": "A estação principal, onde chegam as linhas de Codrina e de Kenturia (esta por um túnel na serra). Foi aqui que quase todos os convidados desembarcaram, e os hotéis em volta estão lotados."
+  },
+  {
+    "id": "gare-du-midi",
+    "nome": "Gare du Midi",
+    "x": 2500.0,
+    "y": 2490.0,
+    "texto": "A estação do sul, na margem leste, onde chegam as linhas de Maresme e de Serrania. Mais operária e mais suja que a do Norte."
+  },
+  {
+    "id": "gare-de-l-exposition",
+    "nome": "Gare de l'Exposition",
+    "x": 1470.0,
+    "y": 2257.5,
+    "texto": "A estação nova, no fim do ramal construído só para a feira. Os trens especiais param aqui, dentro do recinto."
+  },
+  {
+    "id": "gare-de-marchandises",
+    "nome": "Gare de Marchandises",
+    "x": 2887.5,
+    "y": 1602.5,
+    "texto": "O pátio de cargas de Les Fourneaux: minério chegando, aço saindo, dia e noite. Ninguém confere muito bem o que vai em cada vagão."
+  },
+  {
+    "id": "gare-de-la-noue",
+    "nome": "Gare de La Noue",
+    "x": 3187.5,
+    "y": 990.0,
+    "texto": "A pequena estação da linha de cintura, no norte. Quase não para trem; os bancos da plataforma são ponto de encontro de quem não quer ser visto."
+  },
+  {
+    "id": "hauts-fourneaux",
+    "nome": "Hauts-Fourneaux",
+    "x": 2901.8,
+    "y": 1429.5,
+    "texto": "Os altos-fornos da margem do Noireau, que nunca se apagam. O céu sobre eles fica alaranjado a noite toda."
+  },
+  {
+    "id": "docks-du-ferrum",
+    "nome": "Docks du Ferrum",
+    "x": 2021.7,
+    "y": 1849.4,
+    "texto": "Os armazéns e píeres logo abaixo da confluência, de onde as barcaças descem para Maresme. Cada barcaça paga pedágio na foz, quando Maresme deixa passar."
+  },
+  {
+    "id": "gazometres",
+    "nome": "Gazomètres",
+    "x": 2164.6,
+    "y": 2576.3,
+    "texto": "Os gasômetros que iluminam a cidade, na margem leste. Os barracos de Les Baraques se amontoam bem na sombra deles."
+  },
+  {
+    "id": "abattoirs",
+    "nome": "Abattoirs",
+    "x": 1613.6,
+    "y": 2626.5,
+    "texto": "Os matadouros e curtumes do sul. O cheiro de sangue chega até o recinto da Exposição quando o vento vira."
+  },
+  {
+    "id": "prison-des-forges",
+    "nome": "Prison des Forges",
+    "x": 3225.7,
+    "y": 2084.3,
+    "texto": "A prisão nas colinas do leste, de onde se veem os altos-fornos. Desde a remoção da vila, está mais cheia do que nunca."
+  }
+]

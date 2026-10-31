@@ -88,7 +88,16 @@ const LENTES: { id: string; rotulo: string; icone: string; camadas: string[] }[]
   { id: "cidades", rotulo: "Cidades", icone: "lente-cidades", camadas: ["cidades"] },
 ];
 
-type Pop = { tipo: "novo"; x: number; y: number; u: number; v: number } | { tipo: "ver"; x: number; y: number; pid: string; editando?: boolean };
+type PopAlfinete = { tipo: "novo"; x: number; y: number; u: number; v: number } | { tipo: "ver"; x: number; y: number; pid: string; editando?: boolean };
+type Pop = PopAlfinete | { tipo: "lugar"; x: number; y: number; id: string };
+/** um monumento ou lugar de Rouillac (content/mapas/rouillac/lugares.json), fixo no mapa */
+interface Lugar {
+  id: string;
+  nome: string;
+  x: number;
+  y: number;
+  texto: string;
+}
 
 // O mapa com a moldura é UM objeto físico sobre a mesa. Zoom e arrastar movem o objeto inteiro
 // (mapa, moldura, cantos, cartucho e escala), como quem chega mais perto dele. A mesa é a tela
@@ -111,6 +120,18 @@ export function MapaFundo({ mapa }: { mapa: MapaId }) {
   const [base, setBase] = useState(manifesto.bases?.[0]?.id ?? null);
   const [lentes, setLentes] = useState<Record<string, boolean>>({ politica: true, guerra: true, ferrovias: true, cidades: true });
   const [pop, setPop] = useState<Pop | null>(null);
+  const [lugares, setLugares] = useState<Lugar[]>([]);
+  useEffect(() => {
+    if (mapa !== "rouillac") return;
+    let vivo = true;
+    fetch(urlConteudo("mapas/rouillac/lugares.json"))
+      .then((r) => (r.ok ? (r.json() as Promise<Lugar[]>) : []))
+      .then((l) => vivo && setLugares(l))
+      .catch(() => {});
+    return () => {
+      vivo = false;
+    };
+  }, [mapa]);
   const [regua, setRegua] = useState(false);
   const [roteando, setRoteando] = useState(false);
   const [rede, setRede] = useState<RedeRotas | null>(null);
@@ -487,6 +508,26 @@ export function MapaFundo({ mapa }: { mapa: MapaId }) {
               <text textAnchor="middle" y="5" fill="#fff9ed" fontSize="14" fontWeight="700" fontFamily="sans-serif">{i ? "B" : "A"}</text>
             </g>)}
           </g>}
+          {estado.interativo && base === "monumentos" && lugares.map((l) => (
+            <Alfinete
+              key={l.id}
+              x={l.x}
+              y={l.y}
+              cor="#8f7a45"
+              icone="pavilhao"
+              escala={escala * 0.8}
+              titulo={l.nome}
+              destaque={pop?.tipo === "lugar" && pop.id === l.id}
+              onClick={(ev) => {
+                // fixando um alfinete, o clique é do mapa: deixa passar
+                if (estado.fixando) return;
+                ev.preventDefault();
+                ev.stopPropagation();
+                if (roteando) { marcarRota({ x: l.x, y: l.y }); return; }
+                setPop({ tipo: "lugar", ...posTela(ev), id: l.id });
+              }}
+            />
+          ))}
           {lista.map(([pid, p]) => (
             <Alfinete
               key={pid}
@@ -633,7 +674,17 @@ export function MapaFundo({ mapa }: { mapa: MapaId }) {
         </div>
       )}
 
-      {pop && (
+      {pop?.tipo === "lugar" && (
+        <JanelaLugar
+          lugar={lugares.find((l) => l.id === pop.id)}
+          x={pop.x}
+          y={pop.y}
+          largura={caixa.current?.clientWidth || 1200}
+          altura={caixa.current?.clientHeight || 800}
+          fechar={() => setPop(null)}
+        />
+      )}
+      {pop && pop.tipo !== "lugar" && (
         <JanelaAlfinete
           mapa={mapa}
           pop={pop}
@@ -673,9 +724,32 @@ function barraDeEscala(alvoUnidades: number, esc: NonNullable<Escala>) {
   return { unidades: valor / esc.porUnidade, rotulo: `${valor.toLocaleString("pt-BR")} ${esc.unidade}` };
 }
 
+function JanelaLugar({ lugar, x, y, largura, altura, fechar }: { lugar?: Lugar; x: number; y: number; largura: number; altura: number; fechar: () => void }) {
+  if (!lugar) return null;
+  const left = Math.min(Math.max(12, x + 18), largura - 372);
+  const top = Math.max(12, Math.min(y - 40, altura - 260));
+  return (
+    <div className="pop-alfinete pop-lugar" style={{ left, top }}>
+      <Janela tipo="leve">
+        <div style={{ display: "flex", gap: 12, alignItems: "center", marginBottom: 10 }}>
+          <Insignia icone="pavilhao" tamanho={40} />
+          <div style={{ flex: 1 }}>
+            <div className="n-L">Monumento · Rouillac</div>
+            <div className="n-S">{lugar.nome}</div>
+          </div>
+          <BotaoFechar aoClicar={fechar} rotulo="fechar" />
+        </div>
+        <p className="n-N" style={{ fontSize: 16, margin: 0 }}>
+          {lugar.texto}
+        </p>
+      </Janela>
+    </div>
+  );
+}
+
 function JanelaAlfinete(p: {
   mapa: MapaId;
-  pop: Pop;
+  pop: PopAlfinete;
   largura: number;
   altura: number;
   pins: Record<string, Pin>;

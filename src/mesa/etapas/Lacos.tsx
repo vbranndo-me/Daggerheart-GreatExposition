@@ -4,6 +4,7 @@
 import { useState } from "react";
 import { useSessao } from "../../db/sala";
 import { Placa, Ramo, Selo } from "../../jogo/componentes";
+import { Icone } from "../../jogo/icones";
 import { Escrita, Gestao, Painel } from "../pecas";
 import { useVisao } from "../Casca";
 
@@ -33,8 +34,44 @@ export function Lacos({ trancada }: { trancada: boolean }) {
 
   return (
     <Gestao n={6} titulo="Laços" colunas="minmax(250px, 1fr) minmax(300px, 1.25fr) minmax(250px, 1fr)">
-      <Painel titulo="As suas perguntas">
-        {!eu ? (
+      <Painel titulo={mestre && !eu ? "A tripulação" : "As suas perguntas"}>
+        <ol className="laco-passos" aria-label="como funciona">
+          <li>
+            <b>1</b>
+            <span>Escolha uma pergunta da sua classe.</span>
+          </li>
+          <li>
+            <b>2</b>
+            <span>Mande a um colega.</span>
+          </li>
+          <li>
+            <b>3</b>
+            <span>A resposta vira um laço entre vocês.</span>
+          </li>
+        </ol>
+        {!eu && mestre ? (
+          <div className="acompanha">
+            {lista.map(([j, x], i) => {
+              const fez = lacos.filter(([, l]) => l.de === j);
+              const rec = lacos.filter(([, l]) => l.para === j);
+              return (
+                <div key={j} className="acompanha-linha" style={{ ["--i" as string]: i }}>
+                  <span className="retrato" style={{ background: `radial-gradient(circle at 45% 40%, ${x.cor}, #161a26 120%)` }}>
+                    {x.nome.slice(0, 1)}
+                  </span>
+                  <span className="acompanha-nome">
+                    <span className="n-R">{x.nome}</span>
+                    <span className="n-I">
+                      perguntou {fez.length} · respondeu {rec.filter(([, l]) => l.resposta).length} de {rec.length}
+                    </span>
+                  </span>
+                  {rec.length > 0 && rec.every(([, l]) => l.resposta) && <Icone id="visto" tamanho={16} />}
+                </div>
+              );
+            })}
+            {!lista.length && <p className="n-I">Ainda não há jogadores cadastrados.</p>}
+          </div>
+        ) : !eu ? (
           <p className="n-I">Entre com o seu nome para fazer perguntas.</p>
         ) : !minhaClasse ? (
           <p className="n-I">Marque uma classe na Ficha de registro para ver as perguntas de conexão.</p>
@@ -110,7 +147,7 @@ export function Lacos({ trancada }: { trancada: boolean }) {
               ))}
           </div>
         )}
-        {mestre && <p className="n-I">Mestre: apagar laços fica na Mesa, aba Moderação.</p>}
+        {mestre && <p className="n-I" style={{ marginTop: 12 }}>Mestre: apagar laços fica na Mesa, aba Moderação.</p>}
       </Painel>
 
       <Painel titulo="O diagrama" className="painel-diagrama">
@@ -124,8 +161,9 @@ export function Lacos({ trancada }: { trancada: boolean }) {
           </span>
         </div>
         <div className="laco-focado" aria-live="polite">
+          <Icone id="info" tamanho={20} />
           {focado ? (
-            <>
+            <div>
               <div className="n-L">
                 {nome(focado.de)} → {nome(focado.para)}
               </div>
@@ -141,7 +179,7 @@ export function Lacos({ trancada }: { trancada: boolean }) {
                   Sem resposta ainda.
                 </p>
               )}
-            </>
+            </div>
           ) : (
             <p className="n-I" style={{ margin: 0 }}>
               Passe o mouse (ou toque) numa linha para ler o laço.
@@ -150,14 +188,36 @@ export function Lacos({ trancada }: { trancada: boolean }) {
         </div>
       </Painel>
 
-      <Painel titulo="Caixa de entrada" acao={pendentes.length ? <Selo tipo="vez">{pendentes.length === 1 ? "1 pergunta" : `${pendentes.length} perguntas`}</Selo> : undefined}>
-        {!eu ? (
+      <Painel titulo={mestre && !eu ? "Todos os laços" : "Caixa de entrada"} acao={pendentes.length ? <Selo tipo="vez">{pendentes.length === 1 ? "1 pergunta" : `${pendentes.length} perguntas`}</Selo> : undefined}>
+        {!eu && mestre ? (
+          lacos.length ? (
+            lacos.map(([lid, l], i) => (
+              <div key={lid} className={`caixa-item ${l.resposta ? "respondida" : "nova"}`} style={{ ["--i" as string]: i }} onMouseEnter={() => setFoco(lid)} onMouseLeave={() => setFoco(null)}>
+                <div className="n-L">
+                  {nome(l.de)} → {nome(l.para)}
+                </div>
+                <p className="n-contexto" style={{ margin: "2px 0 4px" }}>
+                  {l.pergunta}
+                </p>
+                {l.resposta ? (
+                  <p className="n-J resposta-curta" style={{ ["--autor" as string]: sala.jogadores[l.para]?.cor }}>
+                    {l.resposta}
+                  </p>
+                ) : (
+                  <p className="n-I">Esperando resposta…</p>
+                )}
+              </div>
+            ))
+          ) : (
+            <p className="n-I laco-vazio">Nenhum laço ainda. Quando alguém mandar uma pergunta, ela aparece aqui.</p>
+          )
+        ) : !eu ? (
           <p className="n-I">Entre com o seu nome para ver as perguntas que te fizeram.</p>
         ) : !paraMim.length ? (
-          <p className="n-I">Ninguém te perguntou nada ainda.</p>
+          <p className="n-I laco-vazio">Ninguém te perguntou nada ainda. Quando chegar uma pergunta, ela aparece aqui.</p>
         ) : null}
         {pendentes.map(([lid, l]) => (
-          <div key={lid} className="caixa-item" onMouseEnter={() => setFoco(lid)} onMouseLeave={() => setFoco(null)}>
+          <div key={lid} className="caixa-item nova" onMouseEnter={() => setFoco(lid)} onMouseLeave={() => setFoco(null)}>
             <div className="n-L">{nome(l.de)} te perguntou</div>
             <p className="n-contexto" style={{ margin: "2px 0 6px" }}>
               {l.pergunta}
@@ -201,11 +261,28 @@ function Diagrama({ foco, setFoco }: { foco: string | null; setFoco: (l: string 
     pos[jid] = [C + R * Math.cos(a), C + R * Math.sin(a)];
   });
   const lacos = Object.entries(sala.lacos || {}).filter(([, l]) => pos[l.de] && pos[l.para]);
+  const pendentesDe: Record<string, number> = {};
+  for (const [, l] of lacos) if (!l.resposta) pendentesDe[l.para] = (pendentesDe[l.para] || 0) + 1;
+  const ligados = foco && sala.lacos[foco] ? [sala.lacos[foco].de, sala.lacos[foco].para] : [];
   const cont: Record<string, number> = {};
   return (
-    <svg viewBox="0 10 400 380" className="diagrama-lacos" role="img" aria-label="diagrama de laços">
-      {n > 1 && <circle cx={C} cy={C} r={R} fill="none" stroke="var(--brass-dark)" strokeDasharray="2 6" />}
-      {lacos.map(([lid, l]) => {
+    <svg viewBox="0 10 400 380" className={`diagrama-lacos ${foco ? "tem-foco" : ""}`} role="img" aria-label="diagrama de laços">
+      <defs>
+        <radialGradient id="laco-brilho" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="#e8b866" stopOpacity=".16" />
+          <stop offset="100%" stopColor="#e8b866" stopOpacity="0" />
+        </radialGradient>
+      </defs>
+      <circle cx={C} cy={C} r="190" fill="url(#laco-brilho)" />
+      <g className="laco-relogio" aria-hidden="true">
+        <circle cx={C} cy={C} r="178" fill="none" stroke="var(--brass-dark)" strokeWidth=".8" strokeDasharray="1 7" />
+        {Array.from({ length: 12 }, (_, i) => {
+          const a = (i * Math.PI) / 6;
+          return <line key={i} x1={C + 170 * Math.cos(a)} y1={C + 170 * Math.sin(a)} x2={C + 178 * Math.cos(a)} y2={C + 178 * Math.sin(a)} stroke="var(--brass)" strokeWidth="1" opacity=".55" />;
+        })}
+      </g>
+      {n > 1 && <circle className="laco-anel" cx={C} cy={C} r={R} fill="none" stroke="var(--brass-dark)" strokeDasharray="2 6" />}
+      {lacos.map(([lid, l], i) => {
         const [x1, y1] = pos[l.de];
         const [x2, y2] = pos[l.para];
         const par = [l.de, l.para].sort().join("|");
@@ -216,19 +293,34 @@ function Diagrama({ foco, setFoco }: { foco: string | null; setFoco: (l: string 
         const dx = x2 - x1;
         const dy = y2 - y1;
         const len = Math.hypot(dx, dy) || 1;
-        const d = `M${x1},${y1} Q${mx + (-dy / len) * curva},${my + (dx / len) * curva} ${x2},${y2}`;
+        const cx = mx + (-dy / len) * curva;
+        const cy = my + (dx / len) * curva;
+        const d = `M${x1},${y1} Q${cx},${cy} ${x2},${y2}`;
+        const cor = sala.jogadores[l.de]?.cor;
+        // ponto da curva em t = 1/2
+        const jx = (x1 + 2 * cx + x2) / 4;
+        const jy = (y1 + 2 * cy + y2) / 4;
         return (
-          <g key={lid} onMouseEnter={() => setFoco(lid)} onMouseLeave={() => setFoco(null)} onClick={() => setFoco(foco === lid ? null : lid)}>
+          <g key={lid} className={`laco ${foco === lid ? "foco" : ""}`} style={{ ["--i" as string]: i }} onMouseEnter={() => setFoco(lid)} onMouseLeave={() => setFoco(null)} onClick={() => setFoco(foco === lid ? null : lid)}>
             <path d={d} className="area-laco" />
-            <path d={d} className={`linha-laco ${l.resposta ? "" : "espera"} ${foco === lid ? "foco" : ""}`} stroke={sala.jogadores[l.de]?.cor} />
+            <path d={d} pathLength={l.resposta ? 1 : undefined} className={`linha-laco ${l.resposta ? "desenha" : "espera"} ${foco === lid ? "foco" : ""}`} stroke={cor} />
+            {l.resposta ? (
+              <path className="joia-laco" d={`M${jx},${jy - 6} L${jx + 5},${jy} L${jx},${jy + 6} L${jx - 5},${jy} Z`} fill={cor} stroke="#0c0f17" strokeWidth="1.5" />
+            ) : (
+              <circle className="fagulha" r="3.2" fill={cor}>
+                <animateMotion dur="3.4s" repeatCount="indefinite" path={d} />
+              </circle>
+            )}
           </g>
         );
       })}
-      {lista.map(([jid, j]) => {
+      {lista.map(([jid, j], i) => {
         const [x, y] = pos[jid];
         const abaixo = y > C + 4 || n === 1;
+        const pend = pendentesDe[jid] || 0;
         return (
-          <g key={jid} pointerEvents="none">
+          <g key={jid} pointerEvents="none" className={`no-laco ${ligados.includes(jid) ? "ligado" : ""}`} style={{ ["--i" as string]: i }}>
+            {pend > 0 && <circle className="no-halo" cx={x} cy={y} r="31" fill="none" stroke="var(--gaslight)" strokeWidth="2" />}
             <circle cx={x} cy={y} r="31" fill="#0c0f17" stroke="var(--brass)" strokeWidth="1.5" />
             <circle cx={x} cy={y} r="27" fill={j.cor} />
             <circle cx={x - 8} cy={y - 9} r="8" fill="#fff" opacity=".28" />
@@ -238,6 +330,14 @@ function Diagrama({ foco, setFoco }: { foco: string | null; setFoco: (l: string 
             <text x={x} y={abaixo ? y + 54 : y - 40} textAnchor="middle" fontFamily="var(--font-display)" fontSize="17" fill="var(--text)" stroke="#0c0f17" strokeWidth="3" paintOrder="stroke">
               {j.nome}
             </text>
+            {pend > 0 && (
+              <g>
+                <circle cx={x + 24} cy={y - 24} r="9" fill="var(--gaslight)" stroke="#0c0f17" strokeWidth="1.5" />
+                <text x={x + 24} y={y - 20} textAnchor="middle" fontFamily="var(--font-ui)" fontSize="12" fontWeight="700" fill="#1a1408">
+                  {pend}
+                </text>
+              </g>
+            )}
           </g>
         );
       })}

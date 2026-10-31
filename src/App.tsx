@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { carregarConteudo, type Conteudo } from "./conteudo";
 import { SessaoCtx, useCarregarSessao, novaSalaId, novaChaveMestre } from "./db/sala";
 import { modoLocalForcado } from "./db/backend";
+import { lerSalasSalvas, registrarSala, apagarSalaSalva, linkMestre, type SalaSalva } from "./db/salasSalvas";
 import { firebaseConfigurado } from "./firebase-config";
 import { Kit } from "./jogo/Kit";
 import { Arquivo, type RotaArquivo } from "./arquivo/Arquivo";
@@ -102,11 +103,23 @@ function Carregando() {
 
 // ---------- página inicial: criar sala ----------
 function Inicio({ conteudo }: { conteudo: Conteudo | null }) {
+  const [salas, setSalas] = useState<SalaSalva[]>(lerSalasSalvas);
+  const [apagando, setApagando] = useState<string | null>(null);
   const criar = () => {
     const id = novaSalaId();
     const chave = novaChaveMestre();
+    registrarSala(id, chave);
     location.hash = `#/s/${id}?m=${chave}${modoLocalForcado() ? "&local" : ""}`;
   };
+  const apagar = async (s: SalaSalva) => {
+    if (!confirm(`Apagar a sala ${s.id}? Os dados dela somem do banco e não dá para desfazer.`)) return;
+    setApagando(s.id);
+    await apagarSalaSalva(s);
+    setApagando(null);
+    setSalas(lerSalasSalvas());
+  };
+  const ordenadas = [...salas].sort((a, b) => b.visitadaEm - a.visitadaEm);
+  const quando = (t: number) => new Date(t).toLocaleString("pt-BR", { day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" });
   return (
     <div className="jogo entrada-jogo" data-paleta="ardosia">
       <Janela tipo="pesada">
@@ -115,8 +128,29 @@ function Inicio({ conteudo }: { conteudo: Conteudo | null }) {
           Jogadores: abram o <strong>link da sala</strong> que o mestre mandou no Discord.
         </p>
         <p className="n-I" style={{ marginTop: 8 }}>
-          Mestre: crie uma sala nova. O link de mestre e o dos jogadores ficam na Mesa do Mestre, aba Pessoas.
+          Mestre: escolha uma das suas salas ou crie uma nova. O link dos jogadores fica na Mesa do Mestre, aba Pessoas.
         </p>
+        {ordenadas.length > 0 && (
+          <div className="salas-salvas">
+            <div className="n-L">Suas salas</div>
+            <ul>
+              {ordenadas.map((s) => (
+                <li key={s.id}>
+                  <a className="salas-salvas-abrir" href={linkMestre(s)}>
+                    <span className="n-R">{s.id}</span>
+                    <span className="n-I">
+                      criada {quando(s.criadaEm)} · aberta {quando(s.visitadaEm)}
+                      {s.local ? " · local" : ""}
+                    </span>
+                  </a>
+                  <button type="button" className="salas-salvas-apagar" disabled={apagando === s.id} onClick={() => apagar(s)} aria-label={`Apagar a sala ${s.id}`}>
+                    {apagando === s.id ? "…" : "Apagar"}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
         <div style={{ display: "flex", justifyContent: "center", marginTop: 26 }}>
           <BotaoHextech onClick={criar}>Criar sala nova</BotaoHextech>
         </div>
@@ -129,6 +163,11 @@ function Inicio({ conteudo }: { conteudo: Conteudo | null }) {
 // ---------- a sala ----------
 function SalaApp({ salaId, chave, conteudo }: { salaId: string; chave: string | null; conteudo: Conteudo | null }) {
   const { sessao, erroBackend, escolher, naoSouEu } = useCarregarSessao(salaId, chave, conteudo);
+  const souMestre = !!sessao?.mestre;
+  // quem entra como mestre deixa a sala na lista da tela inicial
+  useEffect(() => {
+    if (souMestre && chave) registrarSala(salaId, chave);
+  }, [souMestre, salaId, chave]);
   if (erroBackend) return <Aviso titulo="Sem conexão com o banco" texto={erroBackend} detalhe="Confira a configuração do Firebase e se o login anônimo está ligado (README)." />;
   if (!sessao || !sessao.carregada) return <Carregando />;
   return (

@@ -1,13 +1,6 @@
 .ficha-registro { container: ficha / inline-size; }
 .ficha-registro .gestao-grade { display: flex; flex-direction: column; overflow: hidden; }
 .ficha-registro .pagina-ficha { flex: 1; min-height: 0; min-width: 0; container: registro / inline-size; border: 0; box-shadow: none; padding: 12px 24px 24px; }
-.registro-stepper { flex: none; padding: 0 0 16px; }
-.registro-stepper .passos { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; list-style: none; margin: 0; padding: 0; }
-.registro-stepper .passo { flex: 0 0 auto; width: auto; margin: 0; padding: 0; }
-.registro-stepper .passo::after { display: none; }
-.registro-stepper .passo > button { display: flex; align-items: center; gap: 8px; min-height: 44px; margin: 0; padding: 6px 12px 6px 6px; }
-.registro-stepper .passo .nome { font-size: 13px; line-height: 1.15; }
-.registro-stepper .aba-ico { position: relative; display: inline-flex; align-items: center; flex: none; }
 .registro-jogador { display: flex; align-items: center; gap: 12px; padding: 0 24px 12px; }
 .registro-jogador select { padding: 6px 10px; background: #171c2b; color: var(--text); border: 1px solid #3b4258; }
 .registro-selecao { display: grid; grid-template-columns: minmax(240px,.7fr) minmax(0,1.3fr); gap: 32px; align-items: start; margin-top: 20px; }
@@ -116,3 +109,124 @@
 .registro-perguntas-vazio { max-width: 640px; padding: 28px 0; color: var(--brass); }
 @container registro (max-width: 800px) { .registro-escrita-layout { grid-template-columns: 1fr; gap: 24px; } .registro-inspiracao { padding: 16px 0 0; border-left: 0; border-top: 1px solid #b69a6040; } }
 @container registro (max-width: 500px) { .registro-pergunta-cab { flex-wrap: wrap; } .registro-pergunta-cab label { font-size: 18px; } }
+
+/* ---------- Origem: as três memórias ---------- */
+@keyframes origem-entra { from { opacity: 0; transform: translateY(10px); } }
+@keyframes origem-selo-pop { 0% { transform: scale(.6) rotate(-14deg); opacity: 0; } 70% { transform: scale(1.18) rotate(4deg); } 100% { transform: none; opacity: 1; } }
+@keyframes origem-pluma { 0%, 100% { transform: rotate(0); } 50% { transform: rotate(-12deg) translateY(-2px); } }
+@keyframes origem-brilho { 0%, 100% { box-shadow: 0 14px 30px -14px #000, 0 0 0 0 #e8b86600; } 50% { box-shadow: 0 14px 30px -14px #000, 0 0 22px -2px #e8b86655; } }
+
+.origem { display: grid; grid-template-columns: minmax(240px, 330px) minmax(0, 1fr); gap: 36px; align-items: start; max-width: 1180px; padding: 8px 14px 28px 0; animation: origem-entra .4s ease-out both; }
+.origem-vazia { display: grid; gap: 14px; justify-items: start; max-width: 560px; padding: 28px 0; color: var(--brass); animation: origem-entra .4s ease-out both; }
+
+.origem-trilha { position: sticky; top: 0; display: grid; gap: 18px; }
+.origem-classe { display: flex; align-items: center; gap: 14px; padding-bottom: 14px; border-bottom: 1px solid #b69a6040; }
+.origem-classe > span:last-child { display: grid; }
+.origem-retrato { flex: none; display: grid; place-items: center; width: 54px; height: 72px; overflow: hidden; border: 1.5px solid var(--brass); background: var(--win-inset); color: var(--brass-hi); box-shadow: 0 6px 12px -6px #000; }
+.origem-retrato img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* o fio dourado que liga os selos e vai se enchendo */
+.origem-fio { position: relative; list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.origem-fio::before, .origem-fio::after { content: ""; position: absolute; left: 21px; top: 22px; width: 2px; border-radius: 1px; }
+.origem-fio::before { bottom: 22px; background: repeating-linear-gradient(to bottom, #b69a6050 0 4px, transparent 4px 9px); }
+.origem-fio::after { height: calc((100% - 44px) * var(--feitas, 0) / max(1, var(--total, 1) - 1)); max-height: calc(100% - 44px); background: linear-gradient(to bottom, var(--brass-hi), var(--brass)); box-shadow: 0 0 8px #e8b86666; transition: height .7s cubic-bezier(.3, .7, .3, 1); }
+.origem-fio li { position: relative; }
+.origem-fio button { display: flex; align-items: flex-start; gap: 14px; width: 100%; padding: 6px 10px 6px 0; text-align: left; background: none; border: 0; color: var(--text); cursor: pointer; transition: transform .15s; }
+.origem-fio button:hover { transform: translateX(3px); }
+.origem-selo { position: relative; z-index: 1; flex: none; display: grid; place-items: center; width: 44px; height: 44px; clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%); background: #2a3042; color: var(--brass); font-family: var(--font-display); font-size: 16px; font-weight: 700; transition: background .25s, color .25s; }
+.origem-selo::before { content: ""; position: absolute; inset: 2px; clip-path: inherit; background: var(--win-inset); z-index: -1; }
+.origem-fio li.atual .origem-selo { background: var(--brass); color: var(--brass-hi); }
+.origem-fio li.atual .origem-selo::before { background: #2b2619; }
+.origem-fio li.feita .origem-selo { background: linear-gradient(160deg, var(--brass-hi), var(--brass-dark)); color: #1a1408; }
+.origem-fio li.feita .origem-selo::before { background: linear-gradient(160deg, #e3c98a, #b69a60); }
+.origem-fio li.feita .origem-selo .ico { animation: origem-selo-pop .45s cubic-bezier(.3, 1.4, .5, 1) both; }
+.origem-previa { display: grid; gap: 1px; min-width: 0; padding-top: 1px; }
+.origem-previa-texto { font-family: var(--font-narrative); font-size: 15px; line-height: 1.35; color: var(--text-muted); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.origem-fio li.atual .origem-previa-texto { color: var(--text); }
+.origem-fio li.atual .origem-previa > .n-L { color: var(--gaslight); }
+.origem-selagem { padding-top: 12px; border-top: 1px solid #b69a6040; min-height: 44px; }
+.origem-selagem.selada .selo { animation: origem-selo-pop .5s cubic-bezier(.3, 1.4, .5, 1) both; }
+
+/* a folha: papel de caderno sobre a ardósia */
+.origem-folha { position: relative; padding: 26px 34px 20px; min-width: 0; background: linear-gradient(180deg, #232838, #1d2230); border: 1px solid #b69a6055; box-shadow: 0 14px 30px -14px #000; animation: origem-entra .45s cubic-bezier(.2, .8, .3, 1) both; }
+.origem-folha:focus-within { animation: origem-entra .45s cubic-bezier(.2, .8, .3, 1) both, origem-brilho 3s ease-in-out .5s infinite; }
+.origem-folha .canto { position: absolute; width: 64px; height: 64px; color: var(--brass); opacity: .75; pointer-events: none; overflow: visible; }
+.origem-folha .canto.tl { left: -1px; top: -1px; }
+.origem-folha .canto.br { right: -1px; bottom: -1px; transform: scale(-1, -1); }
+.origem-folha-topo { display: flex; align-items: center; gap: 14px; }
+.origem-numeral { display: grid; place-items: center; min-width: 46px; height: 46px; padding: 0 8px; border: 1.5px solid var(--brass); border-radius: 50%; font-family: var(--font-display); font-size: 20px; color: var(--brass-hi); background: radial-gradient(circle at 40% 35%, #3a3322, #1d1a12); box-shadow: inset 0 0 0 3px #0b0f10, 0 0 14px -4px #e8b86655; }
+.origem-carimbo { display: inline-flex; align-items: center; gap: 5px; margin-left: auto; padding: 3px 10px; border: 1.5px solid var(--success); color: var(--success); border-radius: 2px; font-family: var(--font-ui); font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; transform: rotate(-3deg); }
+.origem-pergunta { display: block; margin: 18px 0 16px; padding-left: 18px; border-left: 3px solid var(--carmim-hi, #c9695f); font-family: var(--font-display); font-style: italic; font-size: clamp(21px, 2.4cqw, 28px); line-height: 1.35; color: var(--text); cursor: text; }
+
+.origem-papel { position: relative; display: grid; grid-template-columns: 24px minmax(0, 1fr); gap: 10px; align-items: start; padding: 14px 16px 6px; background: #e9dfc710; border: 1px solid #454b5c; border-radius: 3px; transition: border-color .2s, background .2s; }
+.origem-papel:focus-within { border-color: var(--brass); background: #e9dfc716; }
+.origem-papel > .ico { margin-top: 5px; color: var(--brass); transform-origin: 20% 90%; }
+.origem-papel:focus-within > .ico { animation: origem-pluma 1.6s ease-in-out infinite; color: var(--gaslight); }
+.origem-papel textarea { display: block; width: 100%; min-height: 230px; padding: 0 2px; resize: vertical; border: 0; background: repeating-linear-gradient(to bottom, transparent 0, transparent calc(1.9em - 1px), #b69a6030 calc(1.9em - 1px), #b69a6030 1.9em); background-attachment: local; color: var(--ink-player, var(--text)); font-family: var(--font-narrative); font-size: 18px; line-height: 1.9; }
+.origem-papel textarea:focus { outline: 0; }
+.origem-papel textarea::placeholder { color: #9498a5; font-style: italic; }
+.origem-papel textarea:disabled { opacity: .6; cursor: not-allowed; }
+.origem-rodape { display: flex; justify-content: space-between; gap: 12px; margin-top: 8px; }
+.origem-passos { display: flex; justify-content: space-between; gap: 16px; margin-top: 16px; padding-top: 12px; border-top: 1px solid #b69a6030; }
+.origem-passos .link:disabled { opacity: .35; }
+
+@container registro (max-width: 800px) {
+  .origem { grid-template-columns: 1fr; gap: 20px; }
+  .origem-trilha { position: static; }
+  .origem-fio { grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 8px; }
+  .origem-fio::before, .origem-fio::after { display: none; }
+  .origem-previa { display: none; }
+  .origem-folha { padding: 22px 18px 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .origem, .origem-folha, .origem-vazia, .origem-fio li.feita .origem-selo .ico, .origem-selagem.selada .selo, .origem-papel:focus-within > .ico { animation: none !important; }
+}
+
+/* ---------- O trilho da ficha: estações de latão ligadas por uma linha ---------- */
+@keyframes trilha-pulso { 0% { transform: scale(1); opacity: .8; } 100% { transform: scale(1.75); opacity: 0; } }
+@keyframes trilha-pop { 0% { transform: scale(.5) rotate(-20deg); opacity: 0; } 70% { transform: scale(1.2) rotate(5deg); } 100% { transform: none; opacity: 1; } }
+
+.trilha-ficha { flex: none; display: grid; gap: 6px; padding: 2px 4px 16px; }
+.trilha-ficha ol { list-style: none; margin: 0; padding: 0; display: flex; }
+.trilha-ficha li { position: relative; flex: 1 1 0; min-width: 0; }
+
+/* o trecho de linha que chega a cada estação vindo da anterior: tracejado, e latão quando a anterior está feita */
+.trilha-ficha li + li::before { content: ""; position: absolute; top: 19px; left: -50%; width: 100%; height: 2px; background: repeating-linear-gradient(to right, #3b4258 0 5px, transparent 5px 9px); }
+.trilha-ficha li.feita + li::before { background: linear-gradient(to right, var(--brass), var(--brass-hi)); box-shadow: 0 0 6px #b69a6066; }
+
+.trilha-ficha button { position: relative; z-index: 1; display: grid; justify-items: center; gap: 7px; width: 100%; padding: 0 2px; background: none; border: 0; color: var(--text-muted); cursor: pointer; }
+
+/* a estação: hexágono de latão com miolo de ardósia */
+.trilha-estacao { position: relative; display: grid; place-items: center; width: 38px; height: 38px; clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%); background: #3b4258; color: var(--text-dim); transition: background .2s, color .2s, transform .2s; }
+.trilha-estacao::before { content: ""; position: absolute; inset: 2px; clip-path: inherit; background: var(--win-inset); z-index: -1; transition: background .2s; }
+.trilha-estacao .ico { position: relative; }
+
+.trilha-nome { max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-family: var(--font-ui); font-size: 10.5px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; transition: color .2s; }
+
+.trilha-ficha button:hover .trilha-estacao { background: var(--brass); color: var(--brass-hi); transform: translateY(-2px); filter: drop-shadow(0 4px 6px #0008); }
+.trilha-ficha button:hover .trilha-nome { color: var(--text); }
+
+/* feita: latão cheio, visto que "carimba" */
+.trilha-ficha li.feita .trilha-estacao { background: linear-gradient(160deg, var(--brass-hi), var(--brass-dark)); color: #1a1408; }
+.trilha-ficha li.feita .trilha-estacao::before { background: linear-gradient(160deg, #e3c98a, #b69a60); }
+.trilha-ficha li.feita .trilha-estacao .ico { animation: trilha-pop .4s cubic-bezier(.3, 1.4, .5, 1) both; }
+.trilha-ficha li.feita .trilha-nome { color: var(--brass-hi); }
+
+/* atual: maior, miolo escuro com brilho de lampião e um anel que pulsa */
+.trilha-ficha li.atual .trilha-estacao { transform: scale(1.22); background: var(--gaslight); color: var(--gaslight); filter: drop-shadow(0 0 7px #e8b86677); }
+.trilha-ficha li.atual .trilha-estacao::before { background: #2b2619; }
+.trilha-ficha li.atual .trilha-estacao::after { content: ""; position: absolute; inset: 0; clip-path: inherit; border: 2px solid var(--gaslight); background: #e8b86622; animation: trilha-pulso 2s ease-out infinite; }
+.trilha-ficha li.atual .trilha-nome { color: var(--gaslight); font-weight: 700; }
+.trilha-ficha li.atual + li::before { background: repeating-linear-gradient(to right, var(--gaslight) 0 5px, transparent 5px 9px); }
+
+.trilha-ficha button:focus-visible { outline: 2px solid var(--brass-hi); outline-offset: 3px; }
+.trilha-conta { justify-self: end; font-size: 10px; color: var(--text-dim); }
+
+@container ficha (max-width: 760px) {
+  .trilha-ficha li:not(.atual) .trilha-nome { display: none; }
+  .trilha-estacao { width: 32px; height: 32px; }
+  .trilha-ficha li + li::before { top: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .trilha-ficha li.atual .trilha-estacao::after, .trilha-ficha li.feita .trilha-estacao .ico { animation: none !important; }
+}

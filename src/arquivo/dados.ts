@@ -52,6 +52,48 @@ export interface ItemGaleria {
   adjetivos?: string[];
   detalhes?: { rotulo: string; valor: string }[];
 }
+/** Uma entrada de content/equipamento.json: armas (estatísticas do SRD), armaduras e consumíveis. */
+interface ItemEquipamento {
+  id: string;
+  nome: string;
+  tipo: string;
+  original?: string;
+  atributo?: string;
+  alcance?: string;
+  dano?: string;
+  empunhadura?: string;
+  limiares?: string;
+  armadura?: number;
+  caracteristica?: string;
+  descricao?: string;
+  fogo?: boolean;
+}
+/** A galeria só conhece ItemGaleria: a característica vira habilidade e as estatísticas viram a ficha. */
+function itemDeEquipamento(e: ItemEquipamento): ItemGaleria {
+  const [nomeCar, ...resto] = (e.caracteristica || "").split(/:\s*/);
+  const detalhes = (
+    [
+      ["Atributo", e.atributo],
+      ["Alcance", e.alcance],
+      ["Dano", e.dano],
+      ["Empunhadura", e.empunhadura],
+      ["Limiares", e.limiares],
+      ["Armadura", e.armadura != null ? String(e.armadura) : undefined],
+    ] as const
+  )
+    .filter(([, v]) => !!v)
+    .map(([rotulo, valor]) => ({ rotulo, valor: valor as string }));
+  return {
+    id: e.id,
+    nome: e.nome,
+    descricao: e.descricao,
+    grupo: e.fogo ? `${e.tipo} · arma de fogo` : e.tipo,
+    original: e.original,
+    habilidades: e.caracteristica ? [resto.length ? { nome: nomeCar, texto: resto.join(": ") } : { nome: "Uso", texto: e.caracteristica }] : [],
+    detalhes,
+  };
+}
+
 export interface DadosArquivo {
   manifesto: ManifestoArquivo;
   secoes: Record<string, Secao>;
@@ -130,7 +172,7 @@ export function carregarArquivo(): Promise<DadosArquivo> {
       const [glossario, ancestralidades, equipamento, cartas] = await Promise.all([
         json<TermoGlossario[]>("glossario.json", []),
         json<ItemGaleria[]>("ancestralidades.json", []),
-        json<ItemGaleria[]>("equipamento.json", []),
+        json<ItemEquipamento[]>("equipamento.json", []).then((l) => l.map(itemDeEquipamento)),
         json<CartaDominio[]>("cartas.json", []),
       ]);
       const efemeras: Record<string, string> = {};

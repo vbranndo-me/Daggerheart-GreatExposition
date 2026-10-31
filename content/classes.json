@@ -519,8 +519,16 @@
         "id": "alquimista-granadeiro"
       }
     ],
-    "origem": [],
-    "conexao": [],
+    "origem": [
+      "Que remédio seu deu errado, e quem pagou o preço?",
+      "De quem você roubou, ou herdou, a sua primeira fórmula?",
+      "Que substância você jurou nunca mais preparar, e por quê?"
+    ],
+    "conexao": [
+      "Que aliado já bebeu uma mistura sua sem saber o que era, e o que aconteceu?",
+      "Que aliado guarda um frasco seu \"para uma emergência\", e que emergência ele imagina?",
+      "De que aliado você guardou um fio de cabelo, ou uma gota de sangue, para estudar? Ele sabe?"
+    ],
     "imagem": null,
     "evasao": 10,
     "pv": 6,
@@ -1483,7 +1491,7 @@
       "Meia-noite",
       "Lâmina"
     ],
-    "fantasia": "",
+    "fantasia": "A morte como ofício. Numa guerra em que ninguém lembra do primeiro tiro, sempre tem alguém pagando pelo último.",
     "origem": [
       "Você já matou alguém próximo. O que aconteceu, e como isso te mudou?",
       "Que organização te treinou na arte de matar, e como você entrou nela?",
@@ -1594,7 +1602,7 @@
       "Falange",
       "Valor"
     ],
-    "fantasia": "",
+    "fantasia": "Savate, bartitsu e briga de porão. Faz com os punhos o que os outros precisam de um sabre para fazer.",
     "origem": [
       "Onde você passou os anos de formação que te ensinaram, direta ou indiretamente, a lutar do seu jeito?",
       "Que organização jurou te matar assim que te ver, e o que você fez para merecer?",
@@ -1712,7 +1720,7 @@
       "Dread",
       "Graça"
     ],
-    "fantasia": "",
+    "fantasia": "Trocou alguma coisa por poder, e ainda está pagando. Quem está do outro lado do contrato, só ele sabe.",
     "origem": [
       "Quem da sua comunidade te rejeitou depois do pacto com o patrono?",
       "Que situação desesperada te levou a entregar a vida ao patrono?",
@@ -1827,7 +1835,7 @@
       "Dread",
       "Sábio"
     ],
-    "fantasia": "",
+    "fantasia": "Ervas, mau-olhado e conversas com o que não tem corpo. A Igreja chama de superstição; o povo chama quando o médico não resolve.",
     "origem": [
       "Quem da sua comunidade tinha medo da sua magia? Que boato espalhou sobre você, e que verdade havia nele?",
       "Você já usou o seu poder para ajudar alguém numa situação desesperadora. Quem era, e por que veio até você?",
@@ -1926,20 +1934,129 @@
     "nome": "Invocador",
     "nova": false,
     "grupo": "void",
-    "fantasia": "",
-    "dominios": [],
-    "origem": [],
-    "conexao": [],
+    "fantasia": "Chama coisas de outro mundo e manda nelas. Por enquanto.",
+    "dominios": [
+      "Sangue",
+      "Esplendor"
+    ],
+    "origem": [
+      "Alguém da sua comunidade te proibiu de praticar a sua magia. Quem foi, e por que você não obedeceu?",
+      "Quando invoca entidades de outro mundo, que precauções você toma para que nada mais atravesse?",
+      "De algum jeito, você perdeu o controle de uma entidade, que agora anda solta pelo mundo. O que você teme que ela faça antes de você conseguir bani-la?"
+    ],
+    "conexao": [
+      "Uma vez você me pediu para pesquisar um ritual oculto para você. Por que eu recusei?",
+      "Que pergunta você precisa da minha ajuda para responder?",
+      "Que parte de você você vê em mim? Como isso muda o jeito como você me trata?"
+    ],
     "subclasses": [
       {
         "id": "invocador-necromante",
         "nome": "Necromante",
-        "linha": ""
+        "linha": "Para quem quer erguer os mortos e mandá-los à frente.",
+        "conjuracao": "Conhecimento",
+        "fundacao": [
+          {
+            "nome": "Segundo Círculo, Cadáver Arrastado",
+            "texto": "Você invoca Cadáveres Arrastados no Segundo Círculo."
+          },
+          {
+            "nome": "Fome da Cova",
+            "texto": "Faça um teste de conjuração contra um alvo a até Distante. Com sucesso, os seus Cadáveres Arrastados atacam o alvo, causando 5 de dano físico cada um, e voltam. Um deles some em seguida."
+          },
+          {
+            "nome": "Colheita Macabra",
+            "texto": "Quando um adversário a até Distante marcar o último PV, você pode invocar um Cadáver Arrastado sem marcar Fadiga."
+          }
+        ],
+        "especializacao": [
+          {
+            "nome": "Terceiro Círculo, Fantasmas",
+            "texto": "Você invoca Fantasmas no Terceiro Círculo."
+          },
+          {
+            "nome": "Guardiões Fantasmas",
+            "texto": "Enquanto houver Fantasmas invocados, você ganha +1 na Evasão, porque eles rodopiam à sua volta."
+          },
+          {
+            "nome": "Terror Espectral",
+            "texto": "Faça um teste de conjuração contra um alvo a até Distante. Com sucesso, um Fantasma voa até ele para assustá-lo, e o alvo marca 1 Fadiga. O Fantasma some em seguida."
+          }
+        ],
+        "maestria": [
+          {
+            "nome": "Quarto Círculo, Cavaleiro da Morte",
+            "texto": "Você invoca um Cavaleiro da Morte por vez no Quarto Círculo."
+          },
+          {
+            "nome": "Guerreiro Mortal",
+            "texto": "Quando acertar um ataque com Esperança, você pode transformá-lo num acerto com Medo: o Cavaleiro da Morte avança sobre o alvo, soma 2d12 ao dano e volta."
+          },
+          {
+            "nome": "Baluarte do Cavaleiro",
+            "texto": "Quando você sofrer dano Grave, o Cavaleiro da Morte toma 1 dos PV no seu lugar e some."
+          }
+        ]
       },
       {
         "id": "invocador-teurgista",
         "nome": "Teurgista",
-        "linha": ""
+        "linha": "Para quem quer chamar anjos e inspirar assombro.",
+        "conjuracao": "Conhecimento",
+        "fundacao": [
+          {
+            "nome": "Segundo Círculo, Anjo",
+            "texto": "Você invoca Anjos no Segundo Círculo."
+          },
+          {
+            "nome": "Presença Angélica",
+            "texto": "Enquanto houver Anjos invocados, você tem vantagem em testes de Presença para influenciar os outros, porque o poder angélico à sua volta inspira assombro e medo."
+          },
+          {
+            "nome": "Golpe da Esperança",
+            "texto": "Quando acertar um ataque com Esperança, comande um Anjo para causar 1d10 de dano mágico a mais no alvo. O Anjo some em seguida."
+          }
+        ],
+        "especializacao": [
+          {
+            "nome": "Terceiro Círculo, Arcanjo",
+            "texto": "Você invoca Arcanjos no Terceiro Círculo."
+          },
+          {
+            "nome": "Comandante Divino",
+            "texto": "Enquanto houver Arcanjos invocados, o dano extra do Golpe da Esperança vira 1d12."
+          },
+          {
+            "nome": "Auxílio Celeste",
+            "texto": "Comande um Arcanjo para escolher um efeito; ele some em seguida:\n\n- levar você, ou um aliado a até Muito Próximo, voando até um ponto a até Distante;\n- Ajudar um Aliado a até Próximo sem gastar Esperança."
+          }
+        ],
+        "maestria": [
+          {
+            "nome": "Quarto Círculo, Manifestação Divina",
+            "texto": "Você invoca uma Manifestação Divina por vez no Quarto Círculo."
+          },
+          {
+            "nome": "Esperança Consagrada",
+            "texto": "Ao invocar uma Manifestação Divina, ponha três Dados de Esperança extras neste cartão. Num teste de ação ou de reação, você pode rolar e gastar um deles junto com o seu Dado de Esperança e usar o maior. Quando os dados acabam, a Manifestação some."
+          }
+        ]
+      }
+    ],
+    "intro": "Os **invocadores** aprenderam, em livros proibidos ou com mestres que ninguém quer conhecer, a abrir uma fresta para o outro lado e chamar o que mora lá. Espíritos que torcem o destino, mortos que se arrastam, coisas com asas de luz: tudo atende ao chamado, desde que o círculo esteja bem traçado.\n\nA Ecclesia chama isso de profanação, e os ocultistas, de imprudência. O invocador chama de método. O perigo é o dia em que alguma coisa atravessa e não quer mais voltar.",
+    "evasao": 10,
+    "pv": 6,
+    "itens": [
+      "Escolha 1: um espírito inofensivo preso numa garrafa de vidro, ou um par de moedas misteriosas."
+    ],
+    "esperanca": {
+      "nome": "Auxílio dos Espíritos",
+      "texto": "Gaste 3 Esperança para conjurar ajuda de outro mundo: distribua 2 Esperança entre um ou mais personagens a até Distante, e limpe 1 Fadiga."
+    },
+    "habilidades": [
+      {
+        "nome": "Invocar Entidade",
+        "texto": "Você invoca Entidades de outro mundo: os Espíritos do Destino e as Entidades da sua subclasse. Cada Entidade pertence a um círculo de invocação. Marque 1 Fadiga para invocar um número de Entidades igual ao seu patamar e coloque-as nos círculos certos. Você mantém, no total, Entidades até o seu nível. As Entidades invocadas ficam a até Muito Próximo, podem fazer tarefas inofensivas nesse alcance e não podem ser alvo. Se a tarefa pedir um teste de ação, faça um teste de conjuração para comandar a Entidade.\n\n- **Primeiro Círculo, Espírito do Destino:** depois que um adversário a até Muito Próximo acertar um ataque, comande um Espírito do Destino para obrigá-lo a rerrolar o ataque. O espírito some em seguida."
       }
     ]
   },
@@ -1948,20 +2065,101 @@
     "nome": "Caçador de Sangue",
     "nova": false,
     "grupo": "void",
-    "fantasia": "",
-    "dominios": [],
-    "origem": [],
-    "conexao": [],
+    "fantasia": "Usa o próprio sangue como arma para caçar o que anda no escuro.",
+    "dominios": [
+      "Sangue",
+      "Falange"
+    ],
+    "origem": [
+      "Que circunstâncias te levaram à arte da hemocracia, e como elas moldam o seu ofício hoje?",
+      "Que parente de sangue te ensinou uma lição importante, e como essa lição te mantém vivo?",
+      "Quem, ou o quê, foi a sua primeira morte?"
+    ],
+    "conexao": [
+      "O que você ouviu sobre magia de sangue que te faz ter medo de mim, ou se preocupar comigo?",
+      "Que derramamento de sangue nos uniu?",
+      "Você e eu aprendemos a caçar juntos. Por que técnica somos conhecidos no grupo?"
+    ],
     "subclasses": [
       {
-        "id": "cacador-de-sangue-ordem-do-espectro",
+        "id": "cacador-de-sangue-espectro",
         "nome": "Ordem do Espectro",
-        "linha": ""
+        "linha": "Para quem quer andar entre os vivos e os mortos.",
+        "conjuracao": "Agilidade",
+        "fundacao": [
+          {
+            "nome": "Coragem Sombria",
+            "texto": "Quando tiver sucesso com Medo num teste de ação, gaste 1 Esperança para limpar 1 Fadiga."
+          },
+          {
+            "nome": "Andarilho do Véu",
+            "texto": "Você escorrega por um instante para o reino entre os vivos e os mortos. Marque 1 Fadiga para se mover até Próximo atravessando criaturas e objetos.\n\n*Nota do cenário: o \"reino entre os vivos e os mortos\" do livro é, em Lucentia, o véu. O Andarilho do Véu é o único poder de jogador que atravessa o véu de propósito: combine com o mestre se usá-lo conta como cena do véu.*"
+          }
+        ],
+        "especializacao": [
+          {
+            "nome": "Espreitador do Véu",
+            "texto": "O Andarilho do Véu passa a alcançar até Distante, e você tem vantagem no próximo teste de ação da cena."
+          }
+        ],
+        "maestria": [
+          {
+            "nome": "Calejado pelo Horror",
+            "texto": "Você não pode ficar Vulnerável, a menos que toda a sua Fadiga esteja marcada."
+          },
+          {
+            "nome": "Forma Espectral",
+            "texto": "Uma vez por descanso longo, quando for marcar o último PV, marque 1 Fadiga e entre na Forma Espectral. Nela, você atravessa matéria física e tem resistência a dano físico, e quando for marcar PV, marca Fadiga no lugar. Você sai da forma se marcar a última Fadiga ou se limpar 1 PV."
+          }
+        ]
       },
       {
-        "id": "cacador-de-sangue-ordem-mutante",
+        "id": "cacador-de-sangue-mutante",
         "nome": "Ordem Mutante",
-        "linha": ""
+        "linha": "Para quem quer refazer o próprio corpo com toxinas.",
+        "conjuracao": "Agilidade",
+        "fundacao": [
+          {
+            "nome": "Mutagênicos",
+            "texto": "Você usa toxinas mutagênicas feitas para ampliar o corpo. Ao terminar um descanso, beba uma para ganhar os efeitos até o fim do próximo descanso: +1 num atributo à sua escolha, −1 em outro atributo, e um destes benefícios:\n\n- **Celeridade:** se estiver Imobilizado ou Vulnerável, marque 1 Fadiga para acabar com a condição;\n- **Resistente:** +2 na Armadura;\n- **Sentidos de Caçador:** vantagem em testes de ação para rastrear uma criatura, e você enxerga no escuro total."
+          }
+        ],
+        "especializacao": [
+          {
+            "nome": "Mutagênicos Aprimorados",
+            "texto": "Novos benefícios à escolha:\n\n- **Nervos de Aço:** sempre que tiver de marcar Fadiga, você pode gastar 2 Esperança no lugar;\n- **Rapidez:** +1 na Evasão;\n- **Pele de Ferro:** o limiar Grave sobe igual à sua Proficiência."
+          },
+          {
+            "nome": "Toxinas Voláteis",
+            "texto": "Você pode escolher dois benefícios em vez de um. Se fizer isso, marque 1 PV que só pode ser limpo depois do próximo descanso."
+          }
+        ],
+        "maestria": [
+          {
+            "nome": "Mutagênicos Dominados",
+            "texto": "O bônus e a penalidade dos Mutagênicos viram +2 e −2. Novos benefícios à escolha:\n\n- **Sangue Etéreo:** na sua linha de visão, você vê criaturas e objetos invisíveis, as ilusões visuais ficam transparentes, e o que foi transformado por magia aparece na forma verdadeira;\n- **Fúria:** ao fazer uma rolagem de ataque, marque 1 Fadiga para somar a sua Proficiência;\n- **Carne de Aço:** o limiar Maior sobe igual à sua Proficiência.\n\n*Nota do cenário: o Sangue Etéreo faz parte do que o Discernimento revela. Combine com o mestre como os dois convivem.*"
+          }
+        ]
+      }
+    ],
+    "intro": "Os **caçadores de sangue** praticam a hemocracia: a magia do próprio sangue. Cortam a palma da mão para acender a lâmina e leem num chão manchado quem foi o último a matar ali. Caçam o que não deveria existir, e pagam cada golpe com o próprio corpo.\n\nNinguém sabe ao certo de onde vieram as ordens que os treinam. A Ecclesia as condena; o povo, nas noites piores, manda chamá-los mesmo assim.",
+    "evasao": 11,
+    "pv": 6,
+    "itens": [
+      "Escolha 1: uma agulha de aço, ou um frasco com o sangue de um inimigo."
+    ],
+    "esperanca": {
+      "nome": "Maldição de Sangue",
+      "texto": "Quando um adversário a até Próximo acertar um ataque, gaste 3 Esperança para obrigá-lo a rerrolar com desvantagem."
+    },
+    "habilidades": [
+      {
+        "nome": "Rito Carmesim",
+        "texto": "Marque 1 PV para encantar uma das suas armas ativas com um poder sedento de sangue, até o fim do seu próximo descanso ou até usar esta habilidade de novo. Ao acertar com a arma encantada, ela causa 1d4 de dano mágico a mais (2d4 no nível 2, 3d4 no nível 5, 4d4 no nível 8)."
+      },
+      {
+        "nome": "Psicometria Sombria",
+        "texto": "Faça um teste de conjuração (12) para examinar um lugar a até Muito Próximo. Com sucesso, você tem uma visão da última criatura que cometeu violência ali. Até o próximo descanso longo, ou até usar esta habilidade de novo, você tem vantagem em testes de ação para rastreá-la ou lembrar informações sobre ela."
       }
     ]
   }

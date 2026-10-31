@@ -4,12 +4,13 @@
 import { useId, useState } from "react";
 import { useSessao } from "../../db/sala";
 import type { Personagem, Privado } from "../../db/tipos";
-import { Insignia, Placa, Selo } from "../../jogo/componentes";
+import { Placa, Selo } from "../../jogo/componentes";
 import { Icone } from "../../jogo/icones";
 import { Gestao, Painel, TextoVivo } from "../pecas";
 import { useVisao } from "../Casca";
 
 import { SelecaoFicha, type AcaoFicha } from "./SelecaoFicha";
+import { Origem } from "./Origem";
 import "./ficha-registro.css";
 
 const PAGINAS = [
@@ -122,16 +123,7 @@ function PaginaFicha({
       {pag === "signoff" ? <Signoff jid={jid} setPag={setPag} /> : ["pais", "papel", "comunidade", "ancestralidade", "classe", "subclasse"].includes(pag) ? (
         <SelecaoFicha key={jid + pag} jid={jid} pagina={pag as "pais" | "papel" | "comunidade" | "ancestralidade" | "classe" | "subclasse"} titulo={TEXTOS[pag].titulo} trancada={trancada} aoAcao={setAcaoEscolha} aoProximo={proxima} />
       ) : <div className="registro-narrativa">
-        {pag === "origem" && <>
-          {classe?.origem?.length ? <>
-            <div className="registro-perguntas-meta"><span className="n-L">{classe.nome}</span><span className="n-I">{classe.origem.filter((_, i) => respostas[i]?.trim()).length} / {classe.origem.length} respondidas</span></div>
-            <div className="registro-perguntas-lista">{classe.origem.map((q, k) => <PerguntaRegistro key={classe.id + k} numero={k + 1} pergunta={q} valor={respostas[k]} salvar={(v) => acoes.respostaOrigem(jid, classe.id, k, v)} trancada={trancada} />)}</div>
-          </> : <div className="registro-perguntas-vazio">
-            <Icone id="memoria" tamanho={28} />
-            <p className="n-N">{classe ? "Esta classe ainda n?o tem perguntas de origem cadastradas." : "Escolha uma classe para ver suas perguntas de origem."}</p>
-            {!classe && <Placa onClick={() => setPag("classe")}>Escolher classe</Placa>}
-          </div>}
-        </>}
+        {pag === "origem" && <Origem jid={jid} classe={classe} respostas={respostas} trancada={trancada} aoEscolherClasse={() => setPag("classe")} aoAvancar={proxima} />}
         {pag === "compulsao" && <div className="registro-escrita-layout">
           <PerguntaRegistro pergunta={c.compulsao.pergunta || "O que seu personagem n?o consegue evitar?"} valor={p.compulsao} salvar={(v) => set("compulsao", v)} trancada={trancada} linhas={7} />
           <aside className="registro-inspiracao"><h3 className="n-L">Compuls?o</h3><p className="n-I">{c.compulsao.explicacao}</p>{!!c.compulsao.exemplos.length && <><h3 className="n-L">Exemplos</h3><ul>{c.compulsao.exemplos.map((e) => <li key={e} className="n-I">{e}</li>)}</ul></>}</aside>
@@ -181,17 +173,34 @@ function valoresDe(c: ReturnType<typeof useSessao>["conteudo"], p: Personagem, p
   };
 }
 
+/** O trilho da ficha: uma linha de latão com uma estação por página. As feitas acendem, a atual brilha. */
 function Abas({ jid, pag, setPag }: { jid: string; pag: IdPagina; setPag: (p: IdPagina) => void }) {
   const { sala } = useSessao();
   const ok = feitas(sala.personagens[jid] || {}, sala.privado[jid] || {});
-  return <nav className="registro-stepper" aria-label="Etapas da ficha"><ol className="passos">
-    {PAGINAS.map((x) => <li key={x.id} className={`passo ${pag === x.id ? "atual" : ""} ${ok[x.id] ? "feita" : "pendente"}`}>
-      <button type="button" onClick={() => setPag(x.id)} aria-current={pag === x.id ? "step" : undefined}>
-        <span className="aba-ico"><Insignia icone={x.icone} tamanho={32} ativa={pag === x.id} />{ok[x.id] && <span className="check-bola" aria-label="feito"><Icone id="visto" tamanho={9} /></span>}</span>
-        <span className="nome">{x.rotulo}</span>
-      </button>
-    </li>)}
-  </ol></nav>;
+  const total = PAGINAS.filter((x) => x.id !== "signoff").length;
+  const prontas = PAGINAS.filter((x) => x.id !== "signoff" && ok[x.id]).length;
+  return (
+    <nav className="trilha-ficha" aria-label="Etapas da ficha">
+      <ol>
+        {PAGINAS.map((x) => {
+          const estado = pag === x.id ? "atual" : ok[x.id] ? "feita" : "pendente";
+          return (
+            <li key={x.id} className={estado}>
+              <button type="button" onClick={() => setPag(x.id)} aria-current={pag === x.id ? "step" : undefined} title={`${x.rotulo}${ok[x.id] ? " · feito" : ""}`}>
+                <span className="trilha-estacao">
+                  <Icone id={ok[x.id] && pag !== x.id ? "visto" : x.icone} tamanho={16} />
+                </span>
+                <span className="trilha-nome">{x.rotulo}</span>
+              </button>
+            </li>
+          );
+        })}
+      </ol>
+      <span className="trilha-conta n-L" aria-live="polite">
+        {prontas} de {total} páginas prontas
+      </span>
+    </nav>
+  );
 }
 
 function Signoff({ jid, setPag }: { jid: string; setPag: (p: IdPagina) => void }) {

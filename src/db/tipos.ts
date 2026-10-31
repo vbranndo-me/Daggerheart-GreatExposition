@@ -139,7 +139,6 @@ export const SALA_VAZIA: Sala = {
 export const ETAPAS = [
   { n: 0, nome: "Registro de chegada", curto: "Chegada" },
   { n: 1, nome: "O convite", curto: "Convite" },
-  { n: 2, nome: "Protocolo", curto: "Protocolo" },
   { n: 3, nome: "Ficha de registro", curto: "Ficha" },
   { n: 4, nome: "O continente", curto: "Continente" },
   { n: 5, nome: "A Exposição", curto: "Exposição" },
@@ -148,3 +147,13 @@ export const ETAPAS = [
 ] as const;
 
 export const ROMANOS = ["0", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"];
+
+// O `n` de cada capítulo é um id estável (é o que fica guardado nas salas e nos conteúdos).
+// Capítulos removidos deixam um buraco nos ids, então a ordem e o número romano vêm da posição.
+export const posEtapa = (n: number) => ETAPAS.findIndex((e) => e.n === n);
+export const etapaDe = (n: number) => ETAPAS[Math.max(0, posEtapa(n))];
+export const romanoDe = (n: number) => ROMANOS[Math.max(0, posEtapa(n))];
+/** salas antigas podem estar num capítulo que não existe mais: vão para o seguinte */
+export const normalizarEtapa = (n: number): number => (ETAPAS.find((e) => e.n >= n) ?? ETAPAS[ETAPAS.length - 1]).n;
+export const proximaEtapa = (n: number): number => ETAPAS[Math.min(ETAPAS.length - 1, posEtapa(normalizarEtapa(n)) + 1)].n;
+export const etapaAnterior = (n: number): number => ETAPAS[Math.max(0, posEtapa(normalizarEtapa(n)) - 1)].n;

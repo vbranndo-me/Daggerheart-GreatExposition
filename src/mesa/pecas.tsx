@@ -2,7 +2,7 @@
 import { BotaoFechar } from "../jogo/BotaoFechar";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { useSessao } from "../db/sala";
-import { ETAPAS, ROMANOS, type Personagem, type Privado } from "../db/tipos";
+import { etapaDe, romanoDe, type Personagem, type Privado } from "../db/tipos";
 import type { Conteudo } from "../conteudo";
 import { comoLista } from "../db/backend";
 import { Cabecalho, Janela, PlaceholderArte, Selo, Vinheta } from "../jogo/componentes";
@@ -21,10 +21,16 @@ export function Storylet({
   forma = "normal",
   compacto,
   rodape,
+  ladoTitulo,
+  abaixo,
   children,
 }: {
   n: number;
   titulo: string;
+  /** à direita do título */
+  ladoTitulo?: ReactNode;
+  /** fora do painel, logo abaixo dele */
+  abaixo?: ReactNode;
   contexto?: string;
   vinheta?: boolean;
   forma?: "normal" | "painel" | "cheia" | "ficha";
@@ -44,7 +50,7 @@ export function Storylet({
     return () => definir({ painel: 0 });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [forma, recolhido]);
-  const rotulo = n === 0 ? "Prólogo" : `Capítulo ${ROMANOS[n]}`;
+  const rotulo = n === 0 ? "Prólogo" : `Capítulo ${romanoDe(n)}`;
   // no painel dos capítulos de mapa dá para recolher a janela e ver o mapa inteiro
   if (forma === "painel" && recolhido) {
     return (
@@ -66,7 +72,7 @@ export function Storylet({
         rodape={rodape}
         topo={
           <div className="topo-storylet">
-            <Cabecalho capitulo={rotulo} nomeCap={ETAPAS[n]?.nome} titulo={titulo} contexto={contexto} />
+            <Cabecalho capitulo={rotulo} nomeCap={etapaDe(n).nome} titulo={titulo} contexto={contexto} lado={ladoTitulo} />
             {forma === "painel" && (
               <button className="puxador-btn" onClick={() => setRecolhido(true)} title="recolher o painel e ver o mapa" aria-label="recolher o painel">
                 <Puxador sentido="recolher" />
@@ -84,6 +90,7 @@ export function Storylet({
           <div>{children}</div>
         )}
       </Janela>
+      {abaixo && <div className="abaixo-do-painel">{abaixo}</div>}
     </div>
   );
 }
@@ -116,10 +123,10 @@ export function Gestao({
     <div className="gestao-grade" style={{ ["--colunas" as string]: colunas }}>{children}</div>
     {rodape && <footer className="registro-rodape">{rodape}</footer>}
   </section>;
-  const rotulo = n === 0 ? "Prólogo" : `Capítulo ${ROMANOS[n]}`;
+  const rotulo = n === 0 ? "Prólogo" : `Capítulo ${romanoDe(n)}`;
   return (
     <div className={`janela-principal gestao ${className}`}>
-      <Janela tipo="pesada" className="gestao-janela" rodape={rodape} topo={semCabecalho ? undefined : <div className="topo-storylet"><Cabecalho capitulo={rotulo} nomeCap={ETAPAS[n]?.nome} titulo={titulo} /></div>}>
+      <Janela tipo="pesada" className="gestao-janela" rodape={rodape} topo={semCabecalho ? undefined : <div className="topo-storylet"><Cabecalho capitulo={rotulo} nomeCap={etapaDe(n).nome} titulo={titulo} /></div>}>
         <div className="gestao-grade" style={{ ["--colunas" as string]: colunas }}>
           {children}
         </div>
@@ -301,7 +308,7 @@ export function Escrita({
   }, []);
   return (
     <div className="escrita">
-      <label className="n-L">{rotulo}</label>
+      {rotulo && <label className="n-L">{rotulo}</label>}
       <TextoVivo
         valor={valor}
         linhas={linhas}
@@ -323,7 +330,7 @@ export function Escrita({
             </Selo>
           </span>
         ) : (
-          <span className="n-I">salva sozinho enquanto você escreve</span>
+          <span className="n-I">salva sozinho</span>
         )}
       </div>
     </div>

@@ -8,7 +8,7 @@ import { Markdown } from "../components/ui";
 import { ArtePeca, CartaEsperanca, useArquivo } from "./base";
 
 /** Carta de domínio: só o placeholder, na proporção 63 × 88, até a arte chegar do Figma. */
-export function CartaPlaceholder({ carta, aoClicar }: { carta: Pick<CartaDominio, "nome" | "dominio" | "nivel" | "texto" | "imagem">; aoClicar?: () => void }) {
+export function CartaPlaceholder({ carta, aoClicar }: { carta: Pick<CartaDominio, "nome" | "dominio" | "nivel" | "texto" | "imagem" | "tipo" | "recuperacao">; aoClicar?: () => void }) {
   const Tag = aoClicar ? "button" : "div";
   return (
     <Tag className="carta-placeholder" onClick={aoClicar} aria-label={`Carta ${carta.nome}, em produção`}>
@@ -20,7 +20,12 @@ export function CartaPlaceholder({ carta, aoClicar }: { carta: Pick<CartaDominio
             {carta.dominio} · nível {carta.nivel}
           </span>
           <span className="n-S">{carta.nome}</span>
-          {carta.texto && <span className="n-I">{carta.texto}</span>}
+          {(carta.tipo || carta.recuperacao != null) && (
+            <span className="n-L carta-tipo">
+              {[carta.tipo, carta.recuperacao != null ? `recuperação ${carta.recuperacao}` : null].filter(Boolean).join(" · ")}
+            </span>
+          )}
+          {carta.texto && <Markdown texto={carta.texto} className="n-I carta-texto" />}
           <span className="carta-marca n-L">arte da carta em produção</span>
         </>
       )}
@@ -34,7 +39,7 @@ export function useAmpliarCarta() {
   return (c: CartaDominio) =>
     detalhe({
       titulo: c.nome,
-      etiqueta: `${c.dominio} · nível ${c.nivel}`,
+      etiqueta: [`${c.dominio} · nível ${c.nivel}`, c.tipo, c.recuperacao != null ? `recuperação ${c.recuperacao}` : null].filter(Boolean).join(" · "),
       corpo: (
         <div className="carta-ampliada">
           <CartaPlaceholder carta={c} />
@@ -147,7 +152,7 @@ export function FichaClasse({ classeId, sair }: { classeId: string; sair: () => 
 
   const secoes = SECOES(c);
   const ir = (id: string) => document.getElementById(`fc-${id}`)?.scrollIntoView({ behavior: "smooth" });
-  const cartas = dados.cartas.slice(0, 4);
+  const cartas = dados.cartas.filter((k) => k.classe === c.id);
   const qual = (rotulo: string, valor: ReactNode, icone: string) => (
     <div className="qualidade">
       <span className="insignia" style={{ ["--t" as string]: "32px" }}>

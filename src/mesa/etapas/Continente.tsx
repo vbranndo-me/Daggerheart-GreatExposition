@@ -55,15 +55,15 @@ export function Continente({ trancada, mapa, setMapa }: { trancada: boolean; map
             }}>{nome}</button>
           ))}
         </div>
-        <p className="n-N mapa-convite">{mapa === "rouillac" ? "Marque os lugares que fazem parte da sua hist?ria em Rouillac." : "Marque de onde voc? vem, por onde passou e o que viu."}</p>
-        <div className="mapa-acoes" aria-label="A??es do mapa">
+        <p className="n-N mapa-convite">{mapa === "rouillac" ? "Marque os lugares que fazem parte da sua história em Rouillac." : "Marque de onde você vem, por onde passou e o que viu."}</p>
+        <div className="mapa-acoes" aria-label="Ações do mapa">
           <button type="button" className={fixando ? "ativa" : ""} disabled={!podeFixar} aria-pressed={fixando} onClick={() => setFixando(!fixando)}>
             <Icone id="lugar" tamanho={22} />
             <span>{fixando ? "Cancelar" : "Fixar alfinete"}</span>
             {!!meusPins && <span className="mapa-acao-contagem" title="Seus alfinetes">{meusPins}</span>}
           </button>
           {mapa === "continente" && <button type="button" className={aberto === "paises" ? "ativa" : ""} aria-expanded={aberto === "paises"} aria-controls="mapa-lista-paises" onClick={() => setAberto(aberto === "paises" ? null : "paises")}>
-            <Icone id="lente-politica" tamanho={22} /><span>{"Pa?ses"}</span>
+            <Icone id="lente-politica" tamanho={22} /><span>Países</span>
           </button>}
           <button type="button" className={lateral?.tipo === "alfinetes" ? "ativa" : ""} aria-pressed={lateral?.tipo === "alfinetes"} onClick={() => setLateral(lateral?.tipo === "alfinetes" ? null : { tipo: "alfinetes" })}>
             <Icone id="memoria" tamanho={22} /><span>Alfinetes da mesa</span>
@@ -76,7 +76,6 @@ export function Continente({ trancada, mapa, setMapa }: { trancada: boolean; map
         {mapa === "continente" && aberto === "paises" && <div id="mapa-lista-paises" className="mapa-paises">
           {proximos.map((p) => <Ramo key={p.id} titulo={p.nome} icone="cap-3" estado={sel === p.id ? "selecionado" : "normal"} aoClicar={() => setLateral({ tipo: "pais", id: p.id })} />)}
         </div>}
-        <p className="n-I mapa-ajuda-curta">{"Arraste para mover ? Rodinha para zoom"}</p>
       </Storylet>
 
       {lateral?.tipo === "pais" && (

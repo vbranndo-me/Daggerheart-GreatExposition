@@ -33,3 +33,9 @@ As armas de fogo usam as regras de *campanha de faroeste* do livro. As outras ar
 | Casaco acolchoado | Gambeson Armor | |
 | Sobretudo de couro | Leather Armor | |
 | Couraça de cavalaria | Chainmail Armor | O peitoral de aço dos couraceiros |
+
+### O catálogo
+
+Clique numa peça para ver atributo, alcance, dano e a característica de cada uma.
+
+::galeria{fonte="equipamento"}

@@ -99,7 +99,10 @@ export function Cabecalho({
   titulo,
   contexto,
   refCapitulo,
+  lado,
 }: {
+  /** fica na linha do título, à direita (ex.: o chip de quem tem a vez) */
+  lado?: ReactNode;
   capitulo?: string;
   /** nome do capítulo, que vai junto da numeração na faixa; o título só aparece se for outra coisa */
   nomeCap?: string;
@@ -118,7 +121,14 @@ export function Cabecalho({
           </span>
         </div>
       )}
-      {!repete && <h2 className="n-C">{titulo}</h2>}
+      {lado ? (
+        <div className="titulo-linha">
+          {!repete && <h2 className="n-C">{titulo}</h2>}
+          {lado}
+        </div>
+      ) : (
+        !repete && <h2 className="n-C">{titulo}</h2>
+      )}
       {contexto && <p className="n-contexto">{contexto}</p>}
     </header>
   );
@@ -448,7 +458,10 @@ export function HUD({
   extra,
   passos,
   aoPasso,
+  aoMenuPasso,
 }: {
+  /** botão direito num capítulo (só o mestre passa isto) */
+  aoMenuPasso?: (n: number, x: number, y: number) => void;
   /** o caminho da noite: um círculo por capítulo, clicável para rever os que já foram abertos */
   passos?: PassoHUD[];
   aoPasso?: (n: number) => void;
@@ -490,6 +503,14 @@ export function HUD({
                     aria-current={q.vendo ? "step" : undefined}
                     aria-label={`${q.nome}. ${q.dica}`}
                     onClick={() => q.estado !== "fechado" && aoPasso?.(q.n)}
+                    onContextMenu={
+                      aoMenuPasso
+                        ? (e) => {
+                            e.preventDefault();
+                            aoMenuPasso(q.n, e.clientX, e.clientY);
+                          }
+                        : undefined
+                    }
                   >
                     <Icone id={q.estado === "fechado" ? "cadeado" : q.icone} tamanho={18} />
                   </button>

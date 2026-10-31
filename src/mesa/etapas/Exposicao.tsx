@@ -9,8 +9,7 @@ import { perguntaBuilder } from "../../conteudo";
 import { ROMANOS } from "../../db/tipos";
 import { Dado, Insignia, Placa, Selo } from "../../jogo/componentes";
 import { BotaoHextech } from "../../jogo/hextech";
-import { CartaBuilder, VersoCarta } from "../../jogo/carta";
-import { Icone } from "../../jogo/icones";
+import { CartaBuilder, FrenteCarta, VersoCarta } from "../../jogo/carta";
 import { Escrita, JanelaLateral, Storylet } from "../pecas";
 import { useConfigurarMapa } from "../MapaFundo";
 import { useVisao } from "../Casca";
@@ -75,7 +74,6 @@ export function Exposicao({ trancada }: { trancada: boolean }) {
   const corVez = bld.vezJid ? sala.jogadores[bld.vezJid]?.cor : undefined;
   const usadas = Object.keys(bld.sorteadas || {});
   const esgotou = usadas.length >= totais.reduce((a, b) => a + b, 0);
-  const sobra = (d4: number) => totais[d4 - 1] - usadas.filter((k) => k.startsWith(`${d4}-`)).length;
   const pinAtual = atual?.pin ? sala.pins.rouillac?.[atual.pin] : null;
   const categoria = atual ? c.builder.categorias.find((x) => x.d4 === atual.cat) : null;
 
@@ -94,23 +92,6 @@ export function Exposicao({ trancada }: { trancada: boolean }) {
   } else {
     corpo = (
       <>
-        <div className="linha-vez">
-          <span className="cabeca-cor" style={{ background: corVez, width: 12, height: 12 }} />
-          <span className="n-L">
-            rodada {bld.rodada} de {bld.rodadas}
-          </span>
-          <Selo tipo="vez">{minhaVez ? "a sua vez" : `vez de ${nomeVez}`}</Selo>
-          <span className="n-L montes-sobra" title="Quantas cartas ainda restam em cada monte">
-            montes:{" "}
-            {categorias.map((cat, i) => (
-              <span key={cat.d4} className={atual?.cat === cat.d4 ? "agora" : ""} title={`${cat.nome}: ${sobra(cat.d4)} restantes`}>
-                {i > 0 && " · "}
-                {ROMANOS[cat.d4]} {sobra(cat.d4)}
-              </span>
-            ))}
-          </span>
-        </div>
-
         {!atual ? (
           <div className="sem-carta">
             {esgotou ? (
@@ -130,42 +111,36 @@ export function Exposicao({ trancada }: { trancada: boolean }) {
           </div>
         ) : (
           <>
-            <div className="carta-compacta" style={{ ["--cat" as string]: atual.cat }}>
-              <div className="n-L">
-                Nº {ROMANOS[atual.cat]}-{String(atual.num).padStart(2, "0")} · {categoria?.nome}
+            <div className="vez-corpo">
+              <div className="carta-da-vez" style={{ ["--cat" as string]: atual.cat }} title={`${categoria?.nome} · Nº ${ROMANOS[atual.cat]}-${String(atual.num).padStart(2, "0")}`}>
+                <FrenteCarta cat={atual.cat} nome={categoria?.nome || ""} num={atual.num} pergunta={textoPergunta} />
               </div>
-              <p className="n-N pergunta-vez">{textoPergunta}</p>
-              {atual.desvio && <p className="n-I">({atual.desvio})</p>}
-            </div>
-
-            {podeEscrever ? (
-              <Escrita rotulo="a sua resposta" valor={atual.texto} salvar={(v) => acoes.digitarBuilder(v)} atraso={350} linhas={3} />
-            ) : (
-              <div className="resposta-ao-vivo">
-                <div className="n-L">{nomeVez} está escrevendo</div>
-                {atual.texto ? (
-                  <p className="n-J" style={{ ["--autor" as string]: corVez }}>
-                    {atual.texto}
-                  </p>
+              <div className="vez-resposta">
+                {atual.desvio && <p className="n-I">({atual.desvio})</p>}
+                {podeEscrever ? (
+                  <Escrita rotulo="" valor={atual.texto} salvar={(v) => acoes.digitarBuilder(v)} atraso={350} linhas={9} />
                 ) : (
-                  <p className="n-I">…</p>
+                  <div className="resposta-ao-vivo">
+                    <div className="n-L">{nomeVez} está escrevendo</div>
+                    {atual.texto ? (
+                      <p className="n-J" style={{ ["--autor" as string]: corVez }}>
+                        {atual.texto}
+                      </p>
+                    ) : (
+                      <p className="n-I">…</p>
+                    )}
+                  </div>
                 )}
               </div>
-            )}
+            </div>
 
             <div className="linha-acao">
               {podeEscrever && (
-                <button
-                  type="button"
-                  className={`fixar-linha ${pinAtual ? "feito" : fixando ? "selecionado" : ""}`}
-                  aria-pressed={fixando && !pinAtual}
-                  onClick={() => (pinAtual ? acoes.pinBuilder(null) : setFixando(!fixando))}
-                  title={pinAtual ? "Desligar o alfinete desta resposta" : "Ponha um alfinete em Rouillac ligado à resposta"}
-                >
-                  <Icone id="lugar" tamanho={22} />
-                  <span>{pinAtual ? `No mapa: ${pinAtual.titulo}` : fixando ? "Clique em Rouillac · Esc cancela" : "Fixar no mapa"}</span>
-                  {pinAtual && <Selo tipo="feito">desligar</Selo>}
-                </button>
+                <span className="fixar-linha" title={pinAtual ? "Desligar o alfinete desta resposta" : "Ponha um alfinete em Rouillac ligado à resposta"}>
+                  <BotaoHextech onClick={() => (pinAtual ? acoes.pinBuilder(null) : setFixando(!fixando))}>
+                    {pinAtual ? `No mapa: ${pinAtual.titulo} · desligar` : fixando ? "Clique em Rouillac · Esc cancela" : "Fixar no mapa"}
+                  </BotaoHextech>
+                </span>
               )}
               {minhaVez && !mestre && (
                 <div className="enviar-resposta">
@@ -186,14 +161,13 @@ export function Exposicao({ trancada }: { trancada: boolean }) {
             </div>
           </>
         )}
-        <OrdemDaRodada />
       </>
     );
   }
 
   return (
     <>
-      <Storylet n={5} titulo="A carta da vez" contexto="O d4 escolhe o monte; o d10, a carta." forma="painel" compacto vinheta={false}>
+      <Storylet n={5} titulo={bld.iniciado && !bld.terminado ? `Rodada ${bld.rodada} de ${bld.rodadas}` : "A Exposição"} forma="painel" compacto vinheta={false} ladoTitulo={bld.iniciado && !bld.terminado && nomeVez ? <Selo tipo="vez">{nomeVez}</Selo> : undefined} abaixo={bld.iniciado && !bld.terminado ? <OrdemDaRodada /> : undefined}>
         {corpo}
       </Storylet>
       {teatro && atual && (
@@ -234,7 +208,7 @@ function OrdemDaRodada() {
   const ordem = comoLista<string>(bld.ordem);
   return (
     <div className="ordem-rodada">
-      <span className="n-L">ordem da rodada</span>
+      <span className="n-L">ordem</span>
       {ordem.map((jid, i) => (
         <span key={jid + i} className={`ordem-item ${i === bld.vez ? "agora" : ""}`}>
           <span className="cabeca-cor" style={{ background: sala.jogadores[jid]?.cor }} />
