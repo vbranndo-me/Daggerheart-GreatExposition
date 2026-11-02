@@ -1,0 +1,145 @@
+{
+  "tracos": [
+    {
+      "id": "agilidade",
+      "nome": "Agilidade",
+      "verbos": "correr, saltar, manobrar"
+    },
+    {
+      "id": "forca",
+      "nome": "Força",
+      "verbos": "levantar, esmagar, agarrar"
+    },
+    {
+      "id": "finura",
+      "nome": "Finura",
+      "verbos": "controlar, esconder, mexer"
+    },
+    {
+      "id": "instinto",
+      "nome": "Instinto",
+      "verbos": "perceber, sentir, orientar-se"
+    },
+    {
+      "id": "presenca",
+      "nome": "Presença",
+      "verbos": "encantar, atuar, enganar"
+    },
+    {
+      "id": "conhecimento",
+      "nome": "Conhecimento",
+      "verbos": "lembrar, analisar, compreender"
+    }
+  ],
+  "valores": [
+    2,
+    1,
+    1,
+    0,
+    0,
+    -1
+  ],
+  "_sugestoes": "Distribuição recomendada pelo SRD para as classes do livro. As classes do cenário e do The Void ficam sem sugestão até o mestre definir.",
+  "sugestoes": {
+    "bardo": {
+      "agilidade": 0,
+      "forca": -1,
+      "finura": 1,
+      "instinto": 0,
+      "presenca": 2,
+      "conhecimento": 1
+    },
+    "druida": {
+      "agilidade": 1,
+      "forca": 0,
+      "finura": 1,
+      "instinto": 2,
+      "presenca": -1,
+      "conhecimento": 0
+    },
+    "guardiao": {
+      "agilidade": 1,
+      "forca": 2,
+      "finura": -1,
+      "instinto": 0,
+      "presenca": 1,
+      "conhecimento": 0
+    },
+    "patrulheiro": {
+      "agilidade": 2,
+      "forca": 0,
+      "finura": 1,
+      "instinto": 1,
+      "presenca": -1,
+      "conhecimento": 0
+    },
+    "ladino": {
+      "agilidade": 1,
+      "forca": -1,
+      "finura": 2,
+      "instinto": 0,
+      "presenca": 1,
+      "conhecimento": 0
+    },
+    "serafim": {
+      "agilidade": 0,
+      "forca": 2,
+      "finura": 0,
+      "instinto": 1,
+      "presenca": 1,
+      "conhecimento": -1
+    },
+    "feiticeiro": {
+      "agilidade": 0,
+      "forca": -1,
+      "finura": 1,
+      "instinto": 2,
+      "presenca": 1,
+      "conhecimento": 0
+    },
+    "guerreiro": {
+      "agilidade": 2,
+      "forca": 1,
+      "finura": 0,
+      "instinto": 1,
+      "presenca": -1,
+      "conhecimento": 0
+    },
+    "mago": {
+      "agilidade": -1,
+      "forca": 0,
+      "finura": 0,
+      "instinto": 1,
+      "presenca": 1,
+      "conhecimento": 2
+    }
+  },
+  "kit": {
+    "fixos": [
+      "Um lampião de querosene",
+      "15 metros de corda",
+      "Suprimentos básicos",
+      "Um punhado de ouro"
+    ],
+    "pocoes": [
+      {
+        "id": "tonico-de-farmacia",
+        "nome": "Tônico de farmácia",
+        "original": "Minor Health Potion",
+        "texto": "Limpa 1d4 PV."
+      },
+      {
+        "id": "sal-de-cheiro",
+        "nome": "Sal de cheiro",
+        "original": "Minor Stamina Potion",
+        "texto": "Limpa 1d4 Fadiga."
+      }
+    ]
+  },
+  "derivados": {
+    "fadiga": 6,
+    "esperanca": 2,
+    "proficiencia": 1,
+    "nivel": 1
+  }
+}

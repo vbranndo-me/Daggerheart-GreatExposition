@@ -1,0 +1,50 @@
+{
+  "_como": "O criador junta umas 6 a 8 sugestões das três listas, conforme a classe, o país e o papel escolhidos. Complete à vontade.",
+  "classe": {
+    "alquimista": [
+      "Boticário de bairro",
+      "Envenenador aposentado",
+      "Lê bulas e rótulos como quem lê cartas"
+    ],
+    "medico": [
+      "Cirurgião de campanha",
+      "Plantonista de hospital lotado",
+      "Conhece todo agente funerário da cidade"
+    ],
+    "invocador": [
+      "Leitor de livros proibidos",
+      "Já negociou com o que não tem corpo",
+      "Sabe traçar um círculo de olhos fechados"
+    ],
+    "warlock": [
+      "Deve um favor que não pode pagar",
+      "Fala com o anel quando ninguém olha",
+      "Sabe quando estão mentindo para ele"
+    ],
+    "ladino": [
+      "Batedor de carteiras de estação",
+      "Conhece os telhados da cidade velha",
+      "Falsificador de salvo-condutos"
+    ],
+    "pugilista": [
+      "Lutador de porão",
+      "Estivador das docas",
+      "Ex-segurança de cabaré"
+    ],
+    "ocultista": [
+      "Colecionador de antiguidades suspeitas",
+      "Frequentador de sessões espíritas",
+      "Tradutor de línguas mortas"
+    ]
+  },
+  "pais": {
+    "serrania": [
+      "Veterano da Frente das Serras"
+    ]
+  },
+  "papel": {
+    "convidado": [
+      "Jornalista credenciado da Exposição"
+    ]
+  }
+}

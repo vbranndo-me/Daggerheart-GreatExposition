@@ -67,6 +67,7 @@ interface ItemEquipamento {
   caracteristica?: string;
   descricao?: string;
   fogo?: boolean;
+  magica?: boolean;
 }
 /** A galeria só conhece ItemGaleria: a característica vira habilidade e as estatísticas viram a ficha. */
 function itemDeEquipamento(e: ItemEquipamento): ItemGaleria {
@@ -87,7 +88,7 @@ function itemDeEquipamento(e: ItemEquipamento): ItemGaleria {
     id: e.id,
     nome: e.nome,
     descricao: e.descricao,
-    grupo: e.fogo ? `${e.tipo} · arma de fogo` : e.tipo,
+    grupo: e.fogo ? `${e.tipo} · arma de fogo` : e.magica ? `${e.tipo} · mágica` : e.tipo,
     original: e.original,
     habilidades: e.caracteristica ? [resto.length ? { nome: nomeCar, texto: resto.join(": ") } : { nome: "Uso", texto: e.caracteristica }] : [],
     detalhes,

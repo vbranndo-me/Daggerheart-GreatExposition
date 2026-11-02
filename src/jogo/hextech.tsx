@@ -5,6 +5,16 @@
 // no clique, uma onda sai do ponto clicado. Pausa fora da tela e respeita prefers-reduced-motion.
 import { useEffect, useRef, useState, type ReactNode } from "react";
 
+type Tema = "ciano" | "ambar" | "noite";
+type RGB = [number, number, number];
+// Paleta de cada versão do botão: energia (base/claro/pálido/brilho/meio), joias e cristal.
+const TEMAS: Record<Tema, { base: RGB; claro: RGB; palido: RGB; brilho: RGB; meio: RGB; sombra: string; joia: [string, string, string]; cristal: [string, string, string]; glow: string }> = {
+  ciano: { base: [10, 200, 185], claro: [160, 246, 238], palido: [205, 250, 250], brilho: [225, 255, 252], meio: [120, 240, 228], sombra: "#5ff2e4", joia: ["#e6fffd", "#0ac8b9", "#035a63"], cristal: ["#0c6470", "#083340", "#04131b"], glow: "10,200,185" },
+  ambar: { base: [232, 150, 40], claro: [255, 222, 150], palido: [255, 236, 190], brilho: [255, 246, 220], meio: [246, 190, 90], sombra: "#ffcf70", joia: ["#fff4d6", "#e8a030", "#7a4a0c"], cristal: ["#7a4a14", "#3d2410", "#170d07"], glow: "232,150,40" },
+  noite: { base: [90, 120, 230], claro: [170, 190, 255], palido: [205, 215, 255], brilho: [230, 236, 255], meio: [130, 150, 240], sombra: "#9db0ff", joia: ["#eef1ff", "#6a84e8", "#1c2a7a"], cristal: ["#2a3a8a", "#141d4a", "#070a1c"], glow: "90,120,230" },
+};
+const cor = (c: RGB, a: number) => `rgba(${c[0]},${c[1]},${c[2]},${a})`;
+
 const PONTA = 18; // largura da ponta do hexágono (px)
 
 function hexagono(w: number, h: number, inset: number) {
@@ -26,12 +36,22 @@ export function BotaoHextech({
   onClick,
   disabled,
   grande,
+  ativo = true,
+  tema = "ciano",
+  redondo,
 }: {
   children: ReactNode;
   onClick?: () => void;
   disabled?: boolean;
   grande?: boolean;
+  /** false = apagado (opção não escolhida num par de botões) */
+  ativo?: boolean;
+  /** cor da energia e das joias */
+  tema?: Tema;
+  /** versão circular, compacta */
+  redondo?: boolean;
 }) {
+  const T = TEMAS[tema];
   const btn = useRef<HTMLButtonElement>(null);
   const cv = useRef<HTMLCanvasElement>(null);
   const [tam, setTam] = useState({ w: 0, h: 0 });
@@ -90,15 +110,15 @@ export function BotaoHextech({
       ];
       for (const [bx, by, br] of blobs) {
         const g = ctx.createRadialGradient(bx * w, by * h, 0, bx * w, by * h, br * h * 1.3);
-        g.addColorStop(0, `rgba(10,200,185,${0.22 * forca})`);
-        g.addColorStop(1, "rgba(10,200,185,0)");
+        g.addColorStop(0, cor(T.base, 0.22 * forca));
+        g.addColorStop(1, cor(T.base, 0));
         ctx.fillStyle = g;
         ctx.fillRect(0, 0, w, h);
       }
 
       // fios de energia correndo pelo cristal
       ctx.lineCap = "round";
-      ctx.shadowColor = "#5ff2e4";
+      ctx.shadowColor = T.sombra;
       for (const f of fios) {
         const N = 48;
         ctx.beginPath();
@@ -112,9 +132,9 @@ export function BotaoHextech({
         }
         const g = ctx.createLinearGradient(0, 0, w, 0);
         const a = 0.14 + 0.3 * forca;
-        g.addColorStop(0, "rgba(160,246,238,0)");
-        g.addColorStop(0.5, `rgba(205,250,250,${a})`);
-        g.addColorStop(1, "rgba(160,246,238,0)");
+        g.addColorStop(0, cor(T.claro, 0));
+        g.addColorStop(0.5, cor(T.palido, a));
+        g.addColorStop(1, cor(T.claro, 0));
         ctx.strokeStyle = g;
         ctx.lineWidth = 0.8 + E.hover * 0.3;
         ctx.shadowBlur = 5 + E.hover * 5;
@@ -134,9 +154,9 @@ export function BotaoHextech({
             ctx.translate(x, y);
             ctx.scale(1.8, 1); // mancha alongada no sentido do fluxo
             const brilho = ctx.createRadialGradient(0, 0, 0, 0, 0, r);
-            brilho.addColorStop(0, `rgba(225,255,252,${0.22 * E.hover * borda})`);
-            brilho.addColorStop(0.45, `rgba(120,240,228,${0.09 * E.hover * borda})`);
-            brilho.addColorStop(1, "rgba(120,240,228,0)");
+            brilho.addColorStop(0, cor(T.brilho, 0.22 * E.hover * borda));
+            brilho.addColorStop(0.45, cor(T.meio, 0.09 * E.hover * borda));
+            brilho.addColorStop(1, cor(T.meio, 0));
             ctx.shadowBlur = 0;
             ctx.fillStyle = brilho;
             ctx.beginPath();
@@ -160,7 +180,7 @@ export function BotaoHextech({
         p.x += p.vx * dt;
         p.y += p.vy * dt;
         const k = 1 - p.vida / p.max;
-        ctx.fillStyle = `rgba(205,250,250,${k * 0.9})`;
+        ctx.fillStyle = cor(T.palido, k * 0.9);
         ctx.shadowBlur = 6;
         ctx.beginPath();
         ctx.arc(p.x, p.y, 0.6 + k, 0, Math.PI * 2);
@@ -176,7 +196,7 @@ export function BotaoHextech({
           continue;
         }
         const k = o.t / 0.6;
-        ctx.strokeStyle = `rgba(205,250,250,${(1 - k) * 0.9})`;
+        ctx.strokeStyle = cor(T.palido, (1 - k) * 0.9);
         ctx.lineWidth = 2 * (1 - k) + 0.5;
         ctx.shadowBlur = 14;
         ctx.beginPath();
@@ -216,16 +236,16 @@ export function BotaoHextech({
       io.disconnect();
       document.removeEventListener("visibilitychange", vis);
     };
-  }, [tam, disabled]);
+  }, [tam, disabled, tema]);
 
   const { w, h } = tam;
   const gid = useRef(`hx${Math.random().toString(36).slice(2, 8)}`).current;
   return (
-    <span className={`hx-envolta ${disabled ? "desligado" : ""}`}>
+    <span className={`hx-envolta ${disabled ? "desligado" : ""} ${ativo ? "" : "apagado"}`} style={{ ["--hx-glow" as string]: T.glow }}>
     <button
       ref={btn}
       type="button"
-      className={`hextech ${grande ? "grande" : ""}`}
+      className={`hextech ${grande ? "grande" : ""} ${redondo ? "redondo" : ""}`}
       disabled={disabled}
       onPointerEnter={() => (estado.current.alvo = 1)}
       onPointerLeave={() => (estado.current.alvo = 0)}
@@ -239,12 +259,12 @@ export function BotaoHextech({
         btn.current!.classList.add("hx-pulso");
         onClick?.();
       }}
-      style={w ? { clipPath: `polygon(${hexagono(w, h, 0).split(" ").map((p) => p.replace(",", "px ") + "px").join(", ")})` } : undefined}
+      style={w ? redondo ? { clipPath: "circle(50%)" } : { clipPath: `polygon(${hexagono(w, h, 0).split(" ").map((p) => p.replace(",", "px ") + "px").join(", ")})` } : undefined}
     >
-      <span className="hx-cristal" />
+      <span className="hx-cristal" style={{ background: `radial-gradient(ellipse at 50% 135%, ${T.cristal[0]} 0%, ${T.cristal[1]} 42%, ${T.cristal[2]} 100%)` }} />
       <canvas ref={cv} className="hx-energia" aria-hidden="true" />
       <span className="hx-reflexo" aria-hidden="true" />
-      {w > 0 && (
+      {w > 0 && redondo && (
         <svg className="hx-moldura" width={w} height={h} aria-hidden="true">
           <defs>
             <linearGradient id={`${gid}-ouro`} x1="0" y1="0" x2="0" y2="1">
@@ -254,9 +274,34 @@ export function BotaoHextech({
               <stop offset="1" stopColor="#785a28" />
             </linearGradient>
             <radialGradient id={`${gid}-joia`} cx=".4" cy=".35" r=".8">
-              <stop offset="0" stopColor="#e6fffd" />
-              <stop offset=".4" stopColor="#0ac8b9" />
-              <stop offset="1" stopColor="#035a63" />
+              <stop offset="0" stopColor={T.joia[0]} />
+              <stop offset=".4" stopColor={T.joia[1]} />
+              <stop offset="1" stopColor={T.joia[2]} />
+            </radialGradient>
+          </defs>
+          <circle className="hx-borda" cx={w / 2} cy={h / 2} r={w / 2 - 1.5} fill="none" stroke={`url(#${gid}-ouro)`} strokeWidth="3" />
+          <circle cx={w / 2} cy={h / 2} r={w / 2 - 6.5} fill="none" stroke="#c8aa6e" strokeOpacity=".55" strokeWidth="1" />
+          <circle className="hx-anel-giro" cx={w / 2} cy={h / 2} r={w / 2 - 10.5} fill="none" stroke="#f0e6d2" strokeOpacity=".55" strokeWidth="1.4" strokeDasharray="1.2 5.2" />
+          {[[w / 2, 5], [w - 5, h / 2], [w / 2, h - 5], [5, h / 2]].map(([x, y], i) => (
+            <g key={i} className="hx-joia">
+              <path d={`M${x} ${y - 5} L${x + 3.6} ${y} L${x} ${y + 5} L${x - 3.6} ${y} Z`} fill={`url(#${gid}-joia)`} stroke="#f0e6d2" strokeWidth=".8" />
+            </g>
+          ))}
+        </svg>
+      )}
+      {w > 0 && !redondo && (
+        <svg className="hx-moldura" width={w} height={h} aria-hidden="true">
+          <defs>
+            <linearGradient id={`${gid}-ouro`} x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stopColor="#f0e6d2" />
+              <stop offset=".35" stopColor="#c8aa6e" />
+              <stop offset=".7" stopColor="#a07c3c" />
+              <stop offset="1" stopColor="#785a28" />
+            </linearGradient>
+            <radialGradient id={`${gid}-joia`} cx=".4" cy=".35" r=".8">
+              <stop offset="0" stopColor={T.joia[0]} />
+              <stop offset=".4" stopColor={T.joia[1]} />
+              <stop offset="1" stopColor={T.joia[2]} />
             </radialGradient>
           </defs>
           <polygon className="hx-borda" points={hexagono(w, h, 1.25)} fill="none" stroke={`url(#${gid}-ouro)`} strokeWidth="2.5" />

@@ -1,17 +1,20 @@
 // Capítulo VI · Laços. Tela de gestão em três colunas: perguntar (à esquerda), o diagrama
 // (no centro) e a caixa de entrada (à direita). Cada laço é uma linha na cor de quem perguntou:
 // tracejada enquanto espera resposta, cheia depois de respondida.
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { useSessao } from "../../db/sala";
-import { Placa, Ramo, Selo } from "../../jogo/componentes";
+import { Janela, Placa, Ramo, Selo } from "../../jogo/componentes";
 import { Icone } from "../../jogo/icones";
 import { Escrita, Gestao, Painel } from "../pecas";
+import { BolinhaJogador, BolinhaJogadorSvg } from "../../jogo/BolinhaJogador";
 import { useVisao } from "../Casca";
 
 export function Lacos({ trancada }: { trancada: boolean }) {
   const { sala, conteudo: c, meuJid, acoes } = useSessao();
   const { mestre } = useVisao();
   const [foco, setFoco] = useState<string | null>(null);
+  const [aberto, setAberto] = useState<string | null>(null);
   const [pergunta, setPergunta] = useState<string | null>(null);
   const [para, setPara] = useState<string | null>(null);
   const lista = Object.entries(sala.jogadores).sort((a, b) => (a[1].ordem ?? 0) - (b[1].ordem ?? 0));
@@ -22,15 +25,54 @@ export function Lacos({ trancada }: { trancada: boolean }) {
   const pendentes = paraMim.filter(([, l]) => !l.resposta);
   const respondidas = paraMim.filter(([, l]) => l.resposta);
   const fiz = lacos.filter(([, l]) => l.de === eu);
-  const focado = foco ? sala.lacos[foco] : null;
   const nome = (j: string) => sala.jogadores[j]?.nome || "alguém";
   const jaFeita = (q: string, j: string) => fiz.some(([, l]) => l.pergunta === q && l.para === j);
 
+  const [livre, setLivre] = useState("");
+  const LIVRE = "__personalizada";
   const enviar = async () => {
-    if (!eu || !pergunta || !para) return;
-    await acoes.criarLaco({ de: eu, para, pergunta });
+    const texto = pergunta === LIVRE ? livre.trim() : pergunta;
+    if (!eu || !texto || !para) return;
+    await acoes.criarLaco({ de: eu, para, pergunta: texto });
     setPara(null);
+    setPergunta(null); // fecha o acordeão; a pergunta desce para o fim da fila
+    if (pergunta === LIVRE) setLivre("");
   };
+
+  /** "Para quem?", os retratos e, no canto inferior direito, o botão de enviar. */
+  const destinatarios = (q: string) => (
+    <div className="laco-envio">
+      <span className="n-L">para quem?</span>
+      <div className="retratos-para" role="radiogroup" aria-label="destinatário">
+        {lista
+          .filter(([j]) => j !== eu)
+          .map(([j, x]) => {
+            const feita = !!q && jaFeita(q, j);
+            return (
+              <button
+                key={j}
+                type="button"
+                role="radio"
+                aria-checked={para === j}
+                disabled={feita || trancada}
+                className={`retrato-para ${para === j ? "escolhido" : ""}`}
+                onClick={() => setPara(para === j ? null : j)}
+                title={feita ? `Já perguntado a ${x.nome}` : x.nome}
+              >
+                <BolinhaJogador cor={x.cor} letra={x.nome.slice(0, 1)} tamanho={38} k={x.ordem ?? 0} />
+                <span className="n-L">{x.nome}</span>
+                {feita && <span className="n-I">feita</span>}
+              </button>
+            );
+          })}
+      </div>
+      <div className="laco-envio-rodape">
+        <Placa disabled={!para || !q || trancada} onClick={enviar}>
+          Enviar pergunta
+        </Placa>
+      </div>
+    </div>
+  );
 
   return (
     <Gestao n={6} titulo="Laços" colunas="minmax(250px, 1fr) minmax(300px, 1.25fr) minmax(250px, 1fr)">
@@ -56,9 +98,7 @@ export function Lacos({ trancada }: { trancada: boolean }) {
               const rec = lacos.filter(([, l]) => l.para === j);
               return (
                 <div key={j} className="acompanha-linha" style={{ ["--i" as string]: i }}>
-                  <span className="retrato" style={{ background: `radial-gradient(circle at 45% 40%, ${x.cor}, #161a26 120%)` }}>
-                    {x.nome.slice(0, 1)}
-                  </span>
+                  <BolinhaJogador cor={x.cor} letra={x.nome.slice(0, 1)} tamanho={34} k={i} />
                   <span className="acompanha-nome">
                     <span className="n-R">{x.nome}</span>
                     <span className="n-I">
@@ -77,7 +117,29 @@ export function Lacos({ trancada }: { trancada: boolean }) {
           <p className="n-I">Marque uma classe na Ficha de registro para ver as perguntas de conexão.</p>
         ) : (
           <div className="ramos" style={{ marginTop: 0 }}>
-            {minhaClasse.conexao.map((q) => {
+            <Ramo
+              titulo="Pergunta personalizada"
+              descricao={pergunta === LIVRE ? undefined : "Escreva a sua própria pergunta."}
+              icone="escrever"
+              estado={trancada ? "bloqueado" : "normal"}
+              aberto={pergunta === LIVRE}
+              aoClicar={() => {
+                setPergunta(pergunta === LIVRE ? null : LIVRE);
+                setPara(null);
+              }}
+            >
+              <textarea
+                className="laco-livre"
+                rows={3}
+                value={livre}
+                disabled={trancada}
+                placeholder="O que você quer perguntar?"
+                aria-label="Pergunta personalizada"
+                onChange={(e) => setLivre(e.target.value)}
+              />
+              {destinatarios(livre.trim())}
+            </Ramo>
+            {[...minhaClasse.conexao.filter((q) => !lista.some(([j]) => jaFeita(q, j))), ...minhaClasse.conexao.filter((q) => lista.some(([j]) => jaFeita(q, j)))].map((q) => {
               const feitas = lista.filter(([j]) => jaFeita(q, j)).map(([j]) => nome(j));
               const aberto = pergunta === q;
               return (
@@ -88,43 +150,14 @@ export function Lacos({ trancada }: { trancada: boolean }) {
                   chamada={feitas.length ? undefined : "Escolha para quem."}
                   icone="rumor"
                   estado={trancada ? "bloqueado" : feitas.length && !aberto ? "feito" : "normal"}
+                  selo={feitas.length && !aberto ? <Selo tipo="feito">pergunta feita</Selo> : undefined}
                   aberto={aberto}
                   aoClicar={() => {
                     setPergunta(aberto ? null : q);
                     setPara(null);
                   }}
                 >
-                  <div className="linha-enviar">
-                    <span className="n-L">para quem?</span>
-                    <Placa disabled={!para || trancada} onClick={enviar}>
-                      Enviar pergunta
-                    </Placa>
-                  </div>
-                  <div className="retratos-para" role="radiogroup" aria-label="destinatário">
-                    {lista
-                      .filter(([j]) => j !== eu)
-                      .map(([j, x]) => {
-                        const feita = jaFeita(q, j);
-                        return (
-                          <button
-                            key={j}
-                            type="button"
-                            role="radio"
-                            aria-checked={para === j}
-                            disabled={feita || trancada}
-                            className={`retrato-para ${para === j ? "escolhido" : ""}`}
-                            onClick={() => setPara(para === j ? null : j)}
-                            title={feita ? `Já perguntado a ${x.nome}` : x.nome}
-                          >
-                            <span className="retrato" style={{ background: `radial-gradient(circle at 45% 40%, ${x.cor}, #161a26 120%)` }}>
-                              {x.nome.slice(0, 1)}
-                            </span>
-                            <span className="n-L">{x.nome}</span>
-                            {feita && <span className="n-I">feita</span>}
-                          </button>
-                        );
-                      })}
-                  </div>
+                  {destinatarios(q)}
                 </Ramo>
               );
             })}
@@ -151,7 +184,7 @@ export function Lacos({ trancada }: { trancada: boolean }) {
       </Painel>
 
       <Painel titulo="O diagrama" className="painel-diagrama">
-        <Diagrama foco={foco} setFoco={setFoco} />
+        <Diagrama foco={foco} setFoco={setFoco} abrir={setAberto} />
         <div className="legenda-lacos n-I">
           <span>
             <i className="tracejado" /> esperando resposta
@@ -159,32 +192,6 @@ export function Lacos({ trancada }: { trancada: boolean }) {
           <span>
             <i className="cheio" /> respondida
           </span>
-        </div>
-        <div className="laco-focado" aria-live="polite">
-          <Icone id="info" tamanho={20} />
-          {focado ? (
-            <div>
-              <div className="n-L">
-                {nome(focado.de)} → {nome(focado.para)}
-              </div>
-              <p className="n-contexto" style={{ margin: "2px 0 4px" }}>
-                {focado.pergunta}
-              </p>
-              {focado.resposta ? (
-                <p className="n-J" style={{ ["--autor" as string]: sala.jogadores[focado.para]?.cor, margin: 0 }}>
-                  {focado.resposta}
-                </p>
-              ) : (
-                <p className="n-I" style={{ margin: 0 }}>
-                  Sem resposta ainda.
-                </p>
-              )}
-            </div>
-          ) : (
-            <p className="n-I" style={{ margin: 0 }}>
-              Passe o mouse (ou toque) numa linha para ler o laço.
-            </p>
-          )}
         </div>
       </Painel>
 
@@ -244,16 +251,71 @@ export function Lacos({ trancada }: { trancada: boolean }) {
           </>
         )}
       </Painel>
+      {aberto && sala.lacos[aberto] && <ModalLaco lid={aberto} fechar={() => setAberto(null)} />}
     </Gestao>
   );
 }
 
-function Diagrama({ foco, setFoco }: { foco: string | null; setFoco: (l: string | null) => void }) {
+/** O laço aberto: quem perguntou a quem, a pergunta e a resposta. */
+function ModalLaco({ lid, fechar }: { lid: string; fechar: () => void }) {
+  const { sala } = useSessao();
+  const l = sala.lacos[lid];
+  useEffect(() => {
+    const f = (e: KeyboardEvent) => e.key === "Escape" && fechar();
+    window.addEventListener("keydown", f);
+    return () => window.removeEventListener("keydown", f);
+  }, [fechar]);
+  const de = sala.jogadores[l.de];
+  const para = sala.jogadores[l.para];
+  const alvo = document.querySelector(".jogo") || document.body;
+  return createPortal(
+    <div className="laco-modal-veu" onClick={fechar}>
+      <div onClick={(e) => e.stopPropagation()} role="dialog" aria-modal="true" aria-label="O laço">
+        <Janela
+          tipo="pesada"
+          className="laco-modal"
+          animar
+          rolar
+          topo={
+            <button type="button" className="laco-modal-fechar" onClick={fechar} aria-label="Fechar">
+              <Icone id="fechar" tamanho={16} />
+            </button>
+          }
+        >
+          <div className="laco-modal-pessoas">
+            <span>
+              <BolinhaJogador cor={de?.cor} letra={(de?.nome || "?").slice(0, 1)} tamanho={60} k={de?.ordem ?? 0} />
+              <span className="n-L">{de?.nome}</span>
+            </span>
+            <span className="laco-modal-fio" style={{ ["--cor" as string]: de?.cor }} aria-hidden="true" />
+            <span>
+              <BolinhaJogador cor={para?.cor} letra={(para?.nome || "?").slice(0, 1)} tamanho={60} k={para?.ordem ?? 1} />
+              <span className="n-L">{para?.nome}</span>
+            </span>
+          </div>
+          <div className="n-L">{de?.nome} perguntou</div>
+          <p className="laco-modal-pergunta">{l.pergunta}</p>
+          <div className="n-L">{l.resposta ? `${para?.nome} respondeu` : "a resposta"}</div>
+          {l.resposta ? (
+            <p className="n-J laco-modal-resposta" style={{ ["--autor" as string]: para?.cor }}>
+              {l.resposta}
+            </p>
+          ) : (
+            <p className="n-I">Ainda sem resposta.</p>
+          )}
+        </Janela>
+      </div>
+    </div>,
+    alvo,
+  );
+}
+
+function Diagrama({ foco, setFoco, abrir }: { foco: string | null; setFoco: (l: string | null) => void; abrir: (l: string) => void }) {
   const { sala } = useSessao();
   const lista = Object.entries(sala.jogadores).sort((a, b) => (a[1].ordem ?? 0) - (b[1].ordem ?? 0));
   const n = lista.length || 1;
   const C = 200;
-  const R = n === 1 ? 0 : 124;
+  const R = n === 1 ? 0 : 150;
   const pos: Record<string, [number, number]> = {};
   lista.forEach(([jid], i) => {
     // com 2 nós eles ficam em lados opostos, na horizontal; com mais, em círculo a partir do topo
@@ -266,19 +328,19 @@ function Diagrama({ foco, setFoco }: { foco: string | null; setFoco: (l: string 
   const ligados = foco && sala.lacos[foco] ? [sala.lacos[foco].de, sala.lacos[foco].para] : [];
   const cont: Record<string, number> = {};
   return (
-    <svg viewBox="0 10 400 380" className={`diagrama-lacos ${foco ? "tem-foco" : ""}`} role="img" aria-label="diagrama de laços">
+    <svg viewBox="-12 -12 424 424" className={`diagrama-lacos ${foco ? "tem-foco" : ""}`} role="img" aria-label="diagrama de laços">
       <defs>
         <radialGradient id="laco-brilho" cx="50%" cy="50%" r="50%">
           <stop offset="0%" stopColor="#e8b866" stopOpacity=".16" />
           <stop offset="100%" stopColor="#e8b866" stopOpacity="0" />
         </radialGradient>
       </defs>
-      <circle cx={C} cy={C} r="190" fill="url(#laco-brilho)" />
+      <circle cx={C} cy={C} r="212" fill="url(#laco-brilho)" />
       <g className="laco-relogio" aria-hidden="true">
-        <circle cx={C} cy={C} r="178" fill="none" stroke="var(--brass-dark)" strokeWidth=".8" strokeDasharray="1 7" />
+        <circle cx={C} cy={C} r="204" fill="none" stroke="var(--brass-dark)" strokeWidth=".8" strokeDasharray="1 7" />
         {Array.from({ length: 12 }, (_, i) => {
           const a = (i * Math.PI) / 6;
-          return <line key={i} x1={C + 170 * Math.cos(a)} y1={C + 170 * Math.sin(a)} x2={C + 178 * Math.cos(a)} y2={C + 178 * Math.sin(a)} stroke="var(--brass)" strokeWidth="1" opacity=".55" />;
+          return <line key={i} x1={C + 196 * Math.cos(a)} y1={C + 196 * Math.sin(a)} x2={C + 204 * Math.cos(a)} y2={C + 204 * Math.sin(a)} stroke="var(--brass)" strokeWidth="1" opacity=".55" />;
         })}
       </g>
       {n > 1 && <circle className="laco-anel" cx={C} cy={C} r={R} fill="none" stroke="var(--brass-dark)" strokeDasharray="2 6" />}
@@ -301,7 +363,7 @@ function Diagrama({ foco, setFoco }: { foco: string | null; setFoco: (l: string 
         const jx = (x1 + 2 * cx + x2) / 4;
         const jy = (y1 + 2 * cy + y2) / 4;
         return (
-          <g key={lid} className={`laco ${foco === lid ? "foco" : ""}`} style={{ ["--i" as string]: i }} onMouseEnter={() => setFoco(lid)} onMouseLeave={() => setFoco(null)} onClick={() => setFoco(foco === lid ? null : lid)}>
+          <g key={lid} role="button" aria-label={`Laço de ${sala.jogadores[l.de]?.nome} para ${sala.jogadores[l.para]?.nome}`} className={`laco ${foco === lid ? "foco" : ""}`} style={{ ["--i" as string]: i, ["--brilho" as string]: cor }} onMouseEnter={() => setFoco(lid)} onMouseLeave={() => setFoco(null)} onClick={() => abrir(lid)}>
             <path d={d} className="area-laco" />
             <path d={d} pathLength={l.resposta ? 1 : undefined} className={`linha-laco ${l.resposta ? "desenha" : "espera"} ${foco === lid ? "foco" : ""}`} stroke={cor} />
             {l.resposta ? (
@@ -321,12 +383,7 @@ function Diagrama({ foco, setFoco }: { foco: string | null; setFoco: (l: string 
         return (
           <g key={jid} pointerEvents="none" className={`no-laco ${ligados.includes(jid) ? "ligado" : ""}`} style={{ ["--i" as string]: i }}>
             {pend > 0 && <circle className="no-halo" cx={x} cy={y} r="31" fill="none" stroke="var(--gaslight)" strokeWidth="2" />}
-            <circle cx={x} cy={y} r="31" fill="#0c0f17" stroke="var(--brass)" strokeWidth="1.5" />
-            <circle cx={x} cy={y} r="27" fill={j.cor} />
-            <circle cx={x - 8} cy={y - 9} r="8" fill="#fff" opacity=".28" />
-            <text x={x} y={y + 8} textAnchor="middle" fontFamily="var(--font-display)" fontSize="24" fontWeight="700" fill="#0e1213">
-              {j.nome.slice(0, 1)}
-            </text>
+            <BolinhaJogadorSvg x={x} y={y} r={30} cor={j.cor} letra={j.nome.slice(0, 1)} k={i} aceso={ligados.includes(jid)} />
             <text x={x} y={abaixo ? y + 54 : y - 40} textAnchor="middle" fontFamily="var(--font-display)" fontSize="17" fill="var(--text)" stroke="#0c0f17" strokeWidth="3" paintOrder="stroke">
               {j.nome}
             </text>

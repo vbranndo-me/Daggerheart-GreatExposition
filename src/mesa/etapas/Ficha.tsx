@@ -11,6 +11,9 @@ import { useVisao } from "../Casca";
 
 import { SelecaoFicha, type AcaoFicha } from "./SelecaoFicha";
 import { Origem } from "./Origem";
+import { Cartas, EquipamentoPagina, Experiencias, Tracos } from "./Mecanica";
+import { calcularDerivados, cartasCompletas, equipamentoCompleto, experienciasCompletas, experienciasDe, tracosCompletos } from "../../db/regras";
+import { comoLista } from "../../db/backend";
 import "./ficha-registro.css";
 
 const PAGINAS = [
@@ -24,6 +27,10 @@ const PAGINAS = [
   { id: "compulsao", rotulo: "Compulsão", icone: "rumor" },
   { id: "oculto", rotulo: "O oculto", icone: "boato" },
   { id: "segredo", rotulo: "Segredo", icone: "selar" },
+  { id: "tracos", rotulo: "Traços", icone: "rolar" },
+  { id: "experiencias", rotulo: "Experiências", icone: "origem" },
+  { id: "equipamento", rotulo: "Equipamento", icone: "lente-guerra" },
+  { id: "cartas", rotulo: "Cartas", icone: "abrir" },
   { id: "signoff", rotulo: "Signoff", icone: "visto" },
 ] as const;
 type IdPagina = (typeof PAGINAS)[number]["id"];
@@ -49,7 +56,7 @@ export function Ficha({ trancada }: { trancada: boolean }) {
   );
 }
 
-function feitas(p: Personagem, pr: Privado): Record<IdPagina, boolean> {
+function feitas(c: ReturnType<typeof useSessao>["conteudo"], p: Personagem, pr: Privado): Record<IdPagina, boolean> {
   const origem = p.classe ? Object.values(p.origem?.[p.classe] || {}).filter((x) => x && String(x).trim()).length : 0;
   return {
     pais: !!p.pais,
@@ -62,6 +69,10 @@ function feitas(p: Personagem, pr: Privado): Record<IdPagina, boolean> {
     compulsao: !!p.compulsao?.trim(),
     oculto: !!p.oculto?.trim(),
     segredo: !!pr.segredo?.trim(),
+    tracos: tracosCompletos(c, p.tracos),
+    experiencias: experienciasCompletas(p),
+    equipamento: equipamentoCompleto(c, p),
+    cartas: cartasCompletas(p),
     signoff: !!p.registroConfirmado,
   };
 }
@@ -101,7 +112,12 @@ function PaginaFicha({
     oculto: { titulo: "Ligação com o oculto", texto: c.geral.perguntaOculto },
     signoff: { titulo: "Signoff", texto: "Revise o registro antes de confirmar sua ficha." },
     segredo: { titulo: "O segredo", texto: c.geral.ajudaSegredo || "Uma coisa que o seu personagem esconde de todo mundo." },
+    tracos: { titulo: "Traços", texto: "" },
+    experiencias: { titulo: "Experiências", texto: "" },
+    equipamento: { titulo: "Equipamento", texto: "" },
+    cartas: { titulo: "Cartas de domínio", texto: "" },
   };
+  const mecanica = ["tracos", "experiencias", "equipamento", "cartas"].includes(pag);
 
   return (
     <Gestao
@@ -114,27 +130,27 @@ function PaginaFicha({
       rodape={<div className="registro-nav">
         <button className="link" disabled={pag === "pais"} onClick={() => setPag(PAGINAS[Math.max(0, PAGINAS.findIndex((x) => x.id === pag) - 1)].id)}>Anterior</button>
         <span className="n-I">{PAGINAS.findIndex((x) => x.id === pag) + 1} / {PAGINAS.length}</span>
-        {selecao ? <Placa disabled={trancada || !acaoEscolha || acaoEscolha.desabilitada} onClick={() => acaoEscolha?.executar()}>{acaoEscolha?.rotulo || "Escolher"}</Placa> : pag !== "signoff" ? <Placa onClick={proxima}>Próxima etapa</Placa> : <Placa disabled={trancada || !!p.registroConfirmado} onClick={() => acoes.personagem(jid, { registroConfirmado: true })}>{p.registroConfirmado ? "Ficha confirmada" : "Confirmar ficha"}</Placa>}
+        {selecao ? <Placa disabled={trancada || !acaoEscolha || acaoEscolha.desabilitada} onClick={() => acaoEscolha?.executar()}>{acaoEscolha?.rotulo || "Escolher"}</Placa> : pag !== "signoff" ? <Placa onClick={proxima}>Próxima etapa</Placa> : <Placa disabled={trancada || !!p.registroConfirmado} onClick={() => acoes.personagem(jid, { derivados: calcularDerivados(c, p), registroConfirmado: true })}>{p.registroConfirmado ? "Ficha confirmada" : "Confirmar ficha"}</Placa>}
       </div>}
     >
       {escolherJogador && <div className="registro-jogador"><label className="n-L" htmlFor="registro-jogador">Ficha de</label><select id="registro-jogador" value={jid} onChange={(e) => escolherJogador(e.target.value)}>{Object.entries(sala.jogadores).map(([id, j]) => <option key={id} value={id}>{j.nome}</option>)}</select></div>}
       <Abas jid={jid} pag={pag} setPag={setPag} />
-      <Painel titulo={selecao ? undefined : TEXTOS[pag].titulo} className={`pagina-ficha ${selecao ? "com-selecao" : ""}`}>
-      {pag === "signoff" ? <Signoff jid={jid} setPag={setPag} /> : ["pais", "papel", "comunidade", "ancestralidade", "classe", "subclasse"].includes(pag) ? (
+      <Painel titulo={selecao || mecanica ? undefined : TEXTOS[pag].titulo} className={`pagina-ficha ${selecao ? "com-selecao" : ""}`}>
+      {pag === "signoff" ? <Signoff jid={jid} setPag={setPag} /> : pag === "tracos" ? <Tracos key={jid} jid={jid} trancada={trancada} /> : pag === "experiencias" ? <Experiencias key={jid} jid={jid} trancada={trancada} /> : pag === "equipamento" ? <EquipamentoPagina key={jid} jid={jid} trancada={trancada} /> : pag === "cartas" ? <Cartas key={jid} jid={jid} trancada={trancada} /> : ["pais", "papel", "comunidade", "ancestralidade", "classe", "subclasse"].includes(pag) ? (
         <SelecaoFicha key={jid + pag} jid={jid} pagina={pag as "pais" | "papel" | "comunidade" | "ancestralidade" | "classe" | "subclasse"} titulo={TEXTOS[pag].titulo} trancada={trancada} aoAcao={setAcaoEscolha} aoProximo={proxima} />
       ) : <div className="registro-narrativa">
         {pag === "origem" && <Origem jid={jid} classe={classe} respostas={respostas} trancada={trancada} aoEscolherClasse={() => setPag("classe")} aoAvancar={proxima} />}
         {pag === "compulsao" && <div className="registro-escrita-layout">
-          <PerguntaRegistro pergunta={c.compulsao.pergunta || "O que seu personagem n?o consegue evitar?"} valor={p.compulsao} salvar={(v) => set("compulsao", v)} trancada={trancada} linhas={7} />
-          <aside className="registro-inspiracao"><h3 className="n-L">Compuls?o</h3><p className="n-I">{c.compulsao.explicacao}</p>{!!c.compulsao.exemplos.length && <><h3 className="n-L">Exemplos</h3><ul>{c.compulsao.exemplos.map((e) => <li key={e} className="n-I">{e}</li>)}</ul></>}</aside>
+          <PerguntaRegistro pergunta={c.compulsao.pergunta || "O que seu personagem não consegue evitar?"} valor={p.compulsao} salvar={(v) => set("compulsao", v)} trancada={trancada} linhas={7} />
+          <aside className="registro-inspiracao"><h3 className="n-L">Compulsão</h3><p className="n-I">{c.compulsao.explicacao}</p>{!!c.compulsao.exemplos.length && <><h3 className="n-L">Exemplos</h3><ul>{c.compulsao.exemplos.map((e) => <li key={e} className="n-I">{e}</li>)}</ul></>}</aside>
         </div>}
         {pag === "oculto" && <div className="registro-escrita-layout">
-          <PerguntaRegistro pergunta={c.geral.perguntaOculto || "Qual ? a sua liga??o com o oculto?"} valor={p.oculto} salvar={(v) => set("oculto", v)} trancada={trancada} linhas={8} />
+          <PerguntaRegistro pergunta={c.geral.perguntaOculto || "Qual é a sua ligação com o oculto?"} valor={p.oculto} salvar={(v) => set("oculto", v)} trancada={trancada} linhas={8} />
           {c.geral.ajudaOculto && <aside className="registro-inspiracao"><Icone id="boato" tamanho={24} /><p className="n-I">{c.geral.ajudaOculto}</p></aside>}
         </div>}
         {pag === "segredo" && <div className="registro-escrita-layout">
           <PerguntaRegistro pergunta="O que seu personagem esconde?" valor={pr.segredo} salvar={(v) => acoes.privado(jid, "segredo", v || null)} trancada={trancada} linhas={8} privada />
-          <aside className="registro-inspiracao"><Icone id="selar" tamanho={24} /><p className="n-I">{c.geral.ajudaSegredo || "Uma coisa que seu personagem esconde de todo mundo."}</p><p className="n-I">Apenas voc? e o mestre podem ler esta resposta.</p></aside>
+          <aside className="registro-inspiracao"><Icone id="selar" tamanho={24} /><p className="n-I">{c.geral.ajudaSegredo || "Uma coisa que seu personagem esconde de todo mundo."}</p><p className="n-I">Apenas você e o mestre podem ler esta resposta.</p></aside>
         </div>}
       </div>}
       </Painel>
@@ -151,9 +167,11 @@ function PerguntaRegistro({ pergunta, numero, valor, salvar, trancada, linhas = 
       {privada && <Selo tipo="privado"><Icone id="selar" tamanho={12} /> Privado</Selo>}
     </div>
     <TextoVivo id={id} valor={valor} salvar={salvar} linhas={linhas} desabilitado={trancada} placeholder="Escreva sua resposta..." />
-    <div className="registro-pergunta-rodape"><span>{trancada ? "Edi??o trancada pelo mestre" : "Salvamento autom?tico"}</span>{!!valor?.trim() && <span className="registro-resposta-preenchida"><Icone id="visto" tamanho={12} /> Respondida</span>}</div>
+    <div className="registro-pergunta-rodape"><span>{trancada ? "Edição trancada pelo mestre" : "Salvamento automático"}</span>{!!valor?.trim() && <span className="registro-resposta-preenchida"><Icone id="visto" tamanho={12} /> Respondida</span>}</div>
   </article>;
 }
+
+const sinalT = (n: number) => (n > 0 ? `+${n}` : n < 0 ? `−${-n}` : "0");
 
 function valoresDe(c: ReturnType<typeof useSessao>["conteudo"], p: Personagem, pr: Privado): Record<IdPagina, string> {
   const nomeDe = (l: { id: string; nome: string }[], id?: string) => l.find((x) => x.id === id)?.nome;
@@ -169,14 +187,18 @@ function valoresDe(c: ReturnType<typeof useSessao>["conteudo"], p: Personagem, p
     compulsao: p.compulsao?.trim() ? "escrita" : "—",
     oculto: p.oculto?.trim() ? "escrita" : "—",
     segredo: pr.segredo?.trim() ? "selado" : "—",
+    tracos: tracosCompletos(c, p.tracos) ? c.criacao.tracos.map((t) => `${t.nome.slice(0, 3)} ${sinalT(p.tracos?.[t.id] ?? 0)}`).join(" · ") : "—",
+    experiencias: experienciasDe(p).filter((x) => x.texto?.trim()).map((x) => x.texto).join(" · ") || "—",
+    equipamento: [p.equipamento?.principal, p.equipamento?.secundaria, p.equipamento?.armadura].map((id) => c.equipamento.find((x) => x.id === id)?.nome).filter(Boolean).join(" · ") || "—",
+    cartas: comoLista<string>(p.cartas).map((id) => c.cartas.find((k) => k.id === id)?.nome).filter(Boolean).join(" · ") || "—",
     signoff: p.registroConfirmado ? "confirmada" : "pendente",
   };
 }
 
 /** O trilho da ficha: uma linha de latão com uma estação por página. As feitas acendem, a atual brilha. */
 function Abas({ jid, pag, setPag }: { jid: string; pag: IdPagina; setPag: (p: IdPagina) => void }) {
-  const { sala } = useSessao();
-  const ok = feitas(sala.personagens[jid] || {}, sala.privado[jid] || {});
+  const { sala, conteudo } = useSessao();
+  const ok = feitas(conteudo, sala.personagens[jid] || {}, sala.privado[jid] || {});
   const total = PAGINAS.filter((x) => x.id !== "signoff").length;
   const prontas = PAGINAS.filter((x) => x.id !== "signoff" && ok[x.id]).length;
   return (

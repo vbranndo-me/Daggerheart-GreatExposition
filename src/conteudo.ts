@@ -114,6 +114,43 @@ export interface CartaDominio {
   classe?: string;
   texto?: string;
   imagem?: string | null;
+  /** nome no SRD, quando a carta veio de lá */
+  nomeEn?: string;
+  /** "srd" ou "void"; sem fonte, é carta nossa (da Exposição) */
+  fonte?: string;
+}
+/** Uma peça de content/equipamento.json. */
+export interface Equipamento {
+  id: string;
+  nome: string;
+  /** "arma principal", "arma secundária", "armadura" ou "consumível" */
+  tipo: string;
+  original?: string;
+  atributo?: string;
+  alcance?: string;
+  dano?: string;
+  empunhadura?: string;
+  /** "5 / 11" */
+  limiares?: string;
+  armadura?: number;
+  caracteristica?: string;
+  descricao?: string;
+  fogo?: boolean;
+  /** arma mágica: só para quem tem atributo de conjuração */
+  magica?: boolean;
+}
+/** content/criacao.json: as regras fixas do fim do criador (traços, kit, valores iniciais). */
+export interface Criacao {
+  tracos: { id: string; nome: string; verbos: string }[];
+  valores: number[];
+  sugestoes: Record<string, Record<string, number>>;
+  kit: { fixos: string[]; pocoes: { id: string; nome: string; original?: string; texto: string }[] };
+  derivados: { fadiga: number; esperanca: number; proficiencia: number; nivel: number };
+}
+export interface SugestoesExperiencia {
+  classe: Record<string, string[]>;
+  pais: Record<string, string[]>;
+  papel: Record<string, string[]>;
 }
 export interface Seguranca {
   linhas: string;
@@ -166,7 +203,14 @@ export interface Conteudo {
   builder: BuilderConteudo;
   continente: ManifestoMapa;
   rouillac: ManifestoMapa;
+  /** as cartas de domínio: as nossas (cartas.json) e as do SRD (srd-cartas.json) */
+  cartas: CartaDominio[];
+  equipamento: Equipamento[];
+  criacao: Criacao;
+  sugestoesExperiencia: SugestoesExperiencia;
 }
+
+const CRIACAO_VAZIA: Criacao = { tracos: [], valores: [2, 1, 1, 0, 0, -1], sugestoes: {}, kit: { fixos: [], pocoes: [] }, derivados: { fadiga: 6, esperanca: 2, proficiencia: 1, nivel: 1 } };
 
 export const urlConteudo = (arq: string) => `./content/${arq}`;
 
@@ -202,10 +246,16 @@ export async function carregarConteudo(): Promise<Conteudo> {
       json<ManifestoMapa>("mapas/continente.json"),
       json<ManifestoMapa>("mapas/rouillac.json"),
     ]);
-  const [objetivos, manifesto] = await Promise.all([
+  const [objetivos, manifesto, cartasNossas, cartasSrd, equipamento, criacao, sugestoesExperiencia] = await Promise.all([
     json<Objetivos>("objetivos.json").catch(() => ({}) as Objetivos),
     json<VagaArte[]>("arte/manifest.json").catch(() => [] as VagaArte[]),
+    json<CartaDominio[]>("cartas.json").catch(() => [] as CartaDominio[]),
+    json<CartaDominio[]>("srd-cartas.json").catch(() => [] as CartaDominio[]),
+    json<Equipamento[]>("equipamento.json").catch(() => [] as Equipamento[]),
+    json<Criacao>("criacao.json").catch(() => CRIACAO_VAZIA),
+    json<SugestoesExperiencia>("experiencias-sugestoes.json").catch(() => ({ classe: {}, pais: {}, papel: {} })),
   ]);
+  const cartas = [...cartasNossas, ...cartasSrd];
   const arte: Record<string, string> = {};
   void manifesto; // o manifest.json agora só lista as vagas; as imagens vêm do mapa-arte.json (npm run arte)
   // as artes geradas pelo `npm run arte` (WebP em várias larguras, pedidas sempre pelo id)
@@ -217,7 +267,7 @@ export async function carregarConteudo(): Promise<Conteudo> {
     arteSet[id] = ws.map((w) => `./arte/${id}-${w}.webp ${w}w`).join(", ");
   }
   const conviteArte = geral.conviteArte ? urlConteudo(geral.conviteArte) : null;
-  return { objetivos, arte, arteSet, arteInfo: arteInfo as Conteudo["arteInfo"], geral, abertura, convite, conviteArte, seguranca, paises, origens, comunidades, classes, compulsao, builder, continente, rouillac };
+  return { objetivos, arte, arteSet, arteInfo: arteInfo as Conteudo["arteInfo"], geral, abertura, convite, conviteArte, seguranca, paises, origens, comunidades, classes, compulsao, builder, continente, rouillac, cartas, equipamento, criacao, sugestoesExperiencia };
 }
 
 export function perguntaBuilder(c: Conteudo, cat: number, num: number) {

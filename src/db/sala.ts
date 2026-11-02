@@ -1,5 +1,6 @@
 import { esquecerSala } from "./salasSalvas";
 import { carregarArquivo } from "../arquivo/dados";
+import { calcularDerivados, cartasDisponiveis, opcoesItemClasse } from "./regras";
 import { createContext, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { obterBackend, comoLista, type Backend } from "./backend";
 import {
@@ -313,7 +314,7 @@ export function criarAcoes(b: Backend, salaId: string) {
 
     // personagem
     async personagem(jid: string, campos: Partial<Record<keyof Personagem, any>>) {
-      await b.update(`${P}/personagens/${jid}`, { ...campos, ...(Object.keys(campos).some((k) => k !== "registroConfirmado") ? { registroConfirmado: null } : {}) });
+      await b.update(`${P}/personagens/${jid}`, { ...campos, ...(Object.keys(campos).some((k) => k !== "registroConfirmado" && k !== "derivados") ? { registroConfirmado: null } : {}) });
     },
     async respostaOrigem(jid: string, classe: string, i: number, texto: string) {
       await b.update(`${P}/personagens/${jid}`, { [`origem/${classe}/${i}`]: texto || null, registroConfirmado: null });
@@ -523,6 +524,28 @@ async function criarEnsaio(b: Backend, P: string, conteudo: Conteudo) {
       compulsao: "Não consigo deixar uma porta trancada sem saber o que há atrás.",
       oculto: "Vi uma luz que não devia existir, uma vez, no fundo de um poço.",
     };
+    // o fim mecânico: traços sugeridos (ou uma distribuição padrão), Experiências, equipamento e 2 cartas
+    const personagem = upd[`personagens/${jid}`];
+    const ordemPadrao = ["agilidade", "forca", "finura", "instinto", "presenca", "conhecimento"];
+    const giro = ordemPadrao.map((_, k) => ordemPadrao[(k + i) % 6]);
+    personagem.tracos = (classe && conteudo.criacao.sugestoes[classe.id]) || Object.fromEntries(giro.map((t, k) => [t, conteudo.criacao.valores[k] ?? 0]));
+    personagem.experiencias = [
+      { texto: `Ex-${["contrabandista", "tipógrafo", "estivador", "seminarista", "crupiê"][i]} de Rouillac`, bonus: 2 },
+      { texto: ["Conhece todo beco da cidade velha", "Lê lábios", "Sobreviveu ao cerco de Narona", "Fala com os mortos em sonho", "Nunca perde no carteado"][i], bonus: 2 },
+    ];
+    const conj = !!classe?.subclasses.find((s) => s.nome === sub)?.conjuracao;
+    const armas = conteudo.equipamento.filter((x) => x.tipo === "arma principal" && (!x.magica || conj));
+    const arma = em(conj ? armas.filter((x) => x.magica) : armas, i) || em(armas, i);
+    personagem.equipamento = {
+      principal: arma?.id ?? null,
+      secundaria: null,
+      armadura: em(conteudo.equipamento.filter((x) => x.tipo === "armadura"), i)?.id ?? null,
+      kit: conteudo.criacao.kit.fixos,
+      pocao: em(conteudo.criacao.kit.pocoes, i)?.id ?? null,
+      itemClasse: opcoesItemClasse(classe)[i % 2] ?? null,
+    };
+    personagem.cartas = cartasDisponiveis(conteudo, personagem).slice(0, 2).map((k) => k.id);
+    personagem.derivados = calcularDerivados(conteudo, personagem);
     upd[`privado/${jid}`] = {
       segredo: `Segredo de exemplo de ${nome}: guardo uma carta que nunca abri.`,
       morte: em(conteudo.seguranca.morte.opcoes, i)?.id ?? null,

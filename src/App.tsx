@@ -5,6 +5,7 @@ import { modoLocalForcado } from "./db/backend";
 import { lerSalasSalvas, registrarSala, apagarSalaSalva, linkMestre, type SalaSalva } from "./db/salasSalvas";
 import { firebaseConfigurado } from "./firebase-config";
 import { Kit } from "./jogo/Kit";
+import Pagina from "./ficha/Pagina";
 import { Arquivo, type RotaArquivo } from "./arquivo/Arquivo";
 import { Criador, PortaoIdentidade } from "./arquivo/Criador";
 import { Casca } from "./mesa/Casca";
@@ -22,8 +23,9 @@ function rotaArquivo(a: string | undefined, b: string | undefined, rascunho: boo
 }
 function lerRota() {
   const h = location.hash.replace(/^#/, "");
-  const vazio = { salaId: null as string | null, chave: null as string | null, kit: false, arquivo: null as RotaArquivo | null, criador: false };
+  const vazio = { salaId: null as string | null, chave: null as string | null, kit: false, ficha: false, arquivo: null as RotaArquivo | null, criador: false };
   if (h.startsWith("/kit")) return { ...vazio, kit: true };
+  if (h.startsWith("/ficha")) return { ...vazio, ficha: true };
   const [caminho, query = ""] = h.split("?");
   const q = new URLSearchParams(query);
   const rascunho = q.has("rascunho");
@@ -62,6 +64,7 @@ export default function App() {
     carregarConteudo().then(setConteudo, (e) => setErro(String(e.message || e)));
   }, []);
   if (erro) return <Aviso titulo="Não deu para carregar o conteúdo" texto={erro} />;
+  if (rota.ficha) return <Pagina />;
   if (rota.kit) return <Kit conteudo={conteudo} />;
   if (rota.criador && !rota.salaId) return <Criador conteudo={conteudo} />;
   if (rota.salaId && (rota.arquivo || rota.criador)) return <SalaExtra key={rota.salaId} salaId={rota.salaId} chave={rota.chave} conteudo={conteudo} arquivo={rota.arquivo} />;

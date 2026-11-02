@@ -56,6 +56,42 @@ export interface Personagem {
   origem?: Record<string, Record<string, string>>; // classe -> índice -> resposta
   compulsao?: string;
   oculto?: string;
+  /** os seis modificadores (+2, +1, +1, 0, 0, −1), por id do traço */
+  tracos?: Record<string, number | null>;
+  /** duas Experiências, cada uma com +2 */
+  experiencias?: Experiencia[];
+  equipamento?: EquipamentoPersonagem;
+  /** ids das 2 cartas de domínio de nível 1 */
+  cartas?: string[];
+  /** os números da ficha no nível 1, gravados quando o registro é confirmado */
+  derivados?: Derivados;
+}
+
+export interface Experiencia {
+  texto: string;
+  bonus: number;
+}
+export interface EquipamentoPersonagem {
+  principal?: string | null;
+  secundaria?: string | null;
+  armadura?: string | null;
+  /** o kit inicial, fixo */
+  kit?: string[];
+  pocao?: string | null;
+  /** texto da opção escolhida entre as da classe */
+  itemClasse?: string | null;
+}
+export interface Derivados {
+  nivel: number;
+  evasao: number | null;
+  pv: number | null;
+  fadiga: number;
+  esperanca: number;
+  proficiencia: number;
+  armadura: number | null;
+  limiares: { maior: number; grave: number } | null;
+  /** penalidades da armadura que mexem nos traços, ex.: "−1 Agilidade" */
+  notas?: string[];
 }
 
 export interface Privado {

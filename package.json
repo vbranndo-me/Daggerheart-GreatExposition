@@ -11,7 +11,8 @@
     "pedidos-arte": "node scripts/pedidos-arte.mjs",
     "icones": "node scripts/extrair-icones.mjs",
     "spoiler": "node scripts/spoiler.mjs",
-    "arte": "node scripts/arte.mjs"
+    "arte": "node scripts/arte.mjs",
+    "ficha:pacote": "vite build -c vite.ficha.config.ts"
   },
   "dependencies": {
     "d3-ease": "^3.0.1",
