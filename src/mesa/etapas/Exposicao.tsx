@@ -7,7 +7,7 @@ import { useSessao } from "../../db/sala";
 import { comoLista } from "../../db/backend";
 import { perguntaBuilder } from "../../conteudo";
 import { ROMANOS } from "../../db/tipos";
-import { Dado, Insignia, Placa, Selo } from "../../jogo/componentes";
+import { Dado, Insignia, Selo } from "../../jogo/componentes";
 import { BotaoHextech } from "../../jogo/hextech";
 import { CartaBuilder, FrenteCarta, VersoCarta } from "../../jogo/carta";
 import { Escrita, JanelaLateral, Storylet } from "../pecas";
@@ -141,22 +141,6 @@ export function Exposicao({ trancada }: { trancada: boolean }) {
                     {pinAtual ? `No mapa: ${pinAtual.titulo} · desligar` : fixando ? "Clique em Rouillac · Esc cancela" : "Fixar no mapa"}
                   </BotaoHextech>
                 </span>
-              )}
-              {minhaVez && !mestre && (
-                <div className="enviar-resposta">
-                  {atual.enviada ? (
-                    <>
-                      <Selo tipo="feito">enviada ao mestre</Selo>
-                      <button className="link" onClick={() => acoes.enviarBuilder(false)}>
-                        reabrir
-                      </button>
-                    </>
-                  ) : (
-                    <Placa disabled={!atual.texto?.trim()} onClick={() => acoes.enviarBuilder(true)}>
-                      Enviar resposta
-                    </Placa>
-                  )}
-                </div>
               )}
             </div>
           </>
