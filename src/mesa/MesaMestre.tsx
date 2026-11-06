@@ -724,7 +724,7 @@ function Exportar() {
       "4096 px, com legenda dos autores.",
       async () => baixar((await renderizarMapa(c.rouillac, { largura: 4096, pins: Object.values(sala.pins.rouillac || {}), jogadores: sala.jogadores, legenda: true })).blob, "rouillac-alfinetes.png"),
     ],
-    ["foundry", "Pacote do Foundry v13 (.zip)", "Diários, mapas sem alfinetes e a macro.", async () => baixar(await gerarPacoteFoundry(sala, c, await onde()), "foundry-sessao-zero.zip", "application/zip")],
+    ["foundry", "Pacote do Foundry (.zip)", "Diários, mapas e macro de fichas para Foundryborne.", async () => baixar(await gerarPacoteFoundry(sala, c, await onde(), salaId), "foundry-sessao-zero.zip", "application/zip")],
   ];
   return (
     <div className="mesa-bloco">

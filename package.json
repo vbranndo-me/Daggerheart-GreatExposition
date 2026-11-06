@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "node scripts/arte.mjs && tsc -b && vite build",
+    "build": "node scripts/gerar-macro-personagens.mjs && node scripts/arte.mjs && tsc -b && vite build",
     "preview": "vite preview",
     "gerar-continente": "node scripts/gerar-continente.mjs",
     "pedidos-arte": "node scripts/pedidos-arte.mjs",

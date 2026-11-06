@@ -108,6 +108,34 @@ Rodar duas vezes cria tudo de novo (duplicado). Apague a pasta e as cenas antes 
 
 ## 7. Trocar o conteúdo (`/content`)
 
+### Importar fichas no Foundryborne
+
+O pacote do Foundry agora inclui `importar-personagens-foundry.js` e o JSON
+completo da sessão, além dos mapas e diários. A macro de personagens é separada:
+não recria cenas ou notas. Esquema conferido na instalação Foundryborne Daggerheart
+2.11.4 (Foundry v14); versões diferentes podem precisar de ajustes.
+
+1. No painel do mestre, exporte **sessao-zero.json** ou o pacote do Foundry.
+2. Crie uma macro do tipo **Script**, cole `importar-personagens-foundry.js` e rode como mestre.
+3. Selecione **sessao-zero.json** e confirme a lista de personagens.
+4. Confira as fichas na pasta **Sessão Zero**, leia o relatório e atribua os donos pelo Foundry.
+
+O antigo `dados.json` só contém diários e mapas: exporte novamente o JSON completo.
+A macro importa atributos, Experiências, recursos iniciais, histórico e laços.
+Procura classes, heranças, equipamentos e cartas por nome exato no mundo e nos
+compêndios. Cria itens do cenário quando o formato permite; correspondências
+ausentes ou ambíguas são indicadas para revisão. Efeitos, ações especiais,
+habilidades concedidas e herança mista precisam ser conferidos manualmente.
+Segredos não entram nas fichas, que começam acessíveis apenas ao mestre.
+
+Rodar de novo com a mesma sala ignora fichas já importadas. Não sobrescreve fichas
+existentes por nome. Uma importação parcial também é preservada e deve ser revisada
+manualmente antes de repetir. A macro não depende de conexão ao Firebase.
+
+Para gerar a macro avulsa: `node scripts/gerar-macro-personagens.mjs`.
+Ela fica em `public/importar-personagens-foundry.js` e também é gerada pelo build.
+Testes: `node --test scripts/testar-importacao-foundry.mjs`.
+
 Todos os textos ficam em `content/`, fora do código. Hoje estão com **dados de exemplo** marcados "[Exemplo]". Troque à vontade; o formato está abaixo. Depois de editar, um push na `main` publica.
 
 | Arquivo | Conteúdo |

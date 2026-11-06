@@ -34,7 +34,7 @@ interface NotaF {
   pagina: string;
 }
 
-export async function gerarPacoteFoundry(s: Sala, c: Conteudo, onde: (u: number, v: number) => string | null) {
+export async function gerarPacoteFoundry(s: Sala, c: Conteudo, onde: (u: number, v: number) => string | null, salaId: string) {
   const achar = (l: { id: string; nome: string }[], id?: string | null) => l.find((x) => x.id === id)?.nome || "—";
   const iconeC = (t: string) => c.continente.tiposPin.find((x) => x.id === t)?.icone || "icons/svg/book.svg";
   const iconeR = (t: string) => c.rouillac.tiposPin.find((x) => x.id === t)?.icone || "icons/svg/book.svg";
@@ -169,6 +169,8 @@ export async function gerarPacoteFoundry(s: Sala, c: Conteudo, onde: (u: number,
   };
 
   const zip = zipSync({
+    "sessao-zero.json": strToU8(JSON.stringify({ ...s, salaId, gmauth: undefined, exportadoEm: new Date().toISOString() }, null, 2)),
+    "importar-personagens-foundry.js": strToU8(await fetch(`${import.meta.env.BASE_URL}importar-personagens-foundry.js`, { cache: "no-cache" }).then(r => { if (!r.ok) throw new Error("Não foi possível carregar a macro de personagens."); return r.text(); })),
     "dados.json": strToU8(JSON.stringify(dados, null, 2)),
     "continente.png": new Uint8Array(await cont.blob.arrayBuffer()),
     "rouillac.png": new Uint8Array(await rou.blob.arrayBuffer()),
@@ -187,4 +189,16 @@ const LEIA_ME = `Importar a Sessão Zero no Foundry VTT v13
 3. Cole todo o conteúdo de importar-sessao-zero.js e salve.
 4. Rode a macro. Ela pede o dados.json: escolha o arquivo deste pacote.
 5. Pronto: pasta de diários "Sessão Zero" e duas cenas com as notas no mapa.
+
+FICHAS DE PERSONAGEM (Foundryborne Daggerheart 2.x; esquema conferido em 2.11.4 / Foundry v14)
+6. Crie outra macro Script com importar-personagens-foundry.js.
+7. Rode como mestre e selecione sessao-zero.json. Você também pode usar o JSON
+   completo exportado separadamente no painel do mestre (com salaId original).
+8. Confira o relatório e atribua cada ficha ao jogador. Importar novamente
+   o mesmo arquivo ignora personagens já importados, inclusive fichas parciais.
+   Não mistura com fichas existentes por nome. Não importa segredos para fichas.
+9. Cartas, classes e equipamentos são procurados por nome exato nos itens e
+   compêndios. Sem correspondência única, usa dados do cenário quando possível
+   e informa o que requer revisão. Habilidades especiais não ganham automação
+   de efeitos apenas por terem texto; confira também habilidades concedidas.
 `;
