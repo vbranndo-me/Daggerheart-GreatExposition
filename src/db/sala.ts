@@ -1,4 +1,5 @@
 import { esquecerSala } from "./salasSalvas";
+import { normalizarJogadores } from "./jogadores";
 import { carregarArquivo } from "../arquivo/dados";
 import { calcularDerivados, cartasDisponiveis, opcoesItemClasse } from "./regras";
 import { createContext, useContext, useEffect, useMemo, useRef, useState } from "react";
@@ -148,7 +149,7 @@ export function useCarregarSessao(salaId: string, chaveUrl: string | null, conte
           ...SALA_VAZIA,
           ...s,
           meta: s.meta || {},
-          jogadores: s.jogadores || {},
+          jogadores: normalizarJogadores(s.jogadores),
           pins: s.pins || {},
           personagens: s.personagens || {},
           privado: s.privado || {},
@@ -161,7 +162,7 @@ export function useCarregarSessao(salaId: string, chaveUrl: string | null, conte
     }
     const uns = FILHOS_PUBLICOS.map((k) =>
       b.on(`salas/${salaId}/${k}`, (v) => {
-        setSala((s) => ({ ...s, [k]: v || {} }));
+        setSala((s) => ({ ...s, [k]: k === "jogadores" ? normalizarJogadores(v) : v || {} }));
         if (k === "jogadores") setCarregada(true);
       }),
     );
